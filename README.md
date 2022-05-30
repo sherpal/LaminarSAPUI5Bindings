@@ -48,3 +48,24 @@ Every component is implemented as an object with the following:
 - some components will have links to other tightly coupled components (for example, the `TabContainer` has a `tab` link to the `Tab` component). They allow syntax such as `TabContainer(_.tab := ???)`.
 
 Every object is named after the corresponding ui5 web-component, with the notable exception of `List` which is called `UList` to not interfere with the built-in Scala `List` type.
+
+### Config Keys package
+
+The ui5 library contains a whole lot of "enums" that are used as properties of elements. In TypeScript, this would typically be represented as
+
+```typescript
+type Stuff = "foo" | "bar" | "baz"
+```
+
+In Scala 3, this approach could work in theory, but not I'm not really fond of. Instead, I prefer to define those as sealed traits like this
+
+```scala
+sealed trait Stuff
+object Stuff {
+  case object Foo extends Stuff
+  case object Bar extends Stuff
+  case object Baz extends Stuff
+}
+```
+
+In order to facilitate such usage with Laminar, these objects will typically extends `EnumerationString`, which helps by providing the codec required to represent this as a string.
