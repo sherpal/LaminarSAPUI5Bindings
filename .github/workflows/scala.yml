@@ -19,8 +19,6 @@ jobs:
         with:
           java-version: "11"
           distribution: "adopt"
-      - name: Install npm deps
-        run: cd frontend && npm install && cd ..
       - name: Compile
         run: sbt compile
       - name: Run tests
