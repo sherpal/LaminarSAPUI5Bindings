@@ -61,6 +61,13 @@ object Popover extends HasIcon with HasOnClick {
     def footer: Slot = new Slot("footer")
   }
 
+  object events {
+    val onAfterClose: EventProp[dom.Event]  = new EventProp("after-close")
+    val onAfterOpen: EventProp[dom.Event]   = new EventProp("after-open")
+    val onBeforeClose: EventProp[dom.Event] = new EventProp("before-close")
+    val onBeforeOpen: EventProp[dom.Event]  = new EventProp("before-open")
+  }
+
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Popover)): _*)
 
   def getPopoverById(id: String): Option[Ref] =
