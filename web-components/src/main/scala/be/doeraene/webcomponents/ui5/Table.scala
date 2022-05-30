@@ -1,5 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.ui5.configkeys.{TableGrowingMode, TableMode}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -8,6 +9,7 @@ import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
+import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
@@ -28,16 +30,24 @@ object Table {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-table")
 
-  val id: ReactiveProp[String, String]         = idAttr
-  val growing: ReactiveHtmlAttr[String]        = customHtmlAttr("growing", StringAsIsCodec)
-  val growingSubText: ReactiveHtmlAttr[String] = customHtmlAttr("growing-button-subtext", StringAsIsCodec)
+  val id: ReactiveProp[String, String] = idAttr
 
-  val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
-
-  val onLoadMore = new EventProp[dom.Event]("load-more")
+  val busy: ReactiveHtmlAttr[Boolean]                = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
+  val busyDelay: ReactiveHtmlAttr[FiniteDuration]    = customHtmlAttr("busy-delay", FiniteDurationCodec)
+  val growing: ReactiveHtmlAttr[TableGrowingMode]    = customHtmlAttr("growing", TableGrowingMode.AsStringCodec)
+  val growingButtonSubtext: ReactiveHtmlAttr[String] = customHtmlAttr("growing-button-subtext", StringAsIsCodec)
+  val growingButtonText: ReactiveHtmlAttr[String]    = customHtmlAttr("growing-button-text", StringAsIsCodec)
+  val hideNoData: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("hide-no-data", BooleanAsAttrPresenceCodec)
+  val mode: ReactiveHtmlAttr[TableMode]              = customHtmlAttr("mode", TableMode.AsStringCodec)
+  val noDataText: ReactiveHtmlAttr[String]           = customHtmlAttr("no-data-text", StringAsIsCodec)
+  val stickyColumnHeader: ReactiveHtmlAttr[Boolean] = customHtmlAttr("sticky-column-header", BooleanAsAttrPresenceCodec)
 
   object slots {
     val columns: Slot = new Slot("columns")
+  }
+
+  object events {
+    val onLoadMore = new EventProp[dom.Event]("load-more")
   }
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Table)): _*)
