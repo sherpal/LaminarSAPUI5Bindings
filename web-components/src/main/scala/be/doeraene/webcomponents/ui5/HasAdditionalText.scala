@@ -5,5 +5,5 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.keys.ReactiveHtmlAttr
 
 trait HasAdditionalText {
-  val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  def additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
 }

@@ -11,7 +11,9 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/** Simple UI button
+/** An image-like component that has different display options for representing images and icons in different shapes and
+  * sizes, depending on the use case. The shape can be circular or square. There are several predefined sizes, as well
+  * as an option to set a custom size.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Avatar/">the doc</a> for more information.

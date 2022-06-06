@@ -13,6 +13,7 @@ object IconName extends EnumerationString[IconName] {
   case object download extends IconName
   case object edit extends IconName
   case object error extends IconName
+  case object `exit-full-screen` extends IconName
   case object flight extends IconName
   case object group extends IconName
   case object home extends IconName
@@ -33,6 +34,7 @@ object IconName extends EnumerationString[IconName] {
       download,
       edit,
       error,
+      `exit-full-screen`,
       flight,
       group,
       home,

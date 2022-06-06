@@ -1,6 +1,7 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{TableGrowingMode, TableMode}
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -48,6 +49,15 @@ object Table {
 
   object events {
     val onLoadMore = new EventProp[dom.Event]("load-more")
+
+    @js.native
+    trait TableSelectionChangeDetail extends js.Object {
+      def previouslySelectedRows: js.Array[TableRow.Ref] = js.native
+
+      def selectedRows: js.Array[TableRow.Ref] = js.native
+    }
+
+    val onSelectionChange = new EventProp[dom.Event & HasDetail[TableSelectionChangeDetail]]("selection-change")
   }
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Table)): _*)

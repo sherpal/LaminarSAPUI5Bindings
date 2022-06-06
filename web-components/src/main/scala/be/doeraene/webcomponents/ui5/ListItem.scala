@@ -1,5 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.ui5.configkeys.{ListItemType, ValueState}
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.builders.HtmlTag
@@ -10,12 +11,13 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/** Simple UI button
+/** The ui5-li represents the simplest type of item for a ui5-list. This is a list item, providing the most common use
+  * cases such as text, image and icon.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
   */
-object ListItem extends HasIcon with HasDescription {
+object ListItem extends HasIcon with HasDescription with HasText with HasAdditionalText {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -34,7 +36,15 @@ object ListItem extends HasIcon with HasDescription {
 
   val id: ReactiveProp[String, String] = idAttr
 
-  val busy: ReactiveHtmlAttr[Boolean] = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
+  val additionalTextState: ReactiveHtmlAttr[ValueState] =
+    customHtmlAttr("additional-text-state", ValueState.AsStringCodec)
+
+  val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  val image: ReactiveHtmlAttr[String]    = customHtmlAttr("image", StringAsIsCodec)
+
+  val tpe: ReactiveHtmlAttr[ListItemType] = customHtmlAttr("type", ListItemType.AsStringCodec)
+
+  val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ListItem)): _*)
 
