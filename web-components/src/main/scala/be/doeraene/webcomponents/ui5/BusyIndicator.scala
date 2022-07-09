@@ -36,7 +36,7 @@ object BusyIndicator extends HasText {
   type Ref         = dom.html.Element with RawElement
   type ModFunction = BusyIndicator.type => Mod[ReactiveHtmlElement[Ref]]
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-busy-container")
+  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-busy-indicator")
 
   val id: ReactiveProp[String, String] = idAttr
 
