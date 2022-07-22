@@ -1,7 +1,7 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, ComboBoxFilter, IconName, ValueState}
-import be.doeraene.webcomponents.ui5.eventtypes.{EventWithPreciseTarget, HasDetail, HasItem}
+import be.doeraene.webcomponents.ui5.eventtypes.{EventWithPreciseTarget, HasDetail, HasItems}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -56,7 +56,7 @@ object MultiComboBox extends HasAccessibleName with HasValue {
   object events {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
-    val onSelectionChange: EventProp[dom.Event with HasDetail[HasItem[MultiComboBoxItem.Ref]]] = new EventProp(
+    val onSelectionChange: EventProp[dom.Event with HasDetail[HasItems[MultiComboBoxItem.Ref]]] = new EventProp(
       "selection-change"
     )
   }
