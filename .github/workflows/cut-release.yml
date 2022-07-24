@@ -2,7 +2,7 @@ name: Cut release
 
 on:
   push:
-    branches: [setup-jitpack]
+    branches: [publish]
 
 jobs:
   tests:
@@ -19,10 +19,10 @@ jobs:
         with:
           java-version: "11"
           distribution: "adopt"
-      # - name: Compile
-      #   run: sbt compile
-      # - name: Run tests
-      #   run: sbt test
+      - name: Compile
+        run: sbt compile
+      - name: Run tests
+        run: sbt test
   release:
     needs: [tests]
     runs-on: ubuntu-latest
