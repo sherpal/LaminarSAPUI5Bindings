@@ -1,0 +1,2 @@
+install:
+  - sbt web-components/publishM2
