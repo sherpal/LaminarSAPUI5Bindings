@@ -19,10 +19,10 @@ jobs:
         with:
           java-version: "11"
           distribution: "adopt"
-      - name: Compile
-        run: sbt compile
-      - name: Run tests
-        run: sbt test
+      # - name: Compile
+      #   run: sbt compile
+      # - name: Run tests
+      #   run: sbt test
   release:
     needs: [tests]
     runs-on: ubuntu-latest
@@ -40,3 +40,18 @@ jobs:
         run: cat tag.txt >> $GITHUB_ENV
       - name: Check tag
         run: echo "${{ env.RELEASE_TAG }}"
+      - name: Create Draft Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          release_name: "SAP UI5 Laminar Bindings"
+          draft: true
+          prerelease: false
+      - uses: eregon/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ steps.create_release.outputs.id }}
