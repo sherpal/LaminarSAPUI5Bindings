@@ -21,3 +21,15 @@ lazy val `web-components` = project
       "com.raquo" %%% "laminar" % "0.14.2" % Provided
     )
   )
+
+val createReleaseTag = taskKey[java.io.File]("Writes the current release tag in tag.txt file")
+
+createReleaseTag := {
+  val file = new java.io.File("tag.txt")
+
+  val currentVersion = (`web-components` / version).value
+  val gitHash        = git.gitHeadCommit.value.toRight(new IllegalStateException("Not a git repo!")).toTry.get.take(8)
+  IO.write(file, s"RELEASE_TAG=$currentVersion-$gitHash")
+
+  file
+}
