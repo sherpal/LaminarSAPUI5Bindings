@@ -12,7 +12,8 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/** Simple UI button
+/** The ui5-button component represents a simple push button. It enables users to trigger actions by clicking or tapping
+  * the ui5-button, or by pressing certain keyboard keys, such as Enter.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Button/">the doc</a> for more information.
@@ -29,7 +30,7 @@ object Button extends HasIcon with HasOnClick {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
+  type Ref         = dom.html.Element & RawElement
   type ModFunction = Button.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")

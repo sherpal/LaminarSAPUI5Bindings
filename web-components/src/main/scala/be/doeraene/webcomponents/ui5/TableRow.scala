@@ -28,5 +28,5 @@ object TableRow {
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TableRow)): _*)
 
   //noinspection TypeAnnotation
-  val Cell = TableCell
+  val cell = TableCell
 }

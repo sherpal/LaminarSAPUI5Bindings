@@ -44,6 +44,10 @@ object IllustratedMessage extends HasIcon with HasOnClick {
   val subtitleText: ReactiveHtmlAttr[String]          = customHtmlAttr("subtitle-text", StringAsIsCodec)
   val titleText: ReactiveHtmlAttr[String]             = customHtmlAttr("title-text", StringAsIsCodec)
 
+  object slots {}
+
+  object events {}
+
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(IllustratedMessage)): _*)
 
 }

@@ -10,6 +10,8 @@ import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
+import scala.compiletime.ops.int.<=
+
 import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
