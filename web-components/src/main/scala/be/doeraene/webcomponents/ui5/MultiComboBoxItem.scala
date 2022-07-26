@@ -43,6 +43,10 @@ object MultiComboBoxItem {
   val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
   val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
 
+  object slots {}
+
+  object events {}
+
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MultiComboBoxItem)): _*)
 
 }

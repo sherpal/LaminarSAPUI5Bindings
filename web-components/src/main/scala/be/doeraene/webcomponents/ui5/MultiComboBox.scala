@@ -56,7 +56,7 @@ object MultiComboBox extends HasAccessibleName with HasValue {
   object events {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
-    val onSelectionChange: EventProp[dom.Event with HasDetail[HasItems[MultiComboBoxItem.Ref]]] = new EventProp(
+    val onSelectionChange: EventProp[dom.Event & HasDetail[HasItems[MultiComboBoxItem.Ref]]] = new EventProp(
       "selection-change"
     )
   }
