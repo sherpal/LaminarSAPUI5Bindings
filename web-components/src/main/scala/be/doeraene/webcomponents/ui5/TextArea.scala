@@ -11,13 +11,14 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
+import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 
 /** TextArea
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TextArea/">the doc</a> for more information.
   */
-object TextArea extends HasValue with HasAccessibleName {
+object TextArea extends HasValue with HasAccessibleName with HasName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -40,11 +41,18 @@ object TextArea extends HasValue with HasAccessibleName {
   val disabled: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   val readonly: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
   val growing: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("growing", BooleanAsAttrPresenceCodec)
+  val showExceededText: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("showExceededText", BooleanAsAttrPresenceCodec)
+  val growingMaxLines: ReactiveHtmlAttr[Int]  = customHtmlAttr("growingMaxLines", IntAsStringCodec)
+  val maxLength: ReactiveHtmlAttr[Int]  = customHtmlAttr("maxLength", IntAsStringCodec)  
+  val rows: ReactiveHtmlAttr[Int]  = customHtmlAttr("rows", IntAsStringCodec)
   val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("headerText", StringAsIsCodec)
   val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
   
   val isRequired: Setter[HtmlElement] = required := true
   
+  object slots {
+    val valueStateMessage = slot("valueStateMessage")    
+  }
   object events {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")    
