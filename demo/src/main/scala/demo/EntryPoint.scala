@@ -10,6 +10,7 @@ object EntryPoint {
     val componentsDemo: Map[String, () => HtmlElement] = Map(
       "Avatar" -> AvatarExample.apply,
       "Badge"  -> BadgeExample.apply,
+      "Bar"    -> BarExample.apply,
       "Input"  -> InputExample.apply
     )
 

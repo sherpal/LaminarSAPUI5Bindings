@@ -41,6 +41,8 @@ object Button extends HasIcon with HasOnClick {
 
   val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
 
+  val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
+
   object slots {}
 
   object events {

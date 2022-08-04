@@ -6,6 +6,7 @@ sealed trait IconName
 
 //noinspection NoTargetNameAnnotationForOperatorLikeDefinition
 object IconName extends EnumerationString[IconName] {
+  case object `action-settings` extends IconName
   case object add extends IconName
   case object `add-document` extends IconName
   case object customer extends IconName
@@ -27,6 +28,7 @@ object IconName extends EnumerationString[IconName] {
 
   val allValues: List[IconName] =
     List(
+      `action-settings`,
       add,
       `add-document`,
       customer,
