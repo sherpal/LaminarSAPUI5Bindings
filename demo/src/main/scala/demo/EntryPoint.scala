@@ -9,6 +9,7 @@ object EntryPoint {
   def main(args: Array[String]): Unit = {
     val componentsDemo: Map[String, () => HtmlElement] = Map(
       "Avatar" -> AvatarExample.apply,
+      "Badge"  -> BadgeExample.apply,
       "Input"  -> InputExample.apply
     )
 
@@ -23,7 +24,11 @@ object EntryPoint {
             componentsDemo.keys.toList.map(componentName => li(a(componentName, href := s"/$componentName")))
           )
         )
-      else componentsDemo.getOrElse(componentName, () => div("Not Found"))()
+      else
+        div(
+          padding := "10px",
+          componentsDemo.getOrElse(componentName, () => div("Not Found"))()
+        )
     )
   }
 }
