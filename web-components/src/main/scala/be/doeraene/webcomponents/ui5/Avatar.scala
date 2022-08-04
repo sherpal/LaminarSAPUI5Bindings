@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{AvatarColorScheme, AvatarInitials, AvatarSize}
+import be.doeraene.webcomponents.ui5.configkeys.{AvatarColorScheme, AvatarInitials, AvatarShape, AvatarSize}
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.builders.HtmlTag
@@ -44,6 +44,8 @@ object Avatar extends HasIcon {
 
   val colorScheme: ReactiveHtmlAttr[AvatarColorScheme] =
     customHtmlAttr("color-scheme", AvatarColorScheme.AsStringCodec)
+
+  val shape: ReactiveHtmlAttr[AvatarShape] = customHtmlAttr("shape", AvatarShape.AsStringCodec)
 
   val initials: ReactiveHtmlAttr[AvatarInitials] =
     customHtmlAttr("initials", AvatarInitials.AsStringCodec)
