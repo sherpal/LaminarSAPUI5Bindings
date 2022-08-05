@@ -17,7 +17,7 @@ object BreadcrumbsExample {
         ),
         _.Item(_.href := "https://github.com/sherpal/LaminarSAPUI5Bindings", _ => "Parent page"),
         _.Item(_ => "Current page"),
-        _.events.onItemClick --> Observer(x => org.scalajs.dom.console.log(x))
+        _.events.onItemClick.map(_.detail.item) --> Observer(x => org.scalajs.dom.console.log(x))
       )
     ),
     DemoPanel(
