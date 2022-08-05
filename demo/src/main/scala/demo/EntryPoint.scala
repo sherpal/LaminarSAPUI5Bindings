@@ -8,11 +8,12 @@ import org.scalajs.dom.URL
 object EntryPoint {
   def main(args: Array[String]): Unit = {
     val componentsDemo: Map[String, () => HtmlElement] = Map(
-      "Avatar"      -> AvatarExample.apply,
-      "Badge"       -> BadgeExample.apply,
-      "Bar"         -> BarExample.apply,
-      "Breadcrumbs" -> BreadcrumbsExample.apply,
-      "Input"       -> InputExample.apply
+      "Avatar"        -> AvatarExample.apply,
+      "Badge"         -> BadgeExample.apply,
+      "Bar"           -> BarExample.apply,
+      "Breadcrumbs"   -> BreadcrumbsExample.apply,
+      "BusyIndicator" -> BusyIndicatorExample.apply,
+      "Input"         -> InputExample.apply
     )
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
