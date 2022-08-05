@@ -7,7 +7,7 @@ import demo.helpers.DemoPanel
 
 object BarExample {
 
-  private def basicBarContent(title: String) = List[Bar.ModFunction](
+  private def headerBarContent(title: String) = List[Bar.ModFunction](
     _.slots.startContent := Button(
       _.icon := IconName.home,
       _.tooltip := "Go home",
@@ -17,11 +17,23 @@ object BarExample {
     _.slots.endContent := Button(_.icon := IconName.`action-settings`, _.tooltip := "Go to settings")
   )
 
+  private def footerBarContent = List[Bar.ModFunction](
+    _.slots.endContent := Button(_.design := ButtonDesign.Positive, _ => "Agree"),
+    _.slots.endContent := Button(_.design := ButtonDesign.Negative, _ => "Decline"),
+    _.slots.endContent := Button(_.design := ButtonDesign.Transparent, _ => "Cancel")
+  )
+
   def apply(): HtmlElement = div(
-    BarDesign.allValues.map(design =>
+    List(BarDesign.Header, BarDesign.Subheader).map(design =>
       DemoPanel(
         s"${design.value} Bar",
-        Bar((basicBarContent(s"${design.value} Title") :+ (_.design := design)): _*)
+        Bar((headerBarContent(s"${design.value} Title") :+ (_.design := design)): _*)
+      )
+    ),
+    List(BarDesign.Footer, BarDesign.FloatingFooter).map(design =>
+      DemoPanel(
+        s"${design.value} Bar",
+        Bar(footerBarContent: _*)
       )
     )
   )

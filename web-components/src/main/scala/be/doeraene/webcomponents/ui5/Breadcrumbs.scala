@@ -1,6 +1,7 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{BreadcrumbsDesign, BreadcrumbsSeparatorStyle}
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.builders.HtmlTag
@@ -48,6 +49,12 @@ object Breadcrumbs extends HasIcon with HasOnClick {
 
   val design: ReactiveHtmlAttr[BreadcrumbsDesign] =
     customHtmlAttr("design", BreadcrumbsDesign.AsStringCodec)
+
+  object slots {}
+
+  object events {
+    val onItemClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("item-click")
+  }
 
   def apply(mods: ModFunction*): Breadcrumbs = tag(mods.map(_(this)): _*)
 
