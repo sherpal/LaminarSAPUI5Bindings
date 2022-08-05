@@ -13,6 +13,7 @@ object EntryPoint {
       "Bar"           -> BarExample.apply,
       "Breadcrumbs"   -> BreadcrumbsExample.apply,
       "BusyIndicator" -> BusyIndicatorExample.apply,
+      "Button"        -> ButtonExample.apply,
       "Input"         -> InputExample.apply
     )
 
