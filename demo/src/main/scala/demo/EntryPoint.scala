@@ -16,6 +16,7 @@ object EntryPoint {
       BusyIndicatorExample,
       ButtonExample,
       CardExample,
+      CarouselExample,
       InputExample
     ).sorted
 
