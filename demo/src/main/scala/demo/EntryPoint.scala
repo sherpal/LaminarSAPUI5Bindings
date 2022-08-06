@@ -19,6 +19,7 @@ object EntryPoint {
       CarouselExample,
       CheckBoxExample,
       ColourPaletteExample,
+      ColourPalettePopoverExample,
       InputExample
     ).sorted
 
