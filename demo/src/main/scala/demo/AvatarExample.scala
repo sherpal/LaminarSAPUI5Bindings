@@ -3,13 +3,13 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.DemoPanel
+import demo.helpers.{DemoPanel, Example}
 
-object AvatarExample {
+object AvatarExample extends Example("Avatar") {
 
   private def sherpal = img(src := "/images/avatars/sherpal.png", alt := "sherpal")
 
-  def apply(): HtmlElement = div(
+  def component: HtmlElement = div(
     DemoPanel(
       "Basic examples",
       div(Avatar(_ => sherpal), Avatar(_.shape := AvatarShape.Square, _ => sherpal))

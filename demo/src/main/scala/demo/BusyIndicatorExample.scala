@@ -3,11 +3,11 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.DemoPanel
+import demo.helpers.{DemoPanel, Example}
 
-object BusyIndicatorExample {
+object BusyIndicatorExample extends Example("BusyIndicator") {
 
-  def apply(): HtmlElement = div(
+  def component: HtmlElement = div(
     DemoPanel(
       "Busy indicator with difference size",
       div(

@@ -3,9 +3,9 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.DemoPanel
+import demo.helpers.{DemoPanel, Example}
 
-object BarExample {
+object BarExample extends Example("Bar") {
 
   private def headerBarContent(title: String) = List[Bar.ModFunction](
     _.slots.startContent := Button(
@@ -23,7 +23,7 @@ object BarExample {
     _.slots.endContent := Button(_.design := ButtonDesign.Transparent, _ => "Cancel")
   )
 
-  def apply(): HtmlElement = div(
+  def component: HtmlElement = div(
     List(BarDesign.Header, BarDesign.Subheader).map(design =>
       DemoPanel(
         s"${design.value} Bar",

@@ -2,9 +2,10 @@ package demo
 
 import be.doeraene.webcomponents.ui5.*
 import com.raquo.laminar.api.L.*
+import demo.helpers.{DemoPanel, Example}
 
-object InputExample {
+object InputExample extends Example("Input") {
 
-  def apply(): HtmlElement = Input(_.placeholder := "Fill Me")
+  def component: HtmlElement = Input(_.placeholder := "Fill Me")
 
 }

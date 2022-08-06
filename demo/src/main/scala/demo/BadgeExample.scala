@@ -3,9 +3,9 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.DemoPanel
+import demo.helpers.{DemoPanel, Example}
 
-object BadgeExample {
+object BadgeExample extends Example("Badge") {
 
   private val someTexts = List(
     "Hello",
@@ -20,7 +20,7 @@ object BadgeExample {
     "the last"
   )
 
-  def apply(): HtmlElement = div(
+  def component: HtmlElement = div(
     DemoPanel(
       "Basic badge",
       div(

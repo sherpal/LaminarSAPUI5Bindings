@@ -3,11 +3,11 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.DemoPanel
+import demo.helpers.{DemoPanel, Example}
 
-object ButtonExample {
+object ButtonExample extends Example("Button") {
 
-  def apply(): HtmlElement = {
+  def component: HtmlElement = {
     val exampleButtonContainerClass = "exampleButtonContainerClass"
     div(
       styleTag(s"""
