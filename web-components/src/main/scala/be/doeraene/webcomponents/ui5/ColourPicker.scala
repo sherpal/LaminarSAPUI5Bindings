@@ -29,6 +29,12 @@ object ColourPicker {
     def color: String = js.native
   }
 
+  object RawElement {
+    extension (rawElement: RawElement)
+      /** The current colour as [[Colour]] instance. English UK spelling for consistency. */
+      def colour: Colour = Colour.fromString(rawElement.color)
+  }
+
   @js.native
   @JSImport("@ui5/webcomponents/dist/ColorPicker.js", JSImport.Default)
   object RawImport extends js.Object
