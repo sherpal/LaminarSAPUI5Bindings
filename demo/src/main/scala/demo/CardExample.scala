@@ -115,24 +115,24 @@ object CardExample extends Example("Card") {
               ),
               _ =>
                 TableRow(
-                  _ => TableRow.cell(_ => Label(_ => "5000010050")),
-                  _ => TableRow.cell(_ => Label(_ => "Entertainment Argentinia")),
-                  _ => TableRow.cell(_ => Label(_ => "6k USD")),
-                  _ => TableRow.cell(_ => className := statusSuccess, _ => "Approved")
+                  _.cell(_ => Label(_ => "5000010050")),
+                  _.cell(_ => Label(_ => "Entertainment Argentinia")),
+                  _.cell(_ => Label(_ => "6k USD")),
+                  _.cell(_ => className := statusSuccess, _ => "Approved")
                 ),
               _ =>
                 TableRow(
-                  _ => TableRow.cell(_ => Label(_ => "5000010051")),
-                  _ => TableRow.cell(_ => Label(_ => "Brazil Technologies")),
-                  _ => TableRow.cell(_ => Label(_ => "2k USD")),
-                  _ => TableRow.cell(_ => className := statusError, _ => "Rejected")
+                  _.cell(_ => Label(_ => "5000010051")),
+                  _.cell(_ => Label(_ => "Brazil Technologies")),
+                  _.cell(_ => Label(_ => "2k USD")),
+                  _.cell(_ => className := statusError, _ => "Rejected")
                 ),
               _ =>
                 TableRow(
-                  _ => TableRow.cell(_ => Label(_ => "5000010052")),
-                  _ => TableRow.cell(_ => Label(_ => "Robert Brown Ent.")),
-                  _ => TableRow.cell(_ => Label(_ => "17k USD")),
-                  _ => TableRow.cell(_ => className := statusWarning, _ => "Pending")
+                  _.cell(_ => Label(_ => "5000010052")),
+                  _.cell(_ => Label(_ => "Robert Brown Ent.")),
+                  _.cell(_ => Label(_ => "17k USD")),
+                  _.cell(_ => className := statusWarning, _ => "Pending")
                 ),
             )
         )
