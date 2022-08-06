@@ -4,10 +4,12 @@ import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example}
+import demo.helpers.MTG
 
 object AvatarExample extends Example("Avatar") {
 
-  private def sherpal = img(src := "/images/avatars/sherpal.png", alt := "sherpal")
+  private def sherpal                       = img(src := "/images/avatars/sherpal.png", alt := "sherpal")
+  private def manaSymbolImage(name: String) = img(src := MTG.manaSymbolsRefs(name), alt := name)
 
   def component: HtmlElement = div(
     DemoPanel(
@@ -16,7 +18,11 @@ object AvatarExample extends Example("Avatar") {
     ),
     DemoPanel(
       "Avatar sizes",
-      div(AvatarSize.allValues.map(size => Avatar(_.size := size, _ => sherpal)))
+      div(
+        AvatarSize.allValues
+          .zip(MTG.manaSymbolsNames)
+          .map((size, mana) => Avatar(_.size := size, _ => manaSymbolImage(mana)))
+      )
     ),
     DemoPanel(
       "Avatar with icons",
