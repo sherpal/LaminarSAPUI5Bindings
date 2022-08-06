@@ -20,7 +20,7 @@ object AvatarExample extends Example("Avatar") {
       "Avatar sizes",
       div(
         AvatarSize.allValues
-          .zip(MTG.manaSymbolsNames)
+          .zip(MTG.manaSymbolsShortNames)
           .map((size, mana) => Avatar(_.size := size, _ => manaSymbolImage(mana)))
       )
     ),

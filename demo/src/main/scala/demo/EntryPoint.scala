@@ -15,6 +15,7 @@ object EntryPoint {
       BreadcrumbsExample,
       BusyIndicatorExample,
       ButtonExample,
+      CardExample,
       InputExample
     ).sorted
 

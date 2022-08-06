@@ -2,8 +2,16 @@ package demo.helpers
 
 object MTG {
 
-  val manaSymbolsNames = List("B", "U", "W", "G", "R", "C")
+  val manaSymbolsShortNames = List("B", "U", "W", "G", "R", "C")
+  val manaSymbolsNames = List(
+    "Black",
+    "Blue",
+    "White",
+    "Green",
+    "Red",
+    "Colourless"
+  )
 
-  def manaSymbolsRefs(name: String) = s"/images/mtg/$name.png"
+  def manaSymbolsRefs(shortName: String) = s"/images/mtg/$shortName.png"
 
 }
