@@ -27,7 +27,10 @@ lazy val demo = project
   .enablePlugins(ScalaJSPlugin)
   .settings(
     scalacOptions ++= usedScalacOptions,
-    libraryDependencies ++= List("com.raquo" %%% "laminar" % laminarVersion),
+    libraryDependencies ++= List(
+      "com.raquo" %%% "laminar" % laminarVersion,
+      "io.github.cquiroz" %%% "scala-java-time" % "2.4.0"
+    ),
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.ESModule) },
     scalaJSUseMainModuleInitializer := true
   )
