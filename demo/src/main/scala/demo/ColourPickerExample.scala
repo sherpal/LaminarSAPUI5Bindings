@@ -18,7 +18,6 @@ object ColourPickerExample extends Example("ColourPicker") {
             child.text <-- maybeChosenColourVar.signal.map {
               case Some(colour) => s"You have chosen colour ${colour.rgba}."
               case None         => "Chose a colour."
-
             }
           )
         )

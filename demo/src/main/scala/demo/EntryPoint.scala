@@ -21,6 +21,7 @@ object EntryPoint {
       ColourPaletteExample,
       ColourPalettePopoverExample,
       ColourPickerExample,
+      ComboBoxExample,
       InputExample
     ).sorted
 
