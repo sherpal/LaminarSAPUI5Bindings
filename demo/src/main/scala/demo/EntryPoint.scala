@@ -23,6 +23,8 @@ object EntryPoint {
       ColourPickerExample,
       ComboBoxExample,
       DatePickerExample,
+      DateRangePickerExample,
+      DateTimePickerExample,
       InputExample
     ).sorted
 
