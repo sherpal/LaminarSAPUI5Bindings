@@ -17,6 +17,7 @@ object EntryPoint {
       ButtonExample,
       CardExample,
       CarouselExample,
+      CheckBoxExample,
       InputExample
     ).sorted
 
