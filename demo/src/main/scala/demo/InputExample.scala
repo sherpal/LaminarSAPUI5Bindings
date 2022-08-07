@@ -104,33 +104,25 @@ object InputExample extends Example("Input") {
       }
     ),
     DemoPanel(
-      "Input with Label", {
-        val loginFormClass = "login-form"
+      "Input with Label",
+      div(
+        className := loginFormClass,
+        styleTagForLoginFormClass,
         div(
-          className := loginFormClass,
-          styleTag(s"""
-                    |.$loginFormClass > div {
-                    |    display: grid;
-                    |    width: 15rem;
-                    |    margin-bottom: 0.5rem;
-                    |}
-                    |""".stripMargin),
-          div(
-            Label(_.forId := "myInput", _.required := true, _.showColon := true, _ => "Name"),
-            Input(_.id := "myInput", _.placeholder := "Enter your Name", _.required := true)
-          ),
-          div(
-            Label(_.forId := "myPassword", _.required := true, _.showColon := true, _ => "Secret Code"),
-            Input(
-              _.id := "myPassword",
-              _.tpe := InputType.Password,
-              _.valueState := ValueState.Error,
-              _.placeholder := "Enter your Secret Code",
-              _.required := true
-            )
+          Label(_.forId := "myInput", _.required := true, _.showColon := true, _ => "Name"),
+          Input(_.id := "myInput", _.placeholder := "Enter your Name", _.required := true)
+        ),
+        div(
+          Label(_.forId := "myPassword", _.required := true, _.showColon := true, _ => "Secret Code"),
+          Input(
+            _.id := "myPassword",
+            _.tpe := InputType.Password,
+            _.valueState := ValueState.Error,
+            _.placeholder := "Enter your Secret Code",
+            _.required := true
           )
         )
-      }
+      )
     )
   )
 

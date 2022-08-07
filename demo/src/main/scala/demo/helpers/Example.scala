@@ -16,6 +16,16 @@ trait Example(val name: String) {
     _.hideCloseButton := true
   )
 
+  val loginFormClass = "login-form"
+
+  def styleTagForLoginFormClass = styleTag(s"""
+                                              |.$loginFormClass > div {
+                                              |    display: grid;
+                                              |    width: 15rem;
+                                              |    margin-bottom: 0.5rem;
+                                              |}
+                                              |""".stripMargin)
+
 }
 
 object Example {

@@ -18,7 +18,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRe
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
-object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue {
+object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {

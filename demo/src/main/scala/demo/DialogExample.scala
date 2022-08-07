@@ -7,20 +7,12 @@ import demo.helpers.{DemoPanel, Example}
 
 object DialogExample extends Example("Dialog") {
 
-  private val loginFormClass = "login-form"
-
   def component: HtmlElement = div(
     DemoPanel(
       "Basic Dialog", {
         val openDialogBus: EventBus[Boolean] = new EventBus
         div(
-          styleTag(s"""
-          |.$loginFormClass > div {
-          |    display: grid;
-          |    width: 15rem;
-          |    margin-bottom: 0.5rem;
-          |}
-          |""".stripMargin),
+          styleTagForLoginFormClass,
           Button(
             _.design := ButtonDesign.Emphasized,
             _ => "Open Dialog",
