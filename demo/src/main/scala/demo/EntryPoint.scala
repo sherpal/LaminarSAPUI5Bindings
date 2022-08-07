@@ -28,6 +28,7 @@ object EntryPoint {
       DialogExample,
       DynamicSideContentExample,
       FileUploaderExample,
+      FlexibleColumnLayoutExample,
       InputExample
     ).sorted
 
