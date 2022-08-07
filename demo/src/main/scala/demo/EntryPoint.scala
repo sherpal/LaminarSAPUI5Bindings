@@ -25,6 +25,7 @@ object EntryPoint {
       DatePickerExample,
       DateRangePickerExample,
       DateTimePickerExample,
+      DialogExample,
       InputExample
     ).sorted
 
