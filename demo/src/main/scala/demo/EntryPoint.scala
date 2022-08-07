@@ -29,6 +29,7 @@ object EntryPoint {
       DynamicSideContentExample,
       FileUploaderExample,
       FlexibleColumnLayoutExample,
+      IconExample,
       InputExample
     ).sorted
 
