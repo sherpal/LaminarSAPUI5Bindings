@@ -26,6 +26,8 @@ object EntryPoint {
       DateRangePickerExample,
       DateTimePickerExample,
       DialogExample,
+      DynamicSideContentExample,
+      FileUploaderExample,
       InputExample
     ).sorted
 
