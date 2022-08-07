@@ -30,6 +30,7 @@ object EntryPoint {
       FileUploaderExample,
       FlexibleColumnLayoutExample,
       IconExample,
+      IllustratedMessageExample,
       InputExample
     ).sorted
 

@@ -34,6 +34,7 @@ object IconName extends EnumerationString[IconName] {
   case object `message-warning` extends IconName
   case object `money-bills` extends IconName
   case object `overview-chart` extends IconName
+  case object refresh extends IconName
   case object `slim-arrow-bottom` extends IconName
   case object `slim-arrow-left` extends IconName
   case object `slim-arrow-right` extends IconName
@@ -70,6 +71,7 @@ object IconName extends EnumerationString[IconName] {
       menu,
       `message-warning`,
       `overview-chart`,
+      refresh,
       `slim-arrow-bottom`,
       `slim-arrow-left`,
       `slim-arrow-right`,
