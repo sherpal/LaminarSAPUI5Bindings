@@ -2,6 +2,7 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ListMode, ListSeparator}
 import be.doeraene.webcomponents.ui5.internal.Slot
+import be.doeraene.webcomponents.ui5.eventtypes.*
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.builders.HtmlTag
@@ -43,7 +44,9 @@ object UList {
   val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
   val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
 
-  object events {}
+  object events {
+    val onItemClick = new EventProp[dom.Event & HasDetail[HasItem[Li.Ref]]]("item-click")
+  }
 
   object slots {
     val header: Slot = new Slot("header")

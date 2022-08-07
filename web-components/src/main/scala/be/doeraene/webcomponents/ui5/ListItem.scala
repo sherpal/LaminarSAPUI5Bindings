@@ -17,7 +17,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
   */
-object ListItem extends HasIcon with HasDescription with HasText with HasAdditionalText {
+object ListItem extends HasIcon with HasDescription with HasAdditionalText {
 
   @js.native
   trait RawElement extends js.Object {}
