@@ -53,7 +53,8 @@ object EntryPoint {
       ResponsivePopoverExample,
       SegmentedButtonExample,
       SelectExample,
-      ShellBarExample
+      ShellBarExample,
+      SideNavigationExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
