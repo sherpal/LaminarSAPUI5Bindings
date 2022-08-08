@@ -12,7 +12,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.{JSImport, JSName}
 
 /** The ui5-badge is a small non-interactive component which contains text information and color chosen from a list of
   * predefined color schemes. It serves the purpose to attract the user attention to some piece of information (state,
@@ -26,13 +26,14 @@ object ColourPicker {
 
   @js.native
   trait RawElement extends js.Object {
-    def color: String = js.native
+    @JSName("color")
+    def colourJS: String = js.native
   }
 
   object RawElement {
     extension (rawElement: RawElement)
       /** The current colour as [[Colour]] instance. English UK spelling for consistency. */
-      def colour: Colour = Colour.fromString(rawElement.color)
+      def colour: Colour = Colour.fromString(rawElement.colourJS)
   }
 
   @js.native

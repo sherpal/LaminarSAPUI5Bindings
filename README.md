@@ -220,3 +220,25 @@ For example, the footer slot of the `Dialog` is defined as
 ```scala
 val footer: Slot = new Slot("footer")
 ```
+
+#### Methods
+
+Some SAP components have special methods to interact with. Among the most common, you will find the `Dialog` which has a `show` method. Some others like `Popover` will have `showAt`.
+
+These methods must be defined as `js.native` method of the `RawElement` trait.
+
+For methods that take as input or return some "not-so-scala-ish" types (such as `js.Array`), it is best to call them `theMethodNameJS` (annotating by `JSName("theMethodName")`) and to create an extension method called `theMethodName` taking/returning more Scala friendly types. For example, the `ColourPicker` `RawElement` is implemented as
+
+```scala
+@js.native
+trait RawElement extends js.Object {
+  @JSName("color")
+  def colourJS: String = js.native
+}
+
+object RawElement {
+  extension (rawElement: RawElement)
+    /** The current colour as [[Colour]] instance. English UK spelling for consistency. */
+    def colour: Colour = Colour.fromString(rawElement.colourJS)
+}
+```
