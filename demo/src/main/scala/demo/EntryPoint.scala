@@ -37,7 +37,8 @@ object EntryPoint {
       ListExample,
       MediaGalleryExample,
       MenuExample,
-      MessageStripExample
+      MessageStripExample,
+      MultiComboBoxExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')

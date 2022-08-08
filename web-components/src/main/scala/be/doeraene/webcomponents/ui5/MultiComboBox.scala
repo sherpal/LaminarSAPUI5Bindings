@@ -39,16 +39,16 @@ object MultiComboBox extends HasAccessibleName with HasValue {
 
   val id: ReactiveProp[String, String] = idAttr
 
-  val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val filter: ReactiveHtmlAttr[ComboBoxFilter] = customHtmlAttr("filter", ComboBoxFilter.AsStringCodec)  
-  val placeholder: ReactiveHtmlAttr[String]    = customHtmlAttr("placeholder", StringAsIsCodec)
-  val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  val allowCustomValues: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  val required: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  val disabled: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  val filter: ReactiveHtmlAttr[ComboBoxFilter]     = customHtmlAttr("filter", ComboBoxFilter.AsStringCodec)
+  val placeholder: ReactiveHtmlAttr[String]        = customHtmlAttr("placeholder", StringAsIsCodec)
+  val readonly: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  val allowCustomValues: ReactiveHtmlAttr[Boolean] = customHtmlAttr("allow-custom-values", BooleanAsAttrPresenceCodec)
+  val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  val valueState: ReactiveHtmlAttr[ValueState]     = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   object slots {
-    val default: Slot              = new Slot("default")
+    val default: Slot           = new Slot("default")
     val icon: Slot              = new Slot("icon")
     val valueStateMessage: Slot = new Slot("valueStateMessage")
   }
@@ -63,6 +63,6 @@ object MultiComboBox extends HasAccessibleName with HasValue {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MultiComboBox)): _*)
 
-  def item: MultiComboBoxItem.type       = MultiComboBoxItem
+  def item: MultiComboBoxItem.type = MultiComboBoxItem
   //def group: ComboBoxGroupItem.type = ComboBoxGroupItem // TODO
 }
