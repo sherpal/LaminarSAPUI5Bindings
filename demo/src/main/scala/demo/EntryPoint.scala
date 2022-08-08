@@ -52,7 +52,8 @@ object EntryPoint {
       RatingIndicatorExample,
       ResponsivePopoverExample,
       SegmentedButtonExample,
-      SelectExample
+      SelectExample,
+      ShellBarExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
