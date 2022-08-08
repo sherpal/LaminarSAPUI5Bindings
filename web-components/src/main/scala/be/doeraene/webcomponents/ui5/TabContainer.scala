@@ -66,4 +66,13 @@ object TabContainer {
 
   def tab: Tab.type = Tab
 
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/TabSeparator.js", JSImport.Default)
+  object TabSeparatorSupport extends js.Object
+
+  def tabSeparator: HtmlElement = {
+    TabSeparatorSupport
+    customHtmlTag("ui5-tab-separator").apply()
+  }
+
 }

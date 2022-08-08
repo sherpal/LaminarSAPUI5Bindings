@@ -58,7 +58,8 @@ object EntryPoint {
       SliderExample,
       SplitButtonExample,
       StepInputExample,
-      SwitchExample
+      SwitchExample,
+      TabContainerExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
