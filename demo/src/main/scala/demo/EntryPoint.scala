@@ -45,7 +45,8 @@ object EntryPoint {
       PageExample,
       PanelExample,
       PopoverExample,
-      ProductSwitchExample
+      ProductSwitchExample,
+      ProgressIndicatorExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
