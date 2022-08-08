@@ -34,7 +34,9 @@ object EntryPoint {
       InputExample,
       LabelExample,
       LinkExample,
-      ListExample
+      ListExample,
+      MediaGalleryExample,
+      MenuExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
