@@ -84,6 +84,9 @@ object DatePicker extends HasOnClick with HasAccessibleName with HasName with Ha
   val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
     customHtmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
 
+  val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+    customHtmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
+
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")
   }

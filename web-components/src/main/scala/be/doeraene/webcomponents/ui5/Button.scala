@@ -43,6 +43,17 @@ object Button extends HasIcon with HasOnClick {
 
   val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
 
+  val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
+  object SubmitsSupport extends js.Object
+
+  lazy val submits: ReactiveHtmlAttr[Boolean] = {
+    SubmitsSupport
+    customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
+  }
+
   object slots {}
 
   object events {
