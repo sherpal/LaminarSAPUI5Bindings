@@ -42,7 +42,8 @@ object EntryPoint {
       MultiInputExample,
       NotificationListGroupItemExample,
       NotificationListItemExample,
-      PageExample
+      PageExample,
+      PanelExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
