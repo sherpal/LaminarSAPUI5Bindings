@@ -79,6 +79,6 @@ object ShellBar extends HasIcon with HasOnClick {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ShellBar)): _*)
 
-  def Item: ShellBarItem.type = ShellBarItem
+  def item: ShellBarItem.type = ShellBarItem
 
 }
