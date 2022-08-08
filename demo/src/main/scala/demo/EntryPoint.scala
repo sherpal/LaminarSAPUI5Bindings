@@ -54,7 +54,10 @@ object EntryPoint {
       SegmentedButtonExample,
       SelectExample,
       ShellBarExample,
-      SideNavigationExample
+      SideNavigationExample,
+      SliderExample,
+      SplitButtonExample,
+      StepInputExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
