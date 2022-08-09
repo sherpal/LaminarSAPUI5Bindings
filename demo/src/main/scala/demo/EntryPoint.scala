@@ -60,7 +60,8 @@ object EntryPoint {
       StepInputExample,
       SwitchExample,
       TabContainerExample,
-      TableExample
+      TableExample,
+      TextAreaExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
