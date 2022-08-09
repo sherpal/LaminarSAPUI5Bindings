@@ -61,7 +61,9 @@ object EntryPoint {
       SwitchExample,
       TabContainerExample,
       TableExample,
-      TextAreaExample
+      TextAreaExample,
+      TimePickerExample,
+      TimelineExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
