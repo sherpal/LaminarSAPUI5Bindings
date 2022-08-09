@@ -38,6 +38,10 @@ object FlexibleColumnLayout {
     def visibleColumns: Int = js.native
   }
 
+  object RawElement {
+    extension (element: RawElement) def layoutADT: FCLLayout = FCLLayout.AsStringCodec.decode(element.layout)
+  }
+
   @js.native
   @JSImport("@ui5/webcomponents-fiori/dist/FlexibleColumnLayout.js", JSImport.Default)
   object RawImport extends js.Object

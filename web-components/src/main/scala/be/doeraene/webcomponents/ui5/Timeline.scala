@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** The ui5-timeline component shows entries (such as objects, events, or posts) in chronological order. A common use
   * case is to provide information about changes to an object, or events related to an object. These entries can be

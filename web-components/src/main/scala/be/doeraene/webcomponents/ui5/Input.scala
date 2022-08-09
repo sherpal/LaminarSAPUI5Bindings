@@ -18,7 +18,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRe
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
-object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue {
+object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -43,6 +43,7 @@ object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue {
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
   val tpe: ReactiveHtmlAttr[InputType] = customHtmlAttr("type", InputType.AsStringCodec)
 
@@ -55,6 +56,9 @@ object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue {
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")
+
+    // undocumented in SAP but it exists.
+    val icon: Slot = new Slot("icon")
   }
 
   object events extends HasOnChange with HasOnInput {

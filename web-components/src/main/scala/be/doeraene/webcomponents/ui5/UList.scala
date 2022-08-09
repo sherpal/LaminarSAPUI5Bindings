@@ -1,7 +1,8 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ListMode, ListSeparator}
+import be.doeraene.webcomponents.ui5.configkeys.{ListGrowingMode, ListMode, ListSeparator}
 import be.doeraene.webcomponents.ui5.internal.Slot
+import be.doeraene.webcomponents.ui5.eventtypes.*
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.builders.HtmlTag
@@ -10,7 +11,8 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.{JSImport, JSName}
+import scala.concurrent.duration.FiniteDuration
 
 /** The ui5-list component allows displaying a list of items, advanced keyboard handling support for navigating between
   * items, and predefined modes to improve the development efficiency.
@@ -38,11 +40,46 @@ object UList {
   val id: ReactiveProp[String, String] = idAttr
 
   val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
+  val busyDelay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
   val headerText: ReactiveHtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
+  val footerText: ReactiveHtmlAttr[String]        = customHtmlAttr("footer-text", StringAsIsCodec)
   val mode: ReactiveHtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
   val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
+  val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
+  val growing: ReactiveHtmlAttr[ListGrowingMode]  = customHtmlAttr("growing", ListGrowingMode.AsStringCodec)
+  val indent: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
 
-  object events {}
+  object events {
+    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-click")
+    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-close")
+    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-delete")
+    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-toggle")
+    val onLoadMore   = new EventProp[EventWithPreciseTarget[Ref]]("load-more")
+
+    @js.native
+    trait SelectionChangeDetail extends js.Object {
+      @JSName("selectedItems")
+      def selectedItemsJS: js.Array[Li.Ref] = js.native
+
+      @JSName("previouslySelectedItems")
+      def previouslySelectedItemsJS: js.Array[Li.Ref] = js.native
+    }
+
+    object SelectionChangeDetail {
+      extension (detail: SelectionChangeDetail)
+        def selectedItems: List[Li.Ref]           = detail.selectedItemsJS.toList
+        def previouslySelectedItems: List[Li.Ref] = detail.previouslySelectedItemsJS.toList
+
+        /** Returns the first selected item when it exists (useful in [[ListMode.SingleSelect]]) */
+        def maybeSelectedItem: Option[Li.Ref] = detail.selectedItemsJS.headOption
+
+        /** Returns the first previously selected item when it exists (useful in [[ListMode.SingleSelect]])) */
+        def maybePreviouslySelectedItem: Option[Li.Ref] = detail.previouslySelectedItemsJS.headOption
+    }
+
+    val onSelectionChange =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeDetail]]("selection-change")
+  }
 
   object slots {
     val header: Slot = new Slot("header")
@@ -50,6 +87,7 @@ object UList {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(UList)): _*)
 
-  val Li: ListItem.type = ListItem
+  val Li: ListItem.type            = ListItem
+  def group: UListGroupHeader.type = UListGroupHeader
 
 }

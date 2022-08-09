@@ -42,11 +42,15 @@ object Menu {
 
   val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("headerText", StringAsIsCodec)
 
-  sealed trait ItemClickDetail extends js.Object {
-    def item: dom.HTMLElement
-    def text: String
+  object events {
+
+    @js.native
+    trait ItemClickDetail extends js.Object {
+      def item: dom.HTMLElement = js.native
+      def text: String          = js.native
+    }
+    val onItemClick = new EventProp[dom.Event & HasDetail[ItemClickDetail]]("item-click")
   }
-  val onItemClick = new EventProp[dom.Event & HasDetail[ItemClickDetail]]("item-click")
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Menu)): _*)
 

@@ -1,0 +1,40 @@
+package demo
+
+import be.doeraene.webcomponents.ui5.*
+import be.doeraene.webcomponents.ui5.configkeys.*
+import com.raquo.laminar.api.L.*
+import demo.helpers.{DemoPanel, Example}
+
+object IconExample extends Example("Icon") {
+
+  def component: HtmlElement = div(
+    DemoPanel(
+      "Basic Icons",
+      div(
+        IconName.allValues.take(10).map(name => Icon(_.name := name, _ => marginRight := "5px"))
+      )
+    ),
+    DemoPanel(
+      "Customized Icons",
+      div(
+        IconName.allValues.reverse
+          .take(3)
+          .map(name =>
+            Icon(
+              _.name := name,
+              _ => marginRight := "1em",
+              _ =>
+                List(
+                  width := "3rem",
+                  height := "3rem",
+                  fontSize := "1.5rem",
+                  color := "crimson",
+                  backgroundColor := "#fafafa"
+                )
+            )
+          )
+      )
+    )
+  )
+
+}

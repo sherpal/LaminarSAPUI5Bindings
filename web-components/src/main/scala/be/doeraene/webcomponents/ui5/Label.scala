@@ -9,6 +9,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 
 /** Simple UI button
   *
@@ -34,9 +35,10 @@ object Label extends HasIcon with HasOnClick {
 
   val id: ReactiveProp[String, String] = idAttr
 
-  val required: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  val showColon: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)
-  val forId: ReactiveHtmlAttr[String]      = customHtmlAttr("for", StringAsIsCodec)
+  val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  val showColon: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)
+  val forId: ReactiveHtmlAttr[String]              = customHtmlAttr("for", StringAsIsCodec)
+  val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   val isRequired: Setter[HtmlElement] = required := true
 

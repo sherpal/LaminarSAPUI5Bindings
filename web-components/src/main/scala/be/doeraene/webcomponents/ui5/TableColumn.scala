@@ -10,6 +10,8 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import com.raquo.domtypes.generic.codecs.IntAsStringCodec
+import com.raquo.domtypes.generic.codecs.BooleanAsAttrPresenceCodec
 
 object TableColumn {
 
@@ -27,6 +29,10 @@ object TableColumn {
   type ModFunction = TableColumn.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-column")
+
+  val demandPopin: ReactiveHtmlAttr[Boolean] = customHtmlAttr("demand-popin", BooleanAsAttrPresenceCodec)
+  val minWidth: ReactiveHtmlAttr[Int]        = customHtmlAttr("min-width", IntAsStringCodec)
+  val popinText: ReactiveHtmlAttr[String]    = customHtmlAttr("popin-text", StringAsIsCodec)
 
   val slot: ReactiveHtmlAttr["columns" | "default"] =
     customHtmlAttr("slot", EmbeddingAsIsCodec.apply)

@@ -37,7 +37,7 @@ object ComboBoxGroupItem extends HasText {
   type Ref         = dom.html.Element with RawElement
   type ModFunction = ComboBoxGroupItem.type => Mod[ReactiveHtmlElement[Ref]]
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-combobox-group-item")
+  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-group-item")
 
   val id: ReactiveProp[String, String] = idAttr
 

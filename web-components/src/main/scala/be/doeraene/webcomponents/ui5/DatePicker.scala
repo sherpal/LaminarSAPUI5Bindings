@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName, ValueState}
+import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, CalendarType, IconName, ValueState}
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
@@ -80,6 +80,12 @@ object DatePicker extends HasOnClick with HasAccessibleName with HasName with Ha
 
   val maxDate: ReactiveHtmlAttr[LocalDate] = customHtmlAttr("max-date", LocalDateCodec)
   val minDate: ReactiveHtmlAttr[LocalDate] = customHtmlAttr("min-date", LocalDateCodec)
+
+  val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+    customHtmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
+
+  val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+    customHtmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")

@@ -40,7 +40,7 @@ object ColourPalettePopover {
   used(RawImport)
 
   type Ref         = dom.html.Element with RawElement
-  type ModFunction = ColourPalette.type => Mod[ReactiveHtmlElement[Ref]]
+  type ModFunction = ColourPalettePopover.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette-popover")
 
@@ -50,7 +50,15 @@ object ColourPalettePopover {
 
   val showDefaultColour: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
 
-  val showMoreColours: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-more-colors", BooleanAsAttrPresenceCodec)
+  /** This import is required for the `showMoreColours` property to work. */
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/features/ColorPaletteMoreColors.js", JSImport.Default)
+  object ColourPaletteMoreColours extends js.Object
+
+  lazy val showMoreColours: ReactiveHtmlAttr[Boolean] = {
+    ColourPaletteMoreColours
+    customHtmlAttr("show-more-colors", BooleanAsAttrPresenceCodec)
+  }
 
   val showRecentColours: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
 
@@ -60,8 +68,11 @@ object ColourPalettePopover {
     val onItemClick: EventProp[dom.Event & HasDetail[HasColor]] = new EventProp("item-click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ColourPalette)): _*)
+  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ColourPalettePopover)): _*)
 
   def item: ColourPaletteItem.type = ColourPaletteItem
+
+  def getColourPalettePopoverById(id: String): Option[Ref] =
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
 
 }
