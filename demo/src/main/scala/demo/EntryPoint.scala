@@ -66,7 +66,8 @@ object EntryPoint {
       TimelineExample,
       TitleExample,
       ToastExample,
-      ToggleButtonExample
+      ToggleButtonExample,
+      TreeExample
     ).sorted
 
     val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
