@@ -2,6 +2,26 @@ package demo.helpers
 
 object MTG {
 
+  case class Card(name: String, tpe: String, cost: String, comment: String)
+
+  val cards = List(
+    Card("Black Lotus", "Artifact", "0", "Power Nine"),
+    Card("Ancestral Recall", "Instant", "U", "Power Nine"),
+    Card("Time Walk", "Sorcery", "1U", "Power Nine"),
+    Card("Timetwister", "Sorcery", "2U", "Power Nine"),
+    Card("Mox Sapphire", "Artifact", "0", "Power Nine"),
+    Card("Mox Ruby", "Artifact", "0", "Power Nine"),
+    Card("Mox Jet", "Artifact", "0", "Power Nine"),
+    Card("Mox Pearl", "Artifact", "0", "Power Nine"),
+    Card("Mox Emerald", "Artifact", "0", "Power Nine"),
+    Card(
+      "Urza's tower",
+      "Land",
+      "",
+      "This land is part of what is called the 'Tron', which contains the Urza's Tower, Urza's Mine and Urza's Power Plant."
+    )
+  )
+
   val manaSymbolsShortNames = List("B", "U", "W", "G", "R", "C")
   val manaSymbolsNames = List(
     "Black",

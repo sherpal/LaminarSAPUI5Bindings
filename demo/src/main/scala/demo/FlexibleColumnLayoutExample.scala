@@ -7,7 +7,7 @@ import demo.helpers.{DemoPanel, Example, MTG}
 
 object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
 
-  private case class Card(name: String, tpe: String, cost: String)
+  import MTG.{cards, Card}
 
   def component: HtmlElement = div(
     DemoPanel(
@@ -25,18 +25,6 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
           _.iconEnd := true,
           _.icon := IconName.`slim-arrow-right`,
           _ => dataAttr("card-name") := card.name
-        )
-
-        val cards = List(
-          Card("Black Lotus", "Artifact", "0"),
-          Card("Ancestral Recall", "Instant", "U"),
-          Card("Time Walk", "Sorcery", "1U"),
-          Card("Timetwister", "Sorcery", "2U"),
-          Card("Mox Sapphire", "Artifact", "0"),
-          Card("Mox Ruby", "Artifact", "0"),
-          Card("Mox Jet", "Artifact", "0"),
-          Card("Mox Pearl", "Artifact", "0"),
-          Card("Mox Emerald", "Artifact", "0")
         )
 
         def cardFromName(name: String): Option[Card] = cards.find(_.name == name)
@@ -64,7 +52,7 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
               UList(
                 _ => height := "500px",
                 _.headerText := "Power Nine",
-                _ => cards.map(startColumnListItem),
+                _ => cards.filter(_.comment == "Power Nine").map(startColumnListItem),
                 _.events.onItemClick
                   .map(event =>
                     for {
