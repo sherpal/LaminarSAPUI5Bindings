@@ -106,7 +106,7 @@ object EntryPoint {
           ),
           div(
             padding := "10px",
-            componentsDemo.find(_.name == componentName).map(_.component).getOrElse(div("Not Found"))
+            componentsDemo.find(_.name == componentName).map(_.completeComponent).getOrElse(div("Not Found"))
           )
         )
     )

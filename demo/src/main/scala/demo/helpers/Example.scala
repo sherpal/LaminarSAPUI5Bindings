@@ -10,6 +10,20 @@ trait Example(val name: String) {
 
   def component: HtmlElement
 
+  def completeComponent = div(
+    Title(_.level := TitleLevel.H1, _ => name),
+    div(
+      "You can see the source code ",
+      Link(
+        _ => "here",
+        _.href := s"https://github.com/sherpal/LaminarSAPUI5Bindings/tree/master/demo/src/main/scala/demo/${name}Example.scala",
+        _.target := LinkTarget._blank
+      ),
+      "."
+    ),
+    component
+  )
+
   def missing: HtmlElement = MessageStrip(
     _ => s"$name is currently missing. Don't hesitate to contribue!",
     _.design := MessageStripDesign.Negative,
