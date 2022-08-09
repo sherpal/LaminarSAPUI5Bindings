@@ -11,16 +11,30 @@ val usedScalacOptions = Seq(
   "-language:higherKinds"
 )
 
+val laminarVersion = "0.14.2"
+
 lazy val `web-components` = project
   .in(file("./web-components"))
   .enablePlugins(ScalaJSPlugin)
   .settings(
     scalacOptions ++= usedScalacOptions,
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule)),
-    libraryDependencies ++= List(
-      "com.raquo" %%% "laminar" % "0.14.2" % Provided
-    )
+    libraryDependencies ++= List("com.raquo" %%% "laminar" % laminarVersion % Provided)
   )
+
+lazy val demo = project
+  .in(file("./demo"))
+  .enablePlugins(ScalaJSPlugin)
+  .settings(
+    scalacOptions ++= usedScalacOptions,
+    libraryDependencies ++= List(
+      "com.raquo" %%% "laminar" % laminarVersion,
+      "io.github.cquiroz" %%% "scala-java-time" % "2.4.0"
+    ),
+    scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.ESModule) },
+    scalaJSUseMainModuleInitializer := true
+  )
+  .dependsOn(`web-components`)
 
 val createReleaseTag = taskKey[java.io.File]("Writes the current release tag in tag.txt file")
 

@@ -8,7 +8,7 @@ temp
 .DS_Store
 .idea
 
-frontend/node_modules
+demo/node_modules
 
 output
 .bloop
@@ -20,7 +20,7 @@ project/target
 project/project/target
 project/.bloop
 
-frontend/build
+demo/build
 
 /database
 

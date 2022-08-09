@@ -17,7 +17,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Tree/">the doc</a> for more information.
   */
-object TreeItem extends HasIcon {
+object TreeItem extends HasIcon with HasText {
 
   @js.native
   trait RawElement extends js.Object {
@@ -44,5 +44,7 @@ object TreeItem extends HasIcon {
   val selected: ReactiveHtmlAttr[Boolean]     = customHtmlAttr[Boolean]("selected", BooleanAsAttrPresenceCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TreeItem)): _*)
+
+  def item: TreeItem.type = this
 
 }

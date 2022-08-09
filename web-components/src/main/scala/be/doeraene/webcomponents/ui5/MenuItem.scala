@@ -41,4 +41,7 @@ object MenuItem extends HasIcon with HasOnClick with HasText {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MenuItem)): _*)
 
+  // reference to itself, useful for sub-menus
+  def item: MenuItem.type = this
+
 }

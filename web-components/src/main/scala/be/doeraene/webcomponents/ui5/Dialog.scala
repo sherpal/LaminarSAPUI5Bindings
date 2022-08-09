@@ -53,6 +53,7 @@ object Dialog {
   val open: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
   val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
+  val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
 
   //noinspection TypeAnnotation
   object slots {

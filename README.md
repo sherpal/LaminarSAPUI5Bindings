@@ -65,6 +65,21 @@ div(
 
 This will be rendered as an input as documented [here](https://sap.github.io/ui5-webcomponents/playground/components/Input/).
 
+### Running the Demo
+
+The project contains a demo file for each component. These examples are located in the `demo` sub-project.
+
+In order to run those, you need to have
+
+- npm with a recent enough version (>= 14 should do) (if you have nvm installed, you can do, e.g., `nvm use 17`)
+- sbt
+
+Perform the following steps:
+
+1. in one terminal, run `sbt ~demo/fastLinkJS`
+2. in another terminal, go to `demo` and run `npm install` then `npm run dev`
+3. when both steps are ready, go to `http://localhost:3000` and the demo should be there, waiting for you.
+
 ### How to use slots?
 
 In web-components, certain components can have special dom children called "slots". In the dom, these "special" children are only singular in the fact that they have a property `slot` specifying which slot they fill in.
@@ -219,4 +234,26 @@ For example, the footer slot of the `Dialog` is defined as
 
 ```scala
 val footer: Slot = new Slot("footer")
+```
+
+#### Methods
+
+Some SAP components have special methods to interact with. Among the most common, you will find the `Dialog` which has a `show` method. Some others like `Popover` will have `showAt`.
+
+These methods must be defined as `js.native` method of the `RawElement` trait.
+
+For methods that take as input or return some "not-so-scala-ish" types (such as `js.Array`), it is best to call them `theMethodNameJS` (annotating by `JSName("theMethodName")`) and to create an extension method called `theMethodName` taking/returning more Scala friendly types. For example, the `ColourPicker` `RawElement` is implemented as
+
+```scala
+@js.native
+trait RawElement extends js.Object {
+  @JSName("color")
+  def colourJS: String = js.native
+}
+
+object RawElement {
+  extension (rawElement: RawElement)
+    /** The current colour as [[Colour]] instance. English UK spelling for consistency. */
+    def colour: Colour = Colour.fromString(rawElement.colourJS)
+}
 ```

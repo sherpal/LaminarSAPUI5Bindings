@@ -64,4 +64,10 @@ object Table {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Table)): _*)
 
+  def column: TableColumn.type = TableColumn
+  def row: TableRow.type       = TableRow
+
+  def groupRow(mods: Mod[ReactiveHtmlElement[dom.HTMLElement]]*): HtmlElement =
+    customHtmlTag[dom.HTMLElement]("ui5-table-group-row")(mods: _*)
+
 }

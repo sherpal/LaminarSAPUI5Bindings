@@ -12,6 +12,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.HasItem
 
 /** Simple UI button
   *
@@ -22,7 +23,9 @@ import scala.scalajs.js.annotation.JSImport
 object ShellBar extends HasIcon with HasOnClick {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    def closeOverflow(): Unit = js.native
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents-fiori/dist/ShellBar", JSImport.Default)
@@ -55,8 +58,16 @@ object ShellBar extends HasIcon with HasOnClick {
   val showNotifications: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-notifications", BooleanAsAttrPresenceCodec)
 
-  val onProfileClick = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
-  val onLogoClick    = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
+  object events {
+    val onCopilotClick  = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
+    val onProfileClick  = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
+    val onLogoClick     = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
+    val onMenuItemClick = new EventProp[dom.Event & HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
+    val onNotificationsClick =
+      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
+    val onProductSwitchClick =
+      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
+  }
 
   object slots {
     def logo: Slot        = new Slot("logo")
@@ -68,6 +79,6 @@ object ShellBar extends HasIcon with HasOnClick {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ShellBar)): _*)
 
-  def Item: ShellBarItem.type = ShellBarItem
+  def item: ShellBarItem.type = ShellBarItem
 
 }

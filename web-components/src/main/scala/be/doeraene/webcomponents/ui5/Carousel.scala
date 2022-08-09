@@ -50,7 +50,7 @@ object Carousel {
   val hideNavigationArrows: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("hide-navigation-arrows", BooleanAsAttrPresenceCodec)
 
-  val hidesPageIndicator: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hides-page-indicator", BooleanAsAttrPresenceCodec)
+  val hidePageIndicator: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-page-indicator", BooleanAsAttrPresenceCodec)
 
   val itemsPerPageL: ReactiveHtmlAttr[Int] = customHtmlAttr("items-per-page-l", IntAsStringCodec)
   val itemsPerPageM: ReactiveHtmlAttr[Int] = customHtmlAttr("items-per-page-m", IntAsStringCodec)

@@ -1,0 +1,40 @@
+package demo
+
+import be.doeraene.webcomponents.ui5.*
+import be.doeraene.webcomponents.ui5.configkeys.*
+import com.raquo.laminar.api.L.*
+import demo.helpers.{DemoPanel, Example}
+
+object SegmentedButtonExample extends Example("SegmentedButton") {
+
+  def component: HtmlElement = div(
+    DemoPanel(
+      "Basic SegmentedButton",
+      SegmentedButton(
+        _.accessibleName := "Geographic location",
+        _.item(_ => "Map"),
+        _.item(_ => "Satellite", _.pressed := true),
+        _.item(_ => "Terrain")
+      )
+    ),
+    DemoPanel(
+      "SegmentedButton with Icons",
+      SegmentedButton(
+        _.item(_.icon := IconName.employee, _.pressed := true),
+        _.item(_.icon := IconName.menu),
+        _.item(_.icon := IconName.factory)
+      )
+    ),
+    DemoPanel(
+      "SegmentedButton with 5 SegmentedButtonItems",
+      SegmentedButton(
+        _.item(_ => "Item"),
+        _.item(_ => "Pressed SegmentedButtonItem With Bigger Text", _.pressed := true),
+        _.item(_ => "Item"),
+        _.item(_ => "SegmentedButtonItem"),
+        _.item(_ => "Press me")
+      )
+    )
+  )
+
+}

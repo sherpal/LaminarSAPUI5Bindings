@@ -10,6 +10,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.internal.Slot
 
 /** Simple UI button
   *
@@ -44,7 +45,9 @@ object IllustratedMessage extends HasIcon with HasOnClick {
   val subtitleText: ReactiveHtmlAttr[String]          = customHtmlAttr("subtitle-text", StringAsIsCodec)
   val titleText: ReactiveHtmlAttr[String]             = customHtmlAttr("title-text", StringAsIsCodec)
 
-  object slots {}
+  object slots {
+    val subtitle: Slot = new Slot("subtitle")
+  }
 
   object events {}
 
