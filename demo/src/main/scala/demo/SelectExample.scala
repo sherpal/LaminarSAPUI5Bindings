@@ -11,8 +11,8 @@ object SelectExample extends Example("SelectExample") {
   private val someCountryCodes = List("AT", "BE", "BG", "DE", "UK", "KZ")
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Basic Select",
+    DemoPanel("Basic Select")(
+      //-- Begin: Basic Select
       div(
         Select(
           _.option(_.icon := IconName.iphone, _ => "Phone"),
@@ -25,9 +25,10 @@ object SelectExample extends Example("SelectExample") {
           _.option(_.icon := IconName.iphone, _ => "Phone")
         )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Select with Two-Column Layout Items",
+    DemoPanel("Select with Two-Column Layout Items")(
+      //-- Begin: Select with Two-Column Layout Items
       Select(_ =>
         someCountries
           .zip(someCountryCodes)
@@ -38,6 +39,7 @@ object SelectExample extends Example("SelectExample") {
             )
           )
       )
+      //-- End
     )
   )
 

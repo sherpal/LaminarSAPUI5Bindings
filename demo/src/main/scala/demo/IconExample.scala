@@ -8,14 +8,13 @@ import demo.helpers.{DemoPanel, Example}
 object IconExample extends Example("Icon") {
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Basic Icons",
-      div(
-        IconName.allValues.take(10).map(name => Icon(_.name := name, _ => marginRight := "5px"))
-      )
+    DemoPanel("Basic Icons")(
+      //-- Begin: Basic Icons
+      div(IconName.allValues.take(10).map(name => Icon(_.name := name, _ => marginRight := "5px")))
+      //-- End
     ),
-    DemoPanel(
-      "Customized Icons",
+    DemoPanel("Customized Icons")(
+      //-- Begin: Customized Icons
       div(
         IconName.allValues.reverse
           .take(3)
@@ -34,6 +33,7 @@ object IconExample extends Example("Icon") {
             )
           )
       )
+      //-- End
     )
   )
 

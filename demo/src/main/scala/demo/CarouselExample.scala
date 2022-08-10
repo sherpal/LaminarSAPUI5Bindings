@@ -25,24 +25,27 @@ object CarouselExample extends Example("Carousel") {
     |  max-width: 500px
     |}
     |""".stripMargin),
-    DemoPanel(
-      "Carousel With Single Item per Page",
+    DemoPanel("Carousel With Single Item per Page")(
+      //-- Begin: Carousel With Single Item per Page
       Carousel(threeMagicWallpapers: _*)
+      //-- End
     ),
-    DemoPanel(
-      "Carousel with Multiple items per Page",
+    DemoPanel("Carousel with Multiple items per Page")(
+      //-- Begin: Carousel with Multiple items per Page
       Carousel(
         _.itemsPerPageS := 1,
         _.itemsPerPageM := 2,
         _.itemsPerPageL := 2,
         _ => MTG.manaSymbolsShortNames.map(name => img(src := MTG.manaSymbolsRefs(name), alt := name))
       )
+      //-- End
     ),
-    DemoPanel(
-      "Carousel With Arrow Placement and Cyclic",
+    DemoPanel("Carousel With Arrow Placement and Cyclic")(
+      //-- Begin: Carousel With Arrow Placement and Cyclic
       Carousel(
         threeMagicWallpapers ++ List(_.arrowsPlacement := CarouselArrowsPlacement.Navigation, _.cyclic := true): _*
       )
+      //-- End
     )
   )
 

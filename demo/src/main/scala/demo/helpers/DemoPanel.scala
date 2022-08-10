@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 
 object DemoPanel {
-  def apply(title: String, body: => HtmlElement): HtmlElement = div(
+  def apply(title: String)(body: => HtmlElement): HtmlElement = div(
     h2(title),
     div(
       padding := "1em",

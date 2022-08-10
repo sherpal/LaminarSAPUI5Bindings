@@ -8,11 +8,10 @@ import demo.helpers.{DemoPanel, Example}
 object TitleExample extends Example("Title") {
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Title in All Available Levels",
-      div(
-        TitleLevel.allValues.map(level => Title(_.level := level, _ => s"Title level ${level.value.tail}"))
-      )
+    DemoPanel("Title in All Available Levels")(
+      //-- Begin: Title in All Available Levels
+      div(TitleLevel.allValues.map(level => Title(_.level := level, _ => s"Title level ${level.value.tail}")))
+      //-- End
     )
   )
 

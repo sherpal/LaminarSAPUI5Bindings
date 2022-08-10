@@ -9,8 +9,8 @@ import org.scalajs.dom.HTMLElement
 object MessageStripExample extends Example("MessageStrip") {
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "MessageStrip",
+    DemoPanel("MessageStrip")(
+      //-- Begin: MessageStrip
       div(
         MessageStripDesign.allValues.map { design =>
           val closeBus: EventBus[Unit] = new EventBus
@@ -27,9 +27,10 @@ object MessageStripExample extends Example("MessageStrip") {
           )
         }
       )
+      //-- End
     ),
-    DemoPanel(
-      "MessageStrip With No Close Button",
+    DemoPanel("MessageStrip With No Close Button")(
+      //-- Begin: MessageStrip With No Close Button
       div(
         MessageStripDesign.allValues.map(design =>
           MessageStrip(
@@ -39,9 +40,10 @@ object MessageStripExample extends Example("MessageStrip") {
           )
         )
       )
+      //-- End
     ),
-    DemoPanel(
-      "MessageStrip With No Icon",
+    DemoPanel("MessageStrip With No Icon")(
+      //-- Begin: MessageStrip With No Icon
       div(
         MessageStripDesign.allValues.map { design =>
           val closeBus: EventBus[Unit] = new EventBus
@@ -59,25 +61,26 @@ object MessageStripExample extends Example("MessageStrip") {
           )
         }
       )
+      //-- End
     ),
-    DemoPanel(
-      "Dynamic Message Strip Generator", {
-        val clickedBus: EventBus[Unit] = new EventBus
-        val numberOfClicks             = clickedBus.events.mapTo(1).foldLeft(0)(_ + _).changes
-        div(
-          Button(_ => "Generate MessageStrip", _.events.onClick.mapTo(()) --> clickedBus.writer),
-          child <-- numberOfClicks.map(count =>
-            MessageStrip(
-              _.design := MessageStripDesign.allValues(count % MessageStripDesign.allValues.size),
-              _ => s"You clicked $count times.",
-              _.hideCloseButton := true
-            )
+    DemoPanel("Dynamic Message Strip Generator") {
+      //-- Begin: Dynamic Message Strip Generator
+      val clickedBus: EventBus[Unit] = new EventBus
+      val numberOfClicks             = clickedBus.events.mapTo(1).foldLeft(0)(_ + _).changes
+      div(
+        Button(_ => "Generate MessageStrip", _.events.onClick.mapTo(()) --> clickedBus.writer),
+        child <-- numberOfClicks.map(count =>
+          MessageStrip(
+            _.design := MessageStripDesign.allValues(count % MessageStripDesign.allValues.size),
+            _ => s"You clicked $count times.",
+            _.hideCloseButton := true
           )
         )
-      }
-    ),
-    DemoPanel(
-      "Custom MessageStrip",
+      )
+      //-- End
+    },
+    DemoPanel("Custom MessageStrip")(
+      //-- Begin: Custom MessageStrip
       div(
         MessageStrip(
           _.design := MessageStripDesign.Information,
@@ -116,6 +119,7 @@ object MessageStripExample extends Example("MessageStrip") {
           )
         )
       )
+      //-- End
     )
   )
 

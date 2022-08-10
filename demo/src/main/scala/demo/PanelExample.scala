@@ -10,8 +10,8 @@ object PanelExample extends Example("Panel") {
   private val countries = List("Argentina", "Belgium", "Bulgaria", "Canada", "Columbia", "Croatia", "Denmark")
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Basic Panel",
+    DemoPanel("Basic Panel")(
+      //-- Begin: Basic Panel
       Panel(
         _ => width := "100%",
         _.headerText := "Both expandable and expanded",
@@ -25,9 +25,10 @@ object PanelExample extends Example("Panel") {
               "do eu duis elit. Sunt ea pariatur nulla est laborum proident sunt labore commodo Lorem laboris nisi Lorem."
           )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Panel with List",
+    DemoPanel("Panel with List")(
+      //-- Begin: Panel with List
       Panel(
         _.headerText := "Select your country",
         _ => width := "100%",
@@ -37,9 +38,10 @@ object PanelExample extends Example("Panel") {
             _ => countries.map(country => UList.Li(_ => country))
           )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Fixed Panel (Can't be Collapsed/Expanded)",
+    DemoPanel("Fixed Panel (Can't be Collapsed/Expanded)")(
+      //-- Begin: Fixed Panel (Can't be Collapsed/Expanded)
       Panel(
         _.fixed := true,
         _.headerText := "Country Of Birth",
@@ -49,9 +51,10 @@ object PanelExample extends Example("Panel") {
             _ => countries.map(country => UList.Li(_ => country))
           )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Panel with Custom Header",
+    DemoPanel("Panel with Custom Header")(
+      //-- Begin: Panel with Custom Header
       div(
         styleTag("""
       |.header {
@@ -79,6 +82,7 @@ object PanelExample extends Example("Panel") {
             )
         )
       )
+      //-- End
     )
   )
 

@@ -12,24 +12,27 @@ object AvatarExample extends Example("Avatar") {
   private def manaSymbolImage(name: String) = img(src := MTG.manaSymbolsRefs(name), alt := name)
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Basic examples",
+    DemoPanel("Basic examples") {
+      //-- Begin: Basic examples
       div(Avatar(_ => sherpal), Avatar(_.shape := AvatarShape.Square, _ => sherpal))
-    ),
-    DemoPanel(
-      "Avatar sizes",
+      //-- End
+    },
+    DemoPanel("Avatar sizes") {
+      //-- Begin: Avatar sizes
       div(
         AvatarSize.allValues
           .zip(MTG.manaSymbolsShortNames)
           .map((size, mana) => Avatar(_.size := size, _ => manaSymbolImage(mana)))
       )
-    ),
-    DemoPanel(
-      "Avatar with icons",
+      //-- End
+    },
+    DemoPanel("Avatar with icons") {
+      //-- Begin: Avatar with icons
       div(AvatarSize.allValues.zip(IconName.allValues).map((size, icon) => Avatar(_.size := size, _.icon := icon)))
-    ),
-    DemoPanel(
-      "Avatar with initials",
+      //-- End
+    },
+    DemoPanel("Avatar with initials") {
+      //-- Begin: Avatar with initials
       div(AvatarSize.allValues.map { size =>
         val initials: AvatarInitials = size.value.toList.take(2) match {
           case c :: Nil        => c
@@ -38,7 +41,8 @@ object AvatarExample extends Example("Avatar") {
         }
         Avatar(_.size := size, _.initials := initials)
       })
-    )
+      //-- End
+    }
   )
 
 }

@@ -8,25 +8,27 @@ import demo.helpers.{DemoPanel, Example}
 object SegmentedButtonExample extends Example("SegmentedButton") {
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Basic SegmentedButton",
+    DemoPanel("Basic SegmentedButton")(
+      //-- Begin: Basic SegmentedButton
       SegmentedButton(
         _.accessibleName := "Geographic location",
         _.item(_ => "Map"),
         _.item(_ => "Satellite", _.pressed := true),
         _.item(_ => "Terrain")
       )
+      //-- End
     ),
-    DemoPanel(
-      "SegmentedButton with Icons",
+    DemoPanel("SegmentedButton with Icons")(
+      //-- Begin: SegmentedButton with Icons
       SegmentedButton(
         _.item(_.icon := IconName.employee, _.pressed := true),
         _.item(_.icon := IconName.menu),
         _.item(_.icon := IconName.factory)
       )
+      //-- End
     ),
-    DemoPanel(
-      "SegmentedButton with 5 SegmentedButtonItems",
+    DemoPanel("SegmentedButton with 5 SegmentedButtonItems")(
+      //-- Begin: SegmentedButton with 5 SegmentedButtonItems
       SegmentedButton(
         _.item(_ => "Item"),
         _.item(_ => "Pressed SegmentedButtonItem With Bigger Text", _.pressed := true),
@@ -34,6 +36,7 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
         _.item(_ => "SegmentedButtonItem"),
         _.item(_ => "Press me")
       )
+      //-- End
     )
   )
 

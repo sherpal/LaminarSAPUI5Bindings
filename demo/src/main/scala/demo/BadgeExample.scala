@@ -21,21 +21,23 @@ object BadgeExample extends Example("Badge") {
   )
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Basic badge",
+    DemoPanel("Basic badge")(
+      //-- Begin: Basic badge
       div(
         ColourScheme.allValues
           .zip(someTexts)
           .map((colourScheme, text) => Badge(_.colourScheme := colourScheme, _ => text)),
         Badge(_ => width := "200px", _ => "This text is very long and it will be truncated with ellipsis")
       )
+      //-- End
     ),
-    DemoPanel(
-      "Badge with icon",
+    DemoPanel("Badge with icon")(
+      //-- Begin: Badge with icon
       div(
         Badge(_.colourScheme := ColourScheme._1, _.slots.icon := Icon(_.name := IconName.add), _ => "Add"),
         Badge(_.colourScheme := ColourScheme._2, _.slots.icon := Icon(_.name := IconName.customer))
       )
+      //-- End
     )
   )
 

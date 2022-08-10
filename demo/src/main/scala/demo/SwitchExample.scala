@@ -13,8 +13,8 @@ object SwitchExample extends Example("Switch") {
     |  margin-right: 1em;
     |}
     |""".stripMargin),
-    DemoPanel(
-      "BasicSwitch",
+    DemoPanel("Basic Switch")(
+      //-- Begin: Basic Switch
       div(
         Switch(_.textOn := "On", _.textOff := "Off"),
         Switch(_.textOn := "On", _.textOff := "Off", _.checked := true),
@@ -22,15 +22,17 @@ object SwitchExample extends Example("Switch") {
         Switch(_.textOn := "Yes", _.textOff := "No", _.disabled := true),
         Switch(_.textOn := "Yes", _.textOff := "No", _.checked := true, _.disabled := true)
       )
+      //-- End
     ),
-    DemoPanel(
-      "Graphical Switch",
+    DemoPanel("Graphical Switch")(
+      //-- Begin: Graphical Switch
       div(
         for {
           disabled <- List(false, true)
           checked  <- List(false, true)
         } yield Switch(_.design := SwitchDesign.Graphical, _.checked := checked, _.disabled := disabled)
       )
+      //-- End
     )
   )
 

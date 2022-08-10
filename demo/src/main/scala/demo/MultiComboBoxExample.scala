@@ -10,16 +10,17 @@ object MultiComboBoxExample extends Example("MultiComboBox") {
   private val countries = List("Argentina", "Belgium", "Bulgaria", "Canada", "Columbia", "Croatia", "Denmark")
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Basic MultiComboBox",
+    DemoPanel("Basic MultiComboBox")(
+      //-- Begin: Basic MultiComboBox"
       div(
         MultiComboBox(_.placeholder := "Type your value", _.item(_.selected := true, _.text := "UI5")),
         MultiComboBox(_.readonly := true, _.value := "Readonly combo", _.item(_.selected := true, _.text := "UI5")),
         MultiComboBox(_.disabled := true, _.value := "Disabled combo", _.item(_.selected := true, _.text := "UI5"))
       )
+      //-- End
     ),
-    DemoPanel(
-      "MultiComboBox with items",
+    DemoPanel("MultiComboBox with items")(
+      //-- Begin: MultiComboBox with items
       MultiComboBox(
         _.placeholder := "Choose your countries",
         _ => width := "500px",
@@ -28,9 +29,10 @@ object MultiComboBoxExample extends Example("MultiComboBox") {
             MultiComboBox.item(_.text := country, _.selected := (index == 0))
           )
       )
+      //-- End
     ),
-    DemoPanel(
-      "MultiComboBox with free text input",
+    DemoPanel("MultiComboBox with free text input")(
+      //-- Begin: MultiComboBox with free text input
       MultiComboBox(
         _.placeholder := "Choose your countries",
         _ => width := "500px",
@@ -40,9 +42,10 @@ object MultiComboBoxExample extends Example("MultiComboBox") {
             MultiComboBox.item(_.text := country, _.selected := (index % 3 == 0))
           )
       )
+      //-- End
     ),
-    DemoPanel(
-      "MultiComboBox with Value State",
+    DemoPanel("MultiComboBox with Value State")(
+      //-- Begin: MultiComboBox with Value State
       div(
         ValueState.allValues.filterNot(_ == ValueState.Information).filterNot(_ == ValueState.None).zipWithIndex.map {
           (valueState, index) =>
@@ -52,6 +55,7 @@ object MultiComboBoxExample extends Example("MultiComboBox") {
             )
         }
       )
+      //-- End
     )
   )
 

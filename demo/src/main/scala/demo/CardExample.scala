@@ -17,8 +17,8 @@ object CardExample extends Example("Card") {
   private val contentPadding = "content-padding"
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Card with List",
+    DemoPanel("Card with List")(
+      //-- Begin: Card with List
       div(
         styleTag(s"""
                 |.$cardContentClassName {
@@ -89,9 +89,10 @@ object CardExample extends Example("Card") {
             )
         )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Card with Table",
+    DemoPanel("Card with Table")(
+      //-- Begin: Card with Table
       div(
         styleTag(s"""
             |.$statusError {color: #b00;}
@@ -137,6 +138,7 @@ object CardExample extends Example("Card") {
             )
         )
       )
+      //-- End
     )
   )
 

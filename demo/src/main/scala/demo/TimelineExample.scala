@@ -8,8 +8,8 @@ import demo.helpers.{DemoPanel, Example}
 object TimelineExample extends Example("Timeline") {
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Basic Timeline",
+    DemoPanel("Basic Timeline")(
+      //-- Begin: Basic Timeline
       Timeline(
         _.item(
           _.titleText := "called",
@@ -32,9 +32,10 @@ object TimelineExample extends Example("Timeline") {
           _ => div("Online meeting")
         )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Horizontal timeline",
+    DemoPanel("Horizontal timeline")(
+      //-- Begin: Horizontal timeline
       Timeline(
         _.layout := TimelineLayout.Horizontal,
         _.item(
@@ -57,6 +58,7 @@ object TimelineExample extends Example("Timeline") {
           _ => div("Online meeting")
         )
       )
+      //-- End
     )
   )
 

@@ -8,6 +8,7 @@ import be.doeraene.webcomponents.ui5.scaladsl.colour.Colour
 
 object ColourPaletteExample extends Example("ColourPalette") {
 
+  //-- Begin Common
   def someColourPaletteItems = List(
     Colour.fromString("darkblue"),
     Colour.fromString("pink"),
@@ -22,11 +23,13 @@ object ColourPaletteExample extends Example("ColourPalette") {
     Colour.fromIntColour(0x5480e7),
     Colour.fromIntColour(0xff6699)
   ).map(colour => ColourPalette.item(_.value := colour))
+  //-- End Common
 
   def component: HtmlElement = div(
-    DemoPanel(
-      "Colour Palette",
+    DemoPanel("Colour Palette")(
+      //-- Begin: Colour Palette
       ColourPalette(_ => someColourPaletteItems)
+      //-- End
     )
   )
 
