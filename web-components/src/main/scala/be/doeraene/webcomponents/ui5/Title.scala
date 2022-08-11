@@ -48,4 +48,22 @@ object Title {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Title)): _*)
 
+  /** Creates Title of H1 level. */
+  def h1(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H1): _*)
+
+  /** Creates Title of H2 level. */
+  def h2(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H2): _*)
+
+  /** Creates Title of H3 level. */
+  def h3(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H3): _*)
+
+  /** Creates Title of H4 level. */
+  def h4(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H4): _*)
+
+  /** Creates Title of H4 level. */
+  def h5(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H5): _*)
+
+  /** Creates Title of H6 level. */
+  def h6(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H6): _*)
+
 }

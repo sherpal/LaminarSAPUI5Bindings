@@ -3,14 +3,16 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
 object SelectExample extends Example("SelectExample") {
 
   private val someCountries    = List("Austria", "Belgium", "Bulgaria", "Germany", "United Kingdom", "Kazakhstan")
   private val someCountryCodes = List("AT", "BE", "BG", "DE", "UK", "KZ")
 
-  def component: HtmlElement = div(
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
     DemoPanel("Basic Select")(
       //-- Begin: Basic Select
       div(

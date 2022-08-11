@@ -3,13 +3,15 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
 object PanelExample extends Example("Panel") {
 
   private val countries = List("Argentina", "Belgium", "Bulgaria", "Canada", "Columbia", "Croatia", "Denmark")
 
-  def component: HtmlElement = div(
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
     DemoPanel("Basic Panel")(
       //-- Begin: Basic Panel
       Panel(

@@ -3,10 +3,11 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example, MTG}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 
 object CarouselExample extends Example("Carousel") {
 
+  //-- Begin Common
   private def threeMagicWallpapers: List[Carousel.ModFunction] = List(
     _ =>
       img(
@@ -18,8 +19,11 @@ object CarouselExample extends Example("Carousel") {
         src := "https://media.magic.wizards.com/images/wallpaper/sparas_headquarters_kieran_yanner_1280x960_poozxbqpcw.jpg"
       )
   )
+  //-- End Common
 
-  def component: HtmlElement = div(
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
     styleTag("""
     |ui5-carousel > img {
     |  max-width: 500px
