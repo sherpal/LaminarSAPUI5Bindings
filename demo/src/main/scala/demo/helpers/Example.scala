@@ -27,13 +27,8 @@ trait Example(val name: String) {
     div(
       child <-- EventStream
         .fromFuture(FetchDemoPanelFromGithub.fetchAllDemoPanelInfo(name))
-        .startWith(Nil)
-        .map(info =>
-          component(using
-            FetchDemoPanelFromGithub
-              .CompleteDemoPanelInfo(None, info.map(demoPanelInfo => demoPanelInfo.title -> demoPanelInfo).toMap)
-          )
-        )
+        .startWith(FetchDemoPanelFromGithub.CompleteDemoPanelInfo(None, Map.empty))
+        .map(info => component(using info))
     )
   )
 

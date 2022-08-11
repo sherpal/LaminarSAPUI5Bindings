@@ -4,6 +4,7 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext
 import org.scalajs.dom.fetch
 import org.scalajs.dom
+import java.lang.module.ModuleDescriptor.Opens
 
 object FetchDemoPanelFromGithub {
 
@@ -38,6 +39,12 @@ object FetchDemoPanelFromGithub {
         (u, _, endUIndex) = uResult
       } yield (u, beginIndex, endUIndex)
     }
+
+    final def orElse(default: T): Parser[T] = new Parser[T] {
+      def parse(str: String): Option[(T, Int, Int)] = Some(self.parse(str).getOrElse((default, 0, str.length)))
+    }
+
+    final def extract(str: String): Option[T] = parse(str).map(_._1)
   }
 
   /** [[Parser]] succeeding iff `value` is contained as is in the string. */
@@ -45,6 +52,21 @@ object FetchDemoPanelFromGithub {
     def parse(str: String): Option[(Unit, Int, Int)] = str.indexOf(value) match {
       case index if index >= 0 => Some(((), index, index + value.length))
       case _                   => None
+    }
+  }
+
+  val findCommonExample: Parser[String] = new Parser[String] {
+    val beginCommonString = "//-- Begin Common"
+    val endCommonString   = "//-- End Common"
+
+    def parse(str: String): Option[(String, Int, Int)] = {
+      val lines = str.split("\n")
+      for {
+        beginLineIndex <- Some(lines.indexWhere(_.trim.startsWith(beginCommonString))).filter(_ >= 0)
+        numberOfLines  <- Some(lines.drop(beginLineIndex).indexWhere(_.trim.startsWith(endCommonString))).filter(_ >= 0)
+        startIndexInStr = lines.take(beginLineIndex).map(_.length + 1).sum
+        endIndexInStr   = lines.take(beginLineIndex + 1 + numberOfLines).map(_.length + 1).sum
+      } yield (lines.drop(beginLineIndex).take(numberOfLines).mkString("\n"), startIndexInStr, endIndexInStr)
     }
   }
 
@@ -65,21 +87,29 @@ object FetchDemoPanelFromGithub {
     }
   }
 
-  val findAllExamples: Parser[List[DemoPanelInfo]] = new Parser[List[DemoPanelInfo]] {
-    def parse(str: String): Option[(List[DemoPanelInfo], Int, Int)] =
-      findNextExample.parse(str) match {
+  def findAll[A](parser: Parser[A]): Parser[List[A]] = new Parser[List[A]] {
+    def parse(str: String): Option[(List[A], Int, Int)] =
+      parser.parse(str) match {
         case Some((info, beginIndex, endIndex)) =>
-          findAllExamples
+          findAll(parser)
             .parse(str.drop(endIndex))
             .map((otherExamples, _, finalIndex) => (info +: otherExamples, beginIndex, endIndex))
         case None => Some((Nil, 0, 0))
       }
   }
 
-  private def parseFileContents(content: String): List[DemoPanelInfo] =
-    findAllExamples.parse(content).map(_._1).getOrElse(Nil)
+  val findAllExamples       = findAll(findNextExample).orElse(Nil)
+  val findAllCommonExamples = findAll(findCommonExample).map(_.mkString("\n\n")).map(Some(_)).orElse(None)
 
-  def fetchAllDemoPanelInfo(exampleName: String)(using ExecutionContext): Future[List[DemoPanelInfo]] = (for {
+  val completeDemoPanelInfoParser = for {
+    maybeCommonExamples <- findAllCommonExamples
+    demoPanelInfo       <- findAllExamples
+  } yield CompleteDemoPanelInfo(maybeCommonExamples, demoPanelInfo.map(info => info.title -> info).toMap)
+
+  private def parseFileContents(content: String): CompleteDemoPanelInfo =
+    completeDemoPanelInfoParser.extract(content).getOrElse(CompleteDemoPanelInfo(None, Map.empty))
+
+  def fetchAllDemoPanelInfo(exampleName: String)(using ExecutionContext): Future[CompleteDemoPanelInfo] = (for {
     response <- fetch(
       s"https://raw.githubusercontent.com/sherpal/LaminarSAPUI5Bindings/master/demo/src/main/scala/demo/${exampleName}Example.scala"
     ).toFuture
@@ -91,7 +121,7 @@ object FetchDemoPanelFromGithub {
   } yield parseFileContents(content)).recover { case throwable: Throwable =>
     dom.console.error(s"Error while fetching demo panel info: ${throwable.getMessage}")
     throwable.printStackTrace()
-    Nil
+    CompleteDemoPanelInfo(None, Map.empty)
   }
 
 }
