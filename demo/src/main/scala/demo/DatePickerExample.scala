@@ -3,12 +3,14 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example, MTG}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 import java.time.LocalDate
 
 object DatePickerExample extends Example("DatePicker") {
 
-  def component: HtmlElement = div(
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
     MessageStrip(
       _.design := MessageStripDesign.Warning,
       _ =>

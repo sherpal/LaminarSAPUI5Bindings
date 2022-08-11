@@ -3,7 +3,7 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
 object BarExample extends Example("Bar") {
 
@@ -23,7 +23,9 @@ object BarExample extends Example("Bar") {
     _.slots.endContent := Button(_.design := ButtonDesign.Transparent, _ => "Cancel")
   )
 
-  def component: HtmlElement = div(
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
     List(BarDesign.Header, BarDesign.Subheader).map(design =>
       DemoPanel(s"${design.value} Bar")(
         Bar((headerBarContent(s"${design.value} Title") :+ (_.design := design)): _*)

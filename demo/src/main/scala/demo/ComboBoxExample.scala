@@ -3,7 +3,7 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example, MTG}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 
 object ComboBoxExample extends Example("ComboBox") {
 
@@ -19,7 +19,9 @@ object ComboBoxExample extends Example("ComboBox") {
   private val someOtherCountries =
     List("Argentina", "Australia", "Austria", "Barhain", "Belgium", "Brazil", "Canada", "Chile")
 
-  def component: HtmlElement = div(
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
     DemoPanel("Basic Example")(
       //-- Begin: Basic Example
       div(

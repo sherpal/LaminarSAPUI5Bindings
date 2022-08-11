@@ -3,7 +3,7 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 import demo.helpers.MTG
 
 object AvatarExample extends Example("Avatar") {
@@ -11,7 +11,9 @@ object AvatarExample extends Example("Avatar") {
   private def sherpal                       = img(src := "/images/avatars/sherpal.png", alt := "sherpal")
   private def manaSymbolImage(name: String) = img(src := MTG.manaSymbolsRefs(name), alt := name)
 
-  def component: HtmlElement = div(
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
     DemoPanel("Basic examples") {
       //-- Begin: Basic examples
       div(Avatar(_ => sherpal), Avatar(_.shape := AvatarShape.Square, _ => sherpal))

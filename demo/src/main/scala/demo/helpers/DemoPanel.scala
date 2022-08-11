@@ -5,17 +5,29 @@ import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 
 object DemoPanel {
-  def apply(title: String)(body: => HtmlElement): HtmlElement = div(
+  def apply(title: String)(body: => HtmlElement)(using
+      demoPanelInfo: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
+    width := "100%",
     h2(title),
     div(
       padding := "1em",
       border := "0.0625rem solid #C1C1C1",
       backgroundColor := "#f7f7f7",
       body
-    )
-    // div(
-    //   border := "0.0625rem solid #C1C1C1",
-    //   backgroundColor := "#f5f6fa"
-    // )
+    ),
+    demoPanelInfo.demoPanelInfo
+      .get(title)
+      .map(demoPanelInfo =>
+        div(
+          maxWidth := "800px",
+          overflowX := "auto",
+          border := "0.0625rem solid #C1C1C1",
+          backgroundColor := "#f5f6fa",
+          padding := "1rem",
+          Title.h3(_ => "Source code"),
+          pre(demoPanelInfo.stripIndent)
+        )
+      )
   )
 }

@@ -3,11 +3,13 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
 object SwitchExample extends Example("Switch") {
 
-  def component: HtmlElement = div(
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
     styleTag("""
     |div > ui5-switch {
     |  margin-right: 1em;
