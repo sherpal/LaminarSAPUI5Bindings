@@ -101,8 +101,9 @@ object FetchDemoPanelFromGithub {
       }
   }
 
-  val findAllExamples       = findAll(findNextExample).orElse(Nil)
-  val findAllCommonExamples = findAll(findCommonExample).map(_.mkString("\n\n")).map(Some(_)).orElse(None)
+  val findAllExamples = findAll(findNextExample).orElse(Nil)
+  val findAllCommonExamples =
+    findAll(findCommonExample).map(_.mkString("\n\n")).map(Some(_).filter(_.nonEmpty)).orElse(None)
 
   val completeDemoPanelInfoParser = for {
     maybeCommonExamples <- findAllCommonExamples
