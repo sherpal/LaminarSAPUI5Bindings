@@ -8,17 +8,20 @@ import java.lang.module.ModuleDescriptor.Opens
 
 object FetchDemoPanelFromGithub {
 
+  private def stripIndentOfString(contents: String): String = {
+    val lines     = contents.split("\n")
+    val minIndent = lines.filter(_.trim.nonEmpty).map(_.takeWhile(_.isSpaceChar).length).minOption.getOrElse(0)
+    lines.map(_.drop(minIndent)).mkString("\n")
+  }
   case class CompleteDemoPanelInfo(
       maybeCommonContents: Option[String],
       demoPanelInfo: Map[String, DemoPanelInfo]
-  )
+  ) {
+    def maybeStripIndentCommon: Option[String] = maybeCommonContents.map(stripIndentOfString)
+  }
 
   case class DemoPanelInfo(title: String, contents: String) {
-    def stripIndent: String = {
-      val lines     = contents.split("\n")
-      val minIndent = lines.filter(_.trim.nonEmpty).map(_.takeWhile(_.isSpaceChar).length).minOption.getOrElse(0)
-      lines.map(_.drop(minIndent)).mkString("\n")
-    }
+    def stripIndent: String = stripIndentOfString(contents)
   }
 
   trait Parser[T] { self =>
@@ -66,7 +69,7 @@ object FetchDemoPanelFromGithub {
         numberOfLines  <- Some(lines.drop(beginLineIndex).indexWhere(_.trim.startsWith(endCommonString))).filter(_ >= 0)
         startIndexInStr = lines.take(beginLineIndex).map(_.length + 1).sum
         endIndexInStr   = lines.take(beginLineIndex + 1 + numberOfLines).map(_.length + 1).sum
-      } yield (lines.drop(beginLineIndex).take(numberOfLines).mkString("\n"), startIndexInStr, endIndexInStr)
+      } yield (lines.drop(beginLineIndex + 1).take(numberOfLines - 1).mkString("\n"), startIndexInStr, endIndexInStr)
     }
   }
 

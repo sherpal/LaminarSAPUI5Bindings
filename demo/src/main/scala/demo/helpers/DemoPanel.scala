@@ -21,9 +21,9 @@ object DemoPanel {
     ),
     demoPanelInfo.demoPanelInfo
       .get(title)
-      .map(demoPanelInfo =>
+      .map(thisExampleInfo =>
         div(
-          //maxWidth := "800px",
+          marginTop := "1em",
           overflowX := "auto",
           border := "0.0625rem solid #C1C1C1",
           backgroundColor := "#f5f6fa",
@@ -32,7 +32,8 @@ object DemoPanel {
           pre(
             code(
               className := "language-scala",
-              demoPanelInfo.stripIndent,
+              demoPanelInfo.maybeStripIndentCommon.map(_ ++ "\n\n").getOrElse("") ++
+                thisExampleInfo.stripIndent,
               onMountCallback(ctx => hljs.highlightElement(ctx.thisNode.ref))
             )
           )
