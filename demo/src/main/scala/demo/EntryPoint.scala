@@ -87,25 +87,29 @@ object EntryPoint {
       else
         div(
           display := "flex",
-          SideNavigation(
-            _.events.onSelectionChange.map(_.detail.item.dataset.get("componentName")) --> Observer[Option[String]] {
-              case Some(componentName) => dom.document.location.href = s"/$componentName"
-              case None => throw new IllegalArgumentException(s"This item did not have data 'componentName'.")
-            },
-            _ =>
-              componentsDemo.map(example =>
-                SideNavigation.item(
-                  _.text := example.name,
-                  _ => width := "200px",
-                  _ => dataAttr("component-name") := example.name,
-                  _.selected := (example.name == componentName)
-                )
-              ),
-            _ => height := "100vh",
-            _ => overflowY := "auto"
+          div(
+            width := "300px",
+            SideNavigation(
+              _.events.onSelectionChange.map(_.detail.item.dataset.get("componentName")) --> Observer[Option[String]] {
+                case Some(componentName) => dom.document.location.href = s"/$componentName"
+                case None => throw new IllegalArgumentException(s"This item did not have data 'componentName'.")
+              },
+              _ =>
+                componentsDemo.map(example =>
+                  SideNavigation.item(
+                    _.text := example.name,
+                    _ => width := "200px",
+                    _ => dataAttr("component-name") := example.name,
+                    _.selected := (example.name == componentName)
+                  )
+                ),
+              _ => height := "100vh",
+              _ => overflowY := "auto"
+            )
           ),
           div(
             padding := "10px",
+            maxWidth := "calc(100% - 320px)",
             componentsDemo.find(_.name == componentName).map(_.completeComponent).getOrElse(div("Not Found"))
           )
         )
