@@ -36,8 +36,7 @@ object FileUploader extends HasName with HasValue {
   }
 
   object RawElement {
-    extension (element: RawElement)
-      def files: List[dom.File] = (0 until element.filesJS.length).map(element.filesJS.item).toList
+    extension (element: RawElement) def files: List[dom.File] = element.filesJS.toList
   }
 
   @js.native
@@ -78,8 +77,7 @@ object FileUploader extends HasName with HasValue {
     }
 
     object HasFiles {
-      extension (element: HasFiles)
-        def files: List[dom.File] = (0 until element.filesJS.length).map(element.filesJS.item).toList
+      extension (element: HasFiles) def files: List[dom.File] = element.filesJS.toList
     }
 
     val onChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasFiles]] = new EventProp("change")
