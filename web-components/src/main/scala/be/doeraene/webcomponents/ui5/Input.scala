@@ -72,6 +72,7 @@ object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue w
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Input)): _*)
 
-  def suggestion: SuggestionItem.type = SuggestionItem
+  def suggestion: SuggestionItem.type           = SuggestionItem
+  def suggestionGroup: SuggestionGroupItem.type = SuggestionGroupItem
 
 }
