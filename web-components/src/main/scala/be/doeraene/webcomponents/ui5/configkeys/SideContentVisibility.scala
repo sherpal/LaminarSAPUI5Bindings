@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5.configkeys
 
-trait SideContentVisibility {
+sealed trait SideContentVisibility {
   def value: String = toString
 }
 
