@@ -12,6 +12,7 @@ object EntryPoint {
       AvatarExample,
       BadgeExample,
       BarExample,
+      BarcodeScannerDialogExample,
       BreadcrumbsExample,
       BusyIndicatorExample,
       ButtonExample,
