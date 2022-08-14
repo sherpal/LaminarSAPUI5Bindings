@@ -13,6 +13,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** Simple UI button
   *
@@ -59,14 +60,18 @@ object ShellBar extends HasIcon with HasOnClick {
     customHtmlAttr("show-notifications", BooleanAsAttrPresenceCodec)
 
   object events {
-    val onCopilotClick  = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
-    val onProfileClick  = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
-    val onLogoClick     = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
-    val onMenuItemClick = new EventProp[dom.Event & HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
+    val onCopilotClick =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
+    val onProfileClick =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
+    val onLogoClick =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
+    val onMenuItemClick =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
     val onNotificationsClick =
-      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
     val onProductSwitchClick =
-      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
   }
 
   object slots {

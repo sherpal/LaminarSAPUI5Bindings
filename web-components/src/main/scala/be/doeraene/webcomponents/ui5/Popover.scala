@@ -100,4 +100,13 @@ object Popover extends HasAccessibleName {
   def getPopoverById(id: String): Option[Ref] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
+  /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
+  val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
+
+  /** [[Observer]] you can feed a popover ref to close it. */
+  val closeObserver: Observer[Ref] = Observer(_.close())
+
+  /** [[Observer]] you can feed a popover ref to apply focus to it. */
+  val applyFocusObserver: Observer[Ref] = Observer(_.applyFocus())
+
 }

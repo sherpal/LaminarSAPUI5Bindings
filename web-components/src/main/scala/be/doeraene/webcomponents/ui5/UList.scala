@@ -90,4 +90,6 @@ object UList {
   val Li: ListItem.type            = ListItem
   def group: UListGroupHeader.type = UListGroupHeader
 
+  def notificationItem: NotificationListItem.type = NotificationListItem
+
 }
