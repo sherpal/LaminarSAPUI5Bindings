@@ -48,6 +48,11 @@ trait Example(val name: String) {
                                               |}
                                               |""".stripMargin)
 
+  def mtgImageWarning = MessageStrip(
+    _.design := MessageStripDesign.Warning,
+    _ => "All images displayed on this page are the property of Wizard of the Coast."
+  )
+
 }
 
 object Example {

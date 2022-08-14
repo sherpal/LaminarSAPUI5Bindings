@@ -141,7 +141,8 @@ object CardExample extends Example("Card") {
         )
       )
       //-- End
-    )
+    ),
+    mtgImageWarning
   )
 
 }

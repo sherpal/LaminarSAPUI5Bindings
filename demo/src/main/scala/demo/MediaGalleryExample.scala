@@ -45,7 +45,8 @@ object MediaGalleryExample extends Example("MediaGallery") {
         )
       )
       //-- End
-    }
+    },
+    mtgImageWarning
   )
 
 }

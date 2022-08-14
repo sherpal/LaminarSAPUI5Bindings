@@ -50,7 +50,8 @@ object CarouselExample extends Example("Carousel") {
         threeMagicWallpapers ++ List(_.arrowsPlacement := CarouselArrowsPlacement.Navigation, _.cyclic := true): _*
       )
       //-- End
-    )
+    ),
+    mtgImageWarning
   )
 
 }
