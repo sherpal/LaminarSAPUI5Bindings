@@ -9,6 +9,37 @@ object TimePickerExample extends Example("TimePicker") {
 
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
-  ): HtmlElement = missing
+  ): HtmlElement = div(
+    DemoPanel("Basic TimePicker") {
+      //-- Begin: Basic TimePicker
+      val selectedValueBus: EventBus[String] = new EventBus
+      div(
+        Label(_ => child.text <-- selectedValueBus.events.map(value => s"Currently selected: $value")),
+        br(),
+        TimePicker(
+          _.events.onChange.map(_.target.value) --> selectedValueBus
+        )
+      )
+      //-- End
+    },
+    DemoPanel("TimePicker in twelve hours format") {
+      //-- Begin: TimePicker in twelve hours format
+      val selectedValueBus: EventBus[String] = new EventBus
+      div(
+        Label(_ => child.text <-- selectedValueBus.events.map(value => s"Currently selected: $value")),
+        br(),
+        TimePicker(
+          _.formatPattern := "hh:mm:ss a",
+          _.events.onChange.map(_.target.value) --> selectedValueBus
+        )
+      )
+      //-- End
+    },
+    DemoPanel("TimePicker with value-state and valueStateMessage") {
+      //-- Begin: TimePicker with value-state and valueStateMessage
+      TimePicker(_.valueState := ValueState.Error, _.slots.valueStateMessage := div("Please provide a valid value"))
+      //-- End
+    }
+  )
 
 }
