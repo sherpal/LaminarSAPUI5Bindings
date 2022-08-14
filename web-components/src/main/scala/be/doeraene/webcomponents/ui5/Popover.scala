@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.PopoverPlacementType
+import be.doeraene.webcomponents.ui5.configkeys.{PopoverHorizontalAlign, PopoverPlacementType, PopoverVerticalAlign}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -11,6 +11,8 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 
 /** The ui5-popover component displays additional information for an object in a compact way and without leaving the
   * page.
@@ -18,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Popover/">the doc</a> for more information.
   */
-object Popover extends HasIcon with HasOnClick {
+object Popover extends HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -45,16 +47,34 @@ object Popover extends HasIcon with HasOnClick {
 
   val id: ReactiveProp[String, String] = idAttr
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  val allowTargetOverlap: ReactiveHtmlAttr[Boolean] = customHtmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
 
   val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
+
+  val hideArrow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-arrow", BooleanAsAttrPresenceCodec)
+
+  val hideBackdrop: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-backdrop", BooleanAsAttrPresenceCodec)
+
+  val horizontalAlign: ReactiveHtmlAttr[PopoverHorizontalAlign] =
+    customHtmlAttr("horizontal-align", PopoverHorizontalAlign.AsStringCodec)
+
+  val modal: ReactiveHtmlAttr[Boolean] = customHtmlAttr("modal", BooleanAsAttrPresenceCodec)
+
+  /** id of the element that opens the popover */
+  val opener: ReactiveHtmlAttr[String] = customHtmlAttr("opener", StringAsIsCodec)
 
   val placementType: ReactiveHtmlAttr[PopoverPlacementType] =
     customHtmlAttr("placement-type", PopoverPlacementType.AsStringCodec)
 
-  /** id of the element that opens the popover */
-  val opener: ReactiveHtmlAttr[String] = customHtmlAttr("opener", StringAsIsCodec)
-  val open: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
+  val verticalAlign: ReactiveHtmlAttr[PopoverVerticalAlign] =
+    customHtmlAttr("vertical-align", PopoverVerticalAlign.AsStringCodec)
+
+  val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
+
+  val open: ReactiveHtmlAttr[Boolean] = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
+
+  val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
 
   object slots {
     def header: Slot = new Slot("header")
@@ -62,10 +82,17 @@ object Popover extends HasIcon with HasOnClick {
   }
 
   object events {
-    val onAfterClose: EventProp[dom.Event]  = new EventProp("after-close")
-    val onAfterOpen: EventProp[dom.Event]   = new EventProp("after-open")
-    val onBeforeClose: EventProp[dom.Event] = new EventProp("before-close")
-    val onBeforeOpen: EventProp[dom.Event]  = new EventProp("before-open")
+    val onAfterClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("after-close")
+    val onAfterOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("after-open")
+
+    trait BeforeCloseInfo extends js.Object {
+      def escPressed: Boolean
+    }
+
+    val onBeforeClose: EventProp[EventWithPreciseTarget[Ref] & HasDetail[BeforeCloseInfo]] = new EventProp(
+      "before-close"
+    )
+    val onBeforeOpen: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("before-open")
   }
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Popover)): _*)
