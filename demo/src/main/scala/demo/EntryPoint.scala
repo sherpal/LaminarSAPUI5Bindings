@@ -10,6 +10,7 @@ object EntryPoint {
   def main(args: Array[String]): Unit = {
     val componentsDemo: List[Example] = List(
       AvatarExample,
+      AvatarGroupExample,
       BadgeExample,
       BarExample,
       BarcodeScannerDialogExample,

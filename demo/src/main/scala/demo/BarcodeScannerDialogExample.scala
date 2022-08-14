@@ -32,6 +32,7 @@ object BarcodeScannerDialogExample extends Example("BarcodeScannerDialog") {
           _.events.onScanSuccess.map(_.detail) --> barcodeScanSuccessBus.writer,
           _.events.onScanError.map(_.detail) --> barcodeScanFailedBus.writer
         ),
+        Title.h3(_ => "Click on the button below and show a QR code to the camera:"),
         Button(
           _.icon := IconName.camera,
           _.tooltip := "Start Camera",

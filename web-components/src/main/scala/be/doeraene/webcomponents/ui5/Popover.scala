@@ -103,6 +103,9 @@ object Popover extends HasAccessibleName {
   /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
   val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
 
+  def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.map(el.ref -> _) --> showAtObserver)
+
   /** [[Observer]] you can feed a popover ref to close it. */
   val closeObserver: Observer[Ref] = Observer(_.close())
 
