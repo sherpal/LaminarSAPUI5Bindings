@@ -15,20 +15,17 @@ object RangeSliderExample extends Example("RangeSlider") {
       val startValueVar: Var[Double] = Var(0)
       val endValueVar: Var[Double]   = Var(20)
 
-      val rangeChangeBus: EventBus[(Double, Double)] = new EventBus
-
       div(
         Label(_ =>
-          child.text <-- rangeChangeBus.events
-            .startWith((0, 20))
+          child.text <-- startValueVar.signal
+            .combineWith(endValueVar.signal)
             .map((start, end) => s"Currently selected range: ($start, $end)")
         ),
         RangeSlider(
           _.endValue   <-- endValueVar.signal,
           _.startValue <-- startValueVar.signal,
-          _ => rangeChangeBus.events.map(_._1) --> startValueVar.writer,
-          _ => rangeChangeBus.events.map(_._2) --> endValueVar.writer,
-          _.events.onChange.map(_.target).map(ref => (ref.startValue, ref.endValue)) --> rangeChangeBus.writer
+          _.events.onChange.map(_.target.startValue) --> startValueVar.writer,
+          _.events.onChange.map(_.target.endValue) --> endValueVar.writer
         )
       )
       //-- End
