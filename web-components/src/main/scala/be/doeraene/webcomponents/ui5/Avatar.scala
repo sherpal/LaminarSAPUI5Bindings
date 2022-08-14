@@ -37,6 +37,10 @@ object Avatar extends HasIcon {
 
   val id: ReactiveProp[String, String] = idAttr
 
+  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+
+  val interactive: ReactiveHtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
+
   val raised: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("raised", BooleanAsAttrPresenceCodec)
   val disabled: ReactiveHtmlAttr[Boolean] =
