@@ -40,4 +40,8 @@ package object ui5 {
     def encode(scalaValue: List[A]): String = scalaValue.map(codec.encode).mkString(",")
   }
 
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
+  object SubmitsSupport extends js.Object
+
 }

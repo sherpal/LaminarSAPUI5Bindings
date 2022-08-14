@@ -47,10 +47,6 @@ object Button extends HasIcon with HasOnClick {
 
   val iconOnly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-only", BooleanAsAttrPresenceCodec)
 
-  @js.native
-  @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
-  object SubmitsSupport extends js.Object
-
   lazy val submits: ReactiveHtmlAttr[Boolean] = {
     SubmitsSupport
     customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
