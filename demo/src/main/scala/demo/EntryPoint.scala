@@ -17,6 +17,7 @@ object EntryPoint {
       BreadcrumbsExample,
       BusyIndicatorExample,
       ButtonExample,
+      CalendarExample,
       CardExample,
       CarouselExample,
       CheckBoxExample,
