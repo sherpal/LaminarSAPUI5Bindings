@@ -12,16 +12,21 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRef}
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
-/** Simple UI button
+/** The ui5-input component allows the user to enter and edit text or numeric values in one line.
+  *
+  * Additionally, you can provide suggestionItems, that are displayed in a popover right under the input.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
-object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue with HasAccessibleName {
+object Input extends HasOnClick with HasValue with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
+    def value: String = js.native
+
     def openPicker(): Unit = js.native
   }
 
@@ -61,7 +66,10 @@ object Input extends HasOnClick with HasOnInput with HasOnChange with HasValue w
     val icon: Slot = new Slot("icon")
   }
 
-  object events extends HasOnChange with HasOnInput {
+  object events {
+    val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
+    val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
+
     val onSuggestionItemPreview =
       new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement] & HasItem[SuggestionItem.RawElement]]](
         "suggestion-item-preview"

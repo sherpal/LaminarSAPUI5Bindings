@@ -11,6 +11,7 @@ import org.scalajs.dom.Event
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** The ui5-switch component is used for changing between binary states.
   *
@@ -20,7 +21,9 @@ import scala.scalajs.js.annotation.JSImport
 object Switch extends HasAccessibleName {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    def checked: Boolean = js.native
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/Switch.js", JSImport.Default)
@@ -46,8 +49,9 @@ object Switch extends HasAccessibleName {
 
   object slots {}
 
-  object events extends HasOnChange {
-    val onCheckedChange: EventProcessor[Event, Boolean] = onChange.mapToChecked
+  object events {
+    val onChange: EventProp[EventWithPreciseTarget[Ref]]                      = new EventProp("change")
+    val onCheckedChange: EventProcessor[EventWithPreciseTarget[Ref], Boolean] = onChange.map(_.target.checked)
   }
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Switch)): _*)

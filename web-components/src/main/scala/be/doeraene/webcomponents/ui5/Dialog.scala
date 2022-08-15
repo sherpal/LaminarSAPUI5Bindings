@@ -63,7 +63,22 @@ object Dialog {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Dialog)): _*)
 
-  def getDialogById(id: String): Option[dom.HTMLElement & RawElement] =
-    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
+  def getDialogById(id: String): Option[Ref] =
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
+
+  /** [[Observer]] you can feed to open the Dialog. */
+  val showObserver: Observer[Ref] = Observer(_.show())
+
+  def showFromEvents(openerEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.mapTo(el.ref) --> showObserver)
+
+  /** [[Observer]] you can feed a [[Dialog]] ref to close it. */
+  val closeObserver: Observer[Ref] = Observer(_.close())
+
+  def closeFromEvents(closeEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => closeEvents.mapTo(el.ref) --> closeObserver)
+
+  /** [[Observer]] you can feed a [[Dialog]] ref to apply focus to it. */
+  val applyFocusObserver: Observer[Ref] = Observer(_.applyFocus())
 
 }
