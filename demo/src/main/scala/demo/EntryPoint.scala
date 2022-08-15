@@ -8,6 +8,7 @@ import demo.helpers.Example
 
 object EntryPoint {
   def main(args: Array[String]): Unit = {
+    ResponsivePopover
     val componentsDemo: List[Example] = List(
       AvatarExample,
       AvatarGroupExample,

@@ -22,13 +22,8 @@ object PopoverExample extends Example("Popover") {
           _.events.onClick.map(_.target).map(Some(_)) --> openPopoverBus.writer
         ),
         Popover(
-          _ =>
-            inContext(el =>
-              openPopoverBus.events --> Observer[Option[HTMLElement]] {
-                case Some(element) => el.ref.showAt(element)
-                case None          => el.ref.close()
-              }
-            ),
+          _.showAtFromEvents(openPopoverBus.events.collect { case Some(opener) => opener }),
+          _.closeFromEvents(openPopoverBus.events.collect { case None => () }),
           _.headerText := "Newsletter subscription",
           _ =>
             div(
