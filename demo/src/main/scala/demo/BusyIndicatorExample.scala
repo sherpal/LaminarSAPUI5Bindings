@@ -46,7 +46,7 @@ object BusyIndicatorExample extends Example("BusyIndicator") {
             _ =>
               UList(
                 _ => width := "400px",
-                _ => children <-- fetchedData.map(data => data.map(pieceOfData => UList.Li(_ => pieceOfData))),
+                _ => children <-- fetchedData.map(data => data.map(pieceOfData => UList.item(_ => pieceOfData))),
                 _.noDataText := "No Data"
               )
           )

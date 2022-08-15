@@ -66,7 +66,7 @@ object InputExample extends Example("Input") {
           _.placeholder := "Choose content density",
           _.showSuggestions := true,
           _.slots.valueStateMessage := div("This is an error message. Extra long text used as an error message."),
-          _ => List("Cozy", "Compact", "Condensed").map(item => UList.Li(_ => item))
+          _ => List("Cozy", "Compact", "Condensed").map(item => UList.item(_ => item))
         )
       )
       //-- End

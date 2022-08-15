@@ -37,7 +37,7 @@ object PanelExample extends Example("Panel") {
         _ =>
           UList(
             _.mode := ListMode.MultiSelect,
-            _ => countries.map(country => UList.Li(_ => country))
+            _ => countries.map(country => UList.item(_ => country))
           )
       )
       //-- End
@@ -50,7 +50,7 @@ object PanelExample extends Example("Panel") {
         _ =>
           UList(
             _.mode := ListMode.SingleSelectBegin,
-            _ => countries.map(country => UList.Li(_ => country))
+            _ => countries.map(country => UList.item(_ => country))
           )
       )
       //-- End
@@ -80,7 +80,7 @@ object PanelExample extends Example("Panel") {
           _ =>
             UList(
               _.mode := ListMode.MultiSelect,
-              _ => countries.map(country => UList.Li(_ => country))
+              _ => countries.map(country => UList.item(_ => country))
             )
         )
       )

@@ -16,28 +16,28 @@ object ListExample extends Example("List") {
       //-- Begin: Basic List
       UList(
         _ => width := "100%",
-        _.Li(
+        _.item(
           _.icon := IconName.`nutrition-activity`,
           _.description := "Tropical plant with an edible fruit",
           _.additionalText := "In-stock",
           _.additionalTextState := ValueState.Success,
           _ => "Pineapple"
         ),
-        _.Li(
+        _.item(
           _.icon := IconName.`nutrition-activity`,
           _.description := "Occurs between red and yellow",
           _.additionalText := "Expires",
           _.additionalTextState := ValueState.Warning,
           _ => "Orange"
         ),
-        _.Li(
+        _.item(
           _.icon := IconName.`nutrition-activity`,
           _.description := "The yellow lengthy fruit",
           _.additionalText := "Re-stock",
           _.additionalTextState := ValueState.Information,
           _ => "Blueberry"
         ),
-        _.Li(
+        _.item(
           _.icon := IconName.`nutrition-activity`,
           _.description := "The tropical stone fruit",
           _.additionalText := "Re-stock",
@@ -51,7 +51,7 @@ object ListExample extends Example("List") {
       //-- Begin: List with growing='Scroll'
       val fruits = LazyList.from(0).map { fruitIndex =>
         val additionalTextState = ValueState.allValues(fruitIndex % ValueState.allValues.size)
-        UList.Li(
+        UList.item(
           _.icon := IconName.`nutrition-activity`,
           _.description := s"This is the description of fruit $fruitIndex",
           _.additionalText := additionalTextState.value,
@@ -90,7 +90,7 @@ object ListExample extends Example("List") {
         _ =>
           countries.map { country =>
             val isInactive = country == countries.last
-            UList.Li(
+            UList.item(
               _ => country ++ (if isInactive then " (Item with 'type' set to 'Inactive')" else ""),
               _ => dataAttr("country-name") := country,
               _.tpe.maybe(Option.when(isInactive)(ListItemType.Inactive))
@@ -112,7 +112,7 @@ object ListExample extends Example("List") {
         _.headerText <-- selectedItemsInfoSignal.map(selectedItems =>
           s"Multiple selection is possible: ($selectedItems)"
         ),
-        _ => countries.map(country => UList.Li(_ => country, _ => dataAttr("country-name") := country)),
+        _ => countries.map(country => UList.item(_ => country, _ => dataAttr("country-name") := country)),
         _.events.onSelectionChange.map(
           _.detail.selectedItems.flatMap(_.dataset.get("countryName"))
         ) --> selectedItemsVar.writer
@@ -126,7 +126,7 @@ object ListExample extends Example("List") {
     ),
     DemoPanel("List with GroupHeaders") {
       //-- Begin: List with GroupHeaders
-      def expansionListItem(expansion: String) = (_: UList.type).Li(
+      def expansionListItem(expansion: String) = (_: UList.type).item(
         _.iconEnd := true,
         _.icon := IconName.`slim-arrow-right`,
         _ => expansion
@@ -154,7 +154,7 @@ object ListExample extends Example("List") {
       UList(
         _.mode := ListMode.Delete,
         _.headerText := "Note: The list items removal is up to application developers",
-        _ => countries.map(country => UList.Li(_ => country))
+        _ => countries.map(country => UList.item(_ => country))
       )
       //-- End
     ),
@@ -169,12 +169,12 @@ object ListExample extends Example("List") {
         UList(
           _.headerText := "No separators",
           _.separators := ListSeparator.None,
-          _ => countries.take(3).map(country => UList.Li(_ => country, _.icon := IconName.world))
+          _ => countries.take(3).map(country => UList.item(_ => country, _.icon := IconName.world))
         ),
         UList(
           _.headerText := "Inner separators",
           _.separators := ListSeparator.Inner,
-          _ => countries.drop(3).take(3).map(country => UList.Li(_ => country, _.icon := IconName.`hello-world`))
+          _ => countries.drop(3).take(3).map(country => UList.item(_ => country, _.icon := IconName.`hello-world`))
         )
       )
       //-- End

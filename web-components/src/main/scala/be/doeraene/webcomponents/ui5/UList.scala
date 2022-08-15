@@ -50,31 +50,31 @@ object UList {
   val indent: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
 
   object events {
-    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-click")
-    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-close")
-    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-delete")
-    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-toggle")
+    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-click")
+    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-close")
+    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-delete")
+    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-toggle")
     val onLoadMore   = new EventProp[EventWithPreciseTarget[Ref]]("load-more")
 
     @js.native
     trait SelectionChangeDetail extends js.Object {
       @JSName("selectedItems")
-      def selectedItemsJS: js.Array[Li.Ref] = js.native
+      def selectedItemsJS: js.Array[item.Ref] = js.native
 
       @JSName("previouslySelectedItems")
-      def previouslySelectedItemsJS: js.Array[Li.Ref] = js.native
+      def previouslySelectedItemsJS: js.Array[item.Ref] = js.native
     }
 
     object SelectionChangeDetail {
       extension (detail: SelectionChangeDetail)
-        def selectedItems: List[Li.Ref]           = detail.selectedItemsJS.toList
-        def previouslySelectedItems: List[Li.Ref] = detail.previouslySelectedItemsJS.toList
+        def selectedItems: List[item.Ref]           = detail.selectedItemsJS.toList
+        def previouslySelectedItems: List[item.Ref] = detail.previouslySelectedItemsJS.toList
 
         /** Returns the first selected item when it exists (useful in [[ListMode.SingleSelect]]) */
-        def maybeSelectedItem: Option[Li.Ref] = detail.selectedItemsJS.headOption
+        def maybeSelectedItem: Option[item.Ref] = detail.selectedItemsJS.headOption
 
         /** Returns the first previously selected item when it exists (useful in [[ListMode.SingleSelect]])) */
-        def maybePreviouslySelectedItem: Option[Li.Ref] = detail.previouslySelectedItemsJS.headOption
+        def maybePreviouslySelectedItem: Option[item.Ref] = detail.previouslySelectedItemsJS.headOption
     }
 
     val onSelectionChange =
@@ -87,7 +87,7 @@ object UList {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(UList)): _*)
 
-  val Li: ListItem.type            = ListItem
+  val item: ListItem.type            = ListItem
   def group: UListGroupHeader.type = UListGroupHeader
 
   def notificationItem: NotificationListItem.type       = NotificationListItem
