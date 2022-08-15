@@ -14,22 +14,19 @@ import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
-/** The DateRangePicker enables the users to enter a localized date range using touch, mouse, keyboard input, or by
-  * selecting a date range in the calendar.
+/** The DateTimePicker component alows users to select both date (day, month and year) and time (hours, minutes and
+  * seconds) and for the purpose it consists of input field and Date/Time picker.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DateRangePicker/">the doc</a> for more
+  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DateTimePicker/">the doc</a> for more
   *   information.
   */
-object DateRangePicker extends HasAccessibleName with HasName with HasValue {
+object DateTimePicker extends HasAccessibleName with HasName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
-    @JSName("endDateValue")
-    def endDateValueJS: js.Date = js.native
-
-    @JSName("startDateValue")
-    def startDateValueJS: js.Date = js.native
+    @JSName("dateValue")
+    def dateValueJS: js.Date = js.native
 
     def closePicker(): Unit = js.native
 
@@ -45,20 +42,18 @@ object DateRangePicker extends HasAccessibleName with HasName with HasValue {
   }
 
   @js.native
-  @JSImport("@ui5/webcomponents/dist/DateRangePicker.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents/dist/DateTimePicker.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
   type Ref         = dom.html.Element with RawElement
-  type ModFunction = DateRangePicker.type => Mod[ReactiveHtmlElement[Ref]]
+  type ModFunction = DateTimePicker.type => Mod[ReactiveHtmlElement[Ref]]
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-daterange-picker")
+  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-datetime-picker")
 
   val id: ReactiveProp[String, String] = idAttr
-
-  val delimiter: ReactiveHtmlAttr[String] = customHtmlAttr("delimiter", StringAsIsCodec)
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
@@ -94,19 +89,19 @@ object DateRangePicker extends HasAccessibleName with HasName with HasValue {
     val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(DateRangePicker)): _*)
+  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(DateTimePicker)): _*)
 
-  /** You can feed [[DateRangePicker]] refs to this observer in order to close them. */
+  /** You can feed [[DateTimePicker]] refs to this observer in order to close them. */
   val closePickerObserver: Observer[Ref] = Observer(_.closePicker())
 
-  /** creates a [[Mod]] for your [[DateRangePicker]]s to close them when the stream emit. */
+  /** creates a [[Mod]] for your [[DateTimePicker]]s to close them when the stream emit. */
   def closePickerFromEvents(stream: EventStream[Unit]) =
     inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> closePickerObserver)
 
-  /** You can feed [[DateRangePicker]] refs to this observer in order to open them. */
+  /** You can feed [[DateTimePicker]] refs to this observer in order to open them. */
   val openPickerObserver: Observer[Ref] = Observer(_.openPicker())
 
-  /** creates a [[Mod]] for your [[DateRangePicker]]s to close them when the stream emit. */
+  /** creates a [[Mod]] for your [[DateTimePicker]]s to close them when the stream emit. */
   def openPickerFromEvents(stream: EventStream[Unit]) =
     inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> openPickerObserver)
 
