@@ -87,7 +87,10 @@ object UList {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(UList)): _*)
 
-  val item: ListItem.type            = ListItem
+  @deprecated("Li was a badly designed name. Use `item` instead", "15/08/2022")
+  def Li: ListItem.type = ListItem
+
+  def item: ListItem.type          = ListItem
   def group: UListGroupHeader.type = UListGroupHeader
 
   def notificationItem: NotificationListItem.type       = NotificationListItem
