@@ -63,15 +63,13 @@ object ViewSettingsDialog {
     def sortDescending: Boolean
 
     @JSName("filters")
-    def filtersJS: js.Array[js.Object]
+    def filtersJS: js.Array[js.Dictionary[js.Array[String]]]
   }
 
   object ViewSettings {
     extension (settings: ViewSettings)
-      def filters: Map[String, List[String]] = settings.filtersJS
-        .flatMap(obj => new js.Map(js.Object.entries(obj)).toList)
-        .map((key, values) => (key, values.asInstanceOf[js.Array[String]].toList))
-        .toMap
+      def filters: Map[String, List[String]] =
+        settings.filtersJS.flatMap(_.toMap.map((key, values) => (key, values.toList))).toMap
   }
 
   object events {
