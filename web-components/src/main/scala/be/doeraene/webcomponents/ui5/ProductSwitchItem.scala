@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** The ui5-product-switch-item web component represents the items displayed in the ui5-product-switch web component.
   *
@@ -49,7 +50,9 @@ object ProductSwitchItem extends HasIcon {
 
   object slots {}
 
-  object events extends HasOnClick {}
+  object events {
+    val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
+  }
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ProductSwitchItem)): _*)
 

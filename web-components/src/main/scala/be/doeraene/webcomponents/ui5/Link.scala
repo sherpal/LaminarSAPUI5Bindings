@@ -11,13 +11,14 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** A link to another page.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Link/">the doc</a> for more information.
   */
-object Link extends HasDesign with HasIcon with HasOnClick with HasAccessibleName {
+object Link extends HasDesign with HasIcon with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -45,6 +46,12 @@ object Link extends HasDesign with HasIcon with HasOnClick with HasAccessibleNam
     customHtmlAttr("design", LinkDesign.AsStringCodec)
 
   val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+
+  object slots {}
+
+  object events {
+    val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
+  }
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Link)): _*)
 

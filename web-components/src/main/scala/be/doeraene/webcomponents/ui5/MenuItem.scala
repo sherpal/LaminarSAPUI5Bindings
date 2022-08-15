@@ -16,7 +16,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Menu/">the doc</a> for more information.
   */
-object MenuItem extends HasIcon with HasOnClick with HasText {
+object MenuItem extends HasIcon with HasText {
 
   @js.native
   trait RawElement extends js.Object {}

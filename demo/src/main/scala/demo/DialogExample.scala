@@ -29,7 +29,8 @@ object DialogExample extends Example("Dialog") {
           )
         ),
         Dialog(
-          _ => inContext(el => openDialogBus.events --> Observer[Boolean](if _ then el.ref.show() else el.ref.close())),
+          _.showFromEvents(openDialogBus.events.filter(identity).mapTo(())),
+          _.closeFromEvents(openDialogBus.events.map(!_).filter(identity).mapTo(())),
           _.headerText := "Register Form",
           _ =>
             section(
@@ -52,7 +53,7 @@ object DialogExample extends Example("Dialog") {
             Button(
               _.design := ButtonDesign.Emphasized,
               _ => "Register",
-              _.onClick.mapTo(false) --> openDialogBus.writer
+              _.events.onClick.mapTo(false) --> openDialogBus.writer
             )
           )
         )
@@ -92,7 +93,7 @@ object DialogExample extends Example("Dialog") {
             Button(
               _.design := ButtonDesign.Emphasized,
               _ => "Close",
-              _.onClick.mapTo(Dialog.getDialogById(dialogId)) --> Observer[Option[Dialog.Ref]] {
+              _.events.onClick.mapTo(Dialog.getDialogById(dialogId)) --> Observer[Option[Dialog.Ref]] {
                 case Some(dialog) => dialog.close()
                 case None         => throw new IllegalStateException(s"Dialog with id $dialogId does not exist.")
               }

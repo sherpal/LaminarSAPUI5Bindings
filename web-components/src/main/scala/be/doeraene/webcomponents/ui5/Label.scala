@@ -16,7 +16,7 @@ import be.doeraene.webcomponents.ui5.configkeys.WrappingType
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Label/">the doc</a> for more information.
   */
-object Label extends HasIcon with HasOnClick {
+object Label extends HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}

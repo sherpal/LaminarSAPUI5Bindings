@@ -17,7 +17,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Toast/">the doc</a> for more information.
   */
-object Toast extends HasIcon with HasOnClick {
+object Toast extends HasIcon {
 
   @js.native
   trait RawElement extends js.Object {
@@ -41,6 +41,10 @@ object Toast extends HasIcon with HasOnClick {
   val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
 
   val duration: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
+
+  object slots {}
+
+  object events {}
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Toast)): _*)
 

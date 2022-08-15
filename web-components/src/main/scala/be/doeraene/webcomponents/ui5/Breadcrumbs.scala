@@ -20,7 +20,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasItem
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Breadcrumbs/">the doc</a> for more
   *   information.
   */
-object Breadcrumbs extends HasIcon with HasOnClick {
+object Breadcrumbs extends HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}

@@ -18,7 +18,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Button/">the doc</a> for more information.
   */
-object Button extends HasIcon with HasOnClick {
+object Button extends HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}

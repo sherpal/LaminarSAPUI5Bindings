@@ -39,7 +39,7 @@ object BusyIndicatorExample extends Example("BusyIndicator") {
         .foldLeft(0)(_ + _)
         .map(_ > 0)
       div(
-        div(Button(_ => "Fetch list data", _.onClick.mapTo(()) --> fetchListDataBus.writer)),
+        div(Button(_ => "Fetch list data", _.events.onClick.mapTo(()) --> fetchListDataBus.writer)),
         div(
           BusyIndicator(
             _.active <-- busyStates,

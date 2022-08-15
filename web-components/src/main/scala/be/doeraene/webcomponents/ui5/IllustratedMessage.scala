@@ -22,7 +22,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/IllustratedMessage/">the doc</a> for more
   *   information.
   */
-object IllustratedMessage extends HasIcon with HasOnClick {
+object IllustratedMessage extends HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}

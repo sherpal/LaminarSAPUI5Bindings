@@ -21,7 +21,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ShellBar/">the doc</a> for more
   *   information.
   */
-object ShellBar extends HasIcon with HasOnClick {
+object ShellBar extends HasIcon {
 
   @js.native
   trait RawElement extends js.Object {

@@ -9,6 +9,9 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.ui5.eventtypes.HasTargetRef
 
 /** Simple UI button
   *
@@ -16,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ShellBar/">the doc</a> for more
   *   information.
   */
-object ShellBarItem extends HasIcon with HasOnClick with HasText {
+object ShellBarItem extends HasIcon with HasText {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,6 +39,13 @@ object ShellBarItem extends HasIcon with HasOnClick with HasText {
   val id: ReactiveProp[String, String] = idAttr
 
   val count: HtmlAttr[String] = customHtmlAttr("count", StringAsIsCodec)
+
+  object slots {}
+
+  object events {
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]] =
+      new EventProp("click")
+  }
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ShellBarItem)): _*)
 

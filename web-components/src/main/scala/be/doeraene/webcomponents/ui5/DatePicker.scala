@@ -21,7 +21,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DatePicker/">the doc</a> for more
   *   information.
   */
-object DatePicker extends HasOnClick with HasAccessibleName with HasName with HasValue {
+object DatePicker extends HasAccessibleName with HasName with HasValue {
 
   //noinspection ScalaUnusedSymbol
   @js.native

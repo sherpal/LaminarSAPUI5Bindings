@@ -17,7 +17,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/BreadcrumbsItem/">the doc</a> for more
   *   information.
   */
-object BreadcrumbsItem extends HasIcon with HasOnClick {
+object BreadcrumbsItem extends HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
