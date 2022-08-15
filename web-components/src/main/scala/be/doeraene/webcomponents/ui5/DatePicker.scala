@@ -13,6 +13,7 @@ import org.scalajs.dom
 import java.time.LocalDate
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** The ui5-date-picker component provides an input field with assigned calendar which opens on user action.
   *
@@ -92,19 +93,19 @@ object DatePicker extends HasOnClick with HasAccessibleName with HasName with Ha
   }
 
   object events {
-    @js.native
-    sealed trait EventData extends js.Object {
-      def value: String  = js.native
-      def valid: Boolean = js.native
+
+    trait DateEventData extends js.Object {
+      def value: String
+      def valid: Boolean
     }
 
-    val onChange = new EventProp[dom.Event & HasDetail[EventData]]("change")
-    val onInput  = new EventProp[dom.Event & HasDetail[EventData]]("input")
+    val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
+    val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
 
-    val onValidDateChange: EventProcessor[dom.Event & HasDetail[EventData], LocalDate] =
+    val onValidDateChange: EventProcessor[EventWithPreciseTarget[Ref] & HasDetail[DateEventData], LocalDate] =
       onChange.map(_.detail).filter(_.valid).map(_.value).map(stringToLocalDate)
 
-    val onValidDateInput: EventProcessor[dom.Event & HasDetail[EventData], LocalDate] =
+    val onValidDateInput: EventProcessor[EventWithPreciseTarget[Ref] & HasDetail[DateEventData], LocalDate] =
       onInput.map(_.detail).filter(_.valid).map(_.value).map(stringToLocalDate)
   }
 
