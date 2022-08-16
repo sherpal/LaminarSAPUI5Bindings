@@ -19,7 +19,7 @@ import be.doeraene.webcomponents.WebComponent
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Link/">the doc</a> for more information.
   */
-object Link extends WebComponent with HasDesign with HasIcon with HasAccessibleName {
+object Link extends WebComponent with HasIcon with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
