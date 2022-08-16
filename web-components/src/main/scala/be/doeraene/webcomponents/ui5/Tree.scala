@@ -41,11 +41,11 @@ object Tree extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tree")
 
-  val footerText: ReactiveHtmlAttr[String] = customHtmlAttr("footer-text", StringAsIsCodec)
-  val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
-  val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val footerText: ReactiveHtmlAttr[String] = customHtmlAttr("footer-text", StringAsIsCodec)
+  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
 
-  val mode: ReactiveHtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
+  lazy val mode: ReactiveHtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
 
   object events {
     val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(

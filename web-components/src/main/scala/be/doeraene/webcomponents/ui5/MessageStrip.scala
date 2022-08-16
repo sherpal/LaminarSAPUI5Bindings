@@ -38,11 +38,11 @@ object MessageStrip extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-message-strip")
 
-  val design: ReactiveHtmlAttr[MessageStripDesign] = customHtmlAttr("design", MessageStripDesign.AsStringCodec)
+  lazy val design: ReactiveHtmlAttr[MessageStripDesign] = customHtmlAttr("design", MessageStripDesign.AsStringCodec)
 
-  val hideCloseButton: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-close-button", BooleanAsAttrPresenceCodec)
+  lazy val hideCloseButton: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-close-button", BooleanAsAttrPresenceCodec)
 
-  val hideIcon: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-icon", BooleanAsAttrPresenceCodec)
+  lazy val hideIcon: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-icon", BooleanAsAttrPresenceCodec)
 
   object slots {
     val icon: Slot = new Slot("icon")

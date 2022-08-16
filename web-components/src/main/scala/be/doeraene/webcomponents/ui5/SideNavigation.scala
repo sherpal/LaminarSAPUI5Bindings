@@ -38,7 +38,7 @@ object SideNavigation extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-side-navigation")
 
-  val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("collapsed", BooleanAsAttrPresenceCodec)
 
   object slots {
     val fixedItems: Slot = new Slot("fixedItems")

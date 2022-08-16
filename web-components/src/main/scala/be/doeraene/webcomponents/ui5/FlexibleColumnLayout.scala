@@ -55,9 +55,9 @@ object FlexibleColumnLayout extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-flexible-column-layout")
 
-  val hideArrows: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-arrows", BooleanAsAttrPresenceCodec)
+  lazy val hideArrows: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-arrows", BooleanAsAttrPresenceCodec)
 
-  val layout: ReactiveHtmlAttr[FCLLayout] = customHtmlAttr("layout", FCLLayout.AsStringCodec)
+  lazy val layout: ReactiveHtmlAttr[FCLLayout] = customHtmlAttr("layout", FCLLayout.AsStringCodec)
 
   val onLayoutChanged = new EventProp[dom.Event]("layout-change")
 

@@ -39,16 +39,16 @@ object Panel extends WebComponent with HasAccessibleName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-panel")
 
-  val accessibleRole: ReactiveHtmlAttr[PanelAccessibleRole] =
+  lazy val accessibleRole: ReactiveHtmlAttr[PanelAccessibleRole] =
     customHtmlAttr("accessible-role", PanelAccessibleRole.AsStringCodec)
 
-  val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
-  val fixed: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val fixed: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
 
-  val headerLevel: ReactiveHtmlAttr[TitleLevel] = customHtmlAttr("header-level", TitleLevel.AsStringCodec)
-  val headerText: ReactiveHtmlAttr[String]      = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val headerLevel: ReactiveHtmlAttr[TitleLevel] = customHtmlAttr("header-level", TitleLevel.AsStringCodec)
+  lazy val headerText: ReactiveHtmlAttr[String]      = customHtmlAttr("header-text", StringAsIsCodec)
 
-  val noAnimation: ReactiveHtmlAttr[Boolean] = customHtmlAttr("no-animation", BooleanAsAttrPresenceCodec)
+  lazy val noAnimation: ReactiveHtmlAttr[Boolean] = customHtmlAttr("no-animation", BooleanAsAttrPresenceCodec)
 
   object slots {
     val header: Slot = new Slot("header")

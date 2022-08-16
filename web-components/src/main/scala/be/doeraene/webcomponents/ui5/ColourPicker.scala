@@ -49,7 +49,7 @@ object ColourPicker extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-picker")
 
-  val colour: ReactiveHtmlAttr[Colour] = customHtmlAttr("color", Colour.AsStringCodec)
+  lazy val colour: ReactiveHtmlAttr[Colour] = customHtmlAttr("color", Colour.AsStringCodec)
 
   object slots {}
 

@@ -37,13 +37,13 @@ object SuggestionItem extends WebComponent with HasIcon with HasDescription with
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-suggestion-item")
 
-  val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 
-  val image: ReactiveHtmlAttr[String] = customHtmlAttr("image", StringAsIsCodec)
+  lazy val image: ReactiveHtmlAttr[String] = customHtmlAttr("image", StringAsIsCodec)
 
-  val tpe: ReactiveHtmlAttr[ListItemType] = customHtmlAttr("tpe", ListItemType.AsStringCodec)
+  lazy val tpe: ReactiveHtmlAttr[ListItemType] = customHtmlAttr("tpe", ListItemType.AsStringCodec)
 
-  val additionalTextState: ReactiveHtmlAttr[ValueState] =
+  lazy val additionalTextState: ReactiveHtmlAttr[ValueState] =
     customHtmlAttr("additional-text-state", ValueState.AsStringCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SuggestionItem)): _*)

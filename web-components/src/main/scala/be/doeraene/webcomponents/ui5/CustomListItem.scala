@@ -38,11 +38,11 @@ object CustomListItem extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-custom")
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  val tpe: ReactiveHtmlAttr[ListItemType] = customHtmlAttr("type", ListItemType.AsStringCodec)
+  lazy val tpe: ReactiveHtmlAttr[ListItemType] = customHtmlAttr("type", ListItemType.AsStringCodec)
 
-  val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

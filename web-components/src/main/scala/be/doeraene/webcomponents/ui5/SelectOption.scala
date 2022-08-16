@@ -37,8 +37,8 @@ object SelectOption extends WebComponent with HasIcon with HasAdditionalText wit
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-option")
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SelectOption)): _*)
 

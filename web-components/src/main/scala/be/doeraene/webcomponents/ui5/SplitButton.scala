@@ -39,13 +39,13 @@ object SplitButton extends WebComponent with HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-split-button")
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  val activeIcon: ReactiveHtmlAttr[IconName] = customHtmlAttr("active-icon", IconName.AsStringCodec)
+  lazy val activeIcon: ReactiveHtmlAttr[IconName] = customHtmlAttr("active-icon", IconName.AsStringCodec)
 
-  val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
+  lazy val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

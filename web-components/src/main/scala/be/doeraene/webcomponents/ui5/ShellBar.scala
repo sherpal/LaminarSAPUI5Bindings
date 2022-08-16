@@ -41,21 +41,21 @@ object ShellBar extends WebComponent with HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar")
 
-  val primaryTitle: ReactiveHtmlAttr[String] =
+  lazy val primaryTitle: ReactiveHtmlAttr[String] =
     customHtmlAttr("primary-title", StringAsIsCodec)
-  val secondaryTitle: ReactiveHtmlAttr[String] =
+  lazy val secondaryTitle: ReactiveHtmlAttr[String] =
     customHtmlAttr("secondary-title", StringAsIsCodec)
 
-  val notificationsCount: ReactiveHtmlAttr[String] =
+  lazy val notificationsCount: ReactiveHtmlAttr[String] =
     customHtmlAttr("notifications-count", StringAsIsCodec)
 
-  val showProductSwitch: ReactiveHtmlAttr[Boolean] =
+  lazy val showProductSwitch: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-product-switch", BooleanAsAttrPresenceCodec)
 
-  val showCoPilot: ReactiveHtmlAttr[Boolean] =
+  lazy val showCoPilot: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-copilot", BooleanAsAttrPresenceCodec)
 
-  val showNotifications: ReactiveHtmlAttr[Boolean] =
+  lazy val showNotifications: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-notifications", BooleanAsAttrPresenceCodec)
 
   object events {

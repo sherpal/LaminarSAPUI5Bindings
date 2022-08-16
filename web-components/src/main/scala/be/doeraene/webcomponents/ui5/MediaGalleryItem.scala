@@ -40,11 +40,12 @@ object MediaGalleryItem extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-media-gallery-item")
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val layout: ReactiveHtmlAttr[MediaGalleryItemLayout] = customHtmlAttr("layout", MediaGalleryItemLayout.AsStringCodec)
+  lazy val layout: ReactiveHtmlAttr[MediaGalleryItemLayout] =
+    customHtmlAttr("layout", MediaGalleryItemLayout.AsStringCodec)
 
-  val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   object slots {
     val thumbnail: Slot = new Slot("thumbnail")

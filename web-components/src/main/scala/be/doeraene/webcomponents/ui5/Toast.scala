@@ -37,9 +37,9 @@ object Toast extends WebComponent with HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-toast")
 
-  val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
+  lazy val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
 
-  val duration: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
+  lazy val duration: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
 
   object slots {}
 

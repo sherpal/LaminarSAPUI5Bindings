@@ -39,7 +39,7 @@ object Menu extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-menu")
 
-  val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("headerText", StringAsIsCodec)
+  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("headerText", StringAsIsCodec)
 
   object events {
 

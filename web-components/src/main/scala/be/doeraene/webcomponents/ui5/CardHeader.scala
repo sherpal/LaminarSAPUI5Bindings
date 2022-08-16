@@ -35,13 +35,13 @@ object CardHeader extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-card-header")
 
-  val interactive: ReactiveHtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
+  lazy val interactive: ReactiveHtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
 
-  val status: ReactiveHtmlAttr[String] = customHtmlAttr("status", StringAsIsCodec)
+  lazy val status: ReactiveHtmlAttr[String] = customHtmlAttr("status", StringAsIsCodec)
 
-  val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
 
-  val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
 
   object slots {
     val action: Slot = new Slot("action")

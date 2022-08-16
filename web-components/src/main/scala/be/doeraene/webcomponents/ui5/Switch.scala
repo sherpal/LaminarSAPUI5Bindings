@@ -38,13 +38,13 @@ object Switch extends WebComponent with HasAccessibleName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-switch")
 
-  val textOn: ReactiveHtmlAttr[String]  = customHtmlAttr("text-on", StringAsIsCodec)
-  val textOff: ReactiveHtmlAttr[String] = customHtmlAttr("text-off", StringAsIsCodec)
+  lazy val textOn: ReactiveHtmlAttr[String]  = customHtmlAttr("text-on", StringAsIsCodec)
+  lazy val textOff: ReactiveHtmlAttr[String] = customHtmlAttr("text-off", StringAsIsCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val checked: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val checked: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
 
-  val design: ReactiveHtmlAttr[SwitchDesign] = customHtmlAttr("design", SwitchDesign.AsStringCodec)
+  lazy val design: ReactiveHtmlAttr[SwitchDesign] = customHtmlAttr("design", SwitchDesign.AsStringCodec)
 
   object slots {}
 

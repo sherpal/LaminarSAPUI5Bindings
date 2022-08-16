@@ -37,7 +37,7 @@ object ColourPaletteItem extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette-item")
 
-  val value: ReactiveHtmlAttr[Colour] = customHtmlAttr("value", Colour.AsStringCodec)
+  lazy val value: ReactiveHtmlAttr[Colour] = customHtmlAttr("value", Colour.AsStringCodec)
 
   object slots {}
 

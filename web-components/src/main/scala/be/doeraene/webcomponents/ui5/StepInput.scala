@@ -47,25 +47,25 @@ object StepInput extends WebComponent with HasAccessibleName with HasName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-step-input")
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val max: ReactiveHtmlAttr[Double] = customHtmlAttr("max", DoubleAsStringCodec)
+  lazy val max: ReactiveHtmlAttr[Double] = customHtmlAttr("max", DoubleAsStringCodec)
 
-  val min: ReactiveHtmlAttr[Double] = customHtmlAttr("min", DoubleAsStringCodec)
+  lazy val min: ReactiveHtmlAttr[Double] = customHtmlAttr("min", DoubleAsStringCodec)
 
-  val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
 
-  val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  val step: ReactiveHtmlAttr[Double] = customHtmlAttr("step", DoubleAsStringCodec)
+  lazy val step: ReactiveHtmlAttr[Double] = customHtmlAttr("step", DoubleAsStringCodec)
 
-  val value: ReactiveHtmlAttr[Double] = customHtmlAttr("value", DoubleAsStringCodec)
+  lazy val value: ReactiveHtmlAttr[Double] = customHtmlAttr("value", DoubleAsStringCodec)
 
-  val valuePrecision: ReactiveHtmlAttr[Int] = customHtmlAttr("value-precision", IntAsStringCodec)
+  lazy val valuePrecision: ReactiveHtmlAttr[Int] = customHtmlAttr("value-precision", IntAsStringCodec)
 
-  val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   object slots {
     val valueStateMessage: Slot = Slot("valueStateMessage")

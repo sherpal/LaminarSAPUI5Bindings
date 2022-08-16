@@ -38,8 +38,8 @@ object Title extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-title")
 
-  val level: ReactiveHtmlAttr[TitleLevel]          = customHtmlAttr("level", TitleLevel.AsStringCodec)
-  val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val level: ReactiveHtmlAttr[TitleLevel]          = customHtmlAttr("level", TitleLevel.AsStringCodec)
+  lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   object slots {}
 

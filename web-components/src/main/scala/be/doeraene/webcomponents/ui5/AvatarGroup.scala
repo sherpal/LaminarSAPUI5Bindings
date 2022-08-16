@@ -52,7 +52,7 @@ object AvatarGroup extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-avatar-group")
 
-  val tpe: ReactiveHtmlAttr[AvatarGroupType] = customHtmlAttr("type", AvatarGroupType.AsStringCodec)
+  lazy val tpe: ReactiveHtmlAttr[AvatarGroupType] = customHtmlAttr("type", AvatarGroupType.AsStringCodec)
 
   object slots {
     val overflowButton: Slot = Slot("overflowButton")

@@ -34,9 +34,9 @@ object MenuItem extends WebComponent with HasIcon with HasText {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-menu-item")
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val startsSection: ReactiveHtmlAttr[Boolean] = customHtmlAttr("starts-section", BooleanAsAttrPresenceCodec)
+  lazy val startsSection: ReactiveHtmlAttr[Boolean] = customHtmlAttr("starts-section", BooleanAsAttrPresenceCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MenuItem)): _*)
 

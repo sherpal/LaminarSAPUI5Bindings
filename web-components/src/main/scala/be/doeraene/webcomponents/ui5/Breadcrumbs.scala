@@ -45,10 +45,10 @@ object Breadcrumbs extends WebComponent with HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-breadcrumbs")
 
-  val separatorStyle: ReactiveHtmlAttr[BreadcrumbsSeparatorStyle] =
+  lazy val separatorStyle: ReactiveHtmlAttr[BreadcrumbsSeparatorStyle] =
     customHtmlAttr("separator-style", BreadcrumbsSeparatorStyle.AsStringCodec)
 
-  val design: ReactiveHtmlAttr[BreadcrumbsDesign] =
+  lazy val design: ReactiveHtmlAttr[BreadcrumbsDesign] =
     customHtmlAttr("design", BreadcrumbsDesign.AsStringCodec)
 
   object slots {}

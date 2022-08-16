@@ -42,11 +42,11 @@ object RatingIndicator extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-rating-indicator")
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
-  val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val max: ReactiveHtmlAttr[Int]               = customHtmlAttr("max", IntAsStringCodec)
-  val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  val value: ReactiveHtmlAttr[Double]          = customHtmlAttr("value", DoubleAsStringCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val max: ReactiveHtmlAttr[Int]               = customHtmlAttr("max", IntAsStringCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val value: ReactiveHtmlAttr[Double]          = customHtmlAttr("value", DoubleAsStringCodec)
 
   object slots {}
 

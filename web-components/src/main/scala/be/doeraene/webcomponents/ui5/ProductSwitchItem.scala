@@ -39,13 +39,13 @@ object ProductSwitchItem extends WebComponent with HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-product-switch-item")
 
-  val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("subtitle-text", StringAsIsCodec)
+  lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("subtitle-text", StringAsIsCodec)
 
-  val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr[LinkTarget]("target", LinkTarget.AsStringCodec)
+  lazy val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr[LinkTarget]("target", LinkTarget.AsStringCodec)
 
-  val targetSrc: ReactiveHtmlAttr[String] = customHtmlAttr[String]("target-src", StringAsIsCodec)
+  lazy val targetSrc: ReactiveHtmlAttr[String] = customHtmlAttr[String]("target-src", StringAsIsCodec)
 
-  val titleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("title-text", StringAsIsCodec)
+  lazy val titleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("title-text", StringAsIsCodec)
 
   object slots {}
 

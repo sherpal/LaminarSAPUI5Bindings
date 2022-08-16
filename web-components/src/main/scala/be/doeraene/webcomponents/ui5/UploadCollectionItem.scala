@@ -52,24 +52,24 @@ object UploadCollectionItem extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-upload-collection-item")
 
-  val disableDeleteButton: ReactiveHtmlAttr[Boolean] =
+  lazy val disableDeleteButton: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disable-delete-button", BooleanAsAttrPresenceCodec)
 
-  val fileName: ReactiveHtmlAttr[String] =
+  lazy val fileName: ReactiveHtmlAttr[String] =
     customHtmlAttr("file-name", StringAsIsCodec)
 
-  val fileNameClickable: ReactiveHtmlAttr[Boolean] =
+  lazy val fileNameClickable: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("file-name-clickable", BooleanAsAttrPresenceCodec)
 
-  val hideRetryButton: ReactiveHtmlAttr[Boolean] =
+  lazy val hideRetryButton: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("hide-retry-button", BooleanAsAttrPresenceCodec)
 
-  val hideTerminateButton: ReactiveHtmlAttr[Boolean] =
+  lazy val hideTerminateButton: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("hide-terminate-button", BooleanAsAttrPresenceCodec)
 
-  val progress: ReactiveHtmlAttr[Int] = customHtmlAttr("progress", IntAsStringCodec)
+  lazy val progress: ReactiveHtmlAttr[Int] = customHtmlAttr("progress", IntAsStringCodec)
 
-  val uploadState: ReactiveHtmlAttr[UploadState] =
+  lazy val uploadState: ReactiveHtmlAttr[UploadState] =
     customHtmlAttr("upload-state", UploadState.AsStringCodec)
 
   object slots {

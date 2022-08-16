@@ -37,7 +37,7 @@ object Badge extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-badge")
 
-  val colourScheme: ReactiveHtmlAttr[ColourScheme] = customHtmlAttr("color-scheme", ColourScheme.AsStringCodec)
+  lazy val colourScheme: ReactiveHtmlAttr[ColourScheme] = customHtmlAttr("color-scheme", ColourScheme.AsStringCodec)
 
   object slots {
     // note that unlike most elements that have an attribute Icon, this element has a slot icon instead.

@@ -36,16 +36,16 @@ object Page extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-page")
 
-  val backgroundDesign: ReactiveHtmlAttr[PageBackgroundDesign] =
+  lazy val backgroundDesign: ReactiveHtmlAttr[PageBackgroundDesign] =
     customHtmlAttr("background-design", PageBackgroundDesign.AsStringCodec)
 
-  val disableScrolling: ReactiveHtmlAttr[Boolean] =
+  lazy val disableScrolling: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disable-scrolling", BooleanAsAttrPresenceCodec)
 
-  val floatingFooter: ReactiveHtmlAttr[Boolean] =
+  lazy val floatingFooter: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("floating-footer", BooleanAsAttrPresenceCodec)
 
-  val hideFooter: ReactiveHtmlAttr[Boolean] =
+  lazy val hideFooter: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("hide-footer", BooleanAsAttrPresenceCodec)
 
   object slots {

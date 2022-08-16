@@ -43,20 +43,20 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-input")
 
-  val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  val tpe: ReactiveHtmlAttr[InputType] = customHtmlAttr("type", InputType.AsStringCodec)
+  lazy val tpe: ReactiveHtmlAttr[InputType] = customHtmlAttr("type", InputType.AsStringCodec)
 
-  val maxLength: ReactiveHtmlAttr[Int] = customHtmlAttr("maxlength", IntAsStringCodec)
+  lazy val maxLength: ReactiveHtmlAttr[Int] = customHtmlAttr("maxlength", IntAsStringCodec)
 
-  val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
-  val showClearIcon: ReactiveHtmlAttr[Boolean]   = customHtmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
-  val showSuggestions: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
+  lazy val showClearIcon: ReactiveHtmlAttr[Boolean]   = customHtmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
+  lazy val showSuggestions: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")

@@ -38,15 +38,15 @@ object CheckBox extends WebComponent with HasIcon with HasAccessibleName with Ha
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-checkbox")
 
-  val checked: ReactiveHtmlAttr[Boolean]       = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
-  val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val indeterminate: ReactiveHtmlAttr[Boolean] = customHtmlAttr("indeterminate", BooleanAsAttrPresenceCodec)
-  val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  val required: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val checked: ReactiveHtmlAttr[Boolean]       = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val indeterminate: ReactiveHtmlAttr[Boolean] = customHtmlAttr("indeterminate", BooleanAsAttrPresenceCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
-  val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   object slots {}
 

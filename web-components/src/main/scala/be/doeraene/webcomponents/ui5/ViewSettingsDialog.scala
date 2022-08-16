@@ -47,7 +47,7 @@ object ViewSettingsDialog extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-view-settings-dialog")
 
-  val sortDescending: ReactiveHtmlAttr[Boolean] = customHtmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
+  lazy val sortDescending: ReactiveHtmlAttr[Boolean] = customHtmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
 
   object slots {
     val filterItems: Slot = Slot("filterItems")

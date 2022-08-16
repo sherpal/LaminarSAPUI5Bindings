@@ -38,16 +38,16 @@ object UList extends WebComponent with HasAccessibleName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
 
-  val accessibleRole: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-role", StringAsIsCodec)
-  val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
-  val busyDelay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
-  val footerText: ReactiveHtmlAttr[String]        = customHtmlAttr("footer-text", StringAsIsCodec)
-  val growing: ReactiveHtmlAttr[ListGrowingMode]  = customHtmlAttr("growing", ListGrowingMode.AsStringCodec)
-  val headerText: ReactiveHtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
-  val indent: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
-  val mode: ReactiveHtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
-  val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
-  val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
+  lazy val accessibleRole: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-role", StringAsIsCodec)
+  lazy val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busyDelay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
+  lazy val footerText: ReactiveHtmlAttr[String]        = customHtmlAttr("footer-text", StringAsIsCodec)
+  lazy val growing: ReactiveHtmlAttr[ListGrowingMode]  = customHtmlAttr("growing", ListGrowingMode.AsStringCodec)
+  lazy val headerText: ReactiveHtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val indent: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
+  lazy val mode: ReactiveHtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
+  lazy val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
 
   object events {
     val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-click")

@@ -39,9 +39,9 @@ object MultiComboBoxItem extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-mcb-item")
 
-  val selected: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
-  val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
-  val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
+  lazy val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
 
   object slots {}
 

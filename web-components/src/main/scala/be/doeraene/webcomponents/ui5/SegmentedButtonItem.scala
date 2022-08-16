@@ -37,19 +37,19 @@ object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasI
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-segmented-button-item")
 
-  val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
+  lazy val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
 
-  val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 
-  val submits: ReactiveHtmlAttr[Boolean] = customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
+  lazy val submits: ReactiveHtmlAttr[Boolean] = customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
 
-  val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
+  lazy val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
 
   lazy val accessibilityAttributes: ReactiveHtmlAttr[js.Object] = ??? // todo
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
+  lazy val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
 
   object slots {}
 

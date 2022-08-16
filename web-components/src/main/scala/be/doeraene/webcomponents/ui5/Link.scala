@@ -36,15 +36,15 @@ object Link extends WebComponent with HasDesign with HasIcon with HasAccessibleN
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-link")
 
-  val disabled: ReactiveHtmlAttr[Boolean] =
+  lazy val disabled: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val href: ReactiveHtmlAttr[String]       = customHtmlAttr("href", StringAsIsCodec)
-  val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr("target", LinkTarget.AsStringCodec)
+  lazy val href: ReactiveHtmlAttr[String]       = customHtmlAttr("href", StringAsIsCodec)
+  lazy val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr("target", LinkTarget.AsStringCodec)
 
-  val design: ReactiveHtmlAttr[LinkDesign] =
+  lazy val design: ReactiveHtmlAttr[LinkDesign] =
     customHtmlAttr("design", LinkDesign.AsStringCodec)
 
-  val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   object slots {}
 

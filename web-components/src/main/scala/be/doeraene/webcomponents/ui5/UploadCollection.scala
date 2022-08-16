@@ -41,15 +41,15 @@ object UploadCollection extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-upload-collection")
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  val hideDragOverlay: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-drag-overlay", BooleanAsAttrPresenceCodec)
+  lazy val hideDragOverlay: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-drag-overlay", BooleanAsAttrPresenceCodec)
 
-  val mode: ReactiveHtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
+  lazy val mode: ReactiveHtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
 
-  val noDataDescription: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-description", StringAsIsCodec)
+  lazy val noDataDescription: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-description", StringAsIsCodec)
 
-  val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
 
   object slots {
     val header: Slot = new Slot("header")

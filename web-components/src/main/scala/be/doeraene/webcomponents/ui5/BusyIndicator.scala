@@ -39,11 +39,11 @@ object BusyIndicator extends WebComponent with HasText {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-busy-indicator")
 
-  val active: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
+  lazy val active: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
 
-  val delay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr[FiniteDuration]("delay", FiniteDurationCodec)
+  lazy val delay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr[FiniteDuration]("delay", FiniteDurationCodec)
 
-  val size: ReactiveHtmlAttr[BusyIndicatorSize] =
+  lazy val size: ReactiveHtmlAttr[BusyIndicatorSize] =
     customHtmlAttr[BusyIndicatorSize]("size", BusyIndicatorSize.AsStringCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(BusyIndicator)): _*)

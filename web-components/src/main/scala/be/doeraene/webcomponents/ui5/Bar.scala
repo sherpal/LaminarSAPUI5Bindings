@@ -38,7 +38,7 @@ object Bar extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-bar")
 
-  val design: ReactiveHtmlAttr[BarDesign] = customHtmlAttr("design", BarDesign.AsStringCodec)
+  lazy val design: ReactiveHtmlAttr[BarDesign] = customHtmlAttr("design", BarDesign.AsStringCodec)
 
   object slots {
     val endContent: Slot   = new Slot("endContent")

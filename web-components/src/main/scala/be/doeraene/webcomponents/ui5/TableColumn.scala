@@ -31,12 +31,9 @@ object TableColumn extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-column")
 
-  val demandPopin: ReactiveHtmlAttr[Boolean] = customHtmlAttr("demand-popin", BooleanAsAttrPresenceCodec)
-  val minWidth: ReactiveHtmlAttr[Int]        = customHtmlAttr("min-width", IntAsStringCodec)
-  val popinText: ReactiveHtmlAttr[String]    = customHtmlAttr("popin-text", StringAsIsCodec)
-
-  val slot: ReactiveHtmlAttr["columns" | "default"] =
-    customHtmlAttr("slot", EmbeddingAsIsCodec.apply)
+  lazy val demandPopin: ReactiveHtmlAttr[Boolean] = customHtmlAttr("demand-popin", BooleanAsAttrPresenceCodec)
+  lazy val minWidth: ReactiveHtmlAttr[Int]        = customHtmlAttr("min-width", IntAsStringCodec)
+  lazy val popinText: ReactiveHtmlAttr[String]    = customHtmlAttr("popin-text", StringAsIsCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TableColumn)): _*)
 

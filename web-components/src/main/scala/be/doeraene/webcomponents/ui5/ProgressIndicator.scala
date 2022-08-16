@@ -38,18 +38,18 @@ object ProgressIndicator extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-progress-indicator")
 
-  val disabled: ReactiveHtmlAttr[Boolean] =
+  lazy val disabled: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val displayValue: ReactiveHtmlAttr[String] =
+  lazy val displayValue: ReactiveHtmlAttr[String] =
     customHtmlAttr("display-value", StringAsIsCodec)
 
-  val hideValue: ReactiveHtmlAttr[Boolean] =
+  lazy val hideValue: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("hide-value", BooleanAsAttrPresenceCodec)
 
-  val value: ReactiveHtmlAttr[Int] = customHtmlAttr("value", IntAsStringCodec)
+  lazy val value: ReactiveHtmlAttr[Int] = customHtmlAttr("value", IntAsStringCodec)
 
-  val valueState: ReactiveHtmlAttr[ValueState] =
+  lazy val valueState: ReactiveHtmlAttr[ValueState] =
     customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ProgressIndicator)): _*)

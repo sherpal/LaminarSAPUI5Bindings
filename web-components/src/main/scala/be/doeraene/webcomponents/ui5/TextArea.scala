@@ -38,16 +38,17 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-textarea")
 
-  val required: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  val disabled: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val readonly: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  val growing: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("growing", BooleanAsAttrPresenceCodec)
-  val showExceededText: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-exceeded-text", BooleanAsAttrPresenceCodec)
-  val growingMaxLines: ReactiveHtmlAttr[Int]      = customHtmlAttr("growing-max-lines", IntAsStringCodec)
-  val maxLength: ReactiveHtmlAttr[Int]            = customHtmlAttr("maxlength", IntAsStringCodec)
-  val rows: ReactiveHtmlAttr[Int]                 = customHtmlAttr("rows", IntAsStringCodec)
-  val placeholder: ReactiveHtmlAttr[String]       = customHtmlAttr("placeholder", StringAsIsCodec)
-  val valueState: ReactiveHtmlAttr[ValueState]    = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val growing: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("growing", BooleanAsAttrPresenceCodec)
+  lazy val showExceededText: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("show-exceeded-text", BooleanAsAttrPresenceCodec)
+  lazy val growingMaxLines: ReactiveHtmlAttr[Int]   = customHtmlAttr("growing-max-lines", IntAsStringCodec)
+  lazy val maxLength: ReactiveHtmlAttr[Int]         = customHtmlAttr("maxlength", IntAsStringCodec)
+  lazy val rows: ReactiveHtmlAttr[Int]              = customHtmlAttr("rows", IntAsStringCodec)
+  lazy val placeholder: ReactiveHtmlAttr[String]    = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   val isRequired: Setter[HtmlElement] = required := true
 

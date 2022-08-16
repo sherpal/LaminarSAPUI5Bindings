@@ -37,7 +37,7 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar-item")
 
-  val count: HtmlAttr[String] = customHtmlAttr("count", StringAsIsCodec)
+  lazy val count: HtmlAttr[String] = customHtmlAttr("count", StringAsIsCodec)
 
   object slots {}
 

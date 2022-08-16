@@ -45,9 +45,10 @@ object ColourPalettePopover extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette-popover")
 
-  val defaultColour: ReactiveHtmlAttr[Colour] = customHtmlAttr("default-color", Colour.AsStringCodec)
+  lazy val defaultColour: ReactiveHtmlAttr[Colour] = customHtmlAttr("default-color", Colour.AsStringCodec)
 
-  val showDefaultColour: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
+  lazy val showDefaultColour: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
 
   /** This import is required for the `showMoreColours` property to work. */
   @js.native
@@ -59,7 +60,8 @@ object ColourPalettePopover extends WebComponent {
     customHtmlAttr("show-more-colors", BooleanAsAttrPresenceCodec)
   }
 
-  val showRecentColours: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
+  lazy val showRecentColours: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

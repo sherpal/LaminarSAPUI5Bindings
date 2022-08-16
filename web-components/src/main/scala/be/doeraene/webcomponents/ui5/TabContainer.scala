@@ -37,12 +37,12 @@ object TabContainer extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tabcontainer")
 
-  val disabled: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val collapsed: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
-  val fixed: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
-  val showOverflow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
-  val tabLayout: ReactiveHtmlAttr[TabLayout]  = customHtmlAttr("tab-layout", TabLayout.AsStringCodec)
-  val tabsOverflowMode: ReactiveHtmlAttr[TabsOverflowMode] =
+  lazy val disabled: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val fixed: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
+  lazy val showOverflow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
+  lazy val tabLayout: ReactiveHtmlAttr[TabLayout]  = customHtmlAttr("tab-layout", TabLayout.AsStringCodec)
+  lazy val tabsOverflowMode: ReactiveHtmlAttr[TabsOverflowMode] =
     customHtmlAttr("tabs-overflow-mode", TabsOverflowMode.AsStringCodec)
 
   object slots {

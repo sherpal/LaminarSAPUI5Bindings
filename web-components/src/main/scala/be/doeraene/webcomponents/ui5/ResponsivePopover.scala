@@ -47,33 +47,34 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-responsive-popover")
 
-  val allowTargetOverlap: ReactiveHtmlAttr[Boolean] = customHtmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
+  lazy val allowTargetOverlap: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
 
-  val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
 
-  val hideArrow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-arrow", BooleanAsAttrPresenceCodec)
+  lazy val hideArrow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-arrow", BooleanAsAttrPresenceCodec)
 
-  val hideBackdrop: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-backdrop", BooleanAsAttrPresenceCodec)
+  lazy val hideBackdrop: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-backdrop", BooleanAsAttrPresenceCodec)
 
-  val horizontalAlign: ReactiveHtmlAttr[PopoverHorizontalAlign] =
+  lazy val horizontalAlign: ReactiveHtmlAttr[PopoverHorizontalAlign] =
     customHtmlAttr("horizontal-align", PopoverHorizontalAlign.AsStringCodec)
 
-  val modal: ReactiveHtmlAttr[Boolean] = customHtmlAttr("modal", BooleanAsAttrPresenceCodec)
+  lazy val modal: ReactiveHtmlAttr[Boolean] = customHtmlAttr("modal", BooleanAsAttrPresenceCodec)
 
   /** id of the element that opens the ResponsivePopover */
-  val opener: ReactiveHtmlAttr[String] = customHtmlAttr("opener", StringAsIsCodec)
+  lazy val opener: ReactiveHtmlAttr[String] = customHtmlAttr("opener", StringAsIsCodec)
 
-  val placementType: ReactiveHtmlAttr[PopoverPlacementType] =
+  lazy val placementType: ReactiveHtmlAttr[PopoverPlacementType] =
     customHtmlAttr("placement-type", PopoverPlacementType.AsStringCodec)
 
-  val verticalAlign: ReactiveHtmlAttr[PopoverVerticalAlign] =
+  lazy val verticalAlign: ReactiveHtmlAttr[PopoverVerticalAlign] =
     customHtmlAttr("vertical-align", PopoverVerticalAlign.AsStringCodec)
 
-  val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
+  lazy val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
 
-  val open: ReactiveHtmlAttr[Boolean] = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val open: ReactiveHtmlAttr[Boolean] = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
 
-  val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
+  lazy val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
 
   object slots {

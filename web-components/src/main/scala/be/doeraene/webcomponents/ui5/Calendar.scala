@@ -44,21 +44,21 @@ object Calendar extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-calendar")
 
-  val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
+  lazy val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
 
-  val selectionMode: ReactiveHtmlAttr[CalendarSelectionMode] =
+  lazy val selectionMode: ReactiveHtmlAttr[CalendarSelectionMode] =
     customHtmlAttr("selection-mode", CalendarSelectionMode.AsStringCodec)
 
-  val formatPattern: ReactiveHtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
+  lazy val formatPattern: ReactiveHtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
 
-  val maxDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("max-date", StringAsIsCodec)
+  lazy val maxDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("max-date", StringAsIsCodec)
 
-  val minDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("min-date", StringAsIsCodec)
+  lazy val minDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("min-date", StringAsIsCodec)
 
-  val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+  lazy val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
     customHtmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
 
-  val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+  lazy val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
     customHtmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
 
   object slots {}

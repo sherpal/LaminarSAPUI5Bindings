@@ -34,10 +34,10 @@ object Label extends WebComponent with HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-label")
 
-  val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  val showColon: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)
-  val forId: ReactiveHtmlAttr[String]              = customHtmlAttr("for", StringAsIsCodec)
-  val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val showColon: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)
+  lazy val forId: ReactiveHtmlAttr[String]              = customHtmlAttr("for", StringAsIsCodec)
+  lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   val isRequired: Setter[HtmlElement] = required := true
 

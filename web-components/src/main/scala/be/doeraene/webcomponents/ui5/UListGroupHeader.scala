@@ -35,8 +35,8 @@ object UListGroupHeader extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-groupheader")
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
-  val selected: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

@@ -37,9 +37,9 @@ object SideNavigationSubItem extends WebComponent with HasText {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-side-navigation-sub-item")
 
-  val icon: ReactiveHtmlAttr[IconName] = customHtmlAttr("icon", IconName.AsStringCodec)
+  lazy val icon: ReactiveHtmlAttr[IconName] = customHtmlAttr("icon", IconName.AsStringCodec)
 
-  val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

@@ -57,30 +57,30 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-daterange-picker")
 
-  val delimiter: ReactiveHtmlAttr[String] = customHtmlAttr("delimiter", StringAsIsCodec)
+  lazy val delimiter: ReactiveHtmlAttr[String] = customHtmlAttr("delimiter", StringAsIsCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
+  lazy val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
 
-  val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
 
-  val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
-  val formatPattern: ReactiveHtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
+  lazy val formatPattern: ReactiveHtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
 
-  val maxDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("max-date", StringAsIsCodec)
+  lazy val maxDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("max-date", StringAsIsCodec)
 
-  val minDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("min-date", StringAsIsCodec)
+  lazy val minDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("min-date", StringAsIsCodec)
 
-  val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+  lazy val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
     customHtmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
 
-  val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+  lazy val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
     customHtmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
 
   object slots {

@@ -41,9 +41,9 @@ object Timeline extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-timeline")
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  val layout: ReactiveHtmlAttr[TimelineLayout] = customHtmlAttr("layout", TimelineLayout.AsStringCodec)
+  lazy val layout: ReactiveHtmlAttr[TimelineLayout] = customHtmlAttr("layout", TimelineLayout.AsStringCodec)
 
   object slots {}
 

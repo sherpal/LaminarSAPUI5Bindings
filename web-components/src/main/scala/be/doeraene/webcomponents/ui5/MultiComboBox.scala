@@ -38,13 +38,14 @@ object MultiComboBox extends WebComponent with HasAccessibleName with HasValue {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-multi-combobox")
 
-  val disabled: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val filter: ReactiveHtmlAttr[ComboBoxFilter]     = customHtmlAttr("filter", ComboBoxFilter.AsStringCodec)
-  val placeholder: ReactiveHtmlAttr[String]        = customHtmlAttr("placeholder", StringAsIsCodec)
-  val readonly: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  val allowCustomValues: ReactiveHtmlAttr[Boolean] = customHtmlAttr("allow-custom-values", BooleanAsAttrPresenceCodec)
-  val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  val valueState: ReactiveHtmlAttr[ValueState]     = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val filter: ReactiveHtmlAttr[ComboBoxFilter] = customHtmlAttr("filter", ComboBoxFilter.AsStringCodec)
+  lazy val placeholder: ReactiveHtmlAttr[String]    = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val allowCustomValues: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("allow-custom-values", BooleanAsAttrPresenceCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   object slots {
     val default: Slot           = new Slot("default")

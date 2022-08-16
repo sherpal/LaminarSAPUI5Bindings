@@ -41,23 +41,23 @@ object Slider extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-slider")
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val labelInterval: ReactiveHtmlAttr[Int] = customHtmlAttr("label-interval", IntAsStringCodec)
+  lazy val labelInterval: ReactiveHtmlAttr[Int] = customHtmlAttr("label-interval", IntAsStringCodec)
 
-  val max: ReactiveHtmlAttr[Double] = customHtmlAttr("max", DoubleAsStringCodec)
+  lazy val max: ReactiveHtmlAttr[Double] = customHtmlAttr("max", DoubleAsStringCodec)
 
-  val min: ReactiveHtmlAttr[Double] = customHtmlAttr("min", DoubleAsStringCodec)
+  lazy val min: ReactiveHtmlAttr[Double] = customHtmlAttr("min", DoubleAsStringCodec)
 
-  val showTickmarks: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-tickmarks", BooleanAsAttrPresenceCodec)
+  lazy val showTickmarks: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-tickmarks", BooleanAsAttrPresenceCodec)
 
-  val showTooltip: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
+  lazy val showTooltip: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
-  val step: ReactiveHtmlAttr[Int] = customHtmlAttr("step", IntAsStringCodec)
+  lazy val step: ReactiveHtmlAttr[Int] = customHtmlAttr("step", IntAsStringCodec)
 
-  val value: ReactiveHtmlAttr[Double] = customHtmlAttr("value", DoubleAsStringCodec)
+  lazy val value: ReactiveHtmlAttr[Double] = customHtmlAttr("value", DoubleAsStringCodec)
 
   object slots {}
 

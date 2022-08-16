@@ -44,19 +44,19 @@ object DynamicSideContent extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-dynamic-side-content")
 
-  val equalSplit: ReactiveHtmlAttr[Boolean] = customHtmlAttr("equal-split", BooleanAsAttrPresenceCodec)
+  lazy val equalSplit: ReactiveHtmlAttr[Boolean] = customHtmlAttr("equal-split", BooleanAsAttrPresenceCodec)
 
-  val hideMainContent: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-main-content", BooleanAsAttrPresenceCodec)
+  lazy val hideMainContent: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-main-content", BooleanAsAttrPresenceCodec)
 
-  val hideSideContent: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-side-content", BooleanAsAttrPresenceCodec)
+  lazy val hideSideContent: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-side-content", BooleanAsAttrPresenceCodec)
 
-  val sideContentFallDown: ReactiveHtmlAttr[SideContentFallDown] =
+  lazy val sideContentFallDown: ReactiveHtmlAttr[SideContentFallDown] =
     customHtmlAttr("side-content-fall-down", SideContentFallDown.AsStringCodec)
 
-  val sideContentPosition: ReactiveHtmlAttr[SideContentPosition] =
+  lazy val sideContentPosition: ReactiveHtmlAttr[SideContentPosition] =
     customHtmlAttr("side-content-position", SideContentPosition.AsStringCodec)
 
-  val sideContentVisibility: ReactiveHtmlAttr[SideContentVisibility] =
+  lazy val sideContentVisibility: ReactiveHtmlAttr[SideContentVisibility] =
     customHtmlAttr("side-content-visibility", SideContentVisibility.AsStringCodec)
 
   object slots {

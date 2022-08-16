@@ -45,11 +45,11 @@ object TimelineItem extends WebComponent with HasIcon with HasName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-timeline-item")
 
-  val nameClickable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("name-clickable", BooleanAsAttrPresenceCodec)
+  lazy val nameClickable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("name-clickable", BooleanAsAttrPresenceCodec)
 
-  val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
 
-  val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
 
   object slots {}
 

@@ -41,7 +41,7 @@ object SegmentedButton extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-segmented-button")
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
   object slots {}
 

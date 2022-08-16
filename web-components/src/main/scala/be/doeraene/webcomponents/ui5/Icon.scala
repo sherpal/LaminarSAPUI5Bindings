@@ -36,12 +36,12 @@ object Icon extends WebComponent with HasAccessibleName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-icon")
 
-  val name: ReactiveHtmlAttr[IconName] = customHtmlAttr("name", IconName.AsStringCodec)
+  lazy val name: ReactiveHtmlAttr[IconName] = customHtmlAttr("name", IconName.AsStringCodec)
 
-  val interactive: ReactiveHtmlAttr[Boolean] =
+  lazy val interactive: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
 
-  val showTooltip: ReactiveHtmlAttr[Boolean] =
+  lazy val showTooltip: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Icon)): _*)

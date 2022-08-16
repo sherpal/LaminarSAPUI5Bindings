@@ -39,8 +39,8 @@ object ComboBoxItem extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-item")
 
-  val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
-  val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  lazy val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
+  lazy val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
 
   object slots {}
 

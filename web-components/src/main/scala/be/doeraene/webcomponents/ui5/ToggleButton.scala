@@ -41,22 +41,22 @@ object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-toggle-button")
 
-  val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
+  lazy val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
 
   // This component has accessibilityAttributes but I currently don't know how to implement it
 
-  val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
+  lazy val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 
   lazy val submits: ReactiveHtmlAttr[Boolean] = {
     SubmitsSupport
     customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
   }
 
-  val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
+  lazy val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
 
   object slots {}
 

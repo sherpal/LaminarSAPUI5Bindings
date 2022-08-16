@@ -49,19 +49,19 @@ object MediaGallery extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-media-gallery")
 
-  val interactiveDisplayArea: ReactiveHtmlAttr[Boolean] =
+  lazy val interactiveDisplayArea: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("interactive-display-area", BooleanAsAttrPresenceCodec)
 
-  val layout: ReactiveHtmlAttr[MediaGalleryLayout] =
+  lazy val layout: ReactiveHtmlAttr[MediaGalleryLayout] =
     customHtmlAttr("layout", MediaGalleryLayout.AsStringCodec)
 
-  val menuHorizontalAlign: ReactiveHtmlAttr[MediaGalleryMenuHorizontalAlign] =
+  lazy val menuHorizontalAlign: ReactiveHtmlAttr[MediaGalleryMenuHorizontalAlign] =
     customHtmlAttr("menu-horizontal-align", MediaGalleryMenuHorizontalAlign.AsStringCodec)
 
-  val menuVerticalAlign: ReactiveHtmlAttr[MediaGalleryMenuVerticalAlign] =
+  lazy val menuVerticalAlign: ReactiveHtmlAttr[MediaGalleryMenuVerticalAlign] =
     customHtmlAttr("menu-vertical-align", MediaGalleryMenuVerticalAlign.AsStringCodec)
 
-  val showAllThumbnails: ReactiveHtmlAttr[Boolean] =
+  lazy val showAllThumbnails: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-all-thumbnails", BooleanAsAttrPresenceCodec)
 
   object slots {}

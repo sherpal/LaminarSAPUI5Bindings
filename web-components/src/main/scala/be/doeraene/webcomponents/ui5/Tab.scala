@@ -38,12 +38,12 @@ object Tab extends WebComponent with HasIcon with HasText {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tab")
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
-  val design: ReactiveHtmlAttr[SemanticColour] = customHtmlAttr("design", SemanticColour.AsStringCodec)
+  lazy val design: ReactiveHtmlAttr[SemanticColour] = customHtmlAttr("design", SemanticColour.AsStringCodec)
 
-  val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  lazy val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
 
   object slots {
     val subTabs: Slot = new Slot("subTabs")

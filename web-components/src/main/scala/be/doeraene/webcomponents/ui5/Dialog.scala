@@ -44,15 +44,15 @@ object Dialog extends WebComponent {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-dialog")
 
-  val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
 
-  val resizable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("resizable", BooleanAsAttrPresenceCodec)
-  val stretch: ReactiveHtmlAttr[Boolean]   = customHtmlAttr("stretch", BooleanAsAttrPresenceCodec)
-  val draggable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("draggable", BooleanAsAttrPresenceCodec)
-  val open: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
-  val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
+  lazy val resizable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("resizable", BooleanAsAttrPresenceCodec)
+  lazy val stretch: ReactiveHtmlAttr[Boolean]   = customHtmlAttr("stretch", BooleanAsAttrPresenceCodec)
+  lazy val draggable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("draggable", BooleanAsAttrPresenceCodec)
+  lazy val open: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
-  val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
+  lazy val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
 
   //noinspection TypeAnnotation
   object slots {
