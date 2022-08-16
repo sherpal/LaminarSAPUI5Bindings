@@ -90,8 +90,9 @@ object UList extends WebComponent with HasAccessibleName {
   @deprecated("Li was a badly designed name. Use `item` instead", "15/08/2022")
   def Li: ListItem.type = ListItem
 
-  def item: ListItem.type          = ListItem
-  def group: UListGroupHeader.type = UListGroupHeader
+  def item: ListItem.type             = ListItem
+  def customItem: CustomListItem.type = CustomListItem
+  def group: UListGroupHeader.type    = UListGroupHeader
 
   def notificationItem: NotificationListItem.type       = NotificationListItem
   def notificationGroup: NotificationListGroupItem.type = NotificationListGroupItem
