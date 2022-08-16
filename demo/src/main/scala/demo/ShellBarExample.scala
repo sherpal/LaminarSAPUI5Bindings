@@ -28,11 +28,11 @@ object ShellBarExample extends Example("ShellBar") {
           _.item(_.icon := IconName.disconnected, _.text := "Disconnected"),
           _.item(_.icon := IconName.`incoming-call`, _.text := "Incoming Calls", _.count := "4"),
           _.slots.searchField := Input(),
-          _.slots.menuItems := UList.Li(_ => "Application 1"),
-          _.slots.menuItems := UList.Li(_ => "Application 2"),
-          _.slots.menuItems := UList.Li(_ => "Application 3"),
-          _.slots.menuItems := UList.Li(_ => "Application 4"),
-          _.slots.menuItems := UList.Li(_ => "Application 5"),
+          _.slots.menuItems := UList.item(_ => "Application 1"),
+          _.slots.menuItems := UList.item(_ => "Application 2"),
+          _.slots.menuItems := UList.item(_ => "Application 3"),
+          _.slots.menuItems := UList.item(_ => "Application 4"),
+          _.slots.menuItems := UList.item(_ => "Application 5"),
           _.events.onProfileClick.map(_.detail.targetRef) --> openPopoverBus.writer
         ),
         Popover(
@@ -43,11 +43,11 @@ object ShellBarExample extends Example("ShellBar") {
             div(
               UList(
                 _.separators := ListSeparator.None,
-                _.Li(_.icon := IconName.`sys-find`, _ => "App Finder"),
-                _.Li(_.icon := IconName.settings, _ => "Settings"),
-                _.Li(_.icon := IconName.edit, _ => "Edit Home Page"),
-                _.Li(_.icon := IconName.`sys-help`, _ => "Help"),
-                _.Li(_.icon := IconName.log, _ => "Sign out")
+                _.item(_.icon := IconName.`sys-find`, _ => "App Finder"),
+                _.item(_.icon := IconName.settings, _ => "Settings"),
+                _.item(_.icon := IconName.edit, _ => "Edit Home Page"),
+                _.item(_.icon := IconName.`sys-help`, _ => "Help"),
+                _.item(_.icon := IconName.log, _ => "Sign out")
               )
             )
         )

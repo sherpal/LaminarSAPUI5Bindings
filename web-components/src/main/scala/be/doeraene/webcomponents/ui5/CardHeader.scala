@@ -11,13 +11,14 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-card-header is a component, meant to be used as a header of the ui5-card component.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Card/">the doc</a> for more information.
   */
-object CardHeader {
+object CardHeader extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -34,15 +35,13 @@ object CardHeader {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-card-header")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val interactive: ReactiveHtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
 
-  val interactive: ReactiveHtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
+  lazy val status: ReactiveHtmlAttr[String] = customHtmlAttr("status", StringAsIsCodec)
 
-  val status: ReactiveHtmlAttr[String] = customHtmlAttr("status", StringAsIsCodec)
+  lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
 
-  val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
-
-  val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
 
   object slots {
     val action: Slot = new Slot("action")

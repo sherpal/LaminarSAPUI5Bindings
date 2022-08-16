@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-combobox-group-item is type of suggestion item, that can be used to split the ui5-combobox suggestions into
   * groups.
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ComboBox/">the doc</a> for more
   *   information.
   */
-object ComboBoxGroupItem extends HasText {
+object ComboBoxGroupItem extends WebComponent with HasText {
 
   @js.native
   trait RawElement extends js.Object {
@@ -38,8 +39,6 @@ object ComboBoxGroupItem extends HasText {
   type ModFunction = ComboBoxGroupItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-group-item")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   object slots {}
 

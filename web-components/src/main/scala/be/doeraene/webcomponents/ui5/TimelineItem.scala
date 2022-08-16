@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** An entry posted on the timeline.
   *
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Timeline/">the doc</a> for more
   *   information.
   */
-object TimelineItem extends HasIcon with HasName {
+object TimelineItem extends WebComponent with HasIcon with HasName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -44,13 +45,11 @@ object TimelineItem extends HasIcon with HasName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-timeline-item")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val nameClickable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("name-clickable", BooleanAsAttrPresenceCodec)
 
-  val nameClickable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("name-clickable", BooleanAsAttrPresenceCodec)
+  lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
 
-  val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
-
-  val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
 
   object slots {}
 

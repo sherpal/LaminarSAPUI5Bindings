@@ -2,7 +2,7 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec, BooleanAsIsCodec}
+import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, BooleanAsIsCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.builders.HtmlTag
 import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-cb-item represents the item for a ui5-combobox.
   *
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/MultiComboBox">the doc</a> for more
   *   information.
   */
-object MultiComboBoxItem {
+object MultiComboBoxItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -38,10 +39,9 @@ object MultiComboBoxItem {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-mcb-item")
 
-  val id: ReactiveProp[String, String] = idAttr
-  val selected: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
-  val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
-  val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
+  lazy val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
 
   object slots {}
 

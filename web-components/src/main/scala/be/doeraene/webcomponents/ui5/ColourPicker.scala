@@ -13,6 +13,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-badge is a small non-interactive component which contains text information and color chosen from a list of
   * predefined color schemes. It serves the purpose to attract the user attention to some piece of information (state,
@@ -22,7 +23,7 @@ import scala.scalajs.js.annotation.{JSImport, JSName}
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ColorPicker/">the doc</a> for more
   *   information.
   */
-object ColourPicker {
+object ColourPicker extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -48,9 +49,7 @@ object ColourPicker {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-picker")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val colour: ReactiveHtmlAttr[Colour] = customHtmlAttr("color", Colour.AsStringCodec)
+  lazy val colour: ReactiveHtmlAttr[Colour] = customHtmlAttr("color", Colour.AsStringCodec)
 
   object slots {}
 

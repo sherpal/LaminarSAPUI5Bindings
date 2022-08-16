@@ -13,6 +13,8 @@ import org.scalajs.dom
 import java.time.LocalDate
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-date-picker component provides an input field with assigned calendar which opens on user action.
   *
@@ -20,7 +22,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DatePicker/">the doc</a> for more
   *   information.
   */
-object DatePicker extends HasOnClick with HasAccessibleName with HasName with HasValue {
+object DatePicker extends WebComponent with HasAccessibleName with HasName with HasValue {
 
   //noinspection ScalaUnusedSymbol
   @js.native
@@ -63,28 +65,26 @@ object DatePicker extends HasOnClick with HasAccessibleName with HasName with Ha
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-date-picker")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val disabled: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
+  lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
 
-  val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
-  val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val formatPattern: ReactiveHtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
 
-  val formatPattern: ReactiveHtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
+  lazy val maxDate: ReactiveHtmlAttr[LocalDate] = customHtmlAttr("max-date", LocalDateCodec)
+  lazy val minDate: ReactiveHtmlAttr[LocalDate] = customHtmlAttr("min-date", LocalDateCodec)
 
-  val maxDate: ReactiveHtmlAttr[LocalDate] = customHtmlAttr("max-date", LocalDateCodec)
-  val minDate: ReactiveHtmlAttr[LocalDate] = customHtmlAttr("min-date", LocalDateCodec)
-
-  val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+  lazy val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
     customHtmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
 
-  val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+  lazy val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
     customHtmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
 
   object slots {
@@ -92,19 +92,19 @@ object DatePicker extends HasOnClick with HasAccessibleName with HasName with Ha
   }
 
   object events {
-    @js.native
-    sealed trait EventData extends js.Object {
-      def value: String  = js.native
-      def valid: Boolean = js.native
+
+    trait DateEventData extends js.Object {
+      def value: String
+      def valid: Boolean
     }
 
-    val onChange = new EventProp[dom.Event & HasDetail[EventData]]("change")
-    val onInput  = new EventProp[dom.Event & HasDetail[EventData]]("input")
+    val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
+    val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
 
-    val onValidDateChange: EventProcessor[dom.Event & HasDetail[EventData], LocalDate] =
+    val onValidDateChange: EventProcessor[EventWithPreciseTarget[Ref] & HasDetail[DateEventData], LocalDate] =
       onChange.map(_.detail).filter(_.valid).map(_.value).map(stringToLocalDate)
 
-    val onValidDateInput: EventProcessor[dom.Event & HasDetail[EventData], LocalDate] =
+    val onValidDateInput: EventProcessor[EventWithPreciseTarget[Ref] & HasDetail[DateEventData], LocalDate] =
       onInput.map(_.detail).filter(_.valid).map(_.value).map(stringToLocalDate)
   }
 

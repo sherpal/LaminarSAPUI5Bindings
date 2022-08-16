@@ -11,6 +11,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.internal.Slot
+import be.doeraene.webcomponents.WebComponent
 
 /** Simple UI button
   *
@@ -22,7 +23,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/IllustratedMessage/">the doc</a> for more
   *   information.
   */
-object IllustratedMessage extends HasIcon with HasOnClick {
+object IllustratedMessage extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -39,11 +40,10 @@ object IllustratedMessage extends HasIcon with HasOnClick {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-illustrated-message")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val name: ReactiveHtmlAttr[IllustrationMessageType] = customHtmlAttr("name", IllustrationMessageType.AsStringCodec)
-  val subtitleText: ReactiveHtmlAttr[String]          = customHtmlAttr("subtitle-text", StringAsIsCodec)
-  val titleText: ReactiveHtmlAttr[String]             = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val name: ReactiveHtmlAttr[IllustrationMessageType] =
+    customHtmlAttr("name", IllustrationMessageType.AsStringCodec)
+  lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val titleText: ReactiveHtmlAttr[String]    = customHtmlAttr("title-text", StringAsIsCodec)
 
   object slots {
     val subtitle: Slot = new Slot("subtitle")

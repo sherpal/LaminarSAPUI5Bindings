@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-dialog component is used to temporarily display some information in a size-limited window in front of the
   * regular app screen.
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Dialog/">the doc</a> for more information.
   */
-object Dialog {
+object Dialog extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -43,17 +44,15 @@ object Dialog {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-dialog")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
 
-  val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
-
-  val resizable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("resizable", BooleanAsAttrPresenceCodec)
-  val stretch: ReactiveHtmlAttr[Boolean]   = customHtmlAttr("stretch", BooleanAsAttrPresenceCodec)
-  val draggable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("draggable", BooleanAsAttrPresenceCodec)
-  val open: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
-  val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
+  lazy val resizable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("resizable", BooleanAsAttrPresenceCodec)
+  lazy val stretch: ReactiveHtmlAttr[Boolean]   = customHtmlAttr("stretch", BooleanAsAttrPresenceCodec)
+  lazy val draggable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("draggable", BooleanAsAttrPresenceCodec)
+  lazy val open: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
-  val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
+  lazy val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
 
   //noinspection TypeAnnotation
   object slots {
@@ -63,7 +62,22 @@ object Dialog {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Dialog)): _*)
 
-  def getDialogById(id: String): Option[dom.HTMLElement & RawElement] =
-    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
+  def getDialogById(id: String): Option[Ref] =
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
+
+  /** [[Observer]] you can feed to open the Dialog. */
+  val showObserver: Observer[Ref] = Observer(_.show())
+
+  def showFromEvents(openerEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.mapTo(el.ref) --> showObserver)
+
+  /** [[Observer]] you can feed a [[Dialog]] ref to close it. */
+  val closeObserver: Observer[Ref] = Observer(_.close())
+
+  def closeFromEvents(closeEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => closeEvents.mapTo(el.ref) --> closeObserver)
+
+  /** [[Observer]] you can feed a [[Dialog]] ref to apply focus to it. */
+  val applyFocusObserver: Observer[Ref] = Observer(_.applyFocus())
 
 }

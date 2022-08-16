@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-cb-item represents the item for a ui5-combobox.
   *
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ComboBox/">the doc</a> for more
   *   information.
   */
-object ComboBoxItem {
+object ComboBoxItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -38,10 +39,8 @@ object ComboBoxItem {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-item")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
-  val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  lazy val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
+  lazy val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
 
   object slots {}
 

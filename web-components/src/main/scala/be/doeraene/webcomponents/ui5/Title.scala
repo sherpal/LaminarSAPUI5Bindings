@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-title component is used to display titles inside a page. It is a simple, large-sized text with explicit
   * header/title semantics.
@@ -20,7 +21,7 @@ import be.doeraene.webcomponents.ui5.configkeys.WrappingType
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Title/">the doc</a> for more information.
   */
-object Title {
+object Title extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,10 +38,8 @@ object Title {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-title")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val level: ReactiveHtmlAttr[TitleLevel]          = customHtmlAttr("level", TitleLevel.AsStringCodec)
-  val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val level: ReactiveHtmlAttr[TitleLevel]          = customHtmlAttr("level", TitleLevel.AsStringCodec)
+  lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   object slots {}
 

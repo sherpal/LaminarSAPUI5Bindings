@@ -10,14 +10,15 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
-/** Simple UI button
+/** The ui5-breadcrumbs-item component defines the content of an item in ui5-breadcumbs.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/BreadcrumbsItem/">the doc</a> for more
   *   information.
   */
-object BreadcrumbsItem extends HasIcon with HasOnClick {
+object BreadcrumbsItem extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -34,14 +35,12 @@ object BreadcrumbsItem extends HasIcon with HasOnClick {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-breadcrumbs-item")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val accessibleName: ReactiveHtmlAttr[String] =
+  lazy val accessibleName: ReactiveHtmlAttr[String] =
     customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  val href: ReactiveHtmlAttr[String] = customHtmlAttr("href", StringAsIsCodec)
+  lazy val href: ReactiveHtmlAttr[String] = customHtmlAttr("href", StringAsIsCodec)
 
-  val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr("target", LinkTarget.AsStringCodec)
+  lazy val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr("target", LinkTarget.AsStringCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(BreadcrumbsItem)): _*)
 

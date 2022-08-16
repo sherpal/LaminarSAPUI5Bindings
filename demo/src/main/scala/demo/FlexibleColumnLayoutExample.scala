@@ -20,7 +20,7 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
 
       val maybeSelectedCardVar = Var(Option.empty[Card])
 
-      def startColumnListItem(card: Card): HtmlElement = UList.Li(
+      def startColumnListItem(card: Card): HtmlElement = UList.item(
         _ => card.name,
         _.description := card.tpe,
         _.additionalText := s"Cost: ${card.cost}",

@@ -2,7 +2,9 @@ package be.doeraene.webcomponents.ui5.configkeys
 
 import com.raquo.domtypes.generic.codecs.Codec
 
-sealed trait ButtonDesign
+sealed trait ButtonDesign {
+  def value: String = toString
+}
 
 object ButtonDesign extends EnumerationString[ButtonDesign] {
 
@@ -22,6 +24,6 @@ object ButtonDesign extends EnumerationString[ButtonDesign] {
     Attention
   )
 
-  def valueOf(value: ButtonDesign): String = value.toString
+  def valueOf(value: ButtonDesign): String = value.value
 
 }

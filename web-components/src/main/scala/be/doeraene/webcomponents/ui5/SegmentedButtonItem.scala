@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Users can use the ui5-segmented-button-item as part of a ui5-segmented-button.
   *
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/SegmentedButton/">the doc</a> for more
   *   information.
   */
-object SegmentedButtonItem extends HasAccessibleName with HasIcon {
+object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,21 +37,19 @@ object SegmentedButtonItem extends HasAccessibleName with HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-segmented-button-item")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
 
-  val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
+  lazy val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 
-  val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val submits: ReactiveHtmlAttr[Boolean] = customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
 
-  val submits: ReactiveHtmlAttr[Boolean] = customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
-
-  val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
+  lazy val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
 
   lazy val accessibilityAttributes: ReactiveHtmlAttr[js.Object] = ??? // todo
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
+  lazy val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
 
   object slots {}
 

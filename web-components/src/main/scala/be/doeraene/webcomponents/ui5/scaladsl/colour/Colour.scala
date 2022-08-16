@@ -65,21 +65,7 @@ object Colour {
     *
     * Behaviour for invalid strings is undefined.
     */
-  def fromString(str: String): Colour = {
-    val canvas = dom.document.createElement("canvas").asInstanceOf[dom.HTMLCanvasElement]
-    canvas.width = 1
-    canvas.height = 1
-    val ctx = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
-    ctx.fillStyle = str
-    ctx.fillRect(0, 0, 1, 1)
-    val data  = ctx.getImageData(0, 0, 1, 1).data
-    val red   = data(0)
-    val green = data(1)
-    val blue  = data(2)
-    val alpha = data(3) / 255.0
-
-    apply(red, green, blue, alpha)
-  }
+  def fromString(str: String)(using cache: FromStringColourCache): Colour = cache.fromString(str)
 
   // some predefined colours
   val black: Colour        = fromIntColour(0)

@@ -13,6 +13,8 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** Simple UI button
   *
@@ -20,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasItem
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ShellBar/">the doc</a> for more
   *   information.
   */
-object ShellBar extends HasIcon with HasOnClick {
+object ShellBar extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {
@@ -39,34 +41,36 @@ object ShellBar extends HasIcon with HasOnClick {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val primaryTitle: ReactiveHtmlAttr[String] =
+  lazy val primaryTitle: ReactiveHtmlAttr[String] =
     customHtmlAttr("primary-title", StringAsIsCodec)
-  val secondaryTitle: ReactiveHtmlAttr[String] =
+  lazy val secondaryTitle: ReactiveHtmlAttr[String] =
     customHtmlAttr("secondary-title", StringAsIsCodec)
 
-  val notificationsCount: ReactiveHtmlAttr[String] =
+  lazy val notificationsCount: ReactiveHtmlAttr[String] =
     customHtmlAttr("notifications-count", StringAsIsCodec)
 
-  val showProductSwitch: ReactiveHtmlAttr[Boolean] =
+  lazy val showProductSwitch: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-product-switch", BooleanAsAttrPresenceCodec)
 
-  val showCoPilot: ReactiveHtmlAttr[Boolean] =
+  lazy val showCoPilot: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-copilot", BooleanAsAttrPresenceCodec)
 
-  val showNotifications: ReactiveHtmlAttr[Boolean] =
+  lazy val showNotifications: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-notifications", BooleanAsAttrPresenceCodec)
 
   object events {
-    val onCopilotClick  = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
-    val onProfileClick  = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
-    val onLogoClick     = new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
-    val onMenuItemClick = new EventProp[dom.Event & HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
+    val onCopilotClick =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
+    val onProfileClick =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
+    val onLogoClick =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
+    val onMenuItemClick =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
     val onNotificationsClick =
-      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
     val onProductSwitchClick =
-      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
   }
 
   object slots {

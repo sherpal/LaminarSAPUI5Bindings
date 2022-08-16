@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Element contained in a [[TabContainer]].
   *
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TabContainer/">the doc</a> for more
   *   information.
   */
-object Tab extends HasIcon with HasText {
+object Tab extends WebComponent with HasIcon with HasText {
 
   @js.native
   trait RawElement extends js.Object {
@@ -37,14 +38,12 @@ object Tab extends HasIcon with HasText {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tab")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val design: ReactiveHtmlAttr[SemanticColour] = customHtmlAttr("design", SemanticColour.AsStringCodec)
 
-  val design: ReactiveHtmlAttr[SemanticColour] = customHtmlAttr("design", SemanticColour.AsStringCodec)
-
-  val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  lazy val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
 
   object slots {
     val subTabs: Slot = new Slot("subTabs")

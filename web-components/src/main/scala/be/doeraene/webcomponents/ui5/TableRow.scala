@@ -7,8 +7,9 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
-object TableRow {
+object TableRow extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}

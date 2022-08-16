@@ -58,7 +58,27 @@ object MultiComboBoxExample extends Example("MultiComboBox") {
         }
       )
       //-- End
-    )
+    ),
+    DemoPanel("MultiComboBox with Grouping of Items") {
+      //-- Begin: MultiComboBox with Grouping of Items
+      MultiComboBox(
+        _.placeholder := "Select a country",
+        _.group(_.text := "Asia"),
+        _.item(_.text := "Afghanistan"),
+        _.item(_.text := "China"),
+        _.item(_.text := "India"),
+        _.item(_.text := "Indonesia"),
+        _.group(_.text := "Europe"),
+        _.item(_.text := "Austria"),
+        _.item(_.text := "Belgium"),
+        _.item(_.text := "Germany"),
+        _.item(_.text := "Italy"),
+        _.group(_.text := "North America"),
+        _.item(_.text := "Canada"),
+        _.item(_.text := "United States")
+      )
+      //-- End
+    }
   )
 
 }

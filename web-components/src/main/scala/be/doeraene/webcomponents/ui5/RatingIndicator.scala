@@ -14,6 +14,7 @@ import scala.scalajs.js.annotation.JSImport
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import com.raquo.domtypes.generic.codecs.DoubleAsStringCodec
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The Rating Indicator is used to display a specific number of icons that are used to rate an item. Additionally, it
   * is also used to display the average and overall ratings.
@@ -22,7 +23,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/RatingIndicator/">the doc</a> for more
   *   information.
   */
-object RatingIndicator {
+object RatingIndicator extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -41,13 +42,11 @@ object RatingIndicator {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-rating-indicator")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
-  val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val max: ReactiveHtmlAttr[Int]               = customHtmlAttr("max", IntAsStringCodec)
-  val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  val value: ReactiveHtmlAttr[Double]          = customHtmlAttr("value", DoubleAsStringCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val max: ReactiveHtmlAttr[Int]               = customHtmlAttr("max", IntAsStringCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val value: ReactiveHtmlAttr[Double]          = customHtmlAttr("value", DoubleAsStringCodec)
 
   object slots {}
 

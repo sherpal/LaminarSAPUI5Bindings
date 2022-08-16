@@ -11,13 +11,14 @@ import org.scalajs.dom
 import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Simple UI button
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Toast/">the doc</a> for more information.
   */
-object Toast extends HasIcon with HasOnClick {
+object Toast extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {
@@ -36,11 +37,13 @@ object Toast extends HasIcon with HasOnClick {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-toast")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
 
-  val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
+  lazy val duration: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
 
-  val duration: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
+  object slots {}
+
+  object events {}
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Toast)): _*)
 

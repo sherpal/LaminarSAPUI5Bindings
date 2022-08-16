@@ -9,13 +9,14 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-option component defines the content of an option in the ui5-select.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Select/">the doc</a> for more information.
   */
-object SelectOption extends HasIcon with HasAdditionalText with HasValue {
+object SelectOption extends WebComponent with HasIcon with HasAdditionalText with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
@@ -36,10 +37,8 @@ object SelectOption extends HasIcon with HasAdditionalText with HasValue {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-option")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SelectOption)): _*)
 

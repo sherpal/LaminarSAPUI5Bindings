@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-panel component is a container which has a header and a content area and is used for grouping and displaying
   * information. It can be collapsed to save space on the screen.
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Panel/">the doc</a> for more information.
   */
-object Panel extends HasAccessibleName {
+object Panel extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -38,18 +39,16 @@ object Panel extends HasAccessibleName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-panel")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val accessibleRole: ReactiveHtmlAttr[PanelAccessibleRole] =
+  lazy val accessibleRole: ReactiveHtmlAttr[PanelAccessibleRole] =
     customHtmlAttr("accessible-role", PanelAccessibleRole.AsStringCodec)
 
-  val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
-  val fixed: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val fixed: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
 
-  val headerLevel: ReactiveHtmlAttr[TitleLevel] = customHtmlAttr("header-level", TitleLevel.AsStringCodec)
-  val headerText: ReactiveHtmlAttr[String]      = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val headerLevel: ReactiveHtmlAttr[TitleLevel] = customHtmlAttr("header-level", TitleLevel.AsStringCodec)
+  lazy val headerText: ReactiveHtmlAttr[String]      = customHtmlAttr("header-text", StringAsIsCodec)
 
-  val noAnimation: ReactiveHtmlAttr[Boolean] = customHtmlAttr("no-animation", BooleanAsAttrPresenceCodec)
+  lazy val noAnimation: ReactiveHtmlAttr[Boolean] = customHtmlAttr("no-animation", BooleanAsAttrPresenceCodec)
 
   object slots {
     val header: Slot = new Slot("header")

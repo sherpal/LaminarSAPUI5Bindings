@@ -10,6 +10,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** This is the item to use inside a ui5-tree. You can represent an arbitrary tree structure by recursively nesting tree
   * items.
@@ -17,7 +18,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Tree/">the doc</a> for more information.
   */
-object TreeItem extends HasIcon with HasText {
+object TreeItem extends WebComponent with HasIcon with HasText {
 
   @js.native
   trait RawElement extends js.Object {
@@ -36,12 +37,10 @@ object TreeItem extends HasIcon with HasText {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tree-item")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val expanded: ReactiveHtmlAttr[Boolean]     = customHtmlAttr[Boolean]("expanded", BooleanAsAttrPresenceCodec)
-  val hasChildren: ReactiveHtmlAttr[Boolean]  = customHtmlAttr[Boolean]("has-children", BooleanAsAttrPresenceCodec)
-  val intermediate: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("intermediate", BooleanAsAttrPresenceCodec)
-  val selected: ReactiveHtmlAttr[Boolean]     = customHtmlAttr[Boolean]("selected", BooleanAsAttrPresenceCodec)
+  lazy val expanded: ReactiveHtmlAttr[Boolean]     = customHtmlAttr[Boolean]("expanded", BooleanAsAttrPresenceCodec)
+  lazy val hasChildren: ReactiveHtmlAttr[Boolean]  = customHtmlAttr[Boolean]("has-children", BooleanAsAttrPresenceCodec)
+  lazy val intermediate: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("intermediate", BooleanAsAttrPresenceCodec)
+  lazy val selected: ReactiveHtmlAttr[Boolean]     = customHtmlAttr[Boolean]("selected", BooleanAsAttrPresenceCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TreeItem)): _*)
 

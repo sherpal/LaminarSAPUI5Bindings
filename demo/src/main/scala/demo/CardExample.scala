@@ -59,7 +59,7 @@ object CardExample extends Example("Card") {
                     .zip(MTG.manaSymbolsShortNames)
                     .take(3)
                     .map((name, shortName) =>
-                      UList.Li(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
+                      UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
                     )
               )
             )
@@ -85,7 +85,7 @@ object CardExample extends Example("Card") {
                     .zip(MTG.manaSymbolsShortNames)
                     .drop(3)
                     .map((name, shortName) =>
-                      UList.Li(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
+                      UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
                     )
               )
             )
@@ -141,7 +141,8 @@ object CardExample extends Example("Card") {
         )
       )
       //-- End
-    )
+    ),
+    mtgImageWarning
   )
 
 }
