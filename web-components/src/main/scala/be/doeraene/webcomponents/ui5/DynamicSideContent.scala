@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.WebComponent
 
 /** The DynamicSideContent (ui5-dynamic-side-content) is a layout component that allows additional content to be
   * displayed in a way that flexibly adapts to different screen sizes. The side content appears in a container next to
@@ -24,7 +25,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DynamicSideContent/">the doc</a> for more
   *   information.
   */
-object DynamicSideContent {
+object DynamicSideContent extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -42,8 +43,6 @@ object DynamicSideContent {
   type ModFunction = DynamicSideContent.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-dynamic-side-content")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val equalSplit: ReactiveHtmlAttr[Boolean] = customHtmlAttr("equal-split", BooleanAsAttrPresenceCodec)
 

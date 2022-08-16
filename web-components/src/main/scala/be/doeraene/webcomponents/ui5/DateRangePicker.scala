@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The DateRangePicker enables the users to enter a localized date range using touch, mouse, keyboard input, or by
   * selecting a date range in the calendar.
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DateRangePicker/">the doc</a> for more
   *   information.
   */
-object DateRangePicker extends HasAccessibleName with HasName with HasValue {
+object DateRangePicker extends WebComponent with HasAccessibleName with HasName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
@@ -55,8 +56,6 @@ object DateRangePicker extends HasAccessibleName with HasName with HasValue {
   type ModFunction = DateRangePicker.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-daterange-picker")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val delimiter: ReactiveHtmlAttr[String] = customHtmlAttr("delimiter", StringAsIsCodec)
 

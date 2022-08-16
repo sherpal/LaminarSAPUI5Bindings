@@ -11,13 +11,14 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-SuggestionGroupItem
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
-object SuggestionGroupItem extends HasText {
+object SuggestionGroupItem extends WebComponent with HasText {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -33,8 +34,6 @@ object SuggestionGroupItem extends HasText {
   type ModFunction = SuggestionGroupItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-ui5-suggestion-group-item")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   object slots {}
 

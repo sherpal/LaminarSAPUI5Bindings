@@ -15,8 +15,9 @@ import scala.compiletime.ops.int.<=
 import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
-object Table {
+object Table extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -32,8 +33,6 @@ object Table {
   type ModFunction = Table.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-table")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val busy: ReactiveHtmlAttr[Boolean]                = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
   val busyDelay: ReactiveHtmlAttr[FiniteDuration]    = customHtmlAttr("busy-delay", FiniteDurationCodec)

@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-wizard helps users to complete a complex task by dividing it into sections and guiding them through it. It
   * has two main areas - a navigation area at the top showing the step sequence and a content area below it.
@@ -20,7 +21,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Wizard/">the doc</a> for more information.
   */
-object Wizard {
+object Wizard extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,8 +37,6 @@ object Wizard {
   type ModFunction = Wizard.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-wizard")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   object slots {}
 

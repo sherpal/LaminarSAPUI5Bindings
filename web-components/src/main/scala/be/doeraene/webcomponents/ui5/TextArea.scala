@@ -13,14 +13,15 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.internal.Slot
+import be.doeraene.webcomponents.WebComponent
 
-/** TextArea
+/** The ui5-textarea component is used to enter multiple lines of text.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TextArea/">the doc</a> for more
   *   information.
   */
-object TextArea extends HasValue with HasAccessibleName with HasName {
+object TextArea extends WebComponent with HasValue with HasAccessibleName with HasName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,8 +37,6 @@ object TextArea extends HasValue with HasAccessibleName with HasName {
   type ModFunction = TextArea.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-textarea")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val required: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
   val disabled: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)

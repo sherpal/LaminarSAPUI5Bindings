@@ -14,13 +14,14 @@ import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-tree component provides a tree structure for displaying data in a hierarchy.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Tree/">the doc</a> for more information.
   */
-object Tree {
+object Tree extends WebComponent {
 
   //noinspection ScalaUnusedSymbol
   @js.native
@@ -39,8 +40,6 @@ object Tree {
   type ModFunction = Tree.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tree")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val footerText: ReactiveHtmlAttr[String] = customHtmlAttr("footer-text", StringAsIsCodec)
   val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)

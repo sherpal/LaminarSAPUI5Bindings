@@ -13,6 +13,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import scala.concurrent.duration.FiniteDuration
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-list component allows displaying a list of items, advanced keyboard handling support for navigating between
   * items, and predefined modes to improve the development efficiency.
@@ -20,7 +21,7 @@ import scala.concurrent.duration.FiniteDuration
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
   */
-object UList {
+object UList extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,17 +38,16 @@ object UList {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
 
-  val id: ReactiveProp[String, String] = idAttr
-
+  val accessibleRole: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-role", StringAsIsCodec)
   val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
   val busyDelay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
-  val headerText: ReactiveHtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
   val footerText: ReactiveHtmlAttr[String]        = customHtmlAttr("footer-text", StringAsIsCodec)
-  val mode: ReactiveHtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
-  val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
-  val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
   val growing: ReactiveHtmlAttr[ListGrowingMode]  = customHtmlAttr("growing", ListGrowingMode.AsStringCodec)
+  val headerText: ReactiveHtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
   val indent: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
+  val mode: ReactiveHtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
+  val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
+  val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
 
   object events {
     val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-click")

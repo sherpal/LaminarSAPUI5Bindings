@@ -11,13 +11,14 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.ListItemType
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-suggestion-item represents the suggestion item of the ui5-input.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
-object SuggestionItem extends HasIcon with HasDescription with HasText with HasAdditionalText {
+object SuggestionItem extends WebComponent with HasIcon with HasDescription with HasText with HasAdditionalText {
 
   @js.native
   trait RawElement extends js.Object {
@@ -35,8 +36,6 @@ object SuggestionItem extends HasIcon with HasDescription with HasText with HasA
   type ModFunction = SuggestionItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-suggestion-item")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 

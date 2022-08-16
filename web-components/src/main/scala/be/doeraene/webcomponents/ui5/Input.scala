@@ -13,6 +13,7 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRef}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-input component allows the user to enter and edit text or numeric values in one line.
   *
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
-object Input extends HasValue with HasAccessibleName {
+object Input extends WebComponent with HasValue with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -41,8 +42,6 @@ object Input extends HasValue with HasAccessibleName {
   type ModFunction = Input.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-input")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
 

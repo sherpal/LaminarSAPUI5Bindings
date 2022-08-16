@@ -10,13 +10,14 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
+import be.doeraene.webcomponents.WebComponent
 
 /** Simple UI button
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Label/">the doc</a> for more information.
   */
-object Label extends HasIcon {
+object Label extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -32,8 +33,6 @@ object Label extends HasIcon {
   type ModFunction = Label.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-label")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
   val showColon: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)

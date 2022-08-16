@@ -10,6 +10,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-date component defines a calendar date to be used inside ui5-calendar
   *
@@ -17,7 +18,7 @@ import scala.scalajs.js.annotation.{JSImport, JSName}
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Calendar/">the doc</a> for more
   *   information.
   */
-object CalendarDate extends HasValue {
+object CalendarDate extends WebComponent with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
@@ -28,8 +29,6 @@ object CalendarDate extends HasValue {
   type ModFunction = CalendarDate.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-date")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   object slots {}
 

@@ -18,6 +18,7 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-media-gallery component allows the user to browse through multimedia items. Currently, the supported items
   * are images and videos. The items should be defined using the ui5-media-gallery-item component. The items are
@@ -31,7 +32,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasItem
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/MediaGallery/">the doc</a> for more
   *   information.
   */
-object MediaGallery {
+object MediaGallery extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -47,8 +48,6 @@ object MediaGallery {
   type ModFunction = MediaGallery.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-media-gallery")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val interactiveDisplayArea: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("interactive-display-area", BooleanAsAttrPresenceCodec)

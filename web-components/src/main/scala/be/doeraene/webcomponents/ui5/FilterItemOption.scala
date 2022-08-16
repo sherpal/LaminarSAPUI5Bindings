@@ -10,6 +10,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** For the filter-item-option
   *
@@ -17,7 +18,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ViewSettingsDialog/">the doc</a> for more
   *   information.
   */
-object FilterItemOption extends HasText {
+object FilterItemOption extends WebComponent with HasText {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -33,8 +34,6 @@ object FilterItemOption extends HasText {
   type ModFunction = FilterItemOption.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-filter-item-option")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 

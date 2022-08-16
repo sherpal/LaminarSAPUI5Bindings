@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The SideNavigation is used as a standard menu in applications. It consists of three containers: header
   * (top-aligned), main navigation section (top-aligned) and the secondary section (bottom-aligned).
@@ -20,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/SideNavigation/">the doc</a> for more
   *   information.
   */
-object SideNavigation {
+object SideNavigation extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,8 +37,6 @@ object SideNavigation {
   type ModFunction = SideNavigation.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-side-navigation")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("collapsed", BooleanAsAttrPresenceCodec)
 

@@ -15,6 +15,7 @@ import org.scalajs.dom.FileList
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-file-uploader opens a file explorer dialog and enables users to upload files. The component consists of
   * input field, but you can provide an HTML element by your choice to trigger the file upload, by using the default
@@ -27,7 +28,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/FileUploader/">the doc</a> for more
   *   information.
   */
-object FileUploader extends HasName with HasValue {
+object FileUploader extends WebComponent with HasName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
@@ -50,8 +51,6 @@ object FileUploader extends HasName with HasValue {
   type ModFunction = FileUploader.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-file-uploader")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val accept: ReactiveHtmlAttr[List[String]] = customHtmlAttr("accept", ListCodec(StringAsIsCodec))
 

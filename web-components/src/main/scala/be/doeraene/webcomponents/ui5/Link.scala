@@ -12,13 +12,14 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** A link to another page.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Link/">the doc</a> for more information.
   */
-object Link extends HasDesign with HasIcon with HasAccessibleName {
+object Link extends WebComponent with HasDesign with HasIcon with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -34,8 +35,6 @@ object Link extends HasDesign with HasIcon with HasAccessibleName {
   type ModFunction = Link.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-link")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)

@@ -12,6 +12,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
+import be.doeraene.webcomponents.WebComponent
 
 /** Shows the progress of a process in a graphical way. To indicate the progress, the inside of the component is filled
   * with a color.
@@ -20,7 +21,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ValueState
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ProgressIndicator/">the doc</a> for more
   *   information.
   */
-object ProgressIndicator {
+object ProgressIndicator extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,8 +37,6 @@ object ProgressIndicator {
   type ModFunction = ProgressIndicator.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-progress-indicator")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)

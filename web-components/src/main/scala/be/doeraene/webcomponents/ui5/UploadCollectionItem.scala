@@ -16,6 +16,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
+import be.doeraene.webcomponents.WebComponent
 
 /** This component allows you to represent files before uploading them to a server, with the help of
   * ui5-upload-collection-item. It also allows you to show already uploaded files.
@@ -24,7 +25,7 @@ import com.raquo.domtypes.generic.codecs.IntAsStringCodec
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/UploadCollectionItem/">the doc</a> for more
   *   information.
   */
-object UploadCollectionItem {
+object UploadCollectionItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -50,8 +51,6 @@ object UploadCollectionItem {
   type ModFunction = UploadCollectionItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-upload-collection-item")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disableDeleteButton: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disable-delete-button", BooleanAsAttrPresenceCodec)

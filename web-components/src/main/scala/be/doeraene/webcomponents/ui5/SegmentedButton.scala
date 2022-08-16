@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-segmented-button shows a group of items. When the user clicks or taps one of the items, it stays in a
   * pressed state. It automatically resizes the items to fit proportionally within the component. When no width is set,
@@ -21,7 +22,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/SegmentedButton/">the doc</a> for more
   *   information.
   */
-object SegmentedButton {
+object SegmentedButton extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -39,8 +40,6 @@ object SegmentedButton {
   type ModFunction = SegmentedButton.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-segmented-button")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 

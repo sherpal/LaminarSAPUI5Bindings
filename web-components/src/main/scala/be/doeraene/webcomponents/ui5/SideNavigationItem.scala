@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-side-navigation-item is used within ui5-side-navigation only. Via the ui5-side-navigation-item you control
   * the content of the SideNavigation.
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/SideNavigationItem/">the doc</a> for more
   *   information.
   */
-object SideNavigationItem extends HasText {
+object SideNavigationItem extends WebComponent with HasText {
 
   @js.native
   trait RawElement extends SideNavigation.events.SideNavigationItemRawElement {}
@@ -35,8 +36,6 @@ object SideNavigationItem extends HasText {
   type ModFunction = SideNavigationItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-side-navigation-item")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val expanded: ReactiveHtmlAttr[Boolean] = customHtmlAttr("expanded", BooleanAsAttrPresenceCodec)
 

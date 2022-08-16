@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-combobox component represents a drop-down menu with a list of the available options and a text input field
   * to narrow down the options. It is commonly used to enable users to select an option from a predefined list.
@@ -20,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ComboBox/">the doc</a> for more
   *   information.
   */
-object ComboBox extends HasAccessibleName with HasValue {
+object ComboBox extends WebComponent with HasAccessibleName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,8 +37,6 @@ object ComboBox extends HasAccessibleName with HasValue {
   type ModFunction = ComboBox.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-combobox")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   val filter: ReactiveHtmlAttr[ComboBoxFilter] = customHtmlAttr("filter", ComboBoxFilter.AsStringCodec)

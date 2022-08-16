@@ -14,6 +14,7 @@ import scala.scalajs.js.annotation.JSImport
 import com.raquo.domtypes.generic.codecs.DoubleAsStringCodec
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** Represents a numerical interval and two handles (grips) to select a sub-range within it. The purpose of the
   * component to enable visual selection of sub-ranges within a given interval.
@@ -22,7 +23,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/RangeSlider/">the doc</a> for more
   *   information.
   */
-object RangeSlider {
+object RangeSlider extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -41,8 +42,6 @@ object RangeSlider {
   type ModFunction = RangeSlider.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-range-slider")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val endValue: ReactiveHtmlAttr[Double] = customHtmlAttr("end-value", DoubleAsStringCodec)
 

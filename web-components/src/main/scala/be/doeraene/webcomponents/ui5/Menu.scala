@@ -10,13 +10,14 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Simple UI button
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Menu/">the doc</a> for more information.
   */
-object Menu {
+object Menu extends WebComponent {
 
   //noinspection ScalaUnusedSymbol
   @js.native
@@ -37,8 +38,6 @@ object Menu {
   type ModFunction = Menu.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-menu")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("headerText", StringAsIsCodec)
 

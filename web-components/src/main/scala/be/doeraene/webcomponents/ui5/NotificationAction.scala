@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-notification-action represents an abstract action, used in the ui5-li-notification and the
   * ui5-li-notification-group items.
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/NotificationListItem/">the doc</a> for more
   *   information.
   */
-object NotificationAction extends HasText with HasIcon {
+object NotificationAction extends WebComponent with HasText with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -35,8 +36,6 @@ object NotificationAction extends HasText with HasIcon {
   type ModFunction = NotificationAction.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-notification-action")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
 

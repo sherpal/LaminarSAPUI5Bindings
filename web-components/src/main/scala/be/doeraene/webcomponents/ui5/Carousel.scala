@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The Carousel allows the user to browse through a set of items. The component is mostly used for showing a gallery of
   * images, but can hold any other HTML element.
@@ -20,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Carousel/">the doc</a> for more
   *   information.
   */
-object Carousel {
+object Carousel extends WebComponent {
 
   //noinspection ScalaUnusedSymbol
   @js.native
@@ -39,8 +40,6 @@ object Carousel {
   type ModFunction = Carousel.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-carousel")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val arrowsPlacement: ReactiveHtmlAttr[CarouselArrowsPlacement] =
     customHtmlAttr("arrows-placement", CarouselArrowsPlacement.AsStringCodec)

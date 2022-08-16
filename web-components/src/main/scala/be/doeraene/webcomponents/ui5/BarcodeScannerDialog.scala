@@ -12,6 +12,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.WebComponent
 
 /** The BarcodeScannerDialog component provides barcode scanning functionality for all devices that support the
   * MediaDevices.getUserMedia() native API. Opening the dialog launches the device camera and scans for known barcode
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/BarcodeScannerDialog/">the doc</a> for more
   *   information.
   */
-object BarcodeScannerDialog {
+object BarcodeScannerDialog extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -40,8 +41,6 @@ object BarcodeScannerDialog {
   type ModFunction = BarcodeScannerDialog.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-barcode-scanner-dialog")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   object slots {}
 

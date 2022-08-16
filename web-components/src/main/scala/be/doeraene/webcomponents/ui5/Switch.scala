@@ -12,13 +12,14 @@ import org.scalajs.dom.Event
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-switch component is used for changing between binary states.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Switch/">the doc</a> for more information.
   */
-object Switch extends HasAccessibleName {
+object Switch extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -36,8 +37,6 @@ object Switch extends HasAccessibleName {
   type ModFunction = Switch.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-switch")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val textOn: ReactiveHtmlAttr[String]  = customHtmlAttr("text-on", StringAsIsCodec)
   val textOff: ReactiveHtmlAttr[String] = customHtmlAttr("text-off", StringAsIsCodec)

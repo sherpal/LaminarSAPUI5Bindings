@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-color-palette provides the users with a range of predefined colors. The colors are fixed and do not change
   * with the theme.
@@ -20,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ColorPalette/">the doc</a> for more
   *   information.
   */
-object ColourPalette {
+object ColourPalette extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,8 +37,6 @@ object ColourPalette {
   type ModFunction = ColourPalette.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   object slots {}
 

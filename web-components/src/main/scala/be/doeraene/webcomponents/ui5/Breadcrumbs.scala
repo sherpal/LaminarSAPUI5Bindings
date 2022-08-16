@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.WebComponent
 
 /** Breadcrumbs menu for navigation.
   *
@@ -20,7 +21,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasItem
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Breadcrumbs/">the doc</a> for more
   *   information.
   */
-object Breadcrumbs extends HasIcon {
+object Breadcrumbs extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -43,8 +44,6 @@ object Breadcrumbs extends HasIcon {
   }
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-breadcrumbs")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val separatorStyle: ReactiveHtmlAttr[BreadcrumbsSeparatorStyle] =
     customHtmlAttr("separator-style", BreadcrumbsSeparatorStyle.AsStringCodec)

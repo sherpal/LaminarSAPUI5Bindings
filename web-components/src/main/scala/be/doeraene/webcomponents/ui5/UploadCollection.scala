@@ -15,6 +15,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ListMode
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.WebComponent
 
 /** This component allows you to represent files before uploading them to a server, with the help of
   * ui5-upload-collection-item. It also allows you to show already uploaded files.
@@ -23,7 +24,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasItem
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/UploadCollection/">the doc</a> for more
   *   information.
   */
-object UploadCollection {
+object UploadCollection extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -39,8 +40,6 @@ object UploadCollection {
   type ModFunction = UploadCollection.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-upload-collection")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 

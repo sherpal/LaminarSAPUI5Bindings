@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** A component that represents a logical step as part of the ui5-wizard. It is meant to aggregate arbitrary HTML
   * elements that form the content of a single step.
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Wizard/">the doc</a> for more information.
   */
-object WizardStep extends HasIcon {
+object WizardStep extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -27,8 +28,6 @@ object WizardStep extends HasIcon {
   type ModFunction = WizardStep.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-wizard-step")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val branching: ReactiveHtmlAttr[Boolean] = customHtmlAttr("branching", BooleanAsAttrPresenceCodec)
 

@@ -14,6 +14,7 @@ import java.time.LocalDate
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-date-picker component provides an input field with assigned calendar which opens on user action.
   *
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DatePicker/">the doc</a> for more
   *   information.
   */
-object DatePicker extends HasAccessibleName with HasName with HasValue {
+object DatePicker extends WebComponent with HasAccessibleName with HasName with HasValue {
 
   //noinspection ScalaUnusedSymbol
   @js.native
@@ -63,8 +64,6 @@ object DatePicker extends HasAccessibleName with HasName with HasValue {
   type ModFunction = DatePicker.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-date-picker")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)

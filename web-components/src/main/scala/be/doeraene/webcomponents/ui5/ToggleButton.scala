@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-toggle-button component is an enhanced ui5-button that can be toggled between pressed and normal states.
   * Users can use the ui5-toggle-button as a switch to turn a setting on or off. It can also be used to represent an
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ToggleButton/">the doc</a> for more
   *   information.
   */
-object ToggleButton extends HasAccessibleName with HasIcon {
+object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {
@@ -39,8 +40,6 @@ object ToggleButton extends HasAccessibleName with HasIcon {
   type ModFunction = ToggleButton.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-toggle-button")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
 

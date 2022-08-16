@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-button component represents a simple push button. It enables users to trigger actions by clicking or tapping
   * the ui5-button, or by pressing certain keyboard keys, such as Enter.
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Button/">the doc</a> for more information.
   */
-object Button extends HasIcon {
+object Button extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -34,8 +35,6 @@ object Button extends HasIcon {
   type ModFunction = Button.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

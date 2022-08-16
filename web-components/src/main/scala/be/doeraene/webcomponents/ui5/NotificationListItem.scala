@@ -14,6 +14,7 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 import scala.concurrent.duration.FiniteDuration
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-li-notification is a type of list item, meant to display notifications.
   *
@@ -24,7 +25,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/NotificationListItem/">the doc</a> for more
   *   information.
   */
-object NotificationListItem {
+object NotificationListItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -40,8 +41,6 @@ object NotificationListItem {
   type ModFunction = NotificationListItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-notification")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 

@@ -11,13 +11,14 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRef}
+import be.doeraene.webcomponents.WebComponent
 
-/** Simple UI button
+/** The ui5-li-groupheader is a special list item, used only to separate other list items into logical groups.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
   */
-object UListGroupHeader {
+object UListGroupHeader extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -28,9 +29,7 @@ object UListGroupHeader {
   type Ref         = dom.html.Element with RawElement
   type ModFunction = UListGroupHeader.type => Mod[ReactiveHtmlElement[Ref]]
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-groupheader")
-
-  val id: ReactiveProp[String, String] = idAttr
+  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-groupheader")
 
   val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
   val selected: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)

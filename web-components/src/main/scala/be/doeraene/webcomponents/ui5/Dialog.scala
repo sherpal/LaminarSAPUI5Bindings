@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-dialog component is used to temporarily display some information in a size-limited window in front of the
   * regular app screen.
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Dialog/">the doc</a> for more information.
   */
-object Dialog {
+object Dialog extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -42,8 +43,6 @@ object Dialog {
   type ModFunction = Dialog.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-dialog")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
 

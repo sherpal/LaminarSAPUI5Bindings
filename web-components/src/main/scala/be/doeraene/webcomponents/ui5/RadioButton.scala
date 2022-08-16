@@ -12,6 +12,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-radio-button component enables users to select a single option from a set of options. When a
   * ui5-radio-button is selected by the user, the change event is fired. When a ui5-radio-button that is within a group
@@ -23,7 +24,7 @@ import be.doeraene.webcomponents.ui5.configkeys.WrappingType
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/RadioButton/">the doc</a> for more
   *   information.
   */
-object RadioButton extends HasAccessibleName with HasName with HasText {
+object RadioButton extends WebComponent with HasAccessibleName with HasName with HasText {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -39,8 +40,6 @@ object RadioButton extends HasAccessibleName with HasName with HasText {
   type ModFunction = RadioButton.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-radio-button")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   val checked: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)

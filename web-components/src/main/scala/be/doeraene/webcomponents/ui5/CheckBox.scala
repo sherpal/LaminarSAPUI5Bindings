@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Allows the user to set a binary value, such as true/false or yes/no for an item.
   *
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/CheckBox/">the doc</a> for more
   *   information.
   */
-object CheckBox extends HasIcon with HasAccessibleName with HasName with HasText {
+object CheckBox extends WebComponent with HasIcon with HasAccessibleName with HasName with HasText {
 
   @js.native
   trait RawElement extends js.Object {
@@ -36,8 +37,6 @@ object CheckBox extends HasIcon with HasAccessibleName with HasName with HasText
   type ModFunction = CheckBox.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-checkbox")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val checked: ReactiveHtmlAttr[Boolean]       = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
   val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)

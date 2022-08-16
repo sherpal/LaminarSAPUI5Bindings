@@ -10,6 +10,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-li represents the simplest type of item for a ui5-list. This is a list item, providing the most common use
   * cases such as text, image and icon.
@@ -17,7 +18,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
   */
-object ListItem extends HasIcon with HasDescription with HasAdditionalText {
+object ListItem extends WebComponent with HasIcon with HasDescription with HasAdditionalText {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -33,8 +34,6 @@ object ListItem extends HasIcon with HasDescription with HasAdditionalText {
   type ModFunction = ListItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-li")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val additionalTextState: ReactiveHtmlAttr[ValueState] =
     customHtmlAttr("additional-text-state", ValueState.AsStringCodec)

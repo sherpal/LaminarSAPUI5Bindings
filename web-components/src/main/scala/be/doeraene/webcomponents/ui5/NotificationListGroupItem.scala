@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.concurrent.duration.FiniteDuration
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-li-notification-group is a special type of list item, that unlike others can group items within self,
   * usually ui5-li-notification items.
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/NotificationListGroupItem/">the doc</a> for
   *   more information.
   */
-object NotificationListGroupItem {
+object NotificationListGroupItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,8 +38,6 @@ object NotificationListGroupItem {
   type ModFunction = NotificationListGroupItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-notification-group")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
 

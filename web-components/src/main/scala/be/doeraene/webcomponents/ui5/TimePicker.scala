@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-time-picker component provides an input field with assigned sliders which are opened on user action. The
   * ui5-time-picker allows users to select a localized time using touch, mouse, or keyboard input. It consists of two
@@ -22,7 +23,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TimePicker/">the doc</a> for more
   *   information.
   */
-object TimePicker extends HasValue {
+object TimePicker extends WebComponent with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
@@ -52,8 +53,6 @@ object TimePicker extends HasValue {
   type ModFunction = TimePicker.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-time-picker")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

@@ -12,8 +12,9 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import com.raquo.domtypes.generic.codecs.BooleanAsAttrPresenceCodec
+import be.doeraene.webcomponents.WebComponent
 
-object TableColumn {
+object TableColumn extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}

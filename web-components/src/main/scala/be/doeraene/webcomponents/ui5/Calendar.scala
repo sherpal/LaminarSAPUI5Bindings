@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-calendar component allows users to select one or more dates.
   *
@@ -26,7 +27,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Calendar/">the doc</a> for more
   *   information.
   */
-object Calendar {
+object Calendar extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -42,8 +43,6 @@ object Calendar {
   type ModFunction = Calendar.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-calendar")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
 

@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-busy-indicator signals that some operation is going on and that the user must wait. It does not block the
   * current UI screen so other operations could be triggered in parallel. It displays 3 dots and each dot expands and
@@ -21,7 +22,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/BusyIndicator/">the doc</a> for more
   *   information.
   */
-object BusyIndicator extends HasText {
+object BusyIndicator extends WebComponent with HasText {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,8 +38,6 @@ object BusyIndicator extends HasText {
   type ModFunction = BusyIndicator.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-busy-indicator")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val active: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
 

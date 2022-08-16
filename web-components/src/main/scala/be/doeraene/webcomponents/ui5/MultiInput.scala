@@ -17,6 +17,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.WebComponent
 
 /** A ui5-multi-input field allows the user to enter multiple values, which are displayed as ui5-token. User can choose
   * interaction for creating tokens. Fiori Guidelines say that user should create tokens when:
@@ -28,7 +29,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasItem
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/MultiInput/">the doc</a> for more
   *   information.
   */
-object MultiInput extends HasAccessibleName with HasName with HasValue {
+object MultiInput extends WebComponent with HasAccessibleName with HasName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
@@ -56,8 +57,6 @@ object MultiInput extends HasAccessibleName with HasName with HasValue {
   type ModFunction = MultiInput.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-multi-input")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val showValueHelpIcon: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-value-help-icon", BooleanAsAttrPresenceCodec)
 

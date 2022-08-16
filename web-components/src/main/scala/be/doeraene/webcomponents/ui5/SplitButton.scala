@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** ui5-split-button enables users to trigger actions. It is constructed of two separate actions - default action and
   * arrow action that can be activated by clicking or tapping, or by pressing certain keyboard keys - Space or Enter for
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/SplitButton/">the doc</a> for more
   *   information.
   */
-object SplitButton extends HasIcon {
+object SplitButton extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,8 +38,6 @@ object SplitButton extends HasIcon {
   type ModFunction = SplitButton.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-split-button")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 

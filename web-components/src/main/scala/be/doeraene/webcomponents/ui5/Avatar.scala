@@ -10,6 +10,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** An image-like component that has different display options for representing images and icons in different shapes and
   * sizes, depending on the use case. The shape can be circular or square. There are several predefined sizes, as well
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Avatar/">the doc</a> for more information.
   */
-object Avatar extends HasIcon {
+object Avatar extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -34,8 +35,6 @@ object Avatar extends HasIcon {
   type ModFunction = Avatar.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-avatar")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 

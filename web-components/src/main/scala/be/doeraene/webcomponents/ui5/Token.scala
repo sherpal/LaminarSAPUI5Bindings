@@ -12,13 +12,14 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** Tokens are small items of information (similar to tags) that mainly serve to visualize previously selected items.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
-object Token extends HasText {
+object Token extends WebComponent with HasText {
 
   @js.native
   trait RawElement extends js.Object {
@@ -38,8 +39,6 @@ object Token extends HasText {
   type ModFunction = Token.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-token")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
 

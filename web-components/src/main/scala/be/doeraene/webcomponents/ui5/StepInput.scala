@@ -15,6 +15,7 @@ import com.raquo.domtypes.generic.codecs.DoubleAsStringCodec
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-step-input consists of an input field and buttons with icons to increase/decrease the value with the
   * predefined step.
@@ -27,7 +28,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/StepInput/">the doc</a> for more
   *   information.
   */
-object StepInput extends HasAccessibleName with HasName {
+object StepInput extends WebComponent with HasAccessibleName with HasName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -45,8 +46,6 @@ object StepInput extends HasAccessibleName with HasName {
   type ModFunction = StepInput.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-step-input")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

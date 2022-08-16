@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-view-settings-dialog component helps the user to sort data within a list or a table. It consists of several
   * lists like Sort order which is built-in and Sort By and Filter By lists, for which you must be provide
@@ -25,7 +26,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ViewSettingsDialog/">the doc</a> for more
   *   information.
   */
-object ViewSettingsDialog {
+object ViewSettingsDialog extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -45,8 +46,6 @@ object ViewSettingsDialog {
   type ModFunction = ViewSettingsDialog.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-view-settings-dialog")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val sortDescending: ReactiveHtmlAttr[Boolean] = customHtmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
 

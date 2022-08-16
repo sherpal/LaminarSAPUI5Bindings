@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-popover component displays additional information for an object in a compact way and without leaving the
   * page.
@@ -20,7 +21,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Popover/">the doc</a> for more information.
   */
-object Popover extends HasAccessibleName {
+object Popover extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -44,8 +45,6 @@ object Popover extends HasAccessibleName {
   type ModFunction = Popover.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-popover")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val allowTargetOverlap: ReactiveHtmlAttr[Boolean] = customHtmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
 
@@ -103,12 +102,14 @@ object Popover extends HasAccessibleName {
   /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
   val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
 
+  /** [[Mod]] for [[Popover]]s opening them each time the stream emits an opener [[dom.HTMLElement]] */
   def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] =
     inContext[ReactiveHtmlElement[Ref]](el => openerEvents.map(el.ref -> _) --> showAtObserver)
 
   /** [[Observer]] you can feed a popover ref to close it. */
   val closeObserver: Observer[Ref] = Observer(_.close())
 
+  /** [[Mod]] for [[Popover]]s closing them each time the stream emits. */
   def closeFromEvents(closeEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
     inContext[ReactiveHtmlElement[Ref]](el => closeEvents.mapTo(el.ref) --> closeObserver)
 

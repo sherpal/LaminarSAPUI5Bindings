@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-page is a container component that holds one whole screen of an application. The page has three distinct
   * areas that can hold content - a header, content area and a footer.
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Page/">the doc</a> for more information.
   */
-object Page {
+object Page extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -34,8 +35,6 @@ object Page {
   type ModFunction = Page.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-page")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val backgroundDesign: ReactiveHtmlAttr[PageBackgroundDesign] =
     customHtmlAttr("background-design", PageBackgroundDesign.AsStringCodec)

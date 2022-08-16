@@ -9,6 +9,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** ui5-menu-item is the item to use inside a ui5-menu. An arbitrary hierarchy structure can be represented by
   * recursively nesting menu items.
@@ -16,7 +17,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Menu/">the doc</a> for more information.
   */
-object MenuItem extends HasIcon with HasText {
+object MenuItem extends WebComponent with HasIcon with HasText {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -32,8 +33,6 @@ object MenuItem extends HasIcon with HasText {
   type ModFunction = MenuItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-menu-item")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

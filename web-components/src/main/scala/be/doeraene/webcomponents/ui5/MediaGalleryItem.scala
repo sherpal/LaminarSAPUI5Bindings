@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-media-gallery-item web component represents the items displayed in the ui5-media-gallery web component.
   *
@@ -20,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/MediaGallery/">the doc</a> for more
   *   information.
   */
-object MediaGalleryItem {
+object MediaGalleryItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -38,8 +39,6 @@ object MediaGalleryItem {
   type ModFunction = MediaGalleryItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-media-gallery-item")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

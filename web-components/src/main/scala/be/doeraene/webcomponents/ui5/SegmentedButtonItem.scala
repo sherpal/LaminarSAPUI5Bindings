@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Users can use the ui5-segmented-button-item as part of a ui5-segmented-button.
   *
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/SegmentedButton/">the doc</a> for more
   *   information.
   */
-object SegmentedButtonItem extends HasAccessibleName with HasIcon {
+object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -35,8 +36,6 @@ object SegmentedButtonItem extends HasAccessibleName with HasIcon {
   type ModFunction = SegmentedButtonItem.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-segmented-button-item")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
 

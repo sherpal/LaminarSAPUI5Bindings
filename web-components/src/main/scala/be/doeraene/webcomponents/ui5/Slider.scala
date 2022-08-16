@@ -14,6 +14,7 @@ import scala.scalajs.js.annotation.JSImport
 import com.raquo.domtypes.generic.codecs.DoubleAsStringCodec
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The Slider component represents a numerical range and a handle (grip). The purpose of the component is to enable
   * visual selection of a value in a continuous numerical range by moving an adjustable handle.
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Slider/">the doc</a> for more information.
   */
-object Slider {
+object Slider extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -39,8 +40,6 @@ object Slider {
   type ModFunction = Slider.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-slider")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 

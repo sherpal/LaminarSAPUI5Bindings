@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-panel component is a container which has a header and a content area and is used for grouping and displaying
   * information. It can be collapsed to save space on the screen.
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Panel/">the doc</a> for more information.
   */
-object Panel extends HasAccessibleName {
+object Panel extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -37,8 +38,6 @@ object Panel extends HasAccessibleName {
   type ModFunction = Panel.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-panel")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val accessibleRole: ReactiveHtmlAttr[PanelAccessibleRole] =
     customHtmlAttr("accessible-role", PanelAccessibleRole.AsStringCodec)

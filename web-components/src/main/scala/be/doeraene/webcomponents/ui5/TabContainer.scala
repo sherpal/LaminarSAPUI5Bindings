@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Tab container
   *
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TabContainer/">the doc</a> for more
   *   information.
   */
-object TabContainer {
+object TabContainer extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -35,8 +36,6 @@ object TabContainer {
   type ModFunction = TabContainer.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tabcontainer")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   val collapsed: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)

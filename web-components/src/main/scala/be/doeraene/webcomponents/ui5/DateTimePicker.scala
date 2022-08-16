@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The DateTimePicker component alows users to select both date (day, month and year) and time (hours, minutes and
   * seconds) and for the purpose it consists of input field and Date/Time picker.
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DateTimePicker/">the doc</a> for more
   *   information.
   */
-object DateTimePicker extends HasAccessibleName with HasName with HasValue {
+object DateTimePicker extends WebComponent with HasAccessibleName with HasName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
@@ -52,8 +53,6 @@ object DateTimePicker extends HasAccessibleName with HasName with HasValue {
   type ModFunction = DateTimePicker.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-datetime-picker")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

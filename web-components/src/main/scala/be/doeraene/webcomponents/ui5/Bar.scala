@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The Bar is a container which is primarily used to hold titles, buttons and input elements and its design and
   * functionality is the basis for page headers and footers. The component consists of three areas to hold its content -
@@ -20,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Bar/">the doc</a> for more information.
   */
-object Bar {
+object Bar extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,8 +37,6 @@ object Bar {
   type ModFunction = Bar.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-bar")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val design: ReactiveHtmlAttr[BarDesign] = customHtmlAttr("design", BarDesign.AsStringCodec)
 

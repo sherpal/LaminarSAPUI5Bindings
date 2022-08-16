@@ -13,6 +13,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Represents a predefined range of colors for easier selection. Overview The ColorPalettePopover provides the users
   * with a slot to predefine colors. You can customize them with the use of the colors property. You can specify a
@@ -24,7 +25,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ColorPalettePopover/">the doc</a> for more
   *   information.
   */
-object ColourPalettePopover {
+object ColourPalettePopover extends WebComponent {
 
   //noinspection ScalaUnusedSymbol
   @js.native
@@ -43,8 +44,6 @@ object ColourPalettePopover {
   type ModFunction = ColourPalettePopover.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette-popover")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val defaultColour: ReactiveHtmlAttr[Colour] = customHtmlAttr("default-color", Colour.AsStringCodec)
 

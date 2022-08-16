@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-responsive-popover acts as a Popover on desktop and tablet, while on phone it acts as a Dialog. The
   * component improves tremendously the user experience on mobile.
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ResponsivePopover/">the doc</a> for more
   *   information.
   */
-object ResponsivePopover extends HasAccessibleName {
+object ResponsivePopover extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -45,8 +46,6 @@ object ResponsivePopover extends HasAccessibleName {
   type ModFunction = ResponsivePopover.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-responsive-popover")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   val allowTargetOverlap: ReactiveHtmlAttr[Boolean] = customHtmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
 
