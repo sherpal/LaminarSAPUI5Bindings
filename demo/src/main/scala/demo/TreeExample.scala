@@ -3,14 +3,16 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 import org.scalajs.dom
 
 object TreeExample extends Example("Tree") {
 
-  def component: HtmlElement = div(
-    DemoPanel(
-      "Basic Tree",
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
+    DemoPanel("Basic Tree")(
+      //-- Begin: Basic Tree
       Tree(
         _ => width := "100%",
         _.item(
@@ -40,9 +42,10 @@ object TreeExample extends Example("Tree") {
           _.expanded := true
         )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Tree with multiple selection",
+    DemoPanel("Tree with multiple selection")(
+      //-- Begin: Tree with multiple selection
       Tree(
         _.mode := ListMode.MultiSelect,
         _.events.onSelectionChange
@@ -75,6 +78,7 @@ object TreeExample extends Example("Tree") {
           _.expanded := true
         )
       )
+      //-- End
     )
   )
 

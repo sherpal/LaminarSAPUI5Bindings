@@ -13,6 +13,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Represents a predefined range of colors for easier selection. Overview The ColorPalettePopover provides the users
   * with a slot to predefine colors. You can customize them with the use of the colors property. You can specify a
@@ -24,7 +25,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ColorPalettePopover/">the doc</a> for more
   *   information.
   */
-object ColourPalettePopover {
+object ColourPalettePopover extends WebComponent {
 
   //noinspection ScalaUnusedSymbol
   @js.native
@@ -44,11 +45,10 @@ object ColourPalettePopover {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette-popover")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val defaultColour: ReactiveHtmlAttr[Colour] = customHtmlAttr("default-color", Colour.AsStringCodec)
 
-  val defaultColour: ReactiveHtmlAttr[Colour] = customHtmlAttr("default-color", Colour.AsStringCodec)
-
-  val showDefaultColour: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
+  lazy val showDefaultColour: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
 
   /** This import is required for the `showMoreColours` property to work. */
   @js.native
@@ -60,7 +60,8 @@ object ColourPalettePopover {
     customHtmlAttr("show-more-colors", BooleanAsAttrPresenceCodec)
   }
 
-  val showRecentColours: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
+  lazy val showRecentColours: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
 
   object slots {}
 
@@ -74,5 +75,12 @@ object ColourPalettePopover {
 
   def getColourPalettePopoverById(id: String): Option[Ref] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
+
+  /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
+  val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
+
+  /** [[Mod]] for [[ColourPalettePopover]]s opening them each time the stream emits an opener [[dom.HTMLElement]] */
+  def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.map(el.ref -> _) --> showAtObserver)
 
 }

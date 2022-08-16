@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-message-strip component enables the embedding of app-related messages. It displays 4 designs of messages,
   * each with corresponding semantic color and icon: Information, Positive, Warning and Negative. Each message can have
@@ -20,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/MessageStrip/">the doc</a> for more
   *   information.
   */
-object MessageStrip {
+object MessageStrip extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,13 +38,11 @@ object MessageStrip {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-message-strip")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val design: ReactiveHtmlAttr[MessageStripDesign] = customHtmlAttr("design", MessageStripDesign.AsStringCodec)
 
-  val design: ReactiveHtmlAttr[MessageStripDesign] = customHtmlAttr("design", MessageStripDesign.AsStringCodec)
+  lazy val hideCloseButton: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-close-button", BooleanAsAttrPresenceCodec)
 
-  val hideCloseButton: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-close-button", BooleanAsAttrPresenceCodec)
-
-  val hideIcon: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-icon", BooleanAsAttrPresenceCodec)
+  lazy val hideIcon: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-icon", BooleanAsAttrPresenceCodec)
 
   object slots {
     val icon: Slot = new Slot("icon")

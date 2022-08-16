@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-timeline component shows entries (such as objects, events, or posts) in chronological order. A common use
   * case is to provide information about changes to an object, or events related to an object. These entries can be
@@ -23,7 +24,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Timeline/">the doc</a> for more
   *   information.
   */
-object Timeline {
+object Timeline extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -40,11 +41,9 @@ object Timeline {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-timeline")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
-
-  val layout: ReactiveHtmlAttr[TimelineLayout] = customHtmlAttr("layout", TimelineLayout.AsStringCodec)
+  lazy val layout: ReactiveHtmlAttr[TimelineLayout] = customHtmlAttr("layout", TimelineLayout.AsStringCodec)
 
   object slots {}
 

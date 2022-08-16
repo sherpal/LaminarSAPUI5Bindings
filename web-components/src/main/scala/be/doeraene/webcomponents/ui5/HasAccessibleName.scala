@@ -5,6 +5,6 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.keys.ReactiveHtmlAttr
 
 trait HasAccessibleName {
-  val accessibleName: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-name", StringAsIsCodec)
-  val accessibleNameRef: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name-ref", StringAsIsCodec)
+  lazy val accessibleName: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleNameRef: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name-ref", StringAsIsCodec)
 }

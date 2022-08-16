@@ -10,13 +10,14 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
+import be.doeraene.webcomponents.WebComponent
 
 /** Simple UI button
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Label/">the doc</a> for more information.
   */
-object Label extends HasIcon with HasOnClick {
+object Label extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -33,12 +34,10 @@ object Label extends HasIcon with HasOnClick {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-label")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  val showColon: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)
-  val forId: ReactiveHtmlAttr[String]              = customHtmlAttr("for", StringAsIsCodec)
-  val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val showColon: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)
+  lazy val forId: ReactiveHtmlAttr[String]              = customHtmlAttr("for", StringAsIsCodec)
+  lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   val isRequired: Setter[HtmlElement] = required := true
 

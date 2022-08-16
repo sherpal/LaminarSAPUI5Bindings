@@ -3,12 +3,15 @@ package demo.helpers
 import com.raquo.laminar.api.L.*
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /** An instance [[Example]] is bound to a specific component, and is used to display its functionalities.
   */
 trait Example(val name: String) {
 
-  def component: HtmlElement
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement
 
   def completeComponent = div(
     Title(_.level := TitleLevel.H1, _ => name),
@@ -21,7 +24,12 @@ trait Example(val name: String) {
       ),
       "."
     ),
-    component
+    div(
+      child <-- EventStream
+        .fromFuture(FetchDemoPanelFromGithub.fetchAllDemoPanelInfo(name))
+        .startWith(FetchDemoPanelFromGithub.CompleteDemoPanelInfo(None, Map.empty))
+        .map(info => component(using info))
+    )
   )
 
   def missing: HtmlElement = MessageStrip(
@@ -39,6 +47,11 @@ trait Example(val name: String) {
                                               |    margin-bottom: 0.5rem;
                                               |}
                                               |""".stripMargin)
+
+  def mtgImageWarning = MessageStrip(
+    _.design := MessageStripDesign.Warning,
+    _ => "All images displayed on this page are the property of Wizard of the Coast."
+  )
 
 }
 

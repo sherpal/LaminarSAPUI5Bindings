@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The FlexibleColumnLayout implements the master-detail-detail paradigm by displaying up to three pages in separate
   * columns.
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/FlexibleColumnLayout /">the doc</a> for
   *   more information.
   */
-object FlexibleColumnLayout {
+object FlexibleColumnLayout extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
@@ -54,11 +55,9 @@ object FlexibleColumnLayout {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-flexible-column-layout")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val hideArrows: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-arrows", BooleanAsAttrPresenceCodec)
 
-  val hideArrows: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-arrows", BooleanAsAttrPresenceCodec)
-
-  val layout: ReactiveHtmlAttr[FCLLayout] = customHtmlAttr("layout", FCLLayout.AsStringCodec)
+  lazy val layout: ReactiveHtmlAttr[FCLLayout] = customHtmlAttr("layout", FCLLayout.AsStringCodec)
 
   val onLayoutChanged = new EventProp[dom.Event]("layout-change")
 

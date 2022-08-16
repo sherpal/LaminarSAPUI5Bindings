@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-select component is used to create a drop-down list. The items inside the ui5-select define the available
   * options by using the ui5-option component.
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Select/">the doc</a> for more information.
   */
-object Select extends HasIcon with HasAccessibleName with HasName {
+object Select extends WebComponent with HasIcon with HasAccessibleName with HasName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -38,12 +39,10 @@ object Select extends HasIcon with HasAccessibleName with HasName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-select")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-
-  val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")

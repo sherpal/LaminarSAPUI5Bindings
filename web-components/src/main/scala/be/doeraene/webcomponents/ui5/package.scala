@@ -34,4 +34,14 @@ package object ui5 {
     override def encode(scalaValue: LocalDate): String = scalaValue.format(formatter)
   }
 
+  case class ListCodec[A](codec: Codec[A, String]) extends Codec[List[A], String] {
+    def decode(domValue: String): List[A] = domValue.split(',').toList.map(codec.decode)
+
+    def encode(scalaValue: List[A]): String = scalaValue.map(codec.encode).mkString(",")
+  }
+
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
+  object SubmitsSupport extends js.Object
+
 }

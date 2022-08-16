@@ -3,17 +3,35 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
 object LabelExample extends Example("Label") {
 
-  def component: HtmlElement = div(
-    DemoPanel("Basic Label", Label(_ => "Simple Label")),
-    DemoPanel("Required Label", Label(_ => "Required Label", _.required := true)),
-    DemoPanel("Required Label With Colon", Label(_ => "Required Label", _.required := true, _.showColon := true)),
-    DemoPanel("Truncated Label", Label(_ => width := "200px", _ => "Long labels are truncated by default.")),
-    DemoPanel(
-      "Label 'for'",
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
+    DemoPanel("Basic Label")(
+      //-- Begin: Basic label
+      Label(_ => "Simple Label")
+      //-- End
+    ),
+    DemoPanel("Required Label")(
+      //-- Begin: Required Label
+      Label(_ => "Required Label", _.required := true)
+      //-- End
+    ),
+    DemoPanel("Required Label With Colon")(
+      //-- Begin: Required Label With Colon
+      Label(_ => "Required Label", _.required := true, _.showColon := true)
+      //-- End
+    ),
+    DemoPanel("Truncated Label")(
+      //-- Begin: Truncated Label
+      Label(_ => width := "200px", _ => "Long labels are truncated by default.")
+      //-- End
+    ),
+    DemoPanel("Label 'for'")(
+      //-- Begin: Label 'for'
       div(
         className := loginFormClass,
         styleTagForLoginFormClass,
@@ -66,6 +84,7 @@ object LabelExample extends Example("Label") {
           CheckBox(_.id := "myCB")
         )
       )
+      //-- End
     )
   )
 

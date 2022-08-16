@@ -3,13 +3,15 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
 object TabContainerExample extends Example("TabContainer") {
 
-  def component: HtmlElement = div(
-    DemoPanel(
-      "Basic TabContainer",
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
+    DemoPanel("Basic TabContainer")(
+      //-- Begin: Basic TabContainer
       TabContainer(
         _ => width := "100%",
         _.tab(
@@ -57,9 +59,10 @@ object TabContainerExample extends Example("TabContainer") {
             )
         )
       )
+      //-- End
     ),
-    DemoPanel(
-      "TabContainer with text only tabs",
+    DemoPanel("TabContainer with text only tabs")(
+      //-- Begin: TabContainer with text only tabs
       TabContainer(
         _.collapsed := true,
         _.fixed := true,
@@ -69,18 +72,20 @@ object TabContainerExample extends Example("TabContainer") {
         _.tab(_.text := "About"),
         _.tab(_.text := "Contacts")
       )
+      //-- End
     ),
-    DemoPanel(
-      "Text only End Overflow",
+    DemoPanel("Text only End Overflow")(
+      //-- Begin: Text only End Overflow
       TabContainer(
         _ => width := "100%",
         _.collapsed := true,
         _.fixed := true,
         _ => (1 to 23).toList.map(index => TabContainer.tab(_.text := s"Tab $index", _.selected := (index == 13)))
       )
+      //-- End
     ),
-    DemoPanel(
-      "Text only Start and End Overflow",
+    DemoPanel("Text only Start and End Overflow")(
+      //-- Begin: Text only Start and End Overflow
       TabContainer(
         _ => width := "100%",
         _.collapsed := true,
@@ -88,9 +93,10 @@ object TabContainerExample extends Example("TabContainer") {
         _.tabsOverflowMode := TabsOverflowMode.StartAndEnd,
         _ => (1 to 33).toList.map(index => TabContainer.tab(_.text := s"Tab $index", _.selected := (index == 17)))
       )
+      //-- End
     ),
-    DemoPanel(
-      "TabContainer with text and additional-text",
+    DemoPanel("TabContainer with text and additional-text")(
+      //-- Begin: TabContainer with text and additional-text
       TabContainer(
         _.collapsed := true,
         _.fixed := true,
@@ -100,9 +106,10 @@ object TabContainerExample extends Example("TabContainer") {
         _.tab(_.text := "Notes", _.additionalText := "16"),
         _.tab(_.text := "People", _.additionalText := "34")
       )
+      //-- End
     ),
-    DemoPanel(
-      "TabContainer with nested tabs",
+    DemoPanel("TabContainer with nested tabs")(
+      //-- Begin: TabContainer with nested tabs
       TabContainer(
         _.collapsed := true,
         _.tab(_.text := "Nodes", _ => "Notes go here ..."),
@@ -127,6 +134,7 @@ object TabContainerExample extends Example("TabContainer") {
           _.slots.subTabs := TabContainer.tab(_.text := "Attachments", _ => "Attachments go here ...")
         )
       )
+      //-- End
     )
   )
 

@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-card is a component that represents information in the form of a tile with separate header and content
   * areas.
@@ -18,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Card/">the doc</a> for more information.
   */
-object Card extends HasAccessibleName {
+object Card extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -34,8 +35,6 @@ object Card extends HasAccessibleName {
   type ModFunction = Card.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-card")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   object slots {
 

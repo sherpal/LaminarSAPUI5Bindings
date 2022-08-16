@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-title component is used to display titles inside a page. It is a simple, large-sized text with explicit
   * header/title semantics.
@@ -20,7 +21,7 @@ import be.doeraene.webcomponents.ui5.configkeys.WrappingType
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Title/">the doc</a> for more information.
   */
-object Title {
+object Title extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,15 +38,31 @@ object Title {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-title")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val level: ReactiveHtmlAttr[TitleLevel]          = customHtmlAttr("level", TitleLevel.AsStringCodec)
-  val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val level: ReactiveHtmlAttr[TitleLevel]          = customHtmlAttr("level", TitleLevel.AsStringCodec)
+  lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   object slots {}
 
   object events {}
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Title)): _*)
+
+  /** Creates Title of H1 level. */
+  def h1(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H1): _*)
+
+  /** Creates Title of H2 level. */
+  def h2(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H2): _*)
+
+  /** Creates Title of H3 level. */
+  def h3(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H3): _*)
+
+  /** Creates Title of H4 level. */
+  def h4(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H4): _*)
+
+  /** Creates Title of H4 level. */
+  def h5(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H5): _*)
+
+  /** Creates Title of H6 level. */
+  def h6(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H6): _*)
 
 }

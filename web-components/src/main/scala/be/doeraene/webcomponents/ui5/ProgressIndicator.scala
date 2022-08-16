@@ -12,6 +12,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
+import be.doeraene.webcomponents.WebComponent
 
 /** Shows the progress of a process in a graphical way. To indicate the progress, the inside of the component is filled
   * with a color.
@@ -20,7 +21,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ValueState
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ProgressIndicator/">the doc</a> for more
   *   information.
   */
-object ProgressIndicator {
+object ProgressIndicator extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,20 +38,18 @@ object ProgressIndicator {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-progress-indicator")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val disabled: ReactiveHtmlAttr[Boolean] =
+  lazy val disabled: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  val displayValue: ReactiveHtmlAttr[String] =
+  lazy val displayValue: ReactiveHtmlAttr[String] =
     customHtmlAttr("display-value", StringAsIsCodec)
 
-  val hideValue: ReactiveHtmlAttr[Boolean] =
+  lazy val hideValue: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("hide-value", BooleanAsAttrPresenceCodec)
 
-  val value: ReactiveHtmlAttr[Int] = customHtmlAttr("value", IntAsStringCodec)
+  lazy val value: ReactiveHtmlAttr[Int] = customHtmlAttr("value", IntAsStringCodec)
 
-  val valueState: ReactiveHtmlAttr[ValueState] =
+  lazy val valueState: ReactiveHtmlAttr[ValueState] =
     customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ProgressIndicator)): _*)

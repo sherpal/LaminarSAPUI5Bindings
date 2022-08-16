@@ -11,6 +11,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-product-switch is an SAP Fiori specific web component that is used in ui5-shellbar and allows the user to
   * easily switch between products.
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ProductSwitch/">the doc</a> for more
   *   information.
   */
-object ProductSwitch {
+object ProductSwitch extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -35,8 +36,6 @@ object ProductSwitch {
   type ModFunction = ProductSwitch.type => Mod[ReactiveHtmlElement[Ref]]
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-product-switch")
-
-  val id: ReactiveProp[String, String] = idAttr
 
   object slots {}
 

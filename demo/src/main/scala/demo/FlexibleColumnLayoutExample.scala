@@ -3,34 +3,36 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example, MTG}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 
 object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
 
   import MTG.{cards, Card}
 
-  def component: HtmlElement = div(
-    DemoPanel(
-      "FlexibleColumnLayout - One Initial Column", {
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
+    DemoPanel("FlexibleColumnLayout - One Initial Column") {
+      //-- Begin: FlexibleColumnLayout - One Initial Column
 
-        /** Feed in here whatever layout you want to give to the FlexibleColumnLayout */
-        val layoutBus: EventBus[FCLLayout] = new EventBus
+      /** Feed in here whatever layout you want to give to the FlexibleColumnLayout */
+      val layoutBus: EventBus[FCLLayout] = new EventBus
 
-        val maybeSelectedCardVar = Var(Option.empty[Card])
+      val maybeSelectedCardVar = Var(Option.empty[Card])
 
-        def startColumnListItem(card: Card): HtmlElement = UList.Li(
-          _ => card.name,
-          _.description := card.tpe,
-          _.additionalText := s"Cost: ${card.cost}",
-          _.iconEnd := true,
-          _.icon := IconName.`slim-arrow-right`,
-          _ => dataAttr("card-name") := card.name
-        )
+      def startColumnListItem(card: Card): HtmlElement = UList.item(
+        _ => card.name,
+        _.description := card.tpe,
+        _.additionalText := s"Cost: ${card.cost}",
+        _.iconEnd := true,
+        _.icon := IconName.`slim-arrow-right`,
+        _ => dataAttr("card-name") := card.name
+      )
 
-        def cardFromName(name: String): Option[Card] = cards.find(_.name == name)
+      def cardFromName(name: String): Option[Card] = cards.find(_.name == name)
 
-        div(
-          styleTag("""
+      div(
+        styleTag("""
           |:host([description]) .ui5-li-root {
           |    padding: 1rem;
           |}
@@ -45,47 +47,47 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
           |    box-sizing: border-box;
           |}
           |""".stripMargin),
-          FlexibleColumnLayout(
-            _.layout <-- layoutBus.events.startWith(FCLLayout.OneColumn),
-            _.slots.startColumn := div(
-              ShellBar(_.primaryTitle := "Magic"),
-              UList(
-                _ => height := "500px",
-                _.headerText := "Power Nine",
-                _ => cards.filter(_.comment == "Power Nine").map(startColumnListItem),
-                _.events.onItemClick
-                  .map(event =>
-                    for {
-                      cardName <- event.detail.item.dataset.get("cardName")
-                      card     <- cardFromName(cardName)
-                    } yield card
-                  ) --> maybeSelectedCardVar.writer
-              )
-            ),
-            _.slots.midColumn <-- maybeSelectedCardVar.signal.changes.collect { case Some(card) => card }.map { card =>
+        FlexibleColumnLayout(
+          _.layout <-- layoutBus.events.startWith(FCLLayout.OneColumn),
+          _.slots.startColumn := div(
+            ShellBar(_.primaryTitle := "Magic"),
+            UList(
+              _ => height := "500px",
+              _.headerText := "Power Nine",
+              _ => cards.filter(_.comment == "Power Nine").map(startColumnListItem),
+              _.events.onItemClick
+                .map(event =>
+                  for {
+                    cardName <- event.detail.item.dataset.get("cardName")
+                    card     <- cardFromName(cardName)
+                  } yield card
+                ) --> maybeSelectedCardVar.writer
+            )
+          ),
+          _.slots.midColumn <-- maybeSelectedCardVar.signal.changes.collect { case Some(card) => card }.map { card =>
+            div(
               div(
-                div(
-                  display := "flex",
-                  alignItems := "center",
-                  Button(
-                    _.icon := IconName.`slim-arrow-left`,
-                    _.events.onClick.mapTo(Option.empty[Card]) --> maybeSelectedCardVar.writer,
-                    _ => marginRight := "1em",
-                    _.design := ButtonDesign.Transparent
-                  ),
-                  h1(card.name)
+                display := "flex",
+                alignItems := "center",
+                Button(
+                  _.icon := IconName.`slim-arrow-left`,
+                  _.events.onClick.mapTo(Option.empty[Card]) --> maybeSelectedCardVar.writer,
+                  _ => marginRight := "1em",
+                  _.design := ButtonDesign.Transparent
                 ),
-                img(src := MTG.cardImages(card.name))
-              )
-            },
-            _ =>
-              maybeSelectedCardVar.signal.changes.map(maybeCard =>
-                if maybeCard.isDefined then FCLLayout.TwoColumnsMidExpanded else FCLLayout.OneColumn
-              ) --> layoutBus.writer
-          )
+                h1(card.name)
+              ),
+              img(src := MTG.cardImages(card.name))
+            )
+          },
+          _ =>
+            maybeSelectedCardVar.signal.changes.map(maybeCard =>
+              if maybeCard.isDefined then FCLLayout.TwoColumnsMidExpanded else FCLLayout.OneColumn
+            ) --> layoutBus.writer
         )
-      }
-    )
+      )
+      //-- End
+    }
   )
 
 }

@@ -3,13 +3,15 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
 object TimelineExample extends Example("Timeline") {
 
-  def component: HtmlElement = div(
-    DemoPanel(
-      "Basic Timeline",
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
+    DemoPanel("Basic Timeline")(
+      //-- Begin: Basic Timeline
       Timeline(
         _.item(
           _.titleText := "called",
@@ -32,9 +34,10 @@ object TimelineExample extends Example("Timeline") {
           _ => div("Online meeting")
         )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Horizontal timeline",
+    DemoPanel("Horizontal timeline")(
+      //-- Begin: Horizontal timeline
       Timeline(
         _.layout := TimelineLayout.Horizontal,
         _.item(
@@ -57,6 +60,7 @@ object TimelineExample extends Example("Timeline") {
           _ => div("Online meeting")
         )
       )
+      //-- End
     )
   )
 

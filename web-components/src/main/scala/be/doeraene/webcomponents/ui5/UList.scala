@@ -13,6 +13,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import scala.concurrent.duration.FiniteDuration
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-list component allows displaying a list of items, advanced keyboard handling support for navigating between
   * items, and predefined modes to improve the development efficiency.
@@ -20,7 +21,7 @@ import scala.concurrent.duration.FiniteDuration
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
   */
-object UList {
+object UList extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,44 +38,43 @@ object UList {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
-  val busyDelay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
-  val headerText: ReactiveHtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
-  val footerText: ReactiveHtmlAttr[String]        = customHtmlAttr("footer-text", StringAsIsCodec)
-  val mode: ReactiveHtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
-  val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
-  val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
-  val growing: ReactiveHtmlAttr[ListGrowingMode]  = customHtmlAttr("growing", ListGrowingMode.AsStringCodec)
-  val indent: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
+  lazy val accessibleRole: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-role", StringAsIsCodec)
+  lazy val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busyDelay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
+  lazy val footerText: ReactiveHtmlAttr[String]        = customHtmlAttr("footer-text", StringAsIsCodec)
+  lazy val growing: ReactiveHtmlAttr[ListGrowingMode]  = customHtmlAttr("growing", ListGrowingMode.AsStringCodec)
+  lazy val headerText: ReactiveHtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val indent: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
+  lazy val mode: ReactiveHtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
+  lazy val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
 
   object events {
-    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-click")
-    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-close")
-    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-delete")
-    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Li.Ref]]]("item-toggle")
+    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-click")
+    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-close")
+    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-delete")
+    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-toggle")
     val onLoadMore   = new EventProp[EventWithPreciseTarget[Ref]]("load-more")
 
     @js.native
     trait SelectionChangeDetail extends js.Object {
       @JSName("selectedItems")
-      def selectedItemsJS: js.Array[Li.Ref] = js.native
+      def selectedItemsJS: js.Array[item.Ref] = js.native
 
       @JSName("previouslySelectedItems")
-      def previouslySelectedItemsJS: js.Array[Li.Ref] = js.native
+      def previouslySelectedItemsJS: js.Array[item.Ref] = js.native
     }
 
     object SelectionChangeDetail {
       extension (detail: SelectionChangeDetail)
-        def selectedItems: List[Li.Ref]           = detail.selectedItemsJS.toList
-        def previouslySelectedItems: List[Li.Ref] = detail.previouslySelectedItemsJS.toList
+        def selectedItems: List[item.Ref]           = detail.selectedItemsJS.toList
+        def previouslySelectedItems: List[item.Ref] = detail.previouslySelectedItemsJS.toList
 
         /** Returns the first selected item when it exists (useful in [[ListMode.SingleSelect]]) */
-        def maybeSelectedItem: Option[Li.Ref] = detail.selectedItemsJS.headOption
+        def maybeSelectedItem: Option[item.Ref] = detail.selectedItemsJS.headOption
 
         /** Returns the first previously selected item when it exists (useful in [[ListMode.SingleSelect]])) */
-        def maybePreviouslySelectedItem: Option[Li.Ref] = detail.previouslySelectedItemsJS.headOption
+        def maybePreviouslySelectedItem: Option[item.Ref] = detail.previouslySelectedItemsJS.headOption
     }
 
     val onSelectionChange =
@@ -87,7 +87,14 @@ object UList {
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(UList)): _*)
 
-  val Li: ListItem.type            = ListItem
-  def group: UListGroupHeader.type = UListGroupHeader
+  @deprecated("Li was a badly designed name. Use `item` instead", "15/08/2022")
+  def Li: ListItem.type = ListItem
+
+  def item: ListItem.type             = ListItem
+  def customItem: CustomListItem.type = CustomListItem
+  def group: UListGroupHeader.type    = UListGroupHeader
+
+  def notificationItem: NotificationListItem.type       = NotificationListItem
+  def notificationGroup: NotificationListGroupItem.type = NotificationListGroupItem
 
 }

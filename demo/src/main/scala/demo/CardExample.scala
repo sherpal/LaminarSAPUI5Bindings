@@ -3,7 +3,7 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example, MTG}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 
 object CardExample extends Example("Card") {
 
@@ -16,9 +16,11 @@ object CardExample extends Example("Card") {
 
   private val contentPadding = "content-padding"
 
-  def component: HtmlElement = div(
-    DemoPanel(
-      "Card with List",
+  def component(using
+      demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
+  ): HtmlElement = div(
+    DemoPanel("Card with List")(
+      //-- Begin: Card with List
       div(
         styleTag(s"""
                 |.$cardContentClassName {
@@ -57,7 +59,7 @@ object CardExample extends Example("Card") {
                     .zip(MTG.manaSymbolsShortNames)
                     .take(3)
                     .map((name, shortName) =>
-                      UList.Li(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
+                      UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
                     )
               )
             )
@@ -83,15 +85,16 @@ object CardExample extends Example("Card") {
                     .zip(MTG.manaSymbolsShortNames)
                     .drop(3)
                     .map((name, shortName) =>
-                      UList.Li(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
+                      UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
                     )
               )
             )
         )
       )
+      //-- End
     ),
-    DemoPanel(
-      "Card with Table",
+    DemoPanel("Card with Table")(
+      //-- Begin: Card with Table
       div(
         styleTag(s"""
             |.$statusError {color: #b00;}
@@ -137,7 +140,9 @@ object CardExample extends Example("Card") {
             )
         )
       )
-    )
+      //-- End
+    ),
+    mtgImageWarning
   )
 
 }

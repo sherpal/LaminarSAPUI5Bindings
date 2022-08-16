@@ -13,14 +13,15 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import com.raquo.domtypes.generic.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.internal.Slot
+import be.doeraene.webcomponents.WebComponent
 
-/** TextArea
+/** The ui5-textarea component is used to enter multiple lines of text.
   *
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TextArea/">the doc</a> for more
   *   information.
   */
-object TextArea extends HasValue with HasAccessibleName with HasName {
+object TextArea extends WebComponent with HasValue with HasAccessibleName with HasName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,18 +38,17 @@ object TextArea extends HasValue with HasAccessibleName with HasName {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-textarea")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val required: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  val disabled: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val readonly: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  val growing: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("growing", BooleanAsAttrPresenceCodec)
-  val showExceededText: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-exceeded-text", BooleanAsAttrPresenceCodec)
-  val growingMaxLines: ReactiveHtmlAttr[Int]      = customHtmlAttr("growing-max-lines", IntAsStringCodec)
-  val maxLength: ReactiveHtmlAttr[Int]            = customHtmlAttr("maxlength", IntAsStringCodec)
-  val rows: ReactiveHtmlAttr[Int]                 = customHtmlAttr("rows", IntAsStringCodec)
-  val placeholder: ReactiveHtmlAttr[String]       = customHtmlAttr("placeholder", StringAsIsCodec)
-  val valueState: ReactiveHtmlAttr[ValueState]    = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val growing: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("growing", BooleanAsAttrPresenceCodec)
+  lazy val showExceededText: ReactiveHtmlAttr[Boolean] =
+    customHtmlAttr("show-exceeded-text", BooleanAsAttrPresenceCodec)
+  lazy val growingMaxLines: ReactiveHtmlAttr[Int]   = customHtmlAttr("growing-max-lines", IntAsStringCodec)
+  lazy val maxLength: ReactiveHtmlAttr[Int]         = customHtmlAttr("maxlength", IntAsStringCodec)
+  lazy val rows: ReactiveHtmlAttr[Int]              = customHtmlAttr("rows", IntAsStringCodec)
+  lazy val placeholder: ReactiveHtmlAttr[String]    = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   val isRequired: Setter[HtmlElement] = required := true
 

@@ -11,6 +11,8 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-product-switch-item web component represents the items displayed in the ui5-product-switch web component.
   *
@@ -20,7 +22,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ProductSwitch/">the doc</a> for more
   *   information.
   */
-object ProductSwitchItem extends HasIcon {
+object ProductSwitchItem extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -37,19 +39,19 @@ object ProductSwitchItem extends HasIcon {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-product-switch-item")
 
-  val id: ReactiveProp[String, String] = idAttr
+  lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("subtitle-text", StringAsIsCodec)
 
-  val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("subtitle-text", StringAsIsCodec)
+  lazy val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr[LinkTarget]("target", LinkTarget.AsStringCodec)
 
-  val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr[LinkTarget]("target", LinkTarget.AsStringCodec)
+  lazy val targetSrc: ReactiveHtmlAttr[String] = customHtmlAttr[String]("target-src", StringAsIsCodec)
 
-  val targetSrc: ReactiveHtmlAttr[String] = customHtmlAttr[String]("target-src", StringAsIsCodec)
-
-  val titleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("title-text", StringAsIsCodec)
+  lazy val titleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("title-text", StringAsIsCodec)
 
   object slots {}
 
-  object events extends HasOnClick {}
+  object events {
+    val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
+  }
 
   def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ProductSwitchItem)): _*)
 

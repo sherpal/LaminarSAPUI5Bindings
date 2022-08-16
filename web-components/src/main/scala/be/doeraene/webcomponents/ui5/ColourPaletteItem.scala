@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-color-palette-item component represents a color in the the ui5-color-palette.
   *
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ColorPalette/">the doc</a> for more
   *   information.
   */
-object ColourPaletteItem {
+object ColourPaletteItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,9 +37,7 @@ object ColourPaletteItem {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette-item")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val value: ReactiveHtmlAttr[Colour] = customHtmlAttr("value", Colour.AsStringCodec)
+  lazy val value: ReactiveHtmlAttr[Colour] = customHtmlAttr("value", Colour.AsStringCodec)
 
   object slots {}
 

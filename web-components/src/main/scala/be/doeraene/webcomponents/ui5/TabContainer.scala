@@ -12,6 +12,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import be.doeraene.webcomponents.WebComponent
 
 /** Tab container
   *
@@ -19,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TabContainer/">the doc</a> for more
   *   information.
   */
-object TabContainer {
+object TabContainer extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -36,14 +37,12 @@ object TabContainer {
 
   private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tabcontainer")
 
-  val id: ReactiveProp[String, String] = idAttr
-
-  val disabled: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  val collapsed: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
-  val fixed: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
-  val showOverflow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
-  val tabLayout: ReactiveHtmlAttr[TabLayout]  = customHtmlAttr("tab-layout", TabLayout.AsStringCodec)
-  val tabsOverflowMode: ReactiveHtmlAttr[TabsOverflowMode] =
+  lazy val disabled: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val fixed: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
+  lazy val showOverflow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
+  lazy val tabLayout: ReactiveHtmlAttr[TabLayout]  = customHtmlAttr("tab-layout", TabLayout.AsStringCodec)
+  lazy val tabsOverflowMode: ReactiveHtmlAttr[TabsOverflowMode] =
     customHtmlAttr("tabs-overflow-mode", TabsOverflowMode.AsStringCodec)
 
   object slots {
