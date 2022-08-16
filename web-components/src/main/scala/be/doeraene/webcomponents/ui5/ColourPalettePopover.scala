@@ -74,4 +74,11 @@ object ColourPalettePopover extends WebComponent {
   def getColourPalettePopoverById(id: String): Option[Ref] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
 
+  /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
+  val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
+
+  /** [[Mod]] for [[ColourPalettePopover]]s opening them each time the stream emits an opener [[dom.HTMLElement]] */
+  def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.map(el.ref -> _) --> showAtObserver)
+
 }

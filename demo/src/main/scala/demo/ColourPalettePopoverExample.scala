@@ -22,10 +22,7 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
           _.events.onClick.mapToEvent.map(_.target) --> openPopoverBus.writer
         ),
         ColourPalettePopover(
-          _ =>
-            inContext(el =>
-              openPopoverBus.events.map(el.ref -> _) --> Observer[(ColourPalettePopover.Ref, HTMLElement)](_ showAt _)
-            ),
+          _.showAtFromEvents(openPopoverBus.events),
           _ => ColourPaletteExample.someColourPaletteItems,
           _.showRecentColours := true,
           _.showMoreColours := true,
@@ -44,10 +41,7 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
           _.events.onClick.mapToEvent.map(_.target) --> openPopoverBus.writer
         ),
         ColourPalettePopover(
-          _ =>
-            inContext(el =>
-              openPopoverBus.events.map(el.ref -> _) --> Observer[(ColourPalettePopover.Ref, HTMLElement)](_ showAt _)
-            ),
+          _.showAtFromEvents(openPopoverBus.events),
           _ => ColourPaletteExample.someColourPaletteItems,
           _.defaultColour := Colour.green
         )
