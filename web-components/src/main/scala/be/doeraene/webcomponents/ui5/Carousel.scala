@@ -61,7 +61,7 @@ object Carousel extends WebComponent {
     val onNavigate: EventProp[dom.Event & HasDetail[HasSelectedIndex]] = new EventProp("navigate")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Carousel)): _*)
+  
 
   def getCarouselById(carouselId: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(carouselId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])

@@ -18,12 +18,12 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
       val openPopoverBus: EventBus[HTMLElement] = new EventBus
       div(
         Button(
-          _ => "Open ColourPalettePopover",
+          "Open ColourPalettePopover",
           _.events.onClick.mapToEvent.map(_.target) --> openPopoverBus.writer
         ),
         ColourPalettePopover(
           _.showAtFromEvents(openPopoverBus.events),
-          _ => ColourPaletteExample.someColourPaletteItems,
+          ColourPaletteExample.someColourPaletteItems,
           _.showRecentColours := true,
           _.showMoreColours := true,
           _.showDefaultColour := true,
@@ -37,12 +37,12 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
       val openPopoverBus: EventBus[HTMLElement] = new EventBus
       div(
         Button(
-          _ => "Open ColourPalettePopover",
+          "Open ColourPalettePopover",
           _.events.onClick.mapToEvent.map(_.target) --> openPopoverBus.writer
         ),
         ColourPalettePopover(
           _.showAtFromEvents(openPopoverBus.events),
-          _ => ColourPaletteExample.someColourPaletteItems,
+          ColourPaletteExample.someColourPaletteItems,
           _.defaultColour := Colour.green
         )
       )

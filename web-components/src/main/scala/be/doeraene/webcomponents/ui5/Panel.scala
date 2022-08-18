@@ -57,6 +57,6 @@ object Panel extends WebComponent with HasAccessibleName {
     val onToggle: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("toggle")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Panel)): _*)
+  
 
 }

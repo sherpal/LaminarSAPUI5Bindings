@@ -59,6 +59,6 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TextArea)): _*)
+  
 
 }

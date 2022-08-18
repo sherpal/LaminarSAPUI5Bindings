@@ -31,26 +31,25 @@ object TableExample extends Example("Table") {
         div(
           className := "header",
           span("Cards table - resize your browser to make some columns pop-in"),
-          Button(_.events.onClick.mapTo(()) --> toggleStickyHeaderBus, _ => "Toggle Sticky Column Header")
+          Button(_.events.onClick.mapTo(()) --> toggleStickyHeaderBus, "Toggle Sticky Column Header")
         ),
         Table(
           _.stickyColumnHeader <-- stickyHeaderSignal,
-          _.slots.columns := Table.column(_ => width := "12rem", _ => span(lineHeight := "1.4rem", "Card")),
-          _.slots.columns := Table.column(_.minWidth := 800, _ => span(lineHeight := "1.4rem", "Type")),
+          _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+          _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
           _.slots.columns := Table.column(
             _.minWidth := 600,
             _.popinText := "Comment",
             _.demandPopin := true,
-            _ => span(lineHeight := "1.4rem", "Comment")
+            span(lineHeight := "1.4rem", "Comment")
           ),
-          _.slots.columns := Table.column(_ => span(lineHeight := "1.4rem", "Cost")),
-          _ =>
-            MTG.cards.map(card =>
+          _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+                      MTG.cards.map(card =>
               Table.row(
-                _.cell(_ => card.name),
-                _.cell(_ => card.tpe),
-                _.cell(_ => card.comment),
-                _.cell(_ => card.cost)
+                _.cell(card.name),
+                _.cell(card.tpe),
+                _.cell(card.comment),
+                _.cell(card.cost)
               )
             )
         )
@@ -61,22 +60,21 @@ object TableExample extends Example("Table") {
       //-- Begin: Table in SingleSelect-mode
       Table(
         _.mode := TableMode.SingleSelect,
-        _.slots.columns := Table.column(_ => width := "12rem", _ => span(lineHeight := "1.4rem", "Card")),
-        _.slots.columns := Table.column(_.minWidth := 800, _ => span(lineHeight := "1.4rem", "Type")),
+        _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+        _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
         _.slots.columns := Table.column(
           _.minWidth := 600,
           _.popinText := "Comment",
           _.demandPopin := true,
-          _ => span(lineHeight := "1.4rem", "Comment")
+          span(lineHeight := "1.4rem", "Comment")
         ),
-        _.slots.columns := Table.column(_ => span(lineHeight := "1.4rem", "Cost")),
-        _ =>
-          MTG.cards.map(card =>
+        _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+                  MTG.cards.map(card =>
             Table.row(
-              _.cell(_ => card.name),
-              _.cell(_ => card.tpe),
-              _.cell(_ => card.comment),
-              _.cell(_ => card.cost)
+              _.cell(card.name),
+              _.cell(card.tpe),
+              _.cell(card.comment),
+              _.cell(card.cost)
             )
           )
       )
@@ -87,23 +85,22 @@ object TableExample extends Example("Table") {
       Table(
         _.events.onSelectionChange.map(_.detail.selectedRows.map(_.dataset.toMap)) --> Observer(println),
         _.mode := TableMode.MultiSelect,
-        _.slots.columns := Table.column(_ => width := "12rem", _ => span(lineHeight := "1.4rem", "Card")),
-        _.slots.columns := Table.column(_.minWidth := 800, _ => span(lineHeight := "1.4rem", "Type")),
+        _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+        _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
         _.slots.columns := Table.column(
           _.minWidth := 600,
           _.popinText := "Comment",
           _.demandPopin := true,
-          _ => span(lineHeight := "1.4rem", "Comment")
+          span(lineHeight := "1.4rem", "Comment")
         ),
-        _.slots.columns := Table.column(_ => span(lineHeight := "1.4rem", "Cost")),
-        _ =>
-          MTG.cards.map(card =>
+        _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+                  MTG.cards.map(card =>
             Table.row(
-              _ => dataAttr("card-name") := card.name,
-              _.cell(_ => card.name),
-              _.cell(_ => card.tpe),
-              _.cell(_ => card.comment),
-              _.cell(_ => card.cost)
+              dataAttr("card-name") := card.name,
+              _.cell(card.name),
+              _.cell(card.tpe),
+              _.cell(card.comment),
+              _.cell(card.cost)
             )
           )
       )
@@ -113,15 +110,15 @@ object TableExample extends Example("Table") {
       //-- Begin: Table with No Data
       Table(
         _.noDataText := "No Data",
-        _.slots.columns := Table.column(_ => width := "12rem", _ => span(lineHeight := "1.4rem", "Card")),
-        _.slots.columns := Table.column(_.minWidth := 800, _ => span(lineHeight := "1.4rem", "Type")),
+        _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+        _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
         _.slots.columns := Table.column(
           _.minWidth := 600,
           _.popinText := "Comment",
           _.demandPopin := true,
-          _ => span(lineHeight := "1.4rem", "Comment")
+          span(lineHeight := "1.4rem", "Comment")
         ),
-        _.slots.columns := Table.column(_ => span(lineHeight := "1.4rem", "Cost"))
+        _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost"))
       )
       //-- End
     ),
@@ -148,24 +145,23 @@ object TableExample extends Example("Table") {
           .map(_ min totalNumberOfCards)
           .map(n => s"[$n / $totalNumberOfCards]"),
         _.events.onLoadMore.mapTo(()) --> loadMoreBus,
-        _.slots.columns := Table.column(_ => width := "12rem", _ => span(lineHeight := "1.4rem", "Card")),
-        _.slots.columns := Table.column(_.minWidth := 800, _ => span(lineHeight := "1.4rem", "Type")),
+        _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+        _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
         _.slots.columns := Table.column(
           _.minWidth := 600,
           _.popinText := "Comment",
           _.demandPopin := true,
-          _ => span(lineHeight := "1.4rem", "Comment")
+          span(lineHeight := "1.4rem", "Comment")
         ),
-        _.slots.columns := Table.column(_ => span(lineHeight := "1.4rem", "Cost")),
-        _ =>
-          children <-- cardsToDisplay.map(
+        _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+                  children <-- cardsToDisplay.map(
             _.map(card =>
               Table.row(
-                _ => dataAttr("card-name") := card.name,
-                _.cell(_ => card.name),
-                _.cell(_ => card.tpe),
-                _.cell(_ => card.comment),
-                _.cell(_ => card.cost)
+                dataAttr("card-name") := card.name,
+                _.cell(card.name),
+                _.cell(card.tpe),
+                _.cell(card.comment),
+                _.cell(card.cost)
               )
             )
           )
@@ -195,24 +191,23 @@ object TableExample extends Example("Table") {
           _.busy <-- busyState,
           _.growing := TableGrowingMode.Scroll,
           _.events.onLoadMore.mapTo(()) --> loadMoreBus,
-          _.slots.columns := Table.column(_ => width := "12rem", _ => span(lineHeight := "1.4rem", "Card")),
-          _.slots.columns := Table.column(_.minWidth := 800, _ => span(lineHeight := "1.4rem", "Type")),
+          _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+          _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
           _.slots.columns := Table.column(
             _.minWidth := 600,
             _.popinText := "Comment",
             _.demandPopin := true,
-            _ => span(lineHeight := "1.4rem", "Comment")
+            span(lineHeight := "1.4rem", "Comment")
           ),
-          _.slots.columns := Table.column(_ => span(lineHeight := "1.4rem", "Cost")),
-          _ =>
-            children <-- cardsToDisplay.map(
+          _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+                      children <-- cardsToDisplay.map(
               _.map(card =>
                 Table.row(
-                  _ => dataAttr("card-name") := card.name,
-                  _.cell(_ => card.name),
-                  _.cell(_ => card.tpe),
-                  _.cell(_ => card.comment),
-                  _.cell(_ => card.cost)
+                  dataAttr("card-name") := card.name,
+                  _.cell(card.name),
+                  _.cell(card.tpe),
+                  _.cell(card.comment),
+                  _.cell(card.cost)
                 )
               )
             )
@@ -224,15 +219,15 @@ object TableExample extends Example("Table") {
       //-- Begin: Table with grouping (SingleSelect)
       Table(
         _.mode := TableMode.SingleSelect,
-        _.slots.columns := Table.column(_ => Label(_ => "City")),
-        _.slots.columns := Table.column(_ => Label(_ => "Population")),
-        _.slots.columns := Table.column(_ => Label(_ => "Country")),
+        _.slots.columns := Table.column(Label("City")),
+        _.slots.columns := Table.column(Label("Population")),
+        _.slots.columns := Table.column(Label("Country")),
         _.groupRow("Country: Belgium"),
-        _.row(_.cell(_ => "Brussels"), _.cell(_ => "1.2 millions"), _.cell(_ => "Belgium")),
-        _.row(_.cell(_ => "Antwerp"), _.cell(_ => "500,000"), _.cell(_ => "Belgium")),
+        _.row(_.cell("Brussels"), _.cell("1.2 millions"), _.cell("Belgium")),
+        _.row(_.cell("Antwerp"), _.cell("500,000"), _.cell("Belgium")),
         _.groupRow("Country: France"),
-        _.row(_.cell(_ => "Paris"), _.cell(_ => "10 millions"), _.cell(_ => "France")),
-        _.row(_.cell(_ => "Lille"), _.cell(_ => "1 million"), _.cell(_ => "France"))
+        _.row(_.cell("Paris"), _.cell("10 millions"), _.cell("France")),
+        _.row(_.cell("Lille"), _.cell("1 million"), _.cell("France"))
       )
       //-- End
     )

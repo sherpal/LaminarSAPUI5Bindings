@@ -46,7 +46,7 @@ object ComboBoxExample extends Example("ComboBox") {
           ComboBox(
             _.filter := filter,
             _.placeholder := s"Filter is: ${filter.value}",
-            _ => someCountries.map(country => ComboBox.item(_.text := country))
+            someCountries.map(country => ComboBox.item(_.text := country))
           )
         )
       )
@@ -56,8 +56,7 @@ object ComboBoxExample extends Example("ComboBox") {
       //-- Begin: ComboBox with Two-Column Layout Items
       ComboBox(
         _.placeholder := "Two-column layout",
-        _ =>
-          someCountries
+                  someCountries
             .zip(someCountryCodes)
             .map((country, code) =>
               ComboBox.item(
@@ -72,8 +71,7 @@ object ComboBoxExample extends Example("ComboBox") {
       //-- Begin: ComboBox with Grouping of Items
       ComboBox(
         _.placeholder := "ComboBox with grouping of suggestions",
-        _ =>
-          someOtherCountries
+                  someOtherCountries
             .groupBy(_.head)
             .toList
             .flatMap((firstLetter, countries) =>

@@ -52,6 +52,6 @@ object Switch extends WebComponent with HasAccessibleName {
     val onCheckedChange: EventProcessor[EventWithPreciseTarget[Ref], Boolean] = onChange.map(_.target.checked)
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Switch)): _*)
+  
 
 }

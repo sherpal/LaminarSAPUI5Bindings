@@ -53,6 +53,6 @@ object CheckBox extends WebComponent with HasIcon with HasAccessibleName with Ha
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(CheckBox)): _*)
+  
 
 }

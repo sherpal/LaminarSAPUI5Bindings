@@ -63,6 +63,6 @@ object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ToggleButton)): _*)
+  
 
 }

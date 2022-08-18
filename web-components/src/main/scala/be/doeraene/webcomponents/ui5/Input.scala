@@ -76,7 +76,7 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
       new EventProp[dom.Event & HasDetail[HasItem[SuggestionItem.RawElement]]]("suggestion-item-select")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Input)): _*)
+  
 
   def suggestion: SuggestionItem.type           = SuggestionItem
   def suggestionGroup: SuggestionGroupItem.type = SuggestionGroupItem

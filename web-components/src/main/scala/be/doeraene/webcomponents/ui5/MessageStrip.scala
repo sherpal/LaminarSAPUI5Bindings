@@ -51,6 +51,6 @@ object MessageStrip extends WebComponent {
     val onClose: EventProp[dom.Event] = new EventProp("close")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MessageStrip)): _*)
+  
 
 }

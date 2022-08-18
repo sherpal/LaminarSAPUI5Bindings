@@ -66,6 +66,6 @@ object FlexibleColumnLayout extends WebComponent {
     val startColumn: Slot = new Slot("startColumn")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(FlexibleColumnLayout)): _*)
+  
 
 }

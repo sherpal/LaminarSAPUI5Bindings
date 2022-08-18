@@ -51,6 +51,6 @@ object Token extends WebComponent with HasText {
     val onSelect: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("select")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Token)): _*)
+  
 
 }

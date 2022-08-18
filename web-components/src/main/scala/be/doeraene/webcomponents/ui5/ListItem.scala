@@ -44,6 +44,6 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
 
   lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ListItem)): _*)
+  
 
 }

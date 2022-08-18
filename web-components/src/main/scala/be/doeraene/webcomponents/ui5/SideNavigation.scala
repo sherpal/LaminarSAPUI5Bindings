@@ -57,7 +57,7 @@ object SideNavigation extends WebComponent {
 
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SideNavigation)): _*)
+  
 
   def item: SideNavigationItem.type = SideNavigationItem
 

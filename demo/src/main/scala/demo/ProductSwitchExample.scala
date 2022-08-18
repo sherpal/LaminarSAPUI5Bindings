@@ -46,16 +46,14 @@ object ProductSwitchExample extends Example("ProductSwitch") {
           _.events.onProductSwitchClick.map(_.detail.targetRef) --> togglePopoverOpeningEventBus.writer
         ),
         Popover(
-          _ =>
-            inContext(el =>
+                      inContext(el =>
               togglePopoverOpeningEvents --> Observer[Option[HTMLElement]] {
                 case Some(element) => el.ref.showAt(element)
                 case None          => el.ref.close()
               }
             ),
           _.placementType := PopoverPlacementType.Bottom,
-          _ =>
-            ProductSwitch(
+                      ProductSwitch(
               _.item(_.titleText := "Home", _.subtitleText := "Central Home", _.icon := IconName.home),
               _.item(
                 _.titleText := "Analytics Cloud",

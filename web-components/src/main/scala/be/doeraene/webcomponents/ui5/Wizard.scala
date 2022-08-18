@@ -49,7 +49,7 @@ object Wizard extends WebComponent {
     val onStepChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[StepChangeInfo]] = new EventProp("step-change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Wizard)): _*)
+  
 
   def step: WizardStep.type = WizardStep
 

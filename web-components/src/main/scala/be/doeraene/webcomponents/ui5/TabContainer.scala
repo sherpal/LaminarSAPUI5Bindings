@@ -60,7 +60,7 @@ object TabContainer extends WebComponent {
     val onTabSelect: EventProp[dom.Event & HasDetail[TabSelectDetail]] = new EventProp("tab-select")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TabContainer)): _*)
+  
 
   def tab: Tab.type = Tab
 

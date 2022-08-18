@@ -45,6 +45,6 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
       new EventProp("click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ShellBarItem)): _*)
+  
 
 }

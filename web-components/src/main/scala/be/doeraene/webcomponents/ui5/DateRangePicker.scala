@@ -92,7 +92,7 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
     val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(DateRangePicker)): _*)
+  
 
   /** You can feed [[DateRangePicker]] refs to this observer in order to close them. */
   val closePickerObserver: Observer[Ref] = Observer(_.closePicker())

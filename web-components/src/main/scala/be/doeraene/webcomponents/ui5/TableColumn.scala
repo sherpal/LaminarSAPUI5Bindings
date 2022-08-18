@@ -34,6 +34,6 @@ object TableColumn extends WebComponent {
   lazy val minWidth: ReactiveHtmlAttr[Int]        = customHtmlAttr("min-width", IntAsStringCodec)
   lazy val popinText: ReactiveHtmlAttr[String]    = customHtmlAttr("popin-text", StringAsIsCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TableColumn)): _*)
+  
 
 }

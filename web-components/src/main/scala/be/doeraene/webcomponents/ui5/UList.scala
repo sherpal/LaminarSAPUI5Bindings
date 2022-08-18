@@ -84,7 +84,7 @@ object UList extends WebComponent with HasAccessibleName {
     val header: Slot = new Slot("header")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(UList)): _*)
+  
 
   @deprecated("Li was a badly designed name. Use `item` instead", "15/08/2022")
   def Li: ListItem.type = ListItem

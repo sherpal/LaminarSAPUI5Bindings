@@ -40,6 +40,6 @@ object Label extends WebComponent with HasIcon {
 
   val isRequired: Setter[HtmlElement] = required := true
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Label)): _*)
+  
 
 }

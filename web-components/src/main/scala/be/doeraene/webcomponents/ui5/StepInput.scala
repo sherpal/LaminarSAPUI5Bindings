@@ -74,6 +74,6 @@ object StepInput extends WebComponent with HasAccessibleName with HasName {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(StepInput)): _*)
+  
 
 }

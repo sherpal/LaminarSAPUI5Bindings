@@ -25,6 +25,6 @@ object TableCell extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-cell")
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TableCell)): _*)
+  
 
 }

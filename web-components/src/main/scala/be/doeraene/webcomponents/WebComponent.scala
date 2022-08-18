@@ -20,7 +20,7 @@ trait WebComponent {
 
   protected def tag: HtmlTag[Ref]
 
-  def superApply(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = tag(
+  final def apply(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = tag(
     mods
       .map {
         case mod: Mod[_ >: ReactiveHtmlElement[Ref]]                      => (_: this.type) => mod

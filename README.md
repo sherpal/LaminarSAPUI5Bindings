@@ -58,7 +58,7 @@ div(
     _.required := true,
     _.valueState := ValueState.Information,
     _.placeholder := "Enter your name",
-    _ => onChange.mapToValue --> Observer(println)
+    onChange.mapToValue --> Observer(println)
   )
 )
 ```
@@ -173,7 +173,7 @@ In the `object`, add the following things:
 - define a private `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
 - create an empty object `slots`
 - create an empty object `events`
-- define an apply method as `def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(YourObject)): _*)`
+- define an apply method as ``
 - in the case where your component is linked to other components (for example a `TableCell` is always contained in `TableRow`, so the `TableRow` object will have a reference to the `TableCell` object)
 
 #### Filling the reactive attributes

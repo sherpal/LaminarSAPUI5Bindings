@@ -45,6 +45,6 @@ object SuggestionItem extends WebComponent with HasIcon with HasDescription with
   lazy val additionalTextState: ReactiveHtmlAttr[ValueState] =
     customHtmlAttr("additional-text-state", ValueState.AsStringCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SuggestionItem)): _*)
+  
 
 }

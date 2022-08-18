@@ -43,7 +43,7 @@ object ColourPalette extends WebComponent {
     val onItemClick: EventProp[dom.Event & HasDetail[HasColor]] = new EventProp("item-click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ColourPalette)): _*)
+  
 
   def item: ColourPaletteItem.type = ColourPaletteItem
 

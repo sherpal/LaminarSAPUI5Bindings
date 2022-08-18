@@ -50,7 +50,7 @@ object Menu extends WebComponent {
     val onItemClick = new EventProp[dom.Event & HasDetail[ItemClickDetail]]("item-click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Menu)): _*)
+  
 
   def getMenuById(menuId: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(menuId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])

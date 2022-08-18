@@ -49,7 +49,7 @@ object SideNavigationItem extends WebComponent with HasText {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SideNavigationItem)): _*)
+  
 
   def subItem: SideNavigationSubItem.type = SideNavigationSubItem
 

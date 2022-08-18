@@ -18,27 +18,27 @@ object ToggleButtonExample extends Example("ToggleButton") {
     DemoPanel("ToggleButton States") {
       //-- Begin: ToggleButton States
       div(
-        ToggleButton(_ => "ToggleButton"),
-        ToggleButton(_.pressed := true, _ => "Pressed ToggleButton"),
-        ToggleButton(_.disabled := true, _ => "Disabled ToggleButton"),
-        ToggleButton(_.disabled := true, _.pressed := true, _ => "Disabled pressed ToggleButton"),
-        ToggleButton(_.design := ButtonDesign.Positive, _ => "Accept ToggleButton"),
-        ToggleButton(_.design := ButtonDesign.Positive, _.pressed := true, _ => "Accept pressed ToggleButton"),
-        ToggleButton(_.design := ButtonDesign.Negative, _ => "Reject ToggleButton"),
-        ToggleButton(_.design := ButtonDesign.Negative, _.pressed := true, _ => "Reject pressed ToggleButton"),
-        ToggleButton(_.design := ButtonDesign.Transparent, _ => "Transparent ToggleButton"),
-        ToggleButton(_.design := ButtonDesign.Transparent, _.pressed := true, _ => "Transparent pressed ToggleButton")
+        ToggleButton("ToggleButton"),
+        ToggleButton(_.pressed := true, "Pressed ToggleButton"),
+        ToggleButton(_.disabled := true, "Disabled ToggleButton"),
+        ToggleButton(_.disabled := true, _.pressed := true, "Disabled pressed ToggleButton"),
+        ToggleButton(_.design := ButtonDesign.Positive, "Accept ToggleButton"),
+        ToggleButton(_.design := ButtonDesign.Positive, _.pressed := true, "Accept pressed ToggleButton"),
+        ToggleButton(_.design := ButtonDesign.Negative, "Reject ToggleButton"),
+        ToggleButton(_.design := ButtonDesign.Negative, _.pressed := true, "Reject pressed ToggleButton"),
+        ToggleButton(_.design := ButtonDesign.Transparent, "Transparent ToggleButton"),
+        ToggleButton(_.design := ButtonDesign.Transparent, _.pressed := true, "Transparent pressed ToggleButton")
       )
       //-- End
     },
     DemoPanel("ToggleButton with Icon") {
       //-- Begin: ToggleButton with Icon
       div(
-        ToggleButton(_.icon := IconName.menu, _ => "Menu"),
-        ToggleButton(_.design := ButtonDesign.Emphasized, _.icon := IconName.add, _ => "Add"),
-        ToggleButton(_.design := ButtonDesign.Default, _.icon := IconName.`nav-back`, _ => "Back"),
-        ToggleButton(_.design := ButtonDesign.Positive, _.icon := IconName.accept, _ => "Accept"),
-        ToggleButton(_.design := ButtonDesign.Negative, _.icon := IconName.`sys-cancel`, _ => "Deny")
+        ToggleButton(_.icon := IconName.menu, "Menu"),
+        ToggleButton(_.design := ButtonDesign.Emphasized, _.icon := IconName.add, "Add"),
+        ToggleButton(_.design := ButtonDesign.Default, _.icon := IconName.`nav-back`, "Back"),
+        ToggleButton(_.design := ButtonDesign.Positive, _.icon := IconName.accept, "Accept"),
+        ToggleButton(_.design := ButtonDesign.Negative, _.icon := IconName.`sys-cancel`, "Deny")
       )
       //-- End
     },

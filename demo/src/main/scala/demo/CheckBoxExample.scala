@@ -50,12 +50,12 @@ object CheckBoxExample extends Example("CheckBox") {
         CheckBox(
           _.text := "ui5-checkbox with 'wrapping-type=Normal' set and some long text.",
           _.wrappingType := WrappingType.Normal,
-          _ => width := "200px"
+          width := "200px"
         ),
         CheckBox(
           _.text := "Another ui5-checkbox with very long text here",
           _.wrappingType := WrappingType.Normal,
-          _ => width := "200px"
+          width := "200px"
         )
       )
       //-- End

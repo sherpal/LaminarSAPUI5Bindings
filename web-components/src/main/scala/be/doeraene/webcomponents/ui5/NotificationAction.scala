@@ -44,6 +44,4 @@ object NotificationAction extends WebComponent with HasText with HasIcon {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(NotificationAction)): _*)
-
 }

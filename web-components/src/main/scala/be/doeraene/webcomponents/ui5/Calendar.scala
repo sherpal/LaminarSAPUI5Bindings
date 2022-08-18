@@ -83,7 +83,7 @@ object Calendar extends WebComponent {
       )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Calendar)): _*)
+  
 
   def date: CalendarDate.type = CalendarDate
 

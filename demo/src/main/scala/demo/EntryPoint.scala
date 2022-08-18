@@ -85,7 +85,7 @@ object EntryPoint {
         div(
           h1("Please chose one of the following component below:"),
           ul(
-            componentsDemo.map(_.name).map(componentName => li(Link(_ => componentName, _.href := s"/$componentName")))
+            componentsDemo.map(_.name).map(componentName => li(Link(componentName, _.href := s"/$componentName")))
           )
         )
       else
@@ -98,17 +98,16 @@ object EntryPoint {
                 case Some(componentName) => dom.document.location.href = s"/$componentName"
                 case None => throw new IllegalArgumentException(s"This item did not have data 'componentName'.")
               },
-              _ =>
-                componentsDemo.map(example =>
-                  SideNavigation.item(
-                    _.text := example.name,
-                    _ => width := "200px",
-                    _ => dataAttr("component-name") := example.name,
-                    _.selected := (example.name == componentName)
-                  )
-                ),
-              _ => height := "100vh",
-              _ => overflowY := "auto"
+              componentsDemo.map(example =>
+                SideNavigation.item(
+                  _.text := example.name,
+                  width := "200px",
+                  dataAttr("component-name") := example.name,
+                  _.selected := (example.name == componentName)
+                )
+              ),
+              height := "100vh",
+              overflowY := "auto"
             )
           ),
           div(

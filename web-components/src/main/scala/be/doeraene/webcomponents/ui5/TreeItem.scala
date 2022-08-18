@@ -41,8 +41,6 @@ object TreeItem extends WebComponent with HasIcon with HasText {
   lazy val intermediate: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("intermediate", BooleanAsAttrPresenceCodec)
   lazy val selected: ReactiveHtmlAttr[Boolean]     = customHtmlAttr[Boolean]("selected", BooleanAsAttrPresenceCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TreeItem)): _*)
-
   def item: TreeItem.type = this
 
 }

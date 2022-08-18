@@ -60,7 +60,7 @@ object MultiComboBox extends WebComponent with HasAccessibleName with HasValue {
     )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MultiComboBox)): _*)
+  
 
   def item: MultiComboBoxItem.type       = MultiComboBoxItem
   def group: MultiComboBoxGroupItem.type = MultiComboBoxGroupItem

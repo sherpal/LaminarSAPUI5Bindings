@@ -49,7 +49,7 @@ object InputExample extends Example("Input") {
         _.showSuggestions := true,
         _.showClearIcon := true,
         _.placeholder := "Start typing country name",
-        _ => children <-- suggestions,
+        children <-- suggestions,
         _.events.onInput.mapToValue --> filterValueBus.writer
       )
       //-- End
@@ -66,7 +66,7 @@ object InputExample extends Example("Input") {
           _.placeholder := "Choose content density",
           _.showSuggestions := true,
           _.slots.valueStateMessage := div("This is an error message. Extra long text used as an error message."),
-          _ => List("Cozy", "Compact", "Condensed").map(item => UList.item(_ => item))
+          List("Cozy", "Compact", "Condensed").map(item => UList.item(item))
         )
       )
       //-- End
@@ -81,29 +81,27 @@ object InputExample extends Example("Input") {
       div(
         Input(
           _.placeholder := "Enter search criteria",
-          _ => width := "100%",
+          width := "100%",
           _.events.onInput.mapToValue --> searchCriteriaVar.writer,
-          _.slots.icon := Icon(_.name := IconName.search, _ => onClick.mapTo(()) --> showSearchResultBus.writer)
+          _.slots.icon := Icon(_.name := IconName.search, onClick.mapTo(()) --> showSearchResultBus.writer)
         ),
         Dialog(
           _.headerText := "Search result",
-          _ =>
-            child <-- showSearchResultBus.events
-              .sample(searchCriteriaVar.signal)
-              .map(searchCriteria => div(s"Here would go the results of search for '$searchCriteria'.")),
+          child <-- showSearchResultBus.events
+            .sample(searchCriteriaVar.signal)
+            .map(searchCriteria => div(s"Here would go the results of search for '$searchCriteria'.")),
           _.slots.footer := div(
             Bar(
-              _.slots.endContent := Button(_ => "Close", _.events.onClick.mapTo(()) --> closeSearchResultBus.writer),
+              _.slots.endContent := Button("Close", _.events.onClick.mapTo(()) --> closeSearchResultBus.writer),
               _.design := BarDesign.Footer
             )
           ),
-          _ =>
-            inContext(el =>
-              showSearchResultBus.events.sample(searchCriteriaVar.signal).filter(_.nonEmpty).mapTo(()) --> Observer(_ =>
-                el.ref.show()
-              )
-            ),
-          _ => inContext(el => closeSearchResultBus.events --> Observer(_ => el.ref.close()))
+          inContext(el =>
+            showSearchResultBus.events.sample(searchCriteriaVar.signal).filter(_.nonEmpty).mapTo(()) --> Observer(_ =>
+              el.ref.show()
+            )
+          ),
+          inContext(el => closeSearchResultBus.events --> Observer(_ => el.ref.close()))
         )
       )
       //-- End
@@ -114,11 +112,11 @@ object InputExample extends Example("Input") {
         className := loginFormClass,
         styleTagForLoginFormClass,
         div(
-          Label(_.forId := "myInput", _.required := true, _.showColon := true, _ => "Name"),
+          Label(_.forId := "myInput", _.required := true, _.showColon := true, "Name"),
           Input(_.id := "myInput", _.placeholder := "Enter your Name", _.required := true)
         ),
         div(
-          Label(_.forId := "myPassword", _.required := true, _.showColon := true, _ => "Secret Code"),
+          Label(_.forId := "myPassword", _.required := true, _.showColon := true, "Secret Code"),
           Input(
             _.id := "myPassword",
             _.tpe := InputType.Password,

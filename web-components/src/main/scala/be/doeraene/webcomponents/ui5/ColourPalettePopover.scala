@@ -68,8 +68,6 @@ object ColourPalettePopover extends WebComponent {
     val onItemClick: EventProp[dom.Event & HasDetail[HasColor]] = new EventProp("item-click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ColourPalettePopover)): _*)
-
   def item: ColourPaletteItem.type = ColourPaletteItem
 
   def getColourPalettePopoverById(id: String): Option[Ref] =

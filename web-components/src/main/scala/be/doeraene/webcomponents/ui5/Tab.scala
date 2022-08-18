@@ -48,6 +48,6 @@ object Tab extends WebComponent with HasIcon with HasText {
     val subTabs: Slot = new Slot("subTabs")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Tab)): _*)
+  
 
 }

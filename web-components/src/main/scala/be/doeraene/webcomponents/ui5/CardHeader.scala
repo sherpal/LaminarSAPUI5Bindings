@@ -52,6 +52,6 @@ object CardHeader extends WebComponent {
     val onClick: EventProp[dom.MouseEvent] = new EventProp("click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(CardHeader)): _*)
+  
 
 }

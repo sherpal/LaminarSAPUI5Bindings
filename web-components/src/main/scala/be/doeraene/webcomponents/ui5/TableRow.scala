@@ -25,7 +25,7 @@ object TableRow extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-row")
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TableRow)): _*)
+  
 
   //noinspection TypeAnnotation
   val cell = TableCell

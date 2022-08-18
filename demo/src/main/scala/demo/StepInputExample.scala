@@ -33,8 +33,8 @@ object StepInputExample extends Example("StepInput") {
       div(
         className := "shorter",
         StepInput(_.value := 5),
-        StepInput(_.value := 5, _ => textAlign := "center"),
-        StepInput(_.value := 5, _ => textAlign := "right")
+        StepInput(_.value := 5, textAlign := "center"),
+        StepInput(_.value := 5, textAlign := "right")
       )
       //-- End
     },
@@ -52,7 +52,7 @@ object StepInputExample extends Example("StepInput") {
       //-- Begin: Step Input with Value State
       div(
         className := "shorter",
-        ValueState.allValues.map(state => StepInput(_.valueState := state, _ => marginTop := "0.5rem"))
+        ValueState.allValues.map(state => StepInput(_.valueState := state, marginTop := "0.5rem"))
       )
       //-- End
     }

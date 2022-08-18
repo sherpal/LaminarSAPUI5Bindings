@@ -49,7 +49,7 @@ object SegmentedButton extends WebComponent {
       new EventProp("selection-change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SegmentedButton)): _*)
+  
 
   def item: SegmentedButtonItem.type = SegmentedButtonItem
 

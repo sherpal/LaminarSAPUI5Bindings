@@ -82,6 +82,6 @@ object UploadCollectionItem extends WebComponent {
     val onTerminate: EventProp[EventWithPreciseTarget[Ref]]     = new EventProp("terminate")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(UploadCollectionItem)): _*)
+  
 
 }

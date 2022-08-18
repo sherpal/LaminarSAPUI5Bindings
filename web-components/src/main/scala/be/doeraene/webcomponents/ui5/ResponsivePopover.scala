@@ -95,7 +95,7 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
     val onBeforeOpen: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("before-open")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ResponsivePopover)): _*)
+  
 
   def getResponsivePopoverById(id: String): Option[Ref] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])

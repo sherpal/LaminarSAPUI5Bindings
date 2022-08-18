@@ -44,7 +44,7 @@ object Toast extends WebComponent with HasIcon {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Toast)): _*)
+  
 
   def getToastById(id: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])

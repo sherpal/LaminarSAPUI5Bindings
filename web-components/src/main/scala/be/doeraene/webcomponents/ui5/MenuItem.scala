@@ -37,7 +37,7 @@ object MenuItem extends WebComponent with HasIcon with HasText {
 
   lazy val startsSection: ReactiveHtmlAttr[Boolean] = customHtmlAttr("starts-section", BooleanAsAttrPresenceCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MenuItem)): _*)
+  
 
   // reference to itself, useful for sub-menus
   def item: MenuItem.type = this

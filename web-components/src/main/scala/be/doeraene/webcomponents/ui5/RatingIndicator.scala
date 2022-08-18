@@ -53,6 +53,6 @@ object RatingIndicator extends WebComponent {
     val onChange = new EventProp[EventWithPreciseTarget[Ref]]("change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(RatingIndicator)): _*)
+  
 
 }

@@ -22,13 +22,13 @@ object ButtonExample extends Example("Button") {
         //-- Begin: Basic Button
         div(
           className := exampleButtonContainerClass,
-          Button(_.design := ButtonDesign.Default, _ => "Default"),
-          Button(_.disabled := true, _ => "Disabled"),
-          Button(_.design := ButtonDesign.Transparent, _ => "Cancel"),
-          Button(_.design := ButtonDesign.Positive, _ => "Approve"),
-          Button(_.design := ButtonDesign.Negative, _ => "Decline"),
-          Button(_.design := ButtonDesign.Attention, _ => "Warning"),
-          Button(_.design := ButtonDesign.Emphasized, _ => "Subscribe")
+          Button(_.design := ButtonDesign.Default, "Default"),
+          Button(_.disabled := true, "Disabled"),
+          Button(_.design := ButtonDesign.Transparent, "Cancel"),
+          Button(_.design := ButtonDesign.Positive, "Approve"),
+          Button(_.design := ButtonDesign.Negative, "Decline"),
+          Button(_.design := ButtonDesign.Attention, "Warning"),
+          Button(_.design := ButtonDesign.Emphasized, "Subscribe")
         )
         //-- End
       ),
@@ -36,12 +36,12 @@ object ButtonExample extends Example("Button") {
         //-- Begin: Button with Icon
         div(
           className := exampleButtonContainerClass,
-          Button(_.icon := IconName.employee, _ => "Add"),
-          Button(_.icon := IconName.download, _ => "Download"),
-          Button(_.design := ButtonDesign.Positive, _.icon := IconName.add, _ => "Add"),
-          Button(_.design := ButtonDesign.Negative, _.icon := IconName.delete, _ => "Remove"),
-          Button(_.design := ButtonDesign.Attention, _.icon := IconName.`message-warning`, _ => "Warning"),
-          Button(_.design := ButtonDesign.Transparent, _.icon := IconName.accept, _ => "Transparent")
+          Button(_.icon := IconName.employee, "Add"),
+          Button(_.icon := IconName.download, "Download"),
+          Button(_.design := ButtonDesign.Positive, _.icon := IconName.add, "Add"),
+          Button(_.design := ButtonDesign.Negative, _.icon := IconName.delete, "Remove"),
+          Button(_.design := ButtonDesign.Attention, _.icon := IconName.`message-warning`, "Warning"),
+          Button(_.design := ButtonDesign.Transparent, _.icon := IconName.accept, "Transparent")
         )
         //-- End
       ),

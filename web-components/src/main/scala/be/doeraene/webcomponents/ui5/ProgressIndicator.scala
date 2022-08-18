@@ -51,6 +51,6 @@ object ProgressIndicator extends WebComponent {
   lazy val valueState: ReactiveHtmlAttr[ValueState] =
     customHtmlAttr("value-state", ValueState.AsStringCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ProgressIndicator)): _*)
+  
 
 }

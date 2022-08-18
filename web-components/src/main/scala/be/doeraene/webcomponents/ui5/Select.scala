@@ -57,7 +57,7 @@ object Select extends WebComponent with HasIcon with HasAccessibleName with HasN
     val onChange = new EventProp[dom.Event & HasDetail[HasSelectedOption]]("change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Select)): _*)
+  
 
   def option: SelectOption.type = SelectOption
 

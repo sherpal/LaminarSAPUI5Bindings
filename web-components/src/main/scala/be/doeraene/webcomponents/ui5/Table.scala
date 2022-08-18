@@ -61,8 +61,6 @@ object Table extends WebComponent {
     val onSelectionChange = new EventProp[dom.Event & HasDetail[TableSelectionChangeDetail]]("selection-change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Table)): _*)
-
   def column: TableColumn.type = TableColumn
   def row: TableRow.type       = TableRow
 

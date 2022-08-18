@@ -68,7 +68,7 @@ object AvatarGroup extends WebComponent {
     val onOverflow: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("overflow")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(AvatarGroup)): _*)
+  
 
   def avatar: Avatar.type = Avatar
 

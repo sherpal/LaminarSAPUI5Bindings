@@ -44,6 +44,6 @@ object Bar extends WebComponent {
     val startContent: Slot = new Slot("startContent")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Bar)): _*)
+  
 
 }

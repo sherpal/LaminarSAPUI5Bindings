@@ -32,9 +32,9 @@ object WizardExample extends Example("Wizard") {
       // Creates a button that, when clicking, go to the specified step. Can be hidden temporarily with the observable
       def goToStepButton(goTo: Int, hiddenObservable: Observable[Boolean] = Val(false)) = Button(
         _.design := ButtonDesign.Emphasized,
-        _ => s"Go to step $goTo",
+        s"Go to step $goTo",
         _.events.onClick.mapTo(goTo) --> currentStepVar.writer,
-        _ => hidden <-- hiddenObservable
+        hidden <-- hiddenObservable
       )
 
       // User will not be able to go to step 3 before this is filled.
@@ -50,42 +50,37 @@ object WizardExample extends Example("Wizard") {
           _.step(
             _.icon := IconName.home,
             _.titleText := "Greeting",
-            _ => commonModifiers(1),
-            _ => Title.h3(_ => "1. Greeting"),
-            _ =>
-              MessageStrip(
+            commonModifiers(1),
+            Title.h3("1. Greeting"),
+                          MessageStrip(
                 _.hideCloseButton := true,
                 _.design := MessageStripDesign.Information,
-                _ =>
-                  "The Wizard control is supposed to break down large tasks, into smaller steps, easier for the " +
+                                  "The Wizard control is supposed to break down large tasks, into smaller steps, easier for the " +
                     "user to work with."
               ),
-            _ =>
-              div(
+                          div(
                 "This document is the ultimate authority for Magic: The Gathering® competitive game play. It " +
                   "consists of a series of numbered rules followed by a glossary. Many of the numbered rules are " +
                   "divided into subrules, and each separate rule and subrule of the game has its own number. (Note " +
                   "that subrules skip the letters “l” and “o” due to potential confusion with the numbers “1” and “0”;" +
                   " subrule 704.5k is followed by 704.5m, then 704.5n, then 704.5p, for example.)"
               ),
-            _ => goToStepButton(2)
+            goToStepButton(2)
           ),
           _.step(
             _.icon := IconName.employee,
             _.titleText := "2. User name",
-            _ => commonModifiers(2),
-            _ => Title.h3(_ => "2. User name"),
-            _ =>
-              div(
+            commonModifiers(2),
+            Title.h3("2. User name"),
+                          div(
                 "Changes may have been made to this document since its publication. You can download the most " +
                   "recent version from the Magic rules website at Magic.Wizards.com/Rules. If you have questions, " +
                   "you can get the answers from us at Support.Wizards.com."
               ),
-            _ =>
-              div(
+                          div(
                 className := loginFormClass,
                 div(
-                  Label(_ => "Fill in your name to continue:", _.required := true),
+                  Label("Fill in your name to continue:", _.required := true),
                   Input(
                     _.events.onChange
                       .map(_.target.value)
@@ -93,31 +88,28 @@ object WizardExample extends Example("Wizard") {
                   )
                 )
               ),
-            _ => goToStepButton(3, maybeInfoForStepThreeVar.signal.map(_.isEmpty))
+            goToStepButton(3, maybeInfoForStepThreeVar.signal.map(_.isEmpty))
           ),
           _.step(
             _.icon := IconName.`action-settings`,
             _.titleText := "3. User profile",
-            _ => commonModifiers(3),
-            _ =>
-              Title.h3(_ =>
-                child.text <-- maybeInfoForStepThreeVar.signal.changes
+            commonModifiers(3),
+                          Title.h3(                child.text <-- maybeInfoForStepThreeVar.signal.changes
                   .collect { case Some(name) => name }
                   .map(name => s"3. User profile: $name")
               ),
-            _ => div("Here the user could fill some optional settings for their profile..."),
-            _ => goToStepButton(4)
+            div("Here the user could fill some optional settings for their profile..."),
+            goToStepButton(4)
           ),
           _.step(
             _.icon := IconName.`chart-table-view`,
             _.titleText := "4. Last Details",
-            _ => commonModifiers(4),
-            _ => Title.h4(_ => "4. Last Details"),
-            _ => div("Here we ask a few last things and then move along with their lives."),
-            _ =>
-              Button(
+            commonModifiers(4),
+            Title.h4("4. Last Details"),
+            div("Here we ask a few last things and then move along with their lives."),
+                          Button(
                 _.design := ButtonDesign.Positive,
-                _ => "Finish!",
+                "Finish!",
                 _.events.onClick.mapTo(()) --> finishDialogBus.writer
               )
           )
@@ -125,11 +117,10 @@ object WizardExample extends Example("Wizard") {
         Dialog(
           _.showFromEvents(finishDialogBus.events),
           _.closeFromEvents(finishDialogCloseBus.events),
-          _ => div("Process finished!"),
-          _ =>
-            Button(
+          div("Process finished!"),
+                      Button(
               _.design := ButtonDesign.Emphasized,
-              _ => "Done",
+              "Done",
               _.events.onClick.mapTo(()) --> finishDialogCloseBus.writer
             )
         )

@@ -43,6 +43,6 @@ object Icon extends WebComponent with HasAccessibleName {
   lazy val showTooltip: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Icon)): _*)
+  
 
 }

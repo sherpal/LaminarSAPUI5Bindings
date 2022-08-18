@@ -59,7 +59,7 @@ object ComboBox extends WebComponent with HasAccessibleName with HasValue {
     )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ComboBox)): _*)
+  
 
   def item: ComboBoxItem.type       = ComboBoxItem
   def group: ComboBoxGroupItem.type = ComboBoxGroupItem

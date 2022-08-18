@@ -49,6 +49,6 @@ object CustomListItem extends WebComponent {
     val onDetailClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("detail-click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(CustomListItem)): _*)
+  
 
 }

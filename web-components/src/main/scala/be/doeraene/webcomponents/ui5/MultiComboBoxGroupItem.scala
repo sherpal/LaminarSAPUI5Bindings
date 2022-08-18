@@ -33,6 +33,6 @@ object MultiComboBoxGroupItem extends WebComponent with HasText {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MultiComboBoxGroupItem)): _*)
+  
 
 }

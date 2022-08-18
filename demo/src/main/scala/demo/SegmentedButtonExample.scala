@@ -14,9 +14,9 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
       //-- Begin: Basic SegmentedButton
       SegmentedButton(
         _.accessibleName := "Geographic location",
-        _.item(_ => "Map"),
-        _.item(_ => "Satellite", _.pressed := true),
-        _.item(_ => "Terrain")
+        _.item("Map"),
+        _.item("Satellite", _.pressed := true),
+        _.item("Terrain")
       )
       //-- End
     ),
@@ -32,11 +32,11 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
     DemoPanel("SegmentedButton with 5 SegmentedButtonItems")(
       //-- Begin: SegmentedButton with 5 SegmentedButtonItems
       SegmentedButton(
-        _.item(_ => "Item"),
-        _.item(_ => "Pressed SegmentedButtonItem With Bigger Text", _.pressed := true),
-        _.item(_ => "Item"),
-        _.item(_ => "SegmentedButtonItem"),
-        _.item(_ => "Press me")
+        _.item("Item"),
+        _.item("Pressed SegmentedButtonItem With Bigger Text", _.pressed := true),
+        _.item("Item"),
+        _.item("SegmentedButtonItem"),
+        _.item("Press me")
       )
       //-- End
     )

@@ -73,7 +73,7 @@ object MediaGallery extends WebComponent {
     )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MediaGallery)): _*)
+  
 
   def item: MediaGalleryItem.type = MediaGalleryItem
 

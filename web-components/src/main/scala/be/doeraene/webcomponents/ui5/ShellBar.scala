@@ -80,7 +80,7 @@ object ShellBar extends WebComponent with HasIcon {
     def startButton: Slot = new Slot("startButton")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ShellBar)): _*)
+  
 
   def item: ShellBarItem.type = ShellBarItem
 

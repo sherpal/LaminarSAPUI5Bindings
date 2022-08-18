@@ -69,6 +69,6 @@ object RangeSlider extends WebComponent {
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(RangeSlider)): _*)
+  
 
 }

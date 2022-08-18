@@ -75,6 +75,6 @@ object DynamicSideContent extends WebComponent {
     )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(DynamicSideContent)): _*)
+  
 
 }

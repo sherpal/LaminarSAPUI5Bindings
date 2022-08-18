@@ -59,8 +59,6 @@ object Dialog extends WebComponent {
     val header: Slot = new Slot("header")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Dialog)): _*)
-
   def getDialogById(id: String): Option[Ref] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
 

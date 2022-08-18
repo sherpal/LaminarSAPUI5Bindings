@@ -33,6 +33,6 @@ object CalendarDate extends WebComponent with HasValue {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(CalendarDate)): _*)
+  
 
 }

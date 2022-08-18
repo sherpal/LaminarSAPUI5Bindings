@@ -56,6 +56,6 @@ object ColourPicker extends WebComponent {
     val onChange: EventProp[EventWithPreciseTarget[dom.HTMLElement & RawElement]] = new EventProp("change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ColourPicker)): _*)
+  
 
 }

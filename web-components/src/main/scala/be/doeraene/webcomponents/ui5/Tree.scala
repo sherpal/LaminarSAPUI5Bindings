@@ -86,7 +86,7 @@ object Tree extends WebComponent {
     val header: Slot = new Slot("header")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Tree)): _*)
+  
 
   def item: TreeItem.type = TreeItem
 

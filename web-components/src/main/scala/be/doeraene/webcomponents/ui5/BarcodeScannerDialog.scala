@@ -58,7 +58,7 @@ object BarcodeScannerDialog extends WebComponent {
     val onScanSuccess: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SuccessInfo]] = new EventProp("scan-success")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(BarcodeScannerDialog)): _*)
+  
 
   /** You can feed this [[Observer]] with a barcode scanner [[Ref]]s in order to close it. */
   val closeObserver: Observer[Ref] = Observer(_.close())

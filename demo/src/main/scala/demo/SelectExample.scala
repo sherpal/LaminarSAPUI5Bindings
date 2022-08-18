@@ -17,27 +17,26 @@ object SelectExample extends Example("SelectExample") {
       //-- Begin: Basic Select
       div(
         Select(
-          _.option(_.icon := IconName.iphone, _ => "Phone"),
-          _.option(_.icon := IconName.ipad, _ => "Tablet"),
-          _.option(_.icon := IconName.laptop, _ => "Desktop", _.selected := true)
+          _.option(_.icon := IconName.iphone, "Phone"),
+          _.option(_.icon := IconName.ipad, "Tablet"),
+          _.option(_.icon := IconName.laptop, "Desktop", _.selected := true)
         ),
         span(padding := "1em"),
         Select(
           _.disabled := true,
-          _.option(_.icon := IconName.iphone, _ => "Phone")
+          _.option(_.icon := IconName.iphone, "Phone")
         )
       )
       //-- End
     ),
     DemoPanel("Select with Two-Column Layout Items")(
       //-- Begin: Select with Two-Column Layout Items
-      Select(_ =>
-        someCountries
+      Select(        someCountries
           .zip(someCountryCodes)
           .map((country, code) =>
             Select.option(
               _.additionalText := code,
-              _ => country
+              country
             )
           )
       )

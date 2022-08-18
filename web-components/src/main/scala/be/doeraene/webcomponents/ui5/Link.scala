@@ -51,6 +51,6 @@ object Link extends WebComponent with HasIcon with HasAccessibleName {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Link)): _*)
+  
 
 }

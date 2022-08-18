@@ -56,6 +56,6 @@ object TimelineItem extends WebComponent with HasIcon with HasName {
     val onNameClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("name-click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TimelineItem)): _*)
+  
 
 }

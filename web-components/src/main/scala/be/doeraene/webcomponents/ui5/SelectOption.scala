@@ -39,6 +39,6 @@ object SelectOption extends WebComponent with HasIcon with HasAdditionalText wit
   lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SelectOption)): _*)
+  
 
 }

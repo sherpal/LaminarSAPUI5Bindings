@@ -87,7 +87,7 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
     val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(DateTimePicker)): _*)
+  
 
   /** You can feed [[DateTimePicker]] refs to this observer in order to close them. */
   val closePickerObserver: Observer[Ref] = Observer(_.closePicker())

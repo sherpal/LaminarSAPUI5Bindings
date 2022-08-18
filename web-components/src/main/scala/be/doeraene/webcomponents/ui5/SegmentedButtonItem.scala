@@ -56,6 +56,6 @@ object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasI
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SegmentedButtonItem)): _*)
+  
 
 }

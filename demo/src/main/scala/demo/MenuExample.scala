@@ -17,9 +17,9 @@ object MenuExample extends Example("Menu") {
       val openMenuBus: EventBus[HTMLElement] = new EventBus
 
       div(
-        Button(_ => "Open Menu", _.events.onClick.map(_.target) --> openMenuBus.writer),
+        Button("Open Menu", _.events.onClick.map(_.target) --> openMenuBus.writer),
         Menu(
-          _ => inContext(el => openMenuBus.events.map(el.ref -> _) --> Observer[(Menu.Ref, HTMLElement)](_ showAt _)),
+          inContext(el => openMenuBus.events.map(el.ref -> _) --> Observer[(Menu.Ref, HTMLElement)](_ showAt _)),
           _.item(_.text := "New File", _.icon := IconName.`add-document`),
           _.item(_.text := "New Folder", _.icon := IconName.`add-folder`, _.disabled := true),
           _.item(_.text := "Open", _.icon := IconName.`open-folder`, _.startsSection := true),
@@ -36,9 +36,9 @@ object MenuExample extends Example("Menu") {
       val openMenuBus: EventBus[HTMLElement] = new EventBus
 
       div(
-        Button(_ => "Open Menu", _.events.onClick.map(_.target) --> openMenuBus.writer),
+        Button("Open Menu", _.events.onClick.map(_.target) --> openMenuBus.writer),
         Menu(
-          _ => inContext(el => openMenuBus.events.map(el.ref -> _) --> Observer[(Menu.Ref, HTMLElement)](_ showAt _)),
+          inContext(el => openMenuBus.events.map(el.ref -> _) --> Observer[(Menu.Ref, HTMLElement)](_ showAt _)),
           _.item(_.text := "New File", _.icon := IconName.`add-document`),
           _.item(_.text := "New Folder", _.icon := IconName.`add-folder`, _.disabled := true),
           _.item(

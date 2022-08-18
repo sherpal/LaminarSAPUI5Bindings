@@ -85,7 +85,7 @@ object ViewSettingsDialog extends WebComponent {
     )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ViewSettingsDialog)): _*)
+  
 
   /** Feed an instance of [[ViewSettingsDialog]] ref to this observer in order to show it. */
   val showObserver: Observer[Ref] = Observer(_.show())

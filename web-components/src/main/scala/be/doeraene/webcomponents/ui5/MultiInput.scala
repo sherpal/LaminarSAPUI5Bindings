@@ -116,7 +116,7 @@ object MultiInput extends WebComponent with HasAccessibleName with HasName with 
       new EventProp("suggestion-item-select")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MultiInput)): _*)
+  
 
   def suggestion: SuggestionItem.type = SuggestionItem
 

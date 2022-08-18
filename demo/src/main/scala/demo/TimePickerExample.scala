@@ -14,7 +14,7 @@ object TimePickerExample extends Example("TimePicker") {
       //-- Begin: Basic TimePicker
       val selectedValueBus: EventBus[String] = new EventBus
       div(
-        Label(_ => child.text <-- selectedValueBus.events.map(value => s"Currently selected: $value")),
+        Label(child.text <-- selectedValueBus.events.map(value => s"Currently selected: $value")),
         br(),
         TimePicker(
           _.events.onChange.map(_.target.value) --> selectedValueBus
@@ -26,7 +26,7 @@ object TimePickerExample extends Example("TimePicker") {
       //-- Begin: TimePicker in twelve hours format
       val selectedValueBus: EventBus[String] = new EventBus
       div(
-        Label(_ => child.text <-- selectedValueBus.events.map(value => s"Currently selected: $value")),
+        Label(child.text <-- selectedValueBus.events.map(value => s"Currently selected: $value")),
         br(),
         TimePicker(
           _.formatPattern := "hh:mm:ss a",

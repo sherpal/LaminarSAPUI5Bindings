@@ -56,8 +56,6 @@ object Breadcrumbs extends WebComponent with HasIcon {
     val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Item.Ref]]] = new EventProp("item-click")
   }
 
-  def apply(mods: ModFunction*): Breadcrumbs = tag(mods.map(_(this)): _*)
-
   def Item: BreadcrumbsItem.type = BreadcrumbsItem
 
 }

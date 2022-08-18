@@ -41,6 +41,6 @@ object BreadcrumbsItem extends WebComponent with HasIcon {
 
   lazy val target: ReactiveHtmlAttr[LinkTarget] = customHtmlAttr("target", LinkTarget.AsStringCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(BreadcrumbsItem)): _*)
+  
 
 }

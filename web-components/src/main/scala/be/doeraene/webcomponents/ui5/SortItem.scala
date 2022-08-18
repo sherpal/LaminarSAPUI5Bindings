@@ -40,6 +40,6 @@ object SortItem extends WebComponent with HasText {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(SortItem)): _*)
+  
 
 }

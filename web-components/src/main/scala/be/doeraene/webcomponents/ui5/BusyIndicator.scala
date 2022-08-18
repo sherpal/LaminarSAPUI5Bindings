@@ -45,6 +45,6 @@ object BusyIndicator extends WebComponent with HasText {
   lazy val size: ReactiveHtmlAttr[BusyIndicatorSize] =
     customHtmlAttr[BusyIndicatorSize]("size", BusyIndicatorSize.AsStringCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(BusyIndicator)): _*)
+  
 
 }

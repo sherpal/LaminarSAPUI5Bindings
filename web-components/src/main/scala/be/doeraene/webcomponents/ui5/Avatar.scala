@@ -54,6 +54,6 @@ object Avatar extends WebComponent with HasIcon {
 
   lazy val size: ReactiveHtmlAttr[AvatarSize] = customHtmlAttr("size", AvatarSize.AsStringCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Avatar)): _*)
+  
 
 }

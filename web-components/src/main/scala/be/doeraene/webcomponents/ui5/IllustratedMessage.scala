@@ -50,6 +50,6 @@ object IllustratedMessage extends WebComponent with HasIcon {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(IllustratedMessage)): _*)
+  
 
 }

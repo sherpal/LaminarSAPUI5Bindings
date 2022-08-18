@@ -40,7 +40,7 @@ object ProductSwitch extends WebComponent {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ProductSwitch)): _*)
+  
 
   def item: ProductSwitchItem.type = ProductSwitchItem
 

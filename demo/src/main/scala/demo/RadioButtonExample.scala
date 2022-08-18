@@ -30,7 +30,7 @@ object RadioButtonExample extends Example("RadioButton") {
 
       div(
         h1("Group of states"),
-        Label(_ => child.text <-- selectedValueVar.signal.map(state => s"Selected radio: $state")),
+        Label(child.text <-- selectedValueVar.signal.map(state => s"Selected radio: $state")),
         div(
           display := "flex",
           flexDirection := "column",
@@ -51,13 +51,13 @@ object RadioButtonExample extends Example("RadioButton") {
       //-- Begin: RadioButton with Text Wrapping
       div(
         RadioButton(
-          _ => width := "300px",
+          width := "300px",
           _.text := "ui5-radio-button with 'wrapping-type=Normal' set and some long text",
           _.wrappingType := WrappingType.Normal,
           _.name := "GroupD"
         ),
         RadioButton(
-          _ => width := "200px",
+          width := "200px",
           _.text := "Another ui5-radio-button with very long text here",
           _.wrappingType := WrappingType.Normal,
           _.name := "GroupD"

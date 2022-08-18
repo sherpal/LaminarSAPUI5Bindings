@@ -15,14 +15,13 @@ object PanelExample extends Example("Panel") {
     DemoPanel("Basic Panel")(
       //-- Begin: Basic Panel
       Panel(
-        _ => width := "100%",
+        width := "100%",
         _.headerText := "Both expandable and expanded",
-        _ => h1("I am a native heading!"),
-        _ => Label(_.wrappingType := WrappingType.Normal, _ => "Short text."),
-        _ => br(),
-        _ => Label(_.wrappingType := WrappingType.Normal, _ => "Another text."),
-        _ =>
-          p(
+        h1("I am a native heading!"),
+        Label(_.wrappingType := WrappingType.Normal, "Short text."),
+        br(),
+        Label(_.wrappingType := WrappingType.Normal, "Another text."),
+                  p(
             "Aute ullamco officia fugiat culpa do tempor tempor aute excepteur magna. Quis velit adipisicing excepteur " +
               "do eu duis elit. Sunt ea pariatur nulla est laborum proident sunt labore commodo Lorem laboris nisi Lorem."
           )
@@ -33,11 +32,10 @@ object PanelExample extends Example("Panel") {
       //-- Begin: Panel with List
       Panel(
         _.headerText := "Select your country",
-        _ => width := "100%",
-        _ =>
-          UList(
+        width := "100%",
+                  UList(
             _.mode := ListMode.MultiSelect,
-            _ => countries.map(country => UList.item(_ => country))
+            countries.map(country => UList.item(country))
           )
       )
       //-- End
@@ -47,10 +45,9 @@ object PanelExample extends Example("Panel") {
       Panel(
         _.fixed := true,
         _.headerText := "Country Of Birth",
-        _ =>
-          UList(
+                  UList(
             _.mode := ListMode.SingleSelectBegin,
-            _ => countries.map(country => UList.item(_ => country))
+            countries.map(country => UList.item(country))
           )
       )
       //-- End
@@ -67,20 +64,19 @@ object PanelExample extends Example("Panel") {
       |}
       |""".stripMargin),
         Panel(
-          _ => width := "100%",
+          width := "100%",
           _.slots.header := div(
             className := "header",
             h1("Countries"),
             div(
-              Button(_ => "Edit"),
-              Button(_.design := ButtonDesign.Emphasized, _ => "Add"),
-              Button(_.design := ButtonDesign.Negative, _ => "Remove")
+              Button("Edit"),
+              Button(_.design := ButtonDesign.Emphasized, "Add"),
+              Button(_.design := ButtonDesign.Negative, "Remove")
             )
           ),
-          _ =>
-            UList(
+                      UList(
               _.mode := ListMode.MultiSelect,
-              _ => countries.map(country => UList.item(_ => country))
+              countries.map(country => UList.item(country))
             )
         )
       )

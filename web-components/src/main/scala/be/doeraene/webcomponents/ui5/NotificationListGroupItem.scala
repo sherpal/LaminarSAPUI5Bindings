@@ -64,7 +64,7 @@ object NotificationListGroupItem extends WebComponent {
     val onClose: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("close")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(NotificationListGroupItem)): _*)
+  
 
   def item: NotificationListItem.type = NotificationListItem
 

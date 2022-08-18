@@ -41,7 +41,7 @@ object Card extends WebComponent with HasAccessibleName {
     val header: Slot = new Slot("header")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Card)): _*)
+  
 
   def header: CardHeader.type = CardHeader
 

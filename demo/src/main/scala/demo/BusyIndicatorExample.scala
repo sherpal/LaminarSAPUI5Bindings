@@ -33,20 +33,19 @@ object BusyIndicatorExample extends Example("BusyIndicator") {
       val fetchedData                      = numberOfDataToFetch.map(allData.take)
       val busyStates = EventStream
         .merge(
-          fetchListDataBus.events.map(_ => 1),
-          numberOfDataToFetch.changes.map(_ => -1)
+          fetchListDataBus.events.mapTo(1),
+          numberOfDataToFetch.changes.mapTo(-1)
         )
         .foldLeft(0)(_ + _)
         .map(_ > 0)
       div(
-        div(Button(_ => "Fetch list data", _.events.onClick.mapTo(()) --> fetchListDataBus.writer)),
+        div(Button("Fetch list data", _.events.onClick.mapTo(()) --> fetchListDataBus.writer)),
         div(
           BusyIndicator(
             _.active <-- busyStates,
-            _ =>
-              UList(
-                _ => width := "400px",
-                _ => children <-- fetchedData.map(data => data.map(pieceOfData => UList.item(_ => pieceOfData))),
+            UList(
+                width := "400px",
+                children <-- fetchedData.map(data => data.map(pieceOfData => UList.item(pieceOfData))),
                 _.noDataText := "No Data"
               )
           )
