@@ -32,10 +32,9 @@ object ProductSwitch extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ProductSwitch.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-product-switch")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-product-switch")
 
   object slots {}
 

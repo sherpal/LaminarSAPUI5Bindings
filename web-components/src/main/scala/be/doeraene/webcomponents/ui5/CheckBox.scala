@@ -33,10 +33,9 @@ object CheckBox extends WebComponent with HasIcon with HasAccessibleName with Ha
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = CheckBox.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-checkbox")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-checkbox")
 
   lazy val checked: ReactiveHtmlAttr[Boolean]       = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
   lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)

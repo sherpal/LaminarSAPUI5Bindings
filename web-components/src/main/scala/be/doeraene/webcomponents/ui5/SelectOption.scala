@@ -32,10 +32,9 @@ object SelectOption extends WebComponent with HasIcon with HasAdditionalText wit
     }
   }
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = SelectOption.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-option")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-option")
 
   lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)

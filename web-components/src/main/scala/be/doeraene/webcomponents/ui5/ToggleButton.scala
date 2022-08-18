@@ -36,10 +36,9 @@ object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ToggleButton.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-toggle-button")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-toggle-button")
 
   lazy val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
 

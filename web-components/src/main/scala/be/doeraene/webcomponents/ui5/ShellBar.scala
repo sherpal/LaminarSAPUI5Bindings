@@ -36,10 +36,9 @@ object ShellBar extends WebComponent with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ShellBar.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar")
 
   lazy val primaryTitle: ReactiveHtmlAttr[String] =
     customHtmlAttr("primary-title", StringAsIsCodec)

@@ -49,10 +49,9 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = DateTimePicker.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-datetime-picker")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-datetime-picker")
 
   lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

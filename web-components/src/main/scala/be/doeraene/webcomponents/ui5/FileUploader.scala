@@ -47,10 +47,9 @@ object FileUploader extends WebComponent with HasName with HasValue {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = FileUploader.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-file-uploader")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-file-uploader")
 
   lazy val accept: ReactiveHtmlAttr[List[String]] = customHtmlAttr("accept", ListCodec(StringAsIsCodec))
 

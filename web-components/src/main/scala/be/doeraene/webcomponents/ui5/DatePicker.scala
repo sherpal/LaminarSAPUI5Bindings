@@ -60,10 +60,9 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
   used(RawImport)
   used(Localization)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = DatePicker.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-date-picker")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-date-picker")
 
   lazy val disabled: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)

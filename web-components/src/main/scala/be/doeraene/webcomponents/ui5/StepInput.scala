@@ -42,10 +42,9 @@ object StepInput extends WebComponent with HasAccessibleName with HasName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = StepInput.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-step-input")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-step-input")
 
   lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

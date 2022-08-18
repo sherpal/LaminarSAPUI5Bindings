@@ -33,10 +33,9 @@ object SideNavigation extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = SideNavigation.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-side-navigation")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-side-navigation")
 
   lazy val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("collapsed", BooleanAsAttrPresenceCodec)
 

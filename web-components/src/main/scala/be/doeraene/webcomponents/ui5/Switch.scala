@@ -33,10 +33,9 @@ object Switch extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Switch.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-switch")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-switch")
 
   lazy val textOn: ReactiveHtmlAttr[String]  = customHtmlAttr("text-on", StringAsIsCodec)
   lazy val textOff: ReactiveHtmlAttr[String] = customHtmlAttr("text-off", StringAsIsCodec)

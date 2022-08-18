@@ -33,10 +33,9 @@ object Title extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Title.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-title")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-title")
 
   lazy val level: ReactiveHtmlAttr[TitleLevel]          = customHtmlAttr("level", TitleLevel.AsStringCodec)
   lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)

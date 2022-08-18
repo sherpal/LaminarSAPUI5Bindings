@@ -170,7 +170,7 @@ In the `object`, add the following things:
 - call `used(RawImport)` the line after (this is done to be sure that scala-js actually import the JS dependency)
 - define an alias `type Ref` as `dom.html.Element & RawElement`
 - define an alias `type ModFunction` as `YourObject.type => Mod[ReactiveHtmlElement[Ref]]`
-- define a private `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `private val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
+- define a private `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
 - create an empty object `slots`
 - create an empty object `events`
 - define an apply method as `def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(YourObject)): _*)`

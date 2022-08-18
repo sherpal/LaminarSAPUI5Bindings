@@ -33,10 +33,9 @@ object UList extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = UList.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
 
   lazy val accessibleRole: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-role", StringAsIsCodec)
   lazy val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)

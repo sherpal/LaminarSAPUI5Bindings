@@ -47,10 +47,9 @@ object AvatarGroup extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = AvatarGroup.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-avatar-group")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-avatar-group")
 
   lazy val tpe: ReactiveHtmlAttr[AvatarGroupType] = customHtmlAttr("type", AvatarGroupType.AsStringCodec)
 

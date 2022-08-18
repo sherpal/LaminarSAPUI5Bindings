@@ -25,10 +25,9 @@ object CalendarDate extends WebComponent with HasValue {
     def value: String = js.native
   }
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = CalendarDate.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-date")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-date")
 
   object slots {}
 

@@ -25,9 +25,9 @@ object WizardStep extends WebComponent with HasIcon {
   trait RawElement extends js.Object {}
 
   type Ref         = dom.html.Element with RawElement
-  type ModFunction = WizardStep.type => Mod[ReactiveHtmlElement[Ref]]
+  
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-wizard-step")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-wizard-step")
 
   lazy val branching: ReactiveHtmlAttr[Boolean] = customHtmlAttr("branching", BooleanAsAttrPresenceCodec)
 

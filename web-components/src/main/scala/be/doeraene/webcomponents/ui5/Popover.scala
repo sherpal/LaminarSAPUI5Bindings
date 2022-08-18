@@ -41,10 +41,9 @@ object Popover extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Popover.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-popover")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-popover")
 
   lazy val allowTargetOverlap: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)

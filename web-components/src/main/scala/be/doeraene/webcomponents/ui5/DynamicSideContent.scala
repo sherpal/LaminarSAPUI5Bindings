@@ -39,10 +39,9 @@ object DynamicSideContent extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = DynamicSideContent.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-dynamic-side-content")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-dynamic-side-content")
 
   lazy val equalSplit: ReactiveHtmlAttr[Boolean] = customHtmlAttr("equal-split", BooleanAsAttrPresenceCodec)
 
