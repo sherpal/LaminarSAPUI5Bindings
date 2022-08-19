@@ -20,6 +20,12 @@ trait WebComponent {
 
   protected def tag: HtmlTag[Ref]
 
+  /** Instantiate this component using the specified modifiers.
+    *
+    * Modifiers can be the usual Laminar modifiers, or they can be functions from this component to a modifier. Allowing
+    * these functions is very practical to access the reactive attributes of the component, with the `_.reactiveAttr`
+    * syntax.
+    */
   final def apply(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = tag(
     mods
       .map {
@@ -28,4 +34,11 @@ trait WebComponent {
       }
       .map(_(this)): _*
   )
+
+  /** Same as [[apply]], but accept only [[ModFunction]]s.
+    *
+    * This function is only there for people using the library with Scala 2.13.
+    */
+  final def of(mods: ModFunction*): HtmlElement = tag(mods.map(_(this)): _*)
+
 }

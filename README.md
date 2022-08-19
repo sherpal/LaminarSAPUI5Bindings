@@ -11,7 +11,7 @@ In order to use these bindings within your Scala.js project, you need to add the
 ```scala
 resolvers += "jitpack" at "https://jitpack.io"
 
-// if using scala 2.13
+// if using scala 2.13 (see also warning section below)
 scalacOptions ++= List("-Ytasty-reader")
 
 libraryDependencies ++= List(
@@ -64,6 +64,12 @@ div(
 ```
 
 This will be rendered as an input as documented [here](https://sap.github.io/ui5-webcomponents/playground/components/Input/).
+
+### Remark for Scala 2.13 users
+
+In order to achieve the highest ergonomics possible, the `apply` method of components uses a union type as argument. But this only would completely sacrifice the ability of Scala 2.13 users to use the library.
+
+That is why all components also have an `of` method, only accepting mod functions (as opposed to accepting both mods and mod functions). This reduces the ergonomics a bit for Scala 2.13, but it allows us to move forward.
 
 ### Running the Demo
 
@@ -165,15 +171,14 @@ Fill in the docstring for that object with the contents of the "Overview" sectio
 
 In the `object`, add the following things:
 
+- make the object extends `WebComponent`
 - create a trait `RawElement` extending `js.Object` and annotated with `@js.native`
 - add an object `RawImport` extending `js.Object` and annotated with both `@js.native` and `@JSImport`, specifying the correct import (available in the official docs), setting `JSImport.Default` as second argument
 - call `used(RawImport)` the line after (this is done to be sure that scala-js actually import the JS dependency)
 - define an alias `type Ref` as `dom.html.Element & RawElement`
-- define an alias `type ModFunction` as `YourObject.type => Mod[ReactiveHtmlElement[Ref]]`
-- define a private `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
+- define the protected `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
 - create an empty object `slots`
 - create an empty object `events`
-- define an apply method as ``
 - in the case where your component is linked to other components (for example a `TableCell` is always contained in `TableRow`, so the `TableRow` object will have a reference to the `TableCell` object)
 
 #### Filling the reactive attributes
@@ -257,3 +262,15 @@ object RawElement {
     def colour: Colour = Colour.fromString(rawElement.colourJS)
 }
 ```
+
+#### Making the demos
+
+The best way to make sure that your implementations work, and to also help future users at the same time, is to write a demo for the new component.
+
+In the `demo` subproject, in the `demo` package, create an object `MyComponentExample`, extending `Example` with the SAP name of the component.
+
+You will then need to fill the `component` def. You should make use of the `DemoPanel` and wrapping your example codes in `//-- Begin: name of your demo panel` and `//-- End`. Once your code will be merged on master, it will make the source code directly displayed beneath the examples.
+
+You then need to add your example in the list in the `EntryPoint` in the `demo` package.
+
+For the strucutre, you can take inspiration from the existing other examples. For the content of your demo, you can take inspiration from the official SAP docs.
