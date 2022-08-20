@@ -71,6 +71,18 @@ In order to achieve the highest ergonomics possible, the `apply` method of compo
 
 That is why all components also have an `of` method, only accepting mod functions (as opposed to accepting both mods and mod functions). This reduces the ergonomics a bit for Scala 2.13, but it allows us to move forward.
 
+For you, concretely, instead of having, for example,
+
+```scala
+Input(_.required := true, onChange.mapToValue --> Observer(println))
+```
+
+you will have to write
+
+```scala
+Input.of(_.required := true, _ => onChange.mapToValue --> Observer(println))
+```
+
 ### Running the Demo
 
 The project contains a demo file for each component. These examples are located in the `demo` sub-project.
