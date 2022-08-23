@@ -30,7 +30,7 @@ object ColourPaletteExample extends Example("ColourPalette") {
   ): HtmlElement = div(
     DemoPanel("Colour Palette")(
       //-- Begin: Colour Palette
-      ColourPalette(_ => someColourPaletteItems)
+      ColourPalette(someColourPaletteItems)
       //-- End
     )
   )

@@ -32,10 +32,9 @@ object TabContainer extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = TabContainer.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tabcontainer")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-tabcontainer")
 
   lazy val disabled: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val collapsed: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
@@ -61,7 +60,7 @@ object TabContainer extends WebComponent {
     val onTabSelect: EventProp[dom.Event & HasDetail[TabSelectDetail]] = new EventProp("tab-select")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TabContainer)): _*)
+  
 
   def tab: Tab.type = Tab
 

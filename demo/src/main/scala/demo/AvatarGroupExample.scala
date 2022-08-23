@@ -13,7 +13,7 @@ object AvatarGroupExample extends Example("AvatarGroup") {
       //-- Begin: Avatar Group - type 'Individual'
       AvatarGroup(
         _.tpe := AvatarGroupType.Individual,
-        _ => IconName.allValues.take(5).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
+        IconName.allValues.take(5).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
       )
       //-- End
     },
@@ -21,7 +21,7 @@ object AvatarGroupExample extends Example("AvatarGroup") {
       //-- Begin: Avatar Group - type 'Group'
       AvatarGroup(
         _.tpe := AvatarGroupType.Group,
-        _ => IconName.allValues.take(5).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
+        IconName.allValues.take(5).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
       )
       //-- End
     },
@@ -35,14 +35,14 @@ object AvatarGroupExample extends Example("AvatarGroup") {
       div(
         AvatarGroup(
           _.tpe := AvatarGroupType.Individual,
-          _ => allAvatars,
-          _ => width := "400px",
+          allAvatars,
+          width := "400px",
           _.events.onClick.map(_.target.hiddenItems.length).map(allAvatars.takeRight) --> avatarsForPopoverBus.writer,
           _.events.onClick.filter(_.detail.overflowButtonClicked).map(_.detail.targetRef) --> popoverOpenerBus.writer
         ),
         Popover(
           _.showAtFromEvents(popoverOpenerBus.events),
-          _ => children <-- avatarsForPopoverBus
+          children <-- avatarsForPopoverBus
         )
       )
       //-- End

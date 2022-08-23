@@ -40,8 +40,8 @@ object ProgressIndicatorExample extends Example("ProgressIndicator") {
     DemoPanel("Progress Indicator With Custom Sizes")(
       //-- Begin: Progress Indicator With Custom Sizes
       div(
-        ProgressIndicator(_.value := 25, _ => height := "50px", _ => width := "200px"),
-        ProgressIndicator(_.value := 75, _ => height := "50px", _ => width := "200px")
+        ProgressIndicator(_.value := 25, height := "50px", width := "200px"),
+        ProgressIndicator(_.value := 75, height := "50px", width := "200px")
       )
       //-- End
     )

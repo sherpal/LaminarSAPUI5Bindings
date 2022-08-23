@@ -14,11 +14,11 @@ trait Example(val name: String) {
   ): HtmlElement
 
   def completeComponent = div(
-    Title(_.level := TitleLevel.H1, _ => name),
+    Title(_.level := TitleLevel.H1, name),
     div(
       "You can see the source code ",
       Link(
-        _ => "here",
+        "here",
         _.href := s"https://github.com/sherpal/LaminarSAPUI5Bindings/tree/master/demo/src/main/scala/demo/${name}Example.scala",
         _.target := LinkTarget._blank
       ),
@@ -33,7 +33,7 @@ trait Example(val name: String) {
   )
 
   def missing: HtmlElement = MessageStrip(
-    _ => s"$name is currently missing. Don't hesitate to contribue!",
+    s"$name is currently missing. Don't hesitate to contribue!",
     _.design := MessageStripDesign.Negative,
     _.hideCloseButton := true
   )
@@ -50,7 +50,7 @@ trait Example(val name: String) {
 
   def mtgImageWarning = MessageStrip(
     _.design := MessageStripDesign.Warning,
-    _ => "All images displayed on this page are the property of Wizard of the Coast."
+    "All images displayed on this page are the property of Wizard of the Coast."
   )
 
 }

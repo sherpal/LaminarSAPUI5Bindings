@@ -34,10 +34,9 @@ object ComboBoxItem extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ComboBoxItem.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-item")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-item")
 
   lazy val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
   lazy val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
@@ -46,6 +45,6 @@ object ComboBoxItem extends WebComponent {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ComboBoxItem)): _*)
+  
 
 }

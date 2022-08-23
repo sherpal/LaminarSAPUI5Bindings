@@ -33,10 +33,9 @@ object MultiComboBox extends WebComponent with HasAccessibleName with HasValue {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = MultiComboBox.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-multi-combobox")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-multi-combobox")
 
   lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val filter: ReactiveHtmlAttr[ComboBoxFilter] = customHtmlAttr("filter", ComboBoxFilter.AsStringCodec)
@@ -61,7 +60,7 @@ object MultiComboBox extends WebComponent with HasAccessibleName with HasValue {
     )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MultiComboBox)): _*)
+  
 
   def item: MultiComboBoxItem.type       = MultiComboBoxItem
   def group: MultiComboBoxGroupItem.type = MultiComboBoxGroupItem

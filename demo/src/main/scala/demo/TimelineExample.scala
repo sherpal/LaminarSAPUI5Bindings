@@ -25,13 +25,13 @@ object TimelineExample extends Example("Timeline") {
           _.titleText := "Weekly Sync - CP Design",
           _.subtitleText := "27.07.2022 (11:00 - 12:30)",
           _.icon := IconName.calendar,
-          _ => div("MR SOF02 2.43")
+          div("MR SOF02 2.43")
         ),
         _.item(
           _.titleText := "Video Converence Call - UI5",
           _.subtitleText := "31.01.2023 (12:00 - 13:00)",
           _.icon := IconName.calendar,
-          _ => div("Online meeting")
+          div("Online meeting")
         )
       )
       //-- End
@@ -51,13 +51,13 @@ object TimelineExample extends Example("Timeline") {
           _.titleText := "Weekly Sync - CP Design",
           _.subtitleText := "27.07.2022 (11:00 - 12:30)",
           _.icon := IconName.calendar,
-          _ => div("MR SOF02 2.43")
+          div("MR SOF02 2.43")
         ),
         _.item(
           _.titleText := "Video Converence Call - UI5",
           _.subtitleText := "31.01.2023 (12:00 - 13:00)",
           _.icon := IconName.calendar,
-          _ => div("Online meeting")
+          div("Online meeting")
         )
       )
       //-- End

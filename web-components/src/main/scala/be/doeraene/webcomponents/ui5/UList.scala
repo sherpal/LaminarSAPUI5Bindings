@@ -33,10 +33,9 @@ object UList extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = UList.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
 
   lazy val accessibleRole: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-role", StringAsIsCodec)
   lazy val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
@@ -85,7 +84,7 @@ object UList extends WebComponent with HasAccessibleName {
     val header: Slot = new Slot("header")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(UList)): _*)
+  
 
   @deprecated("Li was a badly designed name. Use `item` instead", "15/08/2022")
   def Li: ListItem.type = ListItem

@@ -16,7 +16,7 @@ object AvatarExample extends Example("Avatar") {
   ): HtmlElement = div(
     DemoPanel("Basic examples") {
       //-- Begin: Basic examples
-      div(Avatar(_ => sherpal), Avatar(_.shape := AvatarShape.Square, _ => sherpal))
+      div(Avatar(sherpal), Avatar(_.shape := AvatarShape.Square, sherpal))
       //-- End
     },
     DemoPanel("Avatar sizes") {
@@ -24,7 +24,7 @@ object AvatarExample extends Example("Avatar") {
       div(
         AvatarSize.allValues
           .zip(MTG.manaSymbolsShortNames)
-          .map((size, mana) => Avatar(_.size := size, _ => manaSymbolImage(mana)))
+          .map((size, mana) => Avatar(_.size := size, manaSymbolImage(mana)))
       )
       //-- End
     },

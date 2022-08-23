@@ -34,10 +34,9 @@ object Menu extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Menu.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-menu")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-menu")
 
   lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("headerText", StringAsIsCodec)
 
@@ -51,7 +50,7 @@ object Menu extends WebComponent {
     val onItemClick = new EventProp[dom.Event & HasDetail[ItemClickDetail]]("item-click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Menu)): _*)
+  
 
   def getMenuById(menuId: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(menuId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])

@@ -14,7 +14,7 @@ object TreeExample extends Example("Tree") {
     DemoPanel("Basic Tree")(
       //-- Begin: Basic Tree
       Tree(
-        _ => width := "100%",
+        width := "100%",
         _.item(
           _.expanded := true,
           _.text := "Tree 1",
@@ -34,7 +34,7 @@ object TreeExample extends Example("Tree") {
           _.item(
             _.text := "Tree 2.1",
             _.item(_.text := "Tree 2.1.1"),
-            _.item(_.text := "Tree 2.1.2", _ => (1 to 4).toList.map(j => Tree.item(_.text := s"Tree 2.1.2.$j")))
+            _.item(_.text := "Tree 2.1.2", (1 to 4).toList.map(j => Tree.item(_.text := s"Tree 2.1.2.$j")))
           )
         ),
         _.item(
@@ -50,7 +50,7 @@ object TreeExample extends Example("Tree") {
         _.mode := ListMode.MultiSelect,
         _.events.onSelectionChange
           .map(_.detail.selectedItems) --> Observer[List[TreeItem.Ref]](_.foreach(dom.console.log(_))),
-        _ => width := "100%",
+        width := "100%",
         _.item(
           _.expanded := true,
           _.text := "Tree 1",
@@ -70,7 +70,7 @@ object TreeExample extends Example("Tree") {
           _.item(
             _.text := "Tree 2.1",
             _.item(_.text := "Tree 2.1.1"),
-            _.item(_.text := "Tree 2.1.2", _ => (1 to 4).toList.map(j => Tree.item(_.text := s"Tree 2.1.2.$j")))
+            _.item(_.text := "Tree 2.1.2", (1 to 4).toList.map(j => Tree.item(_.text := s"Tree 2.1.2.$j")))
           )
         ),
         _.item(

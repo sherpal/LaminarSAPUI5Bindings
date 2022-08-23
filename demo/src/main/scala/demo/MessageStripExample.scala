@@ -22,7 +22,7 @@ object MessageStripExample extends Example("MessageStrip") {
               .startWith(
                 MessageStrip(
                   _.design := design,
-                  _ => s"${design.value} MessageStrip",
+                  s"${design.value} MessageStrip",
                   _.events.onClose.mapTo(()) --> closeBus.writer
                 )
               )
@@ -38,7 +38,7 @@ object MessageStripExample extends Example("MessageStrip") {
           MessageStrip(
             _.hideCloseButton := true,
             _.design := design,
-            _ => s"${design.value} MessageStrip with No Close Button"
+            s"${design.value} MessageStrip with No Close Button"
           )
         )
       )
@@ -55,7 +55,7 @@ object MessageStripExample extends Example("MessageStrip") {
               .startWith(
                 MessageStrip(
                   _.design := design,
-                  _ => s"${design.value} MessageStrip",
+                  s"${design.value} MessageStrip",
                   _.events.onClose.mapTo(()) --> closeBus.writer,
                   _.hideIcon := true
                 )
@@ -70,11 +70,11 @@ object MessageStripExample extends Example("MessageStrip") {
       val clickedBus: EventBus[Unit] = new EventBus
       val numberOfClicks             = clickedBus.events.mapTo(1).foldLeft(0)(_ + _).changes
       div(
-        Button(_ => "Generate MessageStrip", _.events.onClick.mapTo(()) --> clickedBus.writer),
+        Button("Generate MessageStrip", _.events.onClick.mapTo(()) --> clickedBus.writer),
         child <-- numberOfClicks.map(count =>
           MessageStrip(
             _.design := MessageStripDesign.allValues(count % MessageStripDesign.allValues.size),
-            _ => s"You clicked $count times.",
+            s"You clicked $count times.",
             _.hideCloseButton := true
           )
         )
@@ -86,34 +86,34 @@ object MessageStripExample extends Example("MessageStrip") {
       div(
         MessageStrip(
           _.design := MessageStripDesign.Information,
-          _ => width := "300px",
+          width := "300px",
           _.hideIcon := true,
           _.hideCloseButton := true,
-          _ => "You have new message"
+          "You have new message"
         ),
         MessageStrip(
           _.design := MessageStripDesign.Positive,
-          _ => width := "300px",
+          width := "300px",
           _.hideCloseButton := true,
-          _ => "Successful login!"
+          "Successful login!"
         ),
         MessageStrip(
           _.design := MessageStripDesign.Negative,
-          _ => width := "300px",
+          width := "300px",
           _.hideIcon := true,
-          _ => "Access denied!"
+          "Access denied!"
         ),
-        MessageStrip(_.design := MessageStripDesign.Warning, _ => width := "300px", _ => "Update is required"),
+        MessageStrip(_.design := MessageStripDesign.Warning, width := "300px", "Update is required"),
         MessageStrip(
           _.design := MessageStripDesign.Warning,
-          _ => width := "300px",
+          width := "300px",
           _.slots.icon := Icon(_.name := IconName.palette),
-          _ => "Custom Icon"
+          "Custom Icon"
         ),
         MessageStrip(
           _.design := MessageStripDesign.Positive,
-          _ => width := "300px",
-          _ => "Custom animated icon",
+          width := "300px",
+          "Custom animated icon",
           _.slots.icon := img(
             src := "https://sap.github.io/ui5-webcomponents/assets/images/loading.gif",
             width := "16px",

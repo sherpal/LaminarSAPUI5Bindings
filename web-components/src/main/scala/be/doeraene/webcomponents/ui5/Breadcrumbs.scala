@@ -33,8 +33,7 @@ object Breadcrumbs extends WebComponent with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = this.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
   opaque type Breadcrumbs = HtmlElement
   object Breadcrumbs {
@@ -43,7 +42,7 @@ object Breadcrumbs extends WebComponent with HasIcon {
     }
   }
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-breadcrumbs")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-breadcrumbs")
 
   lazy val separatorStyle: ReactiveHtmlAttr[BreadcrumbsSeparatorStyle] =
     customHtmlAttr("separator-style", BreadcrumbsSeparatorStyle.AsStringCodec)
@@ -56,8 +55,6 @@ object Breadcrumbs extends WebComponent with HasIcon {
   object events {
     val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Item.Ref]]] = new EventProp("item-click")
   }
-
-  def apply(mods: ModFunction*): Breadcrumbs = tag(mods.map(_(this)): _*)
 
   def Item: BreadcrumbsItem.type = BreadcrumbsItem
 

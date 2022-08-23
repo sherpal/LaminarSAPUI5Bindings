@@ -32,10 +32,9 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ShellBarItem.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar-item")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar-item")
 
   lazy val count: HtmlAttr[String] = customHtmlAttr("count", StringAsIsCodec)
 
@@ -46,6 +45,6 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
       new EventProp("click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ShellBarItem)): _*)
+  
 
 }

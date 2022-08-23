@@ -42,10 +42,9 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ResponsivePopover.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-responsive-popover")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-responsive-popover")
 
   lazy val allowTargetOverlap: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
@@ -96,7 +95,7 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
     val onBeforeOpen: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("before-open")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ResponsivePopover)): _*)
+  
 
   def getResponsivePopoverById(id: String): Option[Ref] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])

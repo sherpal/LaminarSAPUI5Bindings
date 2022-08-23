@@ -34,10 +34,9 @@ object BusyIndicator extends WebComponent with HasText {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = BusyIndicator.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-busy-indicator")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-busy-indicator")
 
   lazy val active: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
 
@@ -46,6 +45,6 @@ object BusyIndicator extends WebComponent with HasText {
   lazy val size: ReactiveHtmlAttr[BusyIndicatorSize] =
     customHtmlAttr[BusyIndicatorSize]("size", BusyIndicatorSize.AsStringCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(BusyIndicator)): _*)
+  
 
 }

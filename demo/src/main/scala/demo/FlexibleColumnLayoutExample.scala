@@ -21,12 +21,12 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
       val maybeSelectedCardVar = Var(Option.empty[Card])
 
       def startColumnListItem(card: Card): HtmlElement = UList.item(
-        _ => card.name,
+        card.name,
         _.description := card.tpe,
         _.additionalText := s"Cost: ${card.cost}",
         _.iconEnd := true,
         _.icon := IconName.`slim-arrow-right`,
-        _ => dataAttr("card-name") := card.name
+        dataAttr("card-name") := card.name
       )
 
       def cardFromName(name: String): Option[Card] = cards.find(_.name == name)
@@ -52,9 +52,9 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
           _.slots.startColumn := div(
             ShellBar(_.primaryTitle := "Magic"),
             UList(
-              _ => height := "500px",
+              height := "500px",
               _.headerText := "Power Nine",
-              _ => cards.filter(_.comment == "Power Nine").map(startColumnListItem),
+              cards.filter(_.comment == "Power Nine").map(startColumnListItem),
               _.events.onItemClick
                 .map(event =>
                   for {
@@ -72,7 +72,7 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
                 Button(
                   _.icon := IconName.`slim-arrow-left`,
                   _.events.onClick.mapTo(Option.empty[Card]) --> maybeSelectedCardVar.writer,
-                  _ => marginRight := "1em",
+                  marginRight := "1em",
                   _.design := ButtonDesign.Transparent
                 ),
                 h1(card.name)
@@ -80,8 +80,7 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
               img(src := MTG.cardImages(card.name))
             )
           },
-          _ =>
-            maybeSelectedCardVar.signal.changes.map(maybeCard =>
+                      maybeSelectedCardVar.signal.changes.map(maybeCard =>
               if maybeCard.isDefined then FCLLayout.TwoColumnsMidExpanded else FCLLayout.OneColumn
             ) --> layoutBus.writer
         )

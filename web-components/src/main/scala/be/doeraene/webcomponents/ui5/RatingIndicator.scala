@@ -37,10 +37,9 @@ object RatingIndicator extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = RatingIndicator.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-rating-indicator")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-rating-indicator")
 
   lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
   lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
@@ -54,6 +53,6 @@ object RatingIndicator extends WebComponent {
     val onChange = new EventProp[EventWithPreciseTarget[Ref]]("change")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(RatingIndicator)): _*)
+  
 
 }

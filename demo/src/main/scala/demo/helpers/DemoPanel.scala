@@ -28,7 +28,7 @@ object DemoPanel {
           border := "0.0625rem solid #C1C1C1",
           backgroundColor := "#f5f6fa",
           padding := "1rem",
-          Title.h3(_ => "Source code"),
+          Title.h3("Source code"),
           pre(
             code(
               className := "language-scala",

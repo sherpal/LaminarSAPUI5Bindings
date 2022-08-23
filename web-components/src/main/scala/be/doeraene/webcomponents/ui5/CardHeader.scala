@@ -30,10 +30,9 @@ object CardHeader extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = CardHeader.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-card-header")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-card-header")
 
   lazy val interactive: ReactiveHtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
 
@@ -53,6 +52,6 @@ object CardHeader extends WebComponent {
     val onClick: EventProp[dom.MouseEvent] = new EventProp("click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(CardHeader)): _*)
+  
 
 }

@@ -36,10 +36,9 @@ object Tree extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Tree.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-tree")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-tree")
 
   lazy val footerText: ReactiveHtmlAttr[String] = customHtmlAttr("footer-text", StringAsIsCodec)
   lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
@@ -87,7 +86,7 @@ object Tree extends WebComponent {
     val header: Slot = new Slot("header")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Tree)): _*)
+  
 
   def item: TreeItem.type = TreeItem
 

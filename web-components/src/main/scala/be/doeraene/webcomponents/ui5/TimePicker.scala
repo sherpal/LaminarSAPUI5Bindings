@@ -49,10 +49,9 @@ object TimePicker extends WebComponent with HasValue {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = TimePicker.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-time-picker")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-time-picker")
 
   lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
@@ -73,6 +72,6 @@ object TimePicker extends WebComponent with HasValue {
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(TimePicker)): _*)
+  
 
 }

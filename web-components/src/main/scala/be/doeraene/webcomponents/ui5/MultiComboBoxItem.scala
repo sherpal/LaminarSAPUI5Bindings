@@ -34,10 +34,9 @@ object MultiComboBoxItem extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = MultiComboBoxItem.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-mcb-item")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-mcb-item")
 
   lazy val selected: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
   lazy val text: ReactiveHtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
@@ -47,6 +46,6 @@ object MultiComboBoxItem extends WebComponent {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MultiComboBoxItem)): _*)
+  
 
 }

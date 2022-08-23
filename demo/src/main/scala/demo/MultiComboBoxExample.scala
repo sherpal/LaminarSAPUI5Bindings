@@ -25,9 +25,8 @@ object MultiComboBoxExample extends Example("MultiComboBox") {
       //-- Begin: MultiComboBox with items
       MultiComboBox(
         _.placeholder := "Choose your countries",
-        _ => width := "500px",
-        _ =>
-          countries.zipWithIndex.map((country, index) =>
+        width := "500px",
+                  countries.zipWithIndex.map((country, index) =>
             MultiComboBox.item(_.text := country, _.selected := (index == 0))
           )
       )
@@ -37,10 +36,9 @@ object MultiComboBoxExample extends Example("MultiComboBox") {
       //-- Begin: MultiComboBox with free text input
       MultiComboBox(
         _.placeholder := "Choose your countries",
-        _ => width := "500px",
+        width := "500px",
         _.allowCustomValues := true,
-        _ =>
-          countries.zipWithIndex.map((country, index) =>
+                  countries.zipWithIndex.map((country, index) =>
             MultiComboBox.item(_.text := country, _.selected := (index % 3 == 0))
           )
       )
@@ -53,7 +51,7 @@ object MultiComboBoxExample extends Example("MultiComboBox") {
           (valueState, index) =>
             MultiComboBox(
               _.valueState := valueState,
-              _ => countries.drop(index * 3).take(3).map(country => MultiComboBox.item(_.text := country))
+              countries.drop(index * 3).take(3).map(country => MultiComboBox.item(_.text := country))
             )
         }
       )

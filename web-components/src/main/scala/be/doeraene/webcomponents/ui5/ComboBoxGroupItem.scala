@@ -35,15 +35,14 @@ object ComboBoxGroupItem extends WebComponent with HasText {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ComboBoxGroupItem.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-group-item")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-group-item")
 
   object slots {}
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ComboBoxGroupItem)): _*)
+  
 
 }
