@@ -8,16 +8,14 @@ import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 object CarouselExample extends Example("Carousel") {
 
   //-- Begin Common
-  private def threeMagicWallpapers: List[Carousel.ModFunction] = List(
-    _ =>
-      img(
-        src := "https://media.magic.wizards.com/images/wallpaper/senseis-divining-top-2x2-background-1280x960.jpg"
-      ),
-    _ => img(src := "https://media.magic.wizards.com/images/wallpaper/mana-vault-2x2-background-1280x960.jpg"),
-    _ =>
-      img(
-        src := "https://media.magic.wizards.com/images/wallpaper/sparas_headquarters_kieran_yanner_1280x960_poozxbqpcw.jpg"
-      )
+  private def threeMagicWallpapers = List(
+    img(
+      src := "https://media.magic.wizards.com/images/wallpaper/senseis-divining-top-2x2-background-1280x960.jpg"
+    ),
+    img(src := "https://media.magic.wizards.com/images/wallpaper/mana-vault-2x2-background-1280x960.jpg"),
+    img(
+      src := "https://media.magic.wizards.com/images/wallpaper/sparas_headquarters_kieran_yanner_1280x960_poozxbqpcw.jpg"
+    )
   )
   //-- End Common
 
@@ -40,7 +38,7 @@ object CarouselExample extends Example("Carousel") {
         _.itemsPerPageS := 1,
         _.itemsPerPageM := 2,
         _.itemsPerPageL := 2,
-        _ => MTG.manaSymbolsShortNames.map(name => img(src := MTG.manaSymbolsRefs(name), alt := name))
+        MTG.manaSymbolsShortNames.map(name => img(src := MTG.manaSymbolsRefs(name), alt := name))
       )
       //-- End
     ),

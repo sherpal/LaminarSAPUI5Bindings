@@ -17,14 +17,14 @@ object ToastExample extends Example("Toast") {
       val toastBus: EventBus[Unit] = new EventBus
 
       div(
-        Button(_ => "Basic Toast", _.events.onClick.mapTo(()) --> toastBus.writer),
+        Button("Basic Toast", _.events.onClick.mapTo(()) --> toastBus.writer),
         Toast(
-          _ => inContext(el => toastBus.events.mapTo(()) --> Observer[Unit](_ => el.ref.show())),
-          _ => "Basic Toast"
+          inContext(el => toastBus.events.mapTo(()) --> Observer[Unit](_ => el.ref.show())),
+          "Basic Toast"
         ),
         MessageStrip(
           _.design := MessageStripDesign.Information,
-          _ => "This toast pops up thanks to the click event going through an EventBus."
+          "This toast pops up thanks to the click event going through an EventBus."
         )
       )
       //-- End
@@ -36,7 +36,7 @@ object ToastExample extends Example("Toast") {
 
       div(
         Button(
-          _ => "Short Toast",
+          "Short Toast",
           _.events.onClick.mapTo(Toast.getToastById(shortToastId)) --> Observer[Option[Toast.Ref]] {
             case Some(toast) => toast.show()
             case None => throw new IllegalStateException(s"The dom does not contain any toast with id $shortToastId")
@@ -46,10 +46,10 @@ object ToastExample extends Example("Toast") {
           _.id := shortToastId,
           _.duration := 1500.millis,
           _.placement := ToastPlacement.BottomStart,
-          _ => "Short Toast"
+          "Short Toast"
         ),
         Button(
-          _ => "Long Toast",
+          "Long Toast",
           _.events.onClick.mapTo(Toast.getToastById(longToastId)) --> Observer[Option[Toast.Ref]] {
             case Some(toast) => toast.show()
             case None => throw new IllegalStateException(s"The dom does not contain any toast with id $longToastId")
@@ -59,11 +59,11 @@ object ToastExample extends Example("Toast") {
           _.id := longToastId,
           _.duration := 4500.millis,
           _.placement := ToastPlacement.BottomEnd,
-          _ => "Long Toast"
+          "Long Toast"
         ),
         MessageStrip(
           _.design := MessageStripDesign.Information,
-          _ => "These toasts pops up by grabbing their reference using the Toast.getToastById function."
+          "These toasts pops up by grabbing their reference using the Toast.getToastById function."
         )
       )
       //-- End
@@ -75,11 +75,11 @@ object ToastExample extends Example("Toast") {
           val toastBus: EventBus[Unit] = new EventBus
 
           List(
-            Button(_ => placement.value, _.events.onClick.mapTo(()) --> toastBus.writer),
+            Button(placement.value, _.events.onClick.mapTo(()) --> toastBus.writer),
             Toast(
               _.placement := placement,
-              _ => inContext(el => toastBus.events.mapTo(()) --> Observer[Unit](_ => el.ref.show())),
-              _ => placement.value
+              inContext(el => toastBus.events.mapTo(()) --> Observer[Unit](_ => el.ref.show())),
+              placement.value
             )
           )
         }

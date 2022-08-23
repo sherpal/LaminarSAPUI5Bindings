@@ -19,19 +19,18 @@ object ResponsivePopoverExample extends Example("ResponsivePopover") {
       div(
         Button(
           _.design := ButtonDesign.Emphasized,
-          _ => "Open Popover",
+          "Open Popover",
           _.events.onClick.map(_.target) --> openPopoverBus.writer
         ),
         ResponsivePopover(
           _.showAtFromEvents(openPopoverBus.events),
           _.closeFromEvents(closePopoverBus.events),
           _.headerText := "Newsletter subscription",
-          _ =>
-            div(
+                      div(
               className := loginFormClass,
               styleTagForLoginFormClass,
               div(
-                Label(_.forId := "emailInput", _.required := true, _ => "Email"),
+                Label(_.forId := "emailInput", _.required := true, "Email"),
                 Input(_.id := "emailInput", _.placeholder := "Enter Email", _.tpe := InputType.Email)
               )
             ),
@@ -39,7 +38,7 @@ object ResponsivePopoverExample extends Example("ResponsivePopover") {
             div(flex := "1"),
             Button(
               _.design := ButtonDesign.Emphasized,
-              _ => "Subscribe",
+              "Subscribe",
               _.events.onClick.mapTo(()) --> closePopoverBus.writer
             )
           )

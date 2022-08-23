@@ -33,10 +33,9 @@ object Title extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Title.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-title")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-title")
 
   lazy val level: ReactiveHtmlAttr[TitleLevel]          = customHtmlAttr("level", TitleLevel.AsStringCodec)
   lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
@@ -45,24 +44,34 @@ object Title extends WebComponent {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Title)): _*)
-
   /** Creates Title of H1 level. */
-  def h1(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H1): _*)
+  def h1(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = apply(
+    mods :+ (_.level := TitleLevel.H1): _*
+  )
 
   /** Creates Title of H2 level. */
-  def h2(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H2): _*)
+  def h2(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = apply(
+    mods :+ (_.level := TitleLevel.H2): _*
+  )
 
   /** Creates Title of H3 level. */
-  def h3(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H3): _*)
+  def h3(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = apply(
+    mods :+ (_.level := TitleLevel.H3): _*
+  )
 
   /** Creates Title of H4 level. */
-  def h4(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H4): _*)
+  def h4(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = apply(
+    mods :+ (_.level := TitleLevel.H4): _*
+  )
 
   /** Creates Title of H4 level. */
-  def h5(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H5): _*)
+  def h5(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = apply(
+    mods :+ (_.level := TitleLevel.H5): _*
+  )
 
   /** Creates Title of H6 level. */
-  def h6(mods: ModFunction*): HtmlElement = apply(mods :+ (_.level := TitleLevel.H6): _*)
+  def h6(mods: (ModFunction | Mod[ReactiveHtmlElement[Ref]])*): HtmlElement = apply(
+    mods :+ (_.level := TitleLevel.H6): _*
+  )
 
 }

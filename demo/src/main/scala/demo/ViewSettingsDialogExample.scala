@@ -13,8 +13,7 @@ object ViewSettingsDialogExample extends Example("ViewSettingsDialog") {
   ): HtmlElement = div(
     MessageStrip(
       _.design := MessageStripDesign.Information,
-      _ =>
-        "Using the ViewSettingsDialog is straightforward on paper as shown below. However, don't be fooled. You still" +
+              "Using the ViewSettingsDialog is straightforward on paper as shown below. However, don't be fooled. You still" +
           " need to process by hand whatever it spits out. Given it's dynamic nature, it's not as trivial as it " +
           "may seem. (But perhaps adding some magic on top would make it more delightful to use.)"
     ),
@@ -23,7 +22,7 @@ object ViewSettingsDialogExample extends Example("ViewSettingsDialog") {
       val settingsBus: EventBus[ViewSettingsDialog.ViewSettings] = new EventBus
       val showSettingsDialogBus: EventBus[Unit]                  = new EventBus
       div(
-        Button(_ => "Open ViewSettingsDialog", _.events.onClick.mapTo(()) --> showSettingsDialogBus.writer),
+        Button("Open ViewSettingsDialog", _.events.onClick.mapTo(()) --> showSettingsDialogBus.writer),
         ViewSettingsDialog(
           _.showFromEvents(showSettingsDialogBus.events),
           _.events.onCancel.map(_.detail) --> settingsBus.writer,

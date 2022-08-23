@@ -16,8 +16,7 @@ object RangeSliderExample extends Example("RangeSlider") {
       val endValueVar: Var[Double]   = Var(20)
 
       div(
-        Label(_ =>
-          child.text <-- startValueVar.signal
+        Label(          child.text <-- startValueVar.signal
             .combineWith(endValueVar.signal)
             .map((start, end) => s"Currently selected range: ($start, $end)")
         ),

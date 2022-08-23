@@ -31,10 +31,9 @@ object Icon extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Icon.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-icon")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-icon")
 
   lazy val name: ReactiveHtmlAttr[IconName] = customHtmlAttr("name", IconName.AsStringCodec)
 
@@ -44,6 +43,6 @@ object Icon extends WebComponent with HasAccessibleName {
   lazy val showTooltip: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Icon)): _*)
+  
 
 }

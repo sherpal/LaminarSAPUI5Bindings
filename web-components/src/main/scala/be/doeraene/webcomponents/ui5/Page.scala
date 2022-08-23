@@ -31,10 +31,9 @@ object Page extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Page.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-page")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-page")
 
   lazy val backgroundDesign: ReactiveHtmlAttr[PageBackgroundDesign] =
     customHtmlAttr("background-design", PageBackgroundDesign.AsStringCodec)
@@ -55,6 +54,6 @@ object Page extends WebComponent {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Page)): _*)
+  
 
 }

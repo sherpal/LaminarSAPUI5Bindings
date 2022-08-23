@@ -14,16 +14,15 @@ object PageExample extends Example("Page") {
       //-- Begin: Page with floating footer
       Page(
         _.floatingFooter := true,
-        _ => height := "500px",
-        _ => width := "500px",
+        height := "500px",
+        width := "500px",
         _.slots.header := Bar(
           _.design := BarDesign.Header,
           _.slots.startContent := Button(_.tooltip := "Go Home", _.icon := IconName.home),
           _.slots.endContent := Button(_.tooltip := "Settings", _.icon := IconName.`action-settings`),
-          _ => "Page Title"
+          "Page Title"
         ),
-        _ =>
-          div(
+                  div(
             overflowY := "auto",
             p(
               "103.3. Each player begins the game with a starting life total of 20. Some variant games have different starting life totals."
@@ -41,9 +40,9 @@ object PageExample extends Example("Page") {
         _.slots.footer := Bar(
           _.design := BarDesign.FloatingFooter,
           _.slots.startContent := Button(_.design := ButtonDesign.Transparent, _.icon := IconName.home),
-          _.slots.endContent := Button(_.design := ButtonDesign.Positive, _ => "Accept"),
-          _.slots.endContent := Button(_.design := ButtonDesign.Negative, _ => "Reject"),
-          _.slots.endContent := Button(_.design := ButtonDesign.Transparent, _ => "Cancel")
+          _.slots.endContent := Button(_.design := ButtonDesign.Positive, "Accept"),
+          _.slots.endContent := Button(_.design := ButtonDesign.Negative, "Reject"),
+          _.slots.endContent := Button(_.design := ButtonDesign.Transparent, "Cancel")
         )
       )
       //-- End

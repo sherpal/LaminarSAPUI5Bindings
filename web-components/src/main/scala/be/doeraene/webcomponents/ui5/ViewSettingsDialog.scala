@@ -42,10 +42,9 @@ object ViewSettingsDialog extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ViewSettingsDialog.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-view-settings-dialog")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-view-settings-dialog")
 
   lazy val sortDescending: ReactiveHtmlAttr[Boolean] = customHtmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
 
@@ -86,7 +85,7 @@ object ViewSettingsDialog extends WebComponent {
     )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ViewSettingsDialog)): _*)
+  
 
   /** Feed an instance of [[ViewSettingsDialog]] ref to this observer in order to show it. */
   val showObserver: Observer[Ref] = Observer(_.show())

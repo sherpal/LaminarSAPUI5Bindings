@@ -37,10 +37,9 @@ object NotificationListItem extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = NotificationListItem.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-notification")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-notification")
 
   lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
@@ -66,7 +65,7 @@ object NotificationListItem extends WebComponent {
     val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(NotificationListItem)): _*)
+  
 
   def action: NotificationAction.type = NotificationAction
 

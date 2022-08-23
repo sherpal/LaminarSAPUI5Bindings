@@ -13,8 +13,7 @@ object DatePickerExample extends Example("DatePicker") {
   ): HtmlElement = div(
     MessageStrip(
       _.design := MessageStripDesign.Warning,
-      _ =>
-        "Note: you must provide an implementation for java.time classes in order to use the DatePicker. " +
+              "Note: you must provide an implementation for java.time classes in order to use the DatePicker. " +
           "For example using the scala-java-time library."
     ),
     DemoPanel("Basic DatePicker")(

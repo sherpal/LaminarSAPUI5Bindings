@@ -12,22 +12,22 @@ object LabelExample extends Example("Label") {
   ): HtmlElement = div(
     DemoPanel("Basic Label")(
       //-- Begin: Basic label
-      Label(_ => "Simple Label")
+      Label("Simple Label")
       //-- End
     ),
     DemoPanel("Required Label")(
       //-- Begin: Required Label
-      Label(_ => "Required Label", _.required := true)
+      Label("Required Label", _.required := true)
       //-- End
     ),
     DemoPanel("Required Label With Colon")(
       //-- Begin: Required Label With Colon
-      Label(_ => "Required Label", _.required := true, _.showColon := true)
+      Label("Required Label", _.required := true, _.showColon := true)
       //-- End
     ),
     DemoPanel("Truncated Label")(
       //-- Begin: Truncated Label
-      Label(_ => width := "200px", _ => "Long labels are truncated by default.")
+      Label(width := "200px", "Long labels are truncated by default.")
       //-- End
     ),
     DemoPanel("Label 'for'")(
@@ -36,27 +36,27 @@ object LabelExample extends Example("Label") {
         className := loginFormClass,
         styleTagForLoginFormClass,
         div(
-          Label(_.id := "myLabel", _.forId := "myInput", _.required := true, _.showColon := true, _ => "First name"),
+          Label(_.id := "myLabel", _.forId := "myInput", _.required := true, _.showColon := true, "First name"),
           Input(
             _.id := "myInput",
-            _ => aria.required := true,
+            aria.required := true,
             _.accessibleNameRef := "myLabel",
             _.placeholder := "Enter your name"
           )
         ),
         div(
-          Label(_.id := "myLabel2", _.forId := "myDP", _.required := true, _.showColon := true, _ => "Date of birth"),
-          DatePicker(_.id := "myDP", _.accessibleNameRef := "myLabel2", _ => aria.required := true)
+          Label(_.id := "myLabel2", _.forId := "myDP", _.required := true, _.showColon := true, "Date of birth"),
+          DatePicker(_.id := "myDP", _.accessibleNameRef := "myLabel2", aria.required := true)
         ),
         div(
-          Label(_.id := "myLabel3", _.forId := "mySelect", _.required := true, _.showColon := true, _ => "Job"),
+          Label(_.id := "myLabel3", _.forId := "mySelect", _.required := true, _.showColon := true, "Job"),
           Select(
             _.id := "mySelect",
-            _ => aria.required := true,
+            aria.required := true,
             _.accessibleNameRef := "myLabel3",
-            _.option(_ => "Manager"),
-            _.option(_ => "Sales"),
-            _.option(_.selected := true, _ => "Developer")
+            _.option("Manager"),
+            _.option("Sales"),
+            _.option(_.selected := true, "Developer")
           )
         ),
         div(
@@ -65,22 +65,22 @@ object LabelExample extends Example("Label") {
             _.forId := "myTextArea",
             _.required := true,
             _.showColon := true,
-            _ => "Description label test"
+            "Description label test"
           ),
           TextArea(
             _.id := "myTextArea",
             _.accessibleNameRef := "myLabel4",
-            _ => aria.required := true,
+            aria.required := true,
             _.placeholder := "Type as much text as you wish."
           )
         ),
         div(
-          Label(_.forId := "myRB", _.required := true, _.showColon := true, _ => "Gender"),
+          Label(_.forId := "myRB", _.required := true, _.showColon := true, "Gender"),
           RadioButton(_.id := "myRB", _.name := "a", _.text := "Choice 1"),
           RadioButton(_.id := "myRB2", _.name := "a", _.checked := true, _.text := "Choice 2")
         ),
         div(
-          Label(_.forId := "myCB", _.required := true, _.showColon := true, _ => "Accept terms of use"),
+          Label(_.forId := "myCB", _.required := true, _.showColon := true, "Accept terms of use"),
           CheckBox(_.id := "myCB")
         )
       )

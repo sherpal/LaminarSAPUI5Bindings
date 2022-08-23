@@ -34,10 +34,9 @@ object ProductSwitchItem extends WebComponent with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ProductSwitchItem.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-product-switch-item")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-product-switch-item")
 
   lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr[String]("subtitle-text", StringAsIsCodec)
 
@@ -52,7 +51,5 @@ object ProductSwitchItem extends WebComponent with HasIcon {
   object events {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
-
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ProductSwitchItem)): _*)
 
 }

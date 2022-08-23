@@ -22,7 +22,7 @@ object FileUploaderExample extends Example("FileUploader") {
             _.accept := List("image/*"),
             _.multiple := true,
             _.events.onChange.map(_.target.files) --> selectedImagesVar.writer.contramapSome,
-            _ => Button(_ => "Upload Images", _.icon := IconName.upload)
+            Button("Upload Images", _.icon := IconName.upload)
           )
         ),
         div(
@@ -50,23 +50,23 @@ object FileUploaderExample extends Example("FileUploader") {
     },
     DemoPanel("File Uploader With No Input") {
       //-- Begin: File Uploader With No Input
-      FileUploader(_.hideInput := true, _ => Button(_ => "Upload File"))
+      FileUploader(_.hideInput := true, Button("Upload File"))
       //-- End
     },
     DemoPanel("Custom File Uploaders") {
       //-- Begin: Custom File Uploaders
       div(
-        FileUploader(_.hideInput := true, _ => Avatar(_.icon := IconName.upload)),
-        FileUploader(_.hideInput := true, _ => Badge(_ => "Upload File"))
+        FileUploader(_.hideInput := true, Avatar(_.icon := IconName.upload)),
+        FileUploader(_.hideInput := true, Badge("Upload File"))
       )
       //-- End
     },
     DemoPanel("Button With Icon File Uploader") {
       //-- Begin: Button With Icon File Uploader
       div(
-        FileUploader(_ => Button(_.icon := IconName.upload, _ => "Upload")),
-        FileUploader(_ => Button(_.icon := IconName.upload, _.iconEnd := true, _ => "Upload")),
-        FileUploader(_ => Button(_.icon := IconName.upload, _.iconOnly := true))
+        FileUploader(Button(_.icon := IconName.upload, "Upload")),
+        FileUploader(Button(_.icon := IconName.upload, _.iconEnd := true, "Upload")),
+        FileUploader(Button(_.icon := IconName.upload, _.iconOnly := true))
       )
       //-- End
     }

@@ -17,14 +17,13 @@ object DialogExample extends Example("Dialog") {
         styleTagForLoginFormClass,
         Button(
           _.design := ButtonDesign.Emphasized,
-          _ => "Open Dialog",
+          "Open Dialog",
           _.events.onClick.mapTo(true) --> openDialogBus.writer
         ),
         div(
           MessageStrip(
             _.design := MessageStripDesign.Information,
-            _ =>
-              "The opening of this dialog works using an `EventBus`. " +
+                          "The opening of this dialog works using an `EventBus`. " +
                 "Clicking on the 'Open Dialog' button writes to the bus, and the Dialog listens to it."
           )
         ),
@@ -32,19 +31,18 @@ object DialogExample extends Example("Dialog") {
           _.showFromEvents(openDialogBus.events.filter(identity).mapTo(())),
           _.closeFromEvents(openDialogBus.events.map(!_).filter(identity).mapTo(())),
           _.headerText := "Register Form",
-          _ =>
-            section(
+                      section(
               className := loginFormClass,
               div(
-                Label(_.forId := "username", _.required := true, _ => "Username:"),
+                Label(_.forId := "username", _.required := true, "Username:"),
                 Input(_.id := "username")
               ),
               div(
-                Label(_.forId := "password", _.required := true, _ => "Password:"),
+                Label(_.forId := "password", _.required := true, "Password:"),
                 Input(_.id := "password", _.tpe := InputType.Password, _.valueState := ValueState.Error)
               ),
               div(
-                Label(_.forId := "email", _.required := true, _ => "Email:"),
+                Label(_.forId := "email", _.required := true, "Email:"),
                 Input(_.id := "email", _.tpe := InputType.Email)
               )
             ),
@@ -52,7 +50,7 @@ object DialogExample extends Example("Dialog") {
             div(flex := "1"),
             Button(
               _.design := ButtonDesign.Emphasized,
-              _ => "Register",
+              "Register",
               _.events.onClick.mapTo(false) --> openDialogBus.writer
             )
           )
@@ -65,7 +63,7 @@ object DialogExample extends Example("Dialog") {
       val dialogId = "the-dialog-id"
       div(
         Button(
-          _ => "Open Draggable/Resizable dialog",
+          "Open Draggable/Resizable dialog",
           _.events.onClick.mapTo(Dialog.getDialogById(dialogId)) --> Observer[Option[Dialog.Ref]] {
             case Some(dialog) => dialog.show()
             case None         => throw new IllegalStateException(s"The Dialog with id $dialogId does not exist.")
@@ -73,13 +71,12 @@ object DialogExample extends Example("Dialog") {
         ),
         MessageStrip(
           _.design := MessageStripDesign.Information,
-          _ => "The opening of this dialog works by finding the dialog by id (with `Dialog.getDialogById`)."
+          "The opening of this dialog works by finding the dialog by id (with `Dialog.getDialogById`)."
         ),
         Dialog(
           _.id := dialogId,
           _.headerText := "Draggable/Resizable dialog",
-          _ =>
-            section(
+                      section(
               "Resize this dialog by dragging it by its resize handle.",
               br(),
               "This feature is available only on Desktop",
@@ -92,7 +89,7 @@ object DialogExample extends Example("Dialog") {
             div(flex := "1"),
             Button(
               _.design := ButtonDesign.Emphasized,
-              _ => "Close",
+              "Close",
               _.events.onClick.mapTo(Dialog.getDialogById(dialogId)) --> Observer[Option[Dialog.Ref]] {
                 case Some(dialog) => dialog.close()
                 case None         => throw new IllegalStateException(s"Dialog with id $dialogId does not exist.")

@@ -18,8 +18,7 @@ object DateTimePickerExample extends Example("DateTimePicker") {
       val localDateTimeFormatter                  = DateTimeFormatter.ofPattern("d MMM y, HH:mm:ss")
       val valueUpdateBus: EventBus[LocalDateTime] = new EventBus
       div(
-        Label(_ =>
-          child.text <-- valueUpdateBus.events.startWithNone.map {
+        Label(          child.text <-- valueUpdateBus.events.startWithNone.map {
             case None           => "No value selected yet"
             case Some(dateTime) => s"Selected value: $dateTime"
           }

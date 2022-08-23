@@ -30,10 +30,9 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ListItem.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-li")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-li")
 
   lazy val additionalTextState: ReactiveHtmlAttr[ValueState] =
     customHtmlAttr("additional-text-state", ValueState.AsStringCodec)
@@ -45,6 +44,6 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
 
   lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ListItem)): _*)
+  
 
 }

@@ -47,9 +47,8 @@ object NotificationListItemExample extends Example("NotificationListItem") {
           _.showClose := true,
           _.titleText := "New order (#2525) With a very long title - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
           _.priority := Priority.High,
-          _ =>
-            "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
-          _.slots.avatar := Avatar(_.size := AvatarSize.XS, _ => img(src := MTG.manaSymbolsRefs("W"))),
+          "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
+          _.slots.avatar := Avatar(_.size := AvatarSize.XS, img(src := MTG.manaSymbolsRefs("W"))),
           _.slots.footnotes := span("Monique Legrand"),
           _.slots.footnotes := span("2 Days")
         ),
@@ -58,9 +57,8 @@ object NotificationListItemExample extends Example("NotificationListItem") {
           _.showClose := true,
           _.titleText := "New order (#2526) With a very long title - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
           _.priority := Priority.High,
-          _ =>
-            "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
-          _.slots.avatar := Avatar(_.size := AvatarSize.XS, _ => img(src := MTG.manaSymbolsRefs("B"))),
+          "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
+          _.slots.avatar := Avatar(_.size := AvatarSize.XS, img(src := MTG.manaSymbolsRefs("B"))),
           _.slots.footnotes := span("Alain Chevalier"),
           _.slots.footnotes := span("2 Days")
         )
@@ -79,36 +77,35 @@ object NotificationListItemExample extends Example("NotificationListItem") {
           _.events.onNotificationsClick.map(_.detail.targetRef) --> openNotifPopoverBus.writer
         ),
         Popover(
-          _ => inContext(el => openNotifPopoverBus.events.map(el.ref -> _) --> Popover.showAtObserver),
-          _ => maxWidth := "600px",
+          inContext(el => openNotifPopoverBus.events.map(el.ref -> _) --> Popover.showAtObserver),
+          maxWidth := "600px",
           _.placementType := PopoverPlacementType.Bottom,
           _.horizontalAlign := PopoverHorizontalAlign.Right,
-          _ =>
-            UList(
-              _.headerText := "Notifications",
-              _.events.onItemClose.map(_.detail.item) --> closeItemsBus.writer,
-              _.notificationItem(
-                notifWithId("notif-shellbar-1"),
-                _.showClose := true,
-                _.titleText := "New order (#2525) With a very long title - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
-                _.priority := Priority.High,
-                _ => "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
-                _.slots.avatar := Avatar(_.size := AvatarSize.XS, _ => img(src := MTG.manaSymbolsRefs("W"))),
-                _.slots.footnotes := span("Monique Legrand"),
-                _.slots.footnotes := span("2 Days"),
-                _.slots.actions := NotificationListItem.action(_.icon := IconName.accept, _.text := "Accept")
-              ),
-              _.notificationItem(
-                notifWithId("notif-shellbar-2"),
-                _.showClose := true,
-                _.titleText := "New order (#2526) With a very long title - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
-                _.priority := Priority.High,
-                _ => "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
-                _.slots.avatar := Avatar(_.size := AvatarSize.XS, _ => img(src := MTG.manaSymbolsRefs("B"))),
-                _.slots.footnotes := span("Alain Chevalier"),
-                _.slots.footnotes := span("2 Days")
-              )
+          UList(
+            _.headerText := "Notifications",
+            _.events.onItemClose.map(_.detail.item) --> closeItemsBus.writer,
+            _.notificationItem(
+              notifWithId("notif-shellbar-1"),
+              _.showClose := true,
+              _.titleText := "New order (#2525) With a very long title - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
+              _.priority := Priority.High,
+              "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
+              _.slots.avatar := Avatar(_.size := AvatarSize.XS, img(src := MTG.manaSymbolsRefs("W"))),
+              _.slots.footnotes := span("Monique Legrand"),
+              _.slots.footnotes := span("2 Days"),
+              _.slots.actions := NotificationListItem.action(_.icon := IconName.accept, _.text := "Accept")
+            ),
+            _.notificationItem(
+              notifWithId("notif-shellbar-2"),
+              _.showClose := true,
+              _.titleText := "New order (#2526) With a very long title - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
+              _.priority := Priority.High,
+              "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
+              _.slots.avatar := Avatar(_.size := AvatarSize.XS, img(src := MTG.manaSymbolsRefs("B"))),
+              _.slots.footnotes := span("Alain Chevalier"),
+              _.slots.footnotes := span("2 Days")
             )
+          )
         )
       )
       //-- End

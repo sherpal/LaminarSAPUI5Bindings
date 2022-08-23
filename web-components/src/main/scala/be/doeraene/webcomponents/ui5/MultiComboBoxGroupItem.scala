@@ -25,15 +25,14 @@ object MultiComboBoxGroupItem extends WebComponent with HasText {
   @js.native
   trait RawElement extends js.Object {}
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = MultiComboBoxGroupItem.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-mcb-group-item")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-mcb-group-item")
 
   object slots {}
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MultiComboBoxGroupItem)): _*)
+  
 
 }

@@ -14,7 +14,7 @@ object SliderExample extends Example("Slider") {
       //-- Begin: Basic Slider
       val selectedValueVar: Var[Double] = Var(0)
       div(
-        Label(_ => child.text <-- selectedValueVar.signal.map(value => s"Selected value: $value")),
+        Label(child.text <-- selectedValueVar.signal.map(value => s"Selected value: $value")),
         br(),
         Slider(_.value <-- selectedValueVar.signal, _.events.onInput.map(_.target.value) --> selectedValueVar.writer)
       )

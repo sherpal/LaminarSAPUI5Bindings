@@ -32,10 +32,9 @@ object Toast extends WebComponent with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Toast.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-toast")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-toast")
 
   lazy val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
 
@@ -45,7 +44,7 @@ object Toast extends WebComponent with HasIcon {
 
   object events {}
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Toast)): _*)
+  
 
   def getToastById(id: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])

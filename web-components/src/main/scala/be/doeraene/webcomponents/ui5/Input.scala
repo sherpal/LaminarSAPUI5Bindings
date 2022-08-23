@@ -38,10 +38,9 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Input.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-input")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-input")
 
   lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
 
@@ -77,7 +76,7 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
       new EventProp[dom.Event & HasDetail[HasItem[SuggestionItem.RawElement]]]("suggestion-item-select")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Input)): _*)
+  
 
   def suggestion: SuggestionItem.type           = SuggestionItem
   def suggestionGroup: SuggestionGroupItem.type = SuggestionGroupItem

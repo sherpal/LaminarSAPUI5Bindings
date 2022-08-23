@@ -25,9 +25,9 @@ object MultiInputExample extends Example("MultiInput") {
         div(
           Label(
             _.wrappingType := WrappingType.Normal,
-            _ => width := "200px",
-            _ => "MultiInput",
-            _ => child.text <-- firstValueVar.signal.map(value => s" (current value is $value)")
+            width := "200px",
+            "MultiInput",
+            child.text <-- firstValueVar.signal.map(value => s" (current value is $value)")
           ),
           MultiInput(
             _.value <-- firstValueVar,
@@ -38,9 +38,9 @@ object MultiInputExample extends Example("MultiInput") {
         div(
           Label(
             _.wrappingType := WrappingType.Normal,
-            _ => width := "200px",
-            _ => "MultiInput",
-            _ => child.text <-- secondValueVar.signal.map(value => s" (current value is $value)")
+            width := "200px",
+            "MultiInput",
+            child.text <-- secondValueVar.signal.map(value => s" (current value is $value)")
           ),
           MultiInput(
             _.showValueHelpIcon := true,
@@ -61,7 +61,7 @@ object MultiInputExample extends Example("MultiInput") {
         ),
         MessageStrip(
           _.design := MessageStripDesign.Information,
-          _ => "These input are only there for display. They won't add tokens dynamically. See below for such example."
+          "These input are only there for display. They won't add tokens dynamically. See below for such example."
         )
       )
       //-- End
@@ -91,12 +91,12 @@ object MultiInputExample extends Example("MultiInput") {
       MultiInput(
         _.showSuggestions := true,
         _.valueState <-- valueStateChanges,
-        _ => width := "50%",
+        width := "50%",
         _.slots.valueStateMessage := div("Token is already in the list"),
-        _ => countries.map(country => MultiInput.suggestion(_.text := country)),
+        countries.map(country => MultiInput.suggestion(_.text := country)),
         _.slots.tokens <-- tokenValuesVar.signal.map(_.map(tokenValue => MultiInput.token(_.text := tokenValue))),
         _.events.onChange.map(_.target.value) --> changeBus.writer,
-        _ => newValuesChanges --> tokenValuesVar.writer,
+        newValuesChanges --> tokenValuesVar.writer,
         _.events.onTokenDelete.map(_.detail.token.text) --> tokenValuesVar.updater((values, toRemove) =>
           values.filterNot(_ == toRemove)
         )

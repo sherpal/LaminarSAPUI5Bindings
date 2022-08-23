@@ -33,10 +33,9 @@ object MessageStrip extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = MessageStrip.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-message-strip")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-message-strip")
 
   lazy val design: ReactiveHtmlAttr[MessageStripDesign] = customHtmlAttr("design", MessageStripDesign.AsStringCodec)
 
@@ -52,6 +51,6 @@ object MessageStrip extends WebComponent {
     val onClose: EventProp[dom.Event] = new EventProp("close")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MessageStrip)): _*)
+  
 
 }

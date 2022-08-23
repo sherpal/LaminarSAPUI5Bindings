@@ -44,10 +44,9 @@ object MediaGallery extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = MediaGallery.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-media-gallery")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-media-gallery")
 
   lazy val interactiveDisplayArea: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("interactive-display-area", BooleanAsAttrPresenceCodec)
@@ -74,7 +73,7 @@ object MediaGallery extends WebComponent {
     )
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(MediaGallery)): _*)
+  
 
   def item: MediaGalleryItem.type = MediaGalleryItem
 

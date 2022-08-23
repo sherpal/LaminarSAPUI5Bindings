@@ -12,7 +12,7 @@ object IconExample extends Example("Icon") {
   ): HtmlElement = div(
     DemoPanel("Basic Icons")(
       //-- Begin: Basic Icons
-      div(IconName.allValues.take(10).map(name => Icon(_.name := name, _ => marginRight := "5px")))
+      div(IconName.allValues.take(10).map(name => Icon(_.name := name, marginRight := "5px")))
       //-- End
     ),
     DemoPanel("Customized Icons")(
@@ -23,15 +23,14 @@ object IconExample extends Example("Icon") {
           .map(name =>
             Icon(
               _.name := name,
-              _ => marginRight := "1em",
-              _ =>
-                List(
-                  width := "3rem",
-                  height := "3rem",
-                  fontSize := "1.5rem",
-                  color := "crimson",
-                  backgroundColor := "#fafafa"
-                )
+              marginRight := "1em",
+              List(
+                width := "3rem",
+                height := "3rem",
+                fontSize := "1.5rem",
+                color := "crimson",
+                backgroundColor := "#fafafa"
+              )
             )
           )
       )

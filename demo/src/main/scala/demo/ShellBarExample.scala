@@ -22,32 +22,31 @@ object ShellBarExample extends Example("ShellBar") {
           _.showNotifications := true,
           _.showProductSwitch := true,
           _.showCoPilot := true,
-          _.slots.profile := Avatar(_ => img(src := "/images/avatars/sherpal.png")),
+          _.slots.profile := Avatar(img(src := "/images/avatars/sherpal.png")),
           _.slots.logo := img(src := "/images/avatars/scala-logo.png"),
           _.slots.startButton := Button(_.icon := IconName.`nav-back`),
           _.item(_.icon := IconName.disconnected, _.text := "Disconnected"),
           _.item(_.icon := IconName.`incoming-call`, _.text := "Incoming Calls", _.count := "4"),
           _.slots.searchField := Input(),
-          _.slots.menuItems := UList.item(_ => "Application 1"),
-          _.slots.menuItems := UList.item(_ => "Application 2"),
-          _.slots.menuItems := UList.item(_ => "Application 3"),
-          _.slots.menuItems := UList.item(_ => "Application 4"),
-          _.slots.menuItems := UList.item(_ => "Application 5"),
+          _.slots.menuItems := UList.item("Application 1"),
+          _.slots.menuItems := UList.item("Application 2"),
+          _.slots.menuItems := UList.item("Application 3"),
+          _.slots.menuItems := UList.item("Application 4"),
+          _.slots.menuItems := UList.item("Application 5"),
           _.events.onProfileClick.map(_.detail.targetRef) --> openPopoverBus.writer
         ),
         Popover(
-          _ => inContext(el => openPopoverBus.events --> Observer[HTMLElement](el.ref.showAt)),
+          inContext(el => openPopoverBus.events --> Observer[HTMLElement](el.ref.showAt)),
           _.placementType := PopoverPlacementType.Bottom,
-          _ => div(Title(_ => padding := "0.25rem 1rem 0rem 1rem", _ => "sherpal")),
-          _ =>
-            div(
+          div(Title(padding := "0.25rem 1rem 0rem 1rem", "sherpal")),
+                      div(
               UList(
                 _.separators := ListSeparator.None,
-                _.item(_.icon := IconName.`sys-find`, _ => "App Finder"),
-                _.item(_.icon := IconName.settings, _ => "Settings"),
-                _.item(_.icon := IconName.edit, _ => "Edit Home Page"),
-                _.item(_.icon := IconName.`sys-help`, _ => "Help"),
-                _.item(_.icon := IconName.log, _ => "Sign out")
+                _.item(_.icon := IconName.`sys-find`, "App Finder"),
+                _.item(_.icon := IconName.settings, "Settings"),
+                _.item(_.icon := IconName.edit, "Edit Home Page"),
+                _.item(_.icon := IconName.`sys-help`, "Help"),
+                _.item(_.icon := IconName.log, "Sign out")
               )
             )
         )

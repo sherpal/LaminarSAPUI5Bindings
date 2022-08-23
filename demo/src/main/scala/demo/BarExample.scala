@@ -13,14 +13,14 @@ object BarExample extends Example("Bar") {
       _.tooltip := "Go home",
       _.design := ButtonDesign.Transparent
     ),
-    _ => Label(_ => title),
+    _ => Label(title),
     _.slots.endContent := Button(_.icon := IconName.`action-settings`, _.tooltip := "Go to settings")
   )
 
   private def footerBarContent = List[Bar.ModFunction](
-    _.slots.endContent := Button(_.design := ButtonDesign.Positive, _ => "Agree"),
-    _.slots.endContent := Button(_.design := ButtonDesign.Negative, _ => "Decline"),
-    _.slots.endContent := Button(_.design := ButtonDesign.Transparent, _ => "Cancel")
+    _.slots.endContent := Button(_.design := ButtonDesign.Positive, "Agree"),
+    _.slots.endContent := Button(_.design := ButtonDesign.Negative, "Decline"),
+    _.slots.endContent := Button(_.design := ButtonDesign.Transparent, "Cancel")
   )
 
   def component(using

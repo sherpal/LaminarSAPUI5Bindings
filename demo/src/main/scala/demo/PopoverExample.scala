@@ -17,7 +17,7 @@ object PopoverExample extends Example("Popover") {
 
       div(
         Button(
-          _ => "Open Popover",
+          "Open Popover",
           _.design := ButtonDesign.Emphasized,
           _.events.onClick.map(_.target).map(Some(_)) --> openPopoverBus.writer
         ),
@@ -25,12 +25,11 @@ object PopoverExample extends Example("Popover") {
           _.showAtFromEvents(openPopoverBus.events.collect { case Some(opener) => opener }),
           _.closeFromEvents(openPopoverBus.events.collect { case None => () }),
           _.headerText := "Newsletter subscription",
-          _ =>
-            div(
+                      div(
               className := loginFormClass,
               styleTagForLoginFormClass,
               div(
-                Label(_.forId := "emailInput", _.required := true, _ => "Email"),
+                Label(_.forId := "emailInput", _.required := true, "Email"),
                 Input(_.id := "emailInput", _.placeholder := "Enter Email", _.tpe := InputType.Email)
               )
             ),
@@ -38,7 +37,7 @@ object PopoverExample extends Example("Popover") {
             div(flex := "1"),
             Button(
               _.design := ButtonDesign.Emphasized,
-              _ => "Subscribe",
+              "Subscribe",
               _.events.onClick.mapTo(None) --> openPopoverBus.writer
             )
           )

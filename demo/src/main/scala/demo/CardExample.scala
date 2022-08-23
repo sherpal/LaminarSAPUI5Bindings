@@ -39,33 +39,31 @@ object CardExample extends Example("Card") {
                 |}
                 |""".stripMargin),
         Card(
-          _ => className := medium,
+          className := medium,
           _.slots.header := Card.header(
             _.titleText := "Magic Mana Symbols",
             _.subtitleText := "All of them",
             _.status := "3 of 6",
             _.slots.avatar := Icon(_.name := IconName.group),
-            _.slots.action := Button(_.design := ButtonDesign.Transparent, _ => "View All")
+            _.slots.action := Button(_.design := ButtonDesign.Transparent, "View All")
           ),
-          _ =>
-            div(
-              className := cardContentClassName,
-              UList(
-                _.separators := ListSeparator.None,
-                _ => width := "100%",
-                _ => marginBottom := "0.75rem",
-                _ =>
-                  MTG.manaSymbolsNames
-                    .zip(MTG.manaSymbolsShortNames)
-                    .take(3)
-                    .map((name, shortName) =>
-                      UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
-                    )
-              )
+          div(
+            className := cardContentClassName,
+            UList(
+              _.separators := ListSeparator.None,
+              width := "100%",
+              marginBottom := "0.75rem",
+              MTG.manaSymbolsNames
+                .zip(MTG.manaSymbolsShortNames)
+                .take(3)
+                .map((name, shortName) =>
+                  UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, name)
+                )
             )
+          )
         ),
         Card(
-          _ => className := medium,
+          className := medium,
           _.slots.header := Card.header(
             _.titleText := "This header is interactive",
             _.interactive := true,
@@ -73,22 +71,20 @@ object CardExample extends Example("Card") {
             _.status := "3 of 6",
             _.slots.avatar := Icon(_.name := IconName.group)
           ),
-          _ =>
-            div(
-              className := cardContentClassName,
-              UList(
-                _.separators := ListSeparator.None,
-                _ => width := "100%",
-                _ => marginBottom := "0.75rem",
-                _ =>
-                  MTG.manaSymbolsNames
-                    .zip(MTG.manaSymbolsShortNames)
-                    .drop(3)
-                    .map((name, shortName) =>
-                      UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, _ => name)
-                    )
-              )
+          div(
+            className := cardContentClassName,
+            UList(
+              _.separators := ListSeparator.None,
+              width := "100%",
+              marginBottom := "0.75rem",
+              MTG.manaSymbolsNames
+                .zip(MTG.manaSymbolsShortNames)
+                .drop(3)
+                .map((name, shortName) =>
+                  UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, name)
+                )
             )
+          )
         )
       )
       //-- End
@@ -104,40 +100,36 @@ object CardExample extends Example("Card") {
         Card(
           _.slots.header := Card
             .header(_.titleText := "New Purchase Orders", _.subtitleText := "Today", _.status := "3 of 15"),
-          _ =>
-            Table(
-              _ => className := contentPadding,
-              _.slots.columns := TableColumn(_ => Label(_ => "Sales Order")),
-              _.slots.columns := TableColumn(_ => Label(_ => "Customer")),
-              _.slots.columns := TableColumn(_ => Label(_ => "Net Amount")),
-              _.slots.columns := TableColumn(
-                _.minWidth := 450,
-                _.popinText := "Status",
-                _.demandPopin := true,
-                _ => Label(_ => "Status")
-              ),
-              _ =>
-                TableRow(
-                  _.cell(_ => Label(_ => "5000010050")),
-                  _.cell(_ => Label(_ => "Entertainment Argentinia")),
-                  _.cell(_ => Label(_ => "6k USD")),
-                  _.cell(_ => className := statusSuccess, _ => "Approved")
-                ),
-              _ =>
-                TableRow(
-                  _.cell(_ => Label(_ => "5000010051")),
-                  _.cell(_ => Label(_ => "Brazil Technologies")),
-                  _.cell(_ => Label(_ => "2k USD")),
-                  _.cell(_ => className := statusError, _ => "Rejected")
-                ),
-              _ =>
-                TableRow(
-                  _.cell(_ => Label(_ => "5000010052")),
-                  _.cell(_ => Label(_ => "Robert Brown Ent.")),
-                  _.cell(_ => Label(_ => "17k USD")),
-                  _.cell(_ => className := statusWarning, _ => "Pending")
-                ),
+          Table(
+            className := contentPadding,
+            _.slots.columns := TableColumn(Label("Sales Order")),
+            _.slots.columns := TableColumn(Label("Customer")),
+            _.slots.columns := TableColumn(Label("Net Amount")),
+            _.slots.columns := TableColumn(
+              _.minWidth := 450,
+              _.popinText := "Status",
+              _.demandPopin := true,
+              Label("Status")
+            ),
+            TableRow(
+              _.cell(Label("5000010050")),
+              _.cell(Label("Entertainment Argentinia")),
+              _.cell(Label("6k USD")),
+              _.cell(className := statusSuccess, "Approved")
+            ),
+            TableRow(
+              _.cell(Label("5000010051")),
+              _.cell(Label("Brazil Technologies")),
+              _.cell(Label("2k USD")),
+              _.cell(className := statusError, "Rejected")
+            ),
+            TableRow(
+              _.cell(Label("5000010052")),
+              _.cell(Label("Robert Brown Ent.")),
+              _.cell(Label("17k USD")),
+              _.cell(className := statusWarning, "Pending")
             )
+          )
         )
       )
       //-- End

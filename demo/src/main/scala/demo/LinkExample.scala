@@ -18,11 +18,11 @@ object LinkExample extends Example("Link") {
             _.href := "https://www.scala-js.org/",
             _.target := LinkTarget._blank,
             _.design := design,
-            _ => s"$design Link",
-            _ => marginRight := "3em"
+            s"$design Link",
+            marginRight := "3em"
           )
         ),
-        Link(_.href := "https://www.scala-js.org/", _.target := LinkTarget._blank, _.disabled := true, _ => "Disabled")
+        Link(_.href := "https://www.scala-js.org/", _.target := LinkTarget._blank, _.disabled := true, "Disabled")
       )
       //-- End
     )

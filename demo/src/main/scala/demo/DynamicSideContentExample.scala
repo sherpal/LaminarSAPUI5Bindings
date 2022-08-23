@@ -34,7 +34,7 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
     DemoPanel("Dynamic Side Content with default properties") {
       //-- Begin: Dynamic Side Content with default properties
       DynamicSideContent(
-        _ => div(h1("Main Content"), p(mainContent)),
+        div(h1("Main Content"), p(mainContent)),
         _.slots.sideContent := div(h1("Side Content"), p(sideContent))
       )
       //-- End
@@ -43,7 +43,7 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       //-- Begin: Dynamic Side Content with hideMainContent set
       DynamicSideContent(
         _.hideMainContent := true,
-        _ => div(h1("Main Content"), p(mainContent)),
+        div(h1("Main Content"), p(mainContent)),
         _.slots.sideContent := div(h1("Side Content"), p(sideContent))
       )
       //-- End
@@ -52,7 +52,7 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       //-- Begin: Dynamic Side Content with hideSideContent set
       DynamicSideContent(
         _.hideSideContent := true,
-        _ => div(h1("Main Content"), p(mainContent)),
+        div(h1("Main Content"), p(mainContent)),
         _.slots.sideContent := div(h1("Side Content"), p(sideContent))
       )
       //-- End
@@ -61,7 +61,7 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       //-- Begin: Dynamic Side Content with equalSplit set
       DynamicSideContent(
         _.equalSplit := true,
-        _ => div(h1("Main Content"), p(mainContent)),
+        div(h1("Main Content"), p(mainContent)),
         _.slots.sideContent := div(h1("Side Content"), p(sideContent))
       )
       //-- End
@@ -70,7 +70,7 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       //-- Begin: Dynamic Side Content with sideContentPosition='Start'
       DynamicSideContent(
         _.sideContentPosition := SideContentPosition.Start,
-        _ => div(h1("Main Content"), p(mainContent)),
+        div(h1("Main Content"), p(mainContent)),
         _.slots.sideContent := div(h1("Side Content"), p(sideContent))
       )
       //-- End
@@ -79,7 +79,7 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       //-- Begin: Dynamic Side Content with sideContentFallDown='BelowXL'
       DynamicSideContent(
         _.sideContentFallDown := SideContentFallDown.BelowXL,
-        _ => div(h1("Main Content"), p(mainContent)),
+        div(h1("Main Content"), p(mainContent)),
         _.slots.sideContent := div(h1("Side Content"), p(sideContent))
       )
       //-- End
@@ -88,7 +88,7 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       //-- Begin: Dynamic Side Content with sideContentVisibility='ShowAboveM'
       DynamicSideContent(
         _.sideContentVisibility := SideContentVisibility.ShowAboveM,
-        _ => div(h1("Main Content"), p(mainContent)),
+        div(h1("Main Content"), p(mainContent)),
         _.slots.sideContent := div(h1("Side Content"), p(sideContent))
       )
       //-- End
@@ -98,22 +98,21 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       val toggleContentsBus: EventBus[Unit] = new EventBus
 
       Page(
-        _ => height := "500px",
-        _ => maxWidth := "360px",
+        height := "500px",
+        maxWidth := "360px",
         _.floatingFooter := true,
         _.hideFooter := false,
-        //_ => maxWidth := "360px",
-        _ =>
-          DynamicSideContent(
-            _ => inContext(el => toggleContentsBus.events --> Observer[Any](_ => el.ref.toggleContents())),
-            _ => div(h1("Main Content"), p(mainContent)),
+        //maxWidth := "360px",
+                  DynamicSideContent(
+            inContext(el => toggleContentsBus.events --> Observer[Any](_ => el.ref.toggleContents())),
+            div(h1("Main Content"), p(mainContent)),
             _.slots.sideContent := div(h1("Side Content"), p(sideContent))
           ),
         _.slots.footer := Bar(
           _.design := BarDesign.FloatingFooter,
           _.slots.endContent := Button(
             _.design := ButtonDesign.Positive,
-            _ => "Toggle Contents",
+            "Toggle Contents",
             _.events.onClick.mapTo(()) --> toggleContentsBus.writer
           )
         )

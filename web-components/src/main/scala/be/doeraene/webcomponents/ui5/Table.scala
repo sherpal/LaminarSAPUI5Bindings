@@ -29,10 +29,9 @@ object Table extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Table.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-table")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table")
 
   lazy val busy: ReactiveHtmlAttr[Boolean]                = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
   lazy val busyDelay: ReactiveHtmlAttr[FiniteDuration]    = customHtmlAttr("busy-delay", FiniteDurationCodec)
@@ -61,8 +60,6 @@ object Table extends WebComponent {
 
     val onSelectionChange = new EventProp[dom.Event & HasDetail[TableSelectionChangeDetail]]("selection-change")
   }
-
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Table)): _*)
 
   def column: TableColumn.type = TableColumn
   def row: TableRow.type       = TableRow

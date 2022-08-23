@@ -33,10 +33,9 @@ object ColourPalette extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = ColourPalette.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette")
 
   object slots {}
 
@@ -44,7 +43,7 @@ object ColourPalette extends WebComponent {
     val onItemClick: EventProp[dom.Event & HasDetail[HasColor]] = new EventProp("item-click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(ColourPalette)): _*)
+  
 
   def item: ColourPaletteItem.type = ColourPaletteItem
 

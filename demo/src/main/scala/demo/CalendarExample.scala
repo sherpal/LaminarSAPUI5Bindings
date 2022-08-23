@@ -12,8 +12,7 @@ object CalendarExample extends Example("Calendar") {
       //-- Begin: Basic Calendar
       val maybeSelectedDateVar: Var[Option[Calendar.events.SelectedDatesChangeInfo]] = Var(None)
       div(
-        Label(_ =>
-          child.text <-- maybeSelectedDateVar.signal.map {
+        Label(          child.text <-- maybeSelectedDateVar.signal.map {
             case None       => "No selected date yet."
             case Some(info) => s"Selected dates: ${info.values.zip(info.dates).mkString(", ")}."
           }
@@ -51,7 +50,7 @@ object CalendarExample extends Example("Calendar") {
         // (for example where your application starts, or the first place you use this calendar type)
         calendarType.importObject
         div(
-          Title.h3(_ => s"Type of calendar: ${calendarType.value}"),
+          Title.h3(s"Type of calendar: ${calendarType.value}"),
           Calendar(_.primaryCalendarType := calendarType)
         )
       })

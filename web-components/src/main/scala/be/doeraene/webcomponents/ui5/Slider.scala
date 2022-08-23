@@ -36,10 +36,9 @@ object Slider extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Slider.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-slider")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-slider")
 
   lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
@@ -66,6 +65,6 @@ object Slider extends WebComponent {
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Slider)): _*)
+  
 
 }

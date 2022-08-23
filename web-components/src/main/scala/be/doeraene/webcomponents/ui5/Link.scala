@@ -31,10 +31,9 @@ object Link extends WebComponent with HasIcon with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref         = dom.html.Element with RawElement
-  type ModFunction = Link.type => Mod[ReactiveHtmlElement[Ref]]
+  type Ref = dom.html.Element with RawElement
 
-  private val tag: HtmlTag[Ref] = customHtmlTag("ui5-link")
+  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-link")
 
   lazy val disabled: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
@@ -52,6 +51,6 @@ object Link extends WebComponent with HasIcon with HasAccessibleName {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
 
-  def apply(mods: ModFunction*): HtmlElement = tag(mods.map(_(Link)): _*)
+  
 
 }

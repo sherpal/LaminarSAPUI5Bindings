@@ -15,10 +15,10 @@ object BreadcrumbsExample extends Example("Breadcrumbs") {
         _.Item(
           _.href := "https://github.com/sherpal/LaminarSAPUI5Bindings",
           _.target := LinkTarget._blank,
-          _ => "Root page"
+          "Root page"
         ),
-        _.Item(_.href := "https://github.com/sherpal/LaminarSAPUI5Bindings", _ => "Parent page"),
-        _.Item(_ => "Current page"),
+        _.Item(_.href := "https://github.com/sherpal/LaminarSAPUI5Bindings", "Parent page"),
+        _.Item("Current page"),
         _.events.onItemClick.map(_.detail.item) --> Observer(x => org.scalajs.dom.console.log(x))
       )
       //-- End
@@ -30,9 +30,9 @@ object BreadcrumbsExample extends Example("Breadcrumbs") {
         _.Item(
           _.href := "https://github.com/sherpal/LaminarSAPUI5Bindings",
           _.target := LinkTarget._blank,
-          _ => "Root page"
+          "Root page"
         ),
-        _.Item(_.href := "https://github.com/sherpal/LaminarSAPUI5Bindings", _ => "Parent page")
+        _.Item(_.href := "https://github.com/sherpal/LaminarSAPUI5Bindings", "Parent page")
       )
       //-- End
     ),
@@ -45,10 +45,10 @@ object BreadcrumbsExample extends Example("Breadcrumbs") {
             _.Item(
               _.href := "https://github.com/sherpal/LaminarSAPUI5Bindings",
               _.target := LinkTarget._blank,
-              _ => "Root page"
+              "Root page"
             ),
-            _.Item(_.href := "https://github.com/sherpal/LaminarSAPUI5Bindings", _ => "Parent page"),
-            _.Item(_ => "Current page")
+            _.Item(_.href := "https://github.com/sherpal/LaminarSAPUI5Bindings", "Parent page"),
+            _.Item("Current page")
           )
         )
       )
