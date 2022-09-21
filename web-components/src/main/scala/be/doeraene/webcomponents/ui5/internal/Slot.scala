@@ -18,17 +18,13 @@ final class Slot(name: String) {
 
   private val slot: ReactiveHtmlAttr[String] = customHtmlAttr("slot", StringAsIsCodec)
 
-  @targetName("fixedSlot")
   def :=(element: HtmlElement): Inserter[Base] = <--(Val(element.amend(slot := name)))
 
-  @targetName("fixedSlot")
   def :=(elements: Seq[HtmlElement])(using DummyImplicit): Inserter[Base] = <--(Val(elements))
 
-  @targetName("slotObservable")
   def     <--(elementObservable: Observable[HtmlElement]): Inserter[Base] =
     child <-- elementObservable.map(_.amend(slot := name))
 
-  @targetName("slotObservable")
   def        <--(elementsObservable: Observable[Seq[HtmlElement]])(using DummyImplicit): Inserter[Base] =
     children <-- elementsObservable.map(_.map(_.amend(slot := name)))
 

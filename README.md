@@ -22,7 +22,7 @@ libraryDependencies ++= List(
 
 where `<release-tag>` must be replaced with any of the release tags from [here](https://github.com/sherpal/LaminarSAPUI5Bindings/releases). Note that it is correctly defined with single `%`. This thing using Jitpack which I'm not sure I understand, but it works like that.
 
-The relase tag is composed of the version of the project, followed by the (beginning of the) commit hash that issued the release.
+The release tag is composed of the version of the project, followed by the (beginning of the) commit hash that issued the release.
 
 The version of the project corresponds to the version of the SAP UI5 version of the libraries these bindings are made for. Using these bindings with an earlier version will probably show stuff that did not exist at the time. Similarly, using these bindings with an older version will imply that you will not find certain bindings. **Other than that, it is perfectly safe to mix mismatch versions.**
 
@@ -285,4 +285,4 @@ You will then need to fill the `component` def. You should make use of the `Demo
 
 You then need to add your example in the list in the `EntryPoint` in the `demo` package.
 
-For the strucutre, you can take inspiration from the existing other examples. For the content of your demo, you can take inspiration from the official SAP docs.
+For the structure, you can take inspiration from the existing other examples. For the content of your demo, you can take inspiration from the official SAP docs.
