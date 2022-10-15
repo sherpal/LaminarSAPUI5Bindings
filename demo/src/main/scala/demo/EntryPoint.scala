@@ -5,6 +5,7 @@ import com.raquo.laminar.api.L.*
 import org.scalajs.dom
 import org.scalajs.dom.URL
 import demo.helpers.Example
+import be.doeraene.webcomponents.ui5.configkeys.LinkTarget
 
 object EntryPoint {
   def main(args: Array[String]): Unit = {
@@ -79,11 +80,19 @@ object EntryPoint {
 
     val componentName = Option(new URL(dom.document.location.href).searchParams.get("componentName")).getOrElse("")
 
+
     render(
       dom.document.getElementById("root"),
       if componentName == "" then
         div(
-          h1("Please chose one of the following component below:"),
+          padding := "1em",
+          h1("Demo of SAP UI5 bindings for Laminar"),
+          p("This is the demo page for the ", 
+            Link(_.target := LinkTarget._blank, _.href := "https://sap.github.io/ui5-webcomponents/", "SAP UI5"), " bindings for ", 
+            Link(_.target := LinkTarget._blank, _.href := "https://laminar.dev/", "Laminar"), "."
+          ),
+          p("The library repo is available ", Link(_.target := LinkTarget._blank, _.href := "https://github.com/sherpal/LaminarSAPUI5Bindings", "here"), "."),
+          h2("Choose one of the components below:"),
           ul(
             componentsDemo.map(_.name).map(componentName => li(Link(componentName, _.href := dom.document.location.pathname ++ s"?componentName=$componentName")))
           )
