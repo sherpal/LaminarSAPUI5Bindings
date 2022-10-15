@@ -20,7 +20,7 @@ scalacOptions ++= List("-Ytasty-reader")
 
 libraryDependencies ++= List(
   "com.github.sherpal" % "LaminarSAPUI5Bindings" % "<release-tag>",
-  "com.raquo" %%% "laminar" % "0.14.2"
+  "com.raquo" %%% "laminar" % "0.14.5"
 )
 ```
 
