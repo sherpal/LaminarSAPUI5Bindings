@@ -4,6 +4,10 @@ This repository contains [Laminar](https://laminar.dev/) bindings for [SAP ui5 w
 
 Web components are a powerful technology to create near-native html elements. Laminar, for its part, is a Scala-js framework/library to manipulate the dom.
 
+## Demo
+
+You can visit the [live demo](https://sherpal.github.io/laminar-ui5-demo/) if you want to see these bindings in action.
+
 ## Installation
 
 In order to use these bindings within your Scala.js project, you need to add the following to your `build.sbt`:

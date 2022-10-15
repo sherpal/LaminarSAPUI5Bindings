@@ -21,5 +21,6 @@ export default ({ mode }) => {
         },
       }),
     ],
+    base: "/laminar-ui5-demo/"
   }
 }

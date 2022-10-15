@@ -8,7 +8,7 @@ import demo.helpers.MTG
 
 object AvatarExample extends Example("Avatar") {
 
-  private def sherpal                       = img(src := "/images/avatars/sherpal.png", alt := "sherpal")
+  private def sherpal                       = img(src := "images/avatars/sherpal.png", alt := "sherpal")
   private def manaSymbolImage(name: String) = img(src := MTG.manaSymbolsRefs(name), alt := name)
 
   def component(using

@@ -77,7 +77,7 @@ object EntryPoint {
       WizardExample
     ).sorted
 
-    val componentName = new URL(dom.document.location.href).pathname.dropWhile(_ == '/')
+    val componentName = Option(new URL(dom.document.location.href).searchParams.get("componentName")).getOrElse("")
 
     render(
       dom.document.getElementById("root"),
@@ -85,7 +85,7 @@ object EntryPoint {
         div(
           h1("Please chose one of the following component below:"),
           ul(
-            componentsDemo.map(_.name).map(componentName => li(Link(componentName, _.href := s"/$componentName")))
+            componentsDemo.map(_.name).map(componentName => li(Link(componentName, _.href := dom.document.location.pathname ++ s"?componentName=$componentName")))
           )
         )
       else
@@ -95,7 +95,7 @@ object EntryPoint {
             width := "300px",
             SideNavigation(
               _.events.onSelectionChange.map(_.detail.item.dataset.get("componentName")) --> Observer[Option[String]] {
-                case Some(componentName) => dom.document.location.href = s"/$componentName"
+                case Some(componentName) => dom.document.location.href = dom.document.location.pathname ++ s"?componentName=$componentName"
                 case None => throw new IllegalArgumentException(s"This item did not have data 'componentName'.")
               },
               componentsDemo.map(example =>

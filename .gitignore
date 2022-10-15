@@ -8,6 +8,9 @@ temp
 .DS_Store
 .idea
 
+/null
+
+
 demo/node_modules
 
 output
@@ -21,6 +24,7 @@ project/project/target
 project/.bloop
 
 demo/build
+demo/dist
 
 /database
 
