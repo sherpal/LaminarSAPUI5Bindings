@@ -100,7 +100,7 @@ Perform the following steps:
 
 1. in one terminal, run `sbt ~demo/fastLinkJS`
 2. in another terminal, go to `demo` and run `npm install` then `npm run dev`
-3. when both steps are ready, go to `http://localhost:3000` and the demo should be there, waiting for you.
+3. when both steps are ready, go to `http://localhost:3000/laminar-ui5-demo/` and the demo should be there, waiting for you.
 
 ### How to use slots?
 
