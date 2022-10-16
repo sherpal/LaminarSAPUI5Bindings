@@ -8,7 +8,9 @@ val usedScalacOptions = Seq(
   "-Xfatal-warnings",
   "-deprecation",
   "-unchecked",
-  "-language:higherKinds"
+  "-language:higherKinds",
+  "-feature",
+  "-language:implicitConversions"
 )
 
 val laminarVersion = "0.14.5"
