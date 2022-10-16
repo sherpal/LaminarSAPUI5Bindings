@@ -13,22 +13,21 @@ You can visit the [live demo](https://sherpal.github.io/laminar-ui5-demo/) if yo
 In order to use these bindings within your Scala.js project, you need to add the following to your `build.sbt`:
 
 ```scala
-resolvers += "jitpack" at "https://jitpack.io"
-
 // if using scala 2.13 (see also warning section below)
 scalacOptions ++= List("-Ytasty-reader")
 
 libraryDependencies ++= List(
-  "com.github.sherpal" % "LaminarSAPUI5Bindings" % "<release-tag>",
+  "be.doeraene" %%% "web-components-ui5" % "<currently supported version>",
+  // for scala 2.13: "be.doeraene" % "web-components-ui5_sjs1_3" % "<currently supported version>" (and you will need >= 2.13.10)
   "com.raquo" %%% "laminar" % "0.14.5"
 )
 ```
 
-where `<release-tag>` must be replaced with any of the release tags from [here](https://github.com/sherpal/LaminarSAPUI5Bindings/releases). Note that it is correctly defined with single `%`. This thing using Jitpack which I'm not sure I understand, but it works like that.
+where `<currently supported version>` must be replaced with the version of the library that you want to use (see [the maven repo](https://mvnrepository.com/artifact/be.doeraene/web-components-ui5) page to check existing versions). Major and minor numbers will correspond to the major and minor version of the npm UI5 library.
 
-The release tag is composed of the version of the project, followed by the (beginning of the) commit hash that issued the release.
+Using these bindings with an earlier version will probably show stuff that did not exist at the time. Similarly, using these bindings with an older version will imply that you will not find certain bindings. **Other than that, it is perfectly safe to mix mismatch versions.**
 
-The version of the project corresponds to the version of the SAP UI5 version of the libraries these bindings are made for. Using these bindings with an earlier version will probably show stuff that did not exist at the time. Similarly, using these bindings with an older version will imply that you will not find certain bindings. **Other than that, it is perfectly safe to mix mismatch versions.**
+Important: this is only the "Scala part" of the installation. We do *not* manage the dependencies to the npm library itself. See the "How to use" section below.
 
 ### Note on the Laminar version
 
@@ -86,6 +85,10 @@ you will have to write
 ```scala
 Input.of(_.required := true, _ => onChange.mapToValue --> Observer(println))
 ```
+
+Failing to do so will produce the following error message: 
+
+> Unsupported Scala 3 union in parameter value mods; found in method apply in trait be.doeraene.webcomponents.WebComponent.
 
 ### Running the Demo
 

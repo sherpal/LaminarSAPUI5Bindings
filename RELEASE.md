@@ -1,5 +1,14 @@
 # Release
 
+The project uses [sbt-ci-release](https://github.com/sbt/sbt-ci-release) to automate deployment to Sonatype.
+
+In order to publish, do the following:
+
+- Go to master
+- create a tag with the new version (e.g., `git tag -a v0.4.5 -m "v0.4.5"`)
+- push the tag with `git push origin v0.4.5`
+
+Tags must follow along the version of the SAP UI5 library, except for the correction that will be incremented when we fix things within the same UI5 version.
 
 ## Demo website deployment
 
