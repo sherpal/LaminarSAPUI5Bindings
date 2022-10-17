@@ -1,5 +1,3 @@
-ThisBuild / version := "1.3.0"
-
 ThisBuild / scalaVersion := "3.2.0"
 
 val usedScalacOptions = Seq(
