@@ -13,19 +13,27 @@ You can visit the [live demo](https://sherpal.github.io/laminar-ui5-demo/) if yo
 In order to use these bindings within your Scala.js project, you need to add the following to your `build.sbt`:
 
 ```scala
-// if using scala 2.13 (see also warning section below)
-scalacOptions ++= List("-Ytasty-reader")
-
+// for Scala 3
 libraryDependencies ++= List(
   "be.doeraene" %%% "web-components-ui5" % "<currently supported version>",
-  // for scala 2.13: "be.doeraene" % "web-components-ui5_sjs1_3" % "<currently supported version>" (and you will need >= 2.13.10)
+  "com.raquo" %%% "laminar" % "0.14.5"
+)
+```
+
+or 
+
+```scala
+// for Scala 2.13.10 (at least .10)
+scalacOptions ++= List("-Ytasty-reader")
+libraryDependencies ++= List(
+  "be.doeraene" % "web-components-ui5_sjs1_3" % "<currently supported version>"
   "com.raquo" %%% "laminar" % "0.14.5"
 )
 ```
 
 where `<currently supported version>` must be replaced with the version of the library that you want to use (see [the maven repo](https://mvnrepository.com/artifact/be.doeraene/web-components-ui5) page to check existing versions). Major and minor numbers will correspond to the major and minor version of the npm UI5 library.
 
-Using these bindings with an earlier version will probably show stuff that did not exist at the time. Similarly, using these bindings with an older version will imply that you will not find certain bindings. **Other than that, it is perfectly safe to mix mismatch versions.**
+Using these bindings with an earlier version of UI5 will probably show stuff that did not exist at the time. Similarly, using these bindings with an older version will imply that you will not find certain bindings. **Other than that, it is perfectly safe to mix mismatch versions.**
 
 Important: this is only the "Scala part" of the installation. We do *not* manage the dependencies to the npm library itself. See the "How to use" section below.
 
@@ -43,7 +51,7 @@ First of all, don't panic. You can do the following things:
 
 ## How to use
 
-These bindings are barely "facades" types for the official ui5 library. They _won't_ work if you don't handle that npm dependency on your own project. You will need the following imports in your `package.json` (or equivalent tool such as scala-js-bundler):
+These bindings are barely "facades" types for the official UI5 library. They _won't_ work if you don't handle that npm dependency on your own project. You will need the following imports in your `package.json` (or equivalent tool such as scala-js-bundler):
 
 ```
 "@ui5/webcomponents": "1.3.0",
