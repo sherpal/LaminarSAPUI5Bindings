@@ -25,6 +25,7 @@ project/.bloop
 
 demo/build
 demo/dist
+demo/scala-metadata.js
 
 /database
 

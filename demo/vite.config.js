@@ -1,7 +1,7 @@
-import { resolve } from "path"
 import { minifyHtml, injectHtml } from "vite-plugin-html"
+import { scalaMetadata } from "./scala-metadata"
 
-const scalaVersion = "3.2.0"
+const scalaVersion = scalaMetadata.scalaVersion
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {

@@ -1,3 +1,4 @@
+import java.nio.charset.StandardCharsets
 ThisBuild / scalaVersion := "3.2.0"
 
 val usedScalacOptions = Seq(
@@ -62,14 +63,15 @@ lazy val demo = project
   )
   .dependsOn(`web-components-ui5`)
 
-val createReleaseTag = taskKey[java.io.File]("Writes the current release tag in tag.txt file")
-
-createReleaseTag := {
-  val file = new java.io.File("tag.txt")
-
-  val currentVersion = (`web-components-ui5` / version).value
-  val gitHash        = git.gitHeadCommit.value.toRight(new IllegalStateException("Not a git repo!")).toTry.get.take(8)
-  IO.write(file, s"RELEASE_TAG=$currentVersion-$gitHash")
-
-  file
+Global / onLoad := {
+  val scalaVersionValue = (demo / scalaVersion).value
+  val outputFile = baseDirectory.value / "demo" / "scala-metadata.js"
+  IO.writeLines(outputFile, s"""
+  |const scalaVersion = "$scalaVersionValue"
+  |
+  |exports.scalaMetadata = {
+  |  scalaVersion: scalaVersion
+  |}
+  |""".stripMargin.split("\n").toList, StandardCharsets.UTF_8)
+  (Global / onLoad).value
 }
