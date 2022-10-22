@@ -4,7 +4,6 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext
 import org.scalajs.dom.fetch
 import org.scalajs.dom
-import java.lang.module.ModuleDescriptor.Opens
 
 object FetchDemoPanelFromGithub {
 
