@@ -3,7 +3,8 @@ name: CI
 on:
   push:
     branches: [demo-auto-deploy]
-
+    paths:
+      - 'demo/**'
 jobs:
   build:
     runs-on: ubuntu-latest
