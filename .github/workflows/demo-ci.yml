@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [demo-auto-deploy]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: pandoc/latex
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up NPM 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: "11"
+          distribution: "adopt"
+      - name: Compile
+        run: sbt compile
+      - name: Run tests
+        run: sbt test
+      - name: Build demo site
+        run: cd demo && npm ci && npm run build && cd ..
+      - name: Pushes to another repository
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: demo/dist/
+          destination-github-username: 'sherpal'
+          destination-repository-name: 'laminar-ui5-demo'
+          user-email: antoine.doeraene@gmail.com
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+          target-branch: master
+      - name: Test get variable exported by push-to-another-repository
+        run: echo $DESTINATION_CLONED_DIRECTORY
