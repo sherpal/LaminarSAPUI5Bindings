@@ -46,6 +46,7 @@ object IllustratedMessage extends WebComponent with HasIcon {
 
   object slots {
     val subtitle: Slot = new Slot("subtitle")
+    val title: Slot = new Slot("title")
   }
 
   object events {}
