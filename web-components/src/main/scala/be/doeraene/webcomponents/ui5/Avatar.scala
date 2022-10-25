@@ -11,6 +11,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.internal.Slot
 
 /** An image-like component that has different display options for representing images and icons in different shapes and
   * sizes, depending on the use case. The shape can be circular or square. There are several predefined sizes, as well
@@ -54,6 +55,8 @@ object Avatar extends WebComponent with HasIcon {
 
   lazy val size: ReactiveHtmlAttr[AvatarSize] = customHtmlAttr("size", AvatarSize.AsStringCodec)
 
-  
+  object slots {
+    val badge: Slot = new Slot("badge")
+  }
 
 }
