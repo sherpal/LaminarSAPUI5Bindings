@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ValueState
 
 /** The ui5-dialog component is used to temporarily display some information in a size-limited window in front of the
   * regular app screen.
@@ -51,6 +52,7 @@ object Dialog extends WebComponent {
   lazy val open: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
   lazy val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
     customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
+  lazy val state: ReactiveHtmlAttr[ValueState] = customHtmlAttr("state", ValueState.AsStringCodec)
   lazy val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
 
   //noinspection TypeAnnotation

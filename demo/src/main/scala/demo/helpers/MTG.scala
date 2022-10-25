@@ -32,7 +32,7 @@ object MTG {
     "Colourless"
   )
 
-  def manaSymbolsRefs(shortName: String) = s"/images/mtg/$shortName.png"
+  def manaSymbolsRefs(shortName: String) = s"images/mtg/$shortName.png"
 
   val cardImages = Map(
     "Black Lotus"      -> "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=382866&type=card",

@@ -21,7 +21,7 @@ import be.doeraene.webcomponents.WebComponent
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Tree/">the doc</a> for more information.
   */
-object Tree extends WebComponent {
+object Tree extends WebComponent with HasAccessibleName {
 
   //noinspection ScalaUnusedSymbol
   @js.native

@@ -22,7 +22,7 @@ trait Example(val name: String) {
         _.href := s"https://github.com/sherpal/LaminarSAPUI5Bindings/tree/master/demo/src/main/scala/demo/${name}Example.scala",
         _.target := LinkTarget._blank
       ),
-      "."
+      ". Click ", Link(_.href := "?", "here"), " to go back home."
     ),
     div(
       child <-- EventStream

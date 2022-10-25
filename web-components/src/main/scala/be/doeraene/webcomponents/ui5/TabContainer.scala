@@ -11,7 +11,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.WebComponent
 
 /** Tab container
@@ -23,7 +23,15 @@ import be.doeraene.webcomponents.WebComponent
 object TabContainer extends WebComponent {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    @JSName("allItems")
+    def allItemsJs: js.Array[js.Object] = js.native
+  }
+
+  object RawElement {
+    extension (element: RawElement)
+      def allItems: List[js.Object] = element.allItemsJs.toList
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/TabContainer.js", JSImport.Default)
