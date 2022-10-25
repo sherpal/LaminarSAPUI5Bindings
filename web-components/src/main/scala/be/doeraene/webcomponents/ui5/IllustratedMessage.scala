@@ -39,6 +39,7 @@ object IllustratedMessage extends WebComponent with HasIcon {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-illustrated-message")
 
+  lazy val accessibleNameRef: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name-ref", StringAsIsCodec)
   lazy val name: ReactiveHtmlAttr[IllustrationMessageType] =
     customHtmlAttr("name", IllustrationMessageType.AsStringCodec)
   lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
