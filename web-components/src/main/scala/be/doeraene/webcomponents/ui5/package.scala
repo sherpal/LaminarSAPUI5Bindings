@@ -20,6 +20,10 @@ package object ui5 {
 
   used(RawImport)
 
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
+  object InputElementsFormSupport extends js.Object
+  
   object FiniteDurationCodec extends Codec[FiniteDuration, String] {
     override def decode(domValue: String): FiniteDuration = domValue.toLong.millis
 
