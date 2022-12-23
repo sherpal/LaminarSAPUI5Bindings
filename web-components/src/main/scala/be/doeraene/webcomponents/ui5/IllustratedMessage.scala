@@ -42,6 +42,9 @@ object IllustratedMessage extends WebComponent with HasIcon {
   lazy val accessibleNameRef: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name-ref", StringAsIsCodec)
   lazy val name: ReactiveHtmlAttr[IllustrationMessageType] =
     customHtmlAttr("name", IllustrationMessageType.AsStringCodec)
+  
+  /** Alternative to "name" for Scala 2.13 users. */
+  lazy val nameStr: ReactiveHtmlAttr[String] = customHtmlAttr("name", StringAsIsCodec)
   lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
   lazy val titleText: ReactiveHtmlAttr[String]    = customHtmlAttr("title-text", StringAsIsCodec)
 

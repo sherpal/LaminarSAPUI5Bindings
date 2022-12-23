@@ -16,9 +16,7 @@ package object ui5 {
 
   @js.native
   @JSImport("@ui5/webcomponents-icons/dist/AllIcons.js", JSImport.Default)
-  object RawImport extends js.Object
-
-  used(RawImport)
+  object AllIconsImport extends js.Object
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)

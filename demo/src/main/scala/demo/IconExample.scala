@@ -12,13 +12,13 @@ object IconExample extends Example("Icon") {
   ): HtmlElement = div(
     DemoPanel("Basic Icons")(
       //-- Begin: Basic Icons
-      div(IconName.allValues.take(10).map(name => Icon(_.name := name, marginRight := "5px")))
+      div(someIconValues.take(10).map(name => Icon(_.name := name, marginRight := "5px")))
       //-- End
     ),
     DemoPanel("Customized Icons")(
       //-- Begin: Customized Icons
       div(
-        IconName.allValues.reverse
+        someIconValues.reverse
           .take(3)
           .map(name =>
             Icon(
@@ -35,7 +35,21 @@ object IconExample extends Example("Icon") {
           )
       )
       //-- End
-    )
+    ),
+    MessageStrip(_.design := MessageStripDesign.Information,
+      div(
+        p("Using the icons in this demo required to add the following code."),
+        pre(
+          someIconValues.map(name =>
+            s"""
+               |@js.native
+               |@JSImport("@ui5/webcomponents-icons/dist/$name.js", JSImport.Default)
+               |object `$name` extends js.Object
+               |`$name`
+               |""".stripMargin).mkString("\n")
+        ),
+        p("You can also evaluate `be.doeraene.webcomponents.ui5.AllIconsImport` if you prefer.")
+      ))
   )
 
 }

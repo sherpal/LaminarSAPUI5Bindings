@@ -55,7 +55,7 @@ lazy val demo = project
     scalacOptions ++= usedScalacOptions,
     libraryDependencies ++= List(
       "com.raquo" %%% "laminar" % laminarVersion,
-      "io.github.cquiroz" %%% "scala-java-time" % "2.4.0"
+      "io.github.cquiroz" %%% "scala-java-time" % "2.5.0"
     ),
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.ESModule) },
     scalaJSUseMainModuleInitializer := true,

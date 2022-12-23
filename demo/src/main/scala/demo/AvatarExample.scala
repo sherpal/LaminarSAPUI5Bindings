@@ -30,7 +30,7 @@ object AvatarExample extends Example("Avatar") {
     },
     DemoPanel("Avatar with icons") {
       //-- Begin: Avatar with icons
-      div(AvatarSize.allValues.zip(IconName.allValues).map((size, icon) => Avatar(_.size := size, _.icon := icon)))
+      div(AvatarSize.allValues.zip(someIconValues).map((size, icon) => Avatar(_.size := size, _.icon := icon)))
       //-- End
     },
     DemoPanel("Avatar with initials") {
