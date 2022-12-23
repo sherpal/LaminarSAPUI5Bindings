@@ -28,14 +28,6 @@ package object ui5 {
     override def encode(scalaValue: FiniteDuration): String = scalaValue.toMillis.toString
   }
 
-  object LocalDateCodec extends Codec[LocalDate, String] {
-    private val formatter = java.time.format.DateTimeFormatter.ISO_LOCAL_DATE
-
-    override def decode(domValue: String): LocalDate = LocalDate.parse(domValue, formatter)
-
-    override def encode(scalaValue: LocalDate): String = scalaValue.format(formatter)
-  }
-
   case class ListCodec[A](codec: Codec[A, String]) extends Codec[List[A], String] {
     def decode(domValue: String): List[A] = domValue.split(',').toList.map(codec.decode)
 

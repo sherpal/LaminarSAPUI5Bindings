@@ -71,8 +71,22 @@ trait Example(val name: String) {
     IconName.`bar-chart`,
     IconName.`hello-world`,
     IconName.`arrow-top`,
+    IconName.`action-settings`,
+    IconName.`value-help`,
+    IconName.home,
+    IconName.palette,
+    IconName.contacts,
+    IconName.`business-objects-experience`,
+    IconName.`add-document`,
+    IconName.`add-folder`,
+    IconName.`open-folder`,
+    IconName.save,
+    IconName.`journey-arrive`,
     IconName.card,
-    IconName.sound
+    IconName.sound,
+    IconName.`nutrition-activity`,
+    IconName.world,
+    IconName.flight
   )
 
 }
@@ -162,5 +176,94 @@ object Example {
   object `sound` extends js.Object
 
   `sound`
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/nutrition-activity.js", JSImport.Default)
+  object `nutrition-activity` extends js.Object
+
+  `nutrition-activity`
+
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/world.js", JSImport.Default)
+  object `world` extends js.Object
+
+  `world`
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/action-settings.js", JSImport.Default)
+  object `action-settings` extends js.Object
+
+  `action-settings`
+
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/add-document.js", JSImport.Default)
+  object `add-document` extends js.Object
+
+  `add-document`
+
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/add-folder.js", JSImport.Default)
+  object `add-folder` extends js.Object
+
+  `add-folder`
+
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/open-folder.js", JSImport.Default)
+  object `open-folder` extends js.Object
+
+  `open-folder`
+
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/save.js", JSImport.Default)
+  object `save` extends js.Object
+
+  `save`
+
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/journey-arrive.js", JSImport.Default)
+  object `journey-arrive` extends js.Object
+
+  `journey-arrive`
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/palette.js", JSImport.Default)
+  object palette extends js.Object
+
+  palette
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/value-help.js", JSImport.Default)
+  object `value-help` extends js.Object
+
+  `value-help`
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/home.js", JSImport.Default)
+  object `home` extends js.Object
+
+  `home`
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/flight.js", JSImport.Default)
+  object `flight` extends js.Object
+
+  `flight`
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/contacts.js", JSImport.Default)
+  object `contacts` extends js.Object
+
+  `contacts`
+
+  @js.native
+  @JSImport("@ui5/webcomponents-icons/dist/business-objects-experience.js", JSImport.Default)
+  object `business-objects-experience` extends js.Object
+
+  `business-objects-experience`
+
 
 }
