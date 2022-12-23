@@ -44,6 +44,11 @@ object RadioButton extends WebComponent with HasAccessibleName with HasName with
   lazy val checked: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
   lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
+  lazy val value: ReactiveHtmlAttr[String] = {
+    InputElementsFormSupport
+    customHtmlAttr("value", StringAsIsCodec)
+  }
+
   lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
   lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
