@@ -54,6 +54,7 @@ lazy val root = project
 lazy val demo = project
   .in(file("./demo"))
   .enablePlugins(ScalaJSPlugin)
+  .enablePlugins(BundleMonPlugin)
   .settings(
     scalacOptions ++= usedScalacOptions,
     libraryDependencies ++= List(
