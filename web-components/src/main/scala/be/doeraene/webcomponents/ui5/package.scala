@@ -16,9 +16,7 @@ package object ui5 {
 
   @js.native
   @JSImport("@ui5/webcomponents-icons/dist/AllIcons.js", JSImport.Default)
-  object RawImport extends js.Object
-
-  used(RawImport)
+  object AllIconsImport extends js.Object
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
@@ -28,14 +26,6 @@ package object ui5 {
     override def decode(domValue: String): FiniteDuration = domValue.toLong.millis
 
     override def encode(scalaValue: FiniteDuration): String = scalaValue.toMillis.toString
-  }
-
-  object LocalDateCodec extends Codec[LocalDate, String] {
-    private val formatter = java.time.format.DateTimeFormatter.ISO_LOCAL_DATE
-
-    override def decode(domValue: String): LocalDate = LocalDate.parse(domValue, formatter)
-
-    override def encode(scalaValue: LocalDate): String = scalaValue.format(formatter)
   }
 
   case class ListCodec[A](codec: Codec[A, String]) extends Codec[List[A], String] {
