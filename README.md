@@ -159,6 +159,12 @@ Icon(
 
 then the above import will be added in the compiled JS file.
 
+## Illustrated Messages
+
+[Illustrated Messages](https://sap.github.io/ui5-webcomponents/playground/components/IllustratedMessage/) work the same was as icons (see above).
+
+All possible choices are available in the `IllustratedMessageType` object. Illustrated messages within the `tnt` subdirectory are available in the `tnt` object thereof.
+
 ## How to read the source code
 
 Every component is implemented as an object with the following:

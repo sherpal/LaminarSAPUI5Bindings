@@ -13,7 +13,7 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
     DemoPanel("Illustrated Message")(
       //-- Begin: Illustrated Message
       IllustratedMessage(
-        _.name := IllustrationMessageType.PageNotFound,
+        _.name := IllustratedMessageType.PageNotFound,
                   List(
             Button(_.design := ButtonDesign.Emphasized, "Action 1"),
             Button("Action 2")
@@ -31,7 +31,7 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
                       inContext(el =>
               dialogShowActionBus.events --> Observer[Boolean](if _ then el.ref.show() else el.ref.close())
             ),
-          IllustratedMessage(_.name := IllustrationMessageType.ErrorScreen),
+          IllustratedMessage(_.name := IllustratedMessageType.ErrorScreen),
           _.slots.footer := Bar(
             _.design := BarDesign.Footer,
             _.slots.endContent := Button(
@@ -43,17 +43,18 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
         )
       )
       //-- End
-    }
-    // todo: uncomment this example when we have a high enough sap ui5 version.
-    // DemoPanel(
-    //   "Illustrated Message with link in subtitle",
-    //   IllustratedMessage(
-    //     _.name := IllustrationMessageType.TntUnsuccessfulAuth,
-    //     _.titleText := "Something wen wrong...",
-    //     _.slots.subtitle := div("Please try again or contact us at ", Link("example@example.com"), "."),
-    //     Button(_.icon := IconName.refresh, "Try again")
-    //   )
-    // )
+    },
+     DemoPanel(
+       "Illustrated Message with link in subtitle")(
+       //-- Begin: Illustrated Message with sub-title slot
+       IllustratedMessage(
+         _.name := IllustratedMessageType.tnt.UnsuccessfulAuth,
+         _.titleText := "Something wen wrong...",
+         _.slots.subtitle := div("Please try again or contact us at ", Link("example@example.com"), "."),
+         Button(_.icon := IconName.refresh, "Try again")
+       )
+       //-- End
+     )
   )
 
 }

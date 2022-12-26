@@ -95,9 +95,18 @@ generateIcons := {
 
 val checkGeneratedFilesUpToDate = taskKey[Unit]("Check that the content of the generated files is correct, otherwise fail.")
 
+val generateIllustratedMessages = taskKey[List[File]]("Generate the code files necessary to use the illustrated messages from sap")
+
+generateIllustratedMessages := {
+  CodeGeneration.generateIllustratedMessagesFiles(configKeysFullPackageName, configKeyFolder)
+    .map(_.toString).map(file)
+}
+
 checkGeneratedFilesUpToDate := {
-  CodeGeneration.checkIconsFilesUpToDate(configKeysFullPackageName, configKeyFolder) match {
-    case Left(value) => throw new IllegalStateException(value)
+  CodeGeneration.checkFilesAreUpToDate(configKeysFullPackageName, configKeyFolder) match {
+    case Left(value) =>
+      streams.value.log.error(value)
+      throw new IllegalStateException(value)
     case Right(()) => ()
   }
 
