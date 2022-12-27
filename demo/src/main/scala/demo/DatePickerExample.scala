@@ -36,8 +36,8 @@ object DatePickerExample extends Example("DatePicker") {
       //-- Begin: DatePicker with Minimum and Maximum Date - 1/1/2020 - 4/5/2020 format-pattern='yyyy-MM-dd'
       DatePicker(
         _.formatPattern := "yyyy-MM-dd",
-        _.minDate := LocalDate.of(2020, 1, 1),
-        _.maxDate := LocalDate.of(2020, 5, 4)
+        _.minDateStr := "2020-01-01",
+        _.maxDateStr := "2020-05-04"
       )
       //-- End
     ),
@@ -49,6 +49,7 @@ object DatePickerExample extends Example("DatePicker") {
   )
 
   // enabling Japanese calendar.
-  CalendarType.JapaneseImport
+  //noinspection ScalaUnusedExpression
+  CalendarType.Japanese.importObject
 
 }

@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.IllustrationMessageType
+import be.doeraene.webcomponents.ui5.configkeys.IllustratedMessageType
 import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.builders.HtmlTag
@@ -40,8 +40,11 @@ object IllustratedMessage extends WebComponent with HasIcon {
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-illustrated-message")
 
   lazy val accessibleNameRef: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name-ref", StringAsIsCodec)
-  lazy val name: ReactiveHtmlAttr[IllustrationMessageType] =
-    customHtmlAttr("name", IllustrationMessageType.AsStringCodec)
+  lazy val name: ReactiveHtmlAttr[IllustratedMessageType] =
+    customHtmlAttr("name", IllustratedMessageType.AsStringCodec)
+  
+  /** Alternative to "name" for Scala 2.13 users. */
+  lazy val nameStr: ReactiveHtmlAttr[String] = customHtmlAttr("name", StringAsIsCodec)
   lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
   lazy val titleText: ReactiveHtmlAttr[String]    = customHtmlAttr("title-text", StringAsIsCodec)
 

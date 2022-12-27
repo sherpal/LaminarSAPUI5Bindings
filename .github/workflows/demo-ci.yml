@@ -24,6 +24,8 @@ jobs:
         run: sbt test
       - name: Build demo site
         run: cd demo && npm ci && npm run build && cd ..
+      - name: Check generated values are in sync
+        run: sbt checkGeneratedFilesUpToDate
       - name: Pushes to another repository
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main

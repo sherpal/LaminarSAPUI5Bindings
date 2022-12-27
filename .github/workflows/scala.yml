@@ -2,7 +2,7 @@ name: Scala CI
 
 on:
   push:
-    branches: [master]
+    branches: ['**']
 
 jobs:
   build:
@@ -10,8 +10,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up NPM 14
-        uses: actions/setup-node@v2
+      - name: Set up NPM 16
+        uses: actions/setup-node@v3
         with:
           node-version: "14"
       - name: Set up JDK 11
@@ -19,7 +19,13 @@ jobs:
         with:
           java-version: "11"
           distribution: "adopt"
+      - name: Install npm dependencies
+        run: cd demo && npm ci && cd ..
+      - name: Check generated values are in sync
+        run: sbt checkGeneratedFilesUpToDate
       - name: Compile
         run: sbt compile
       - name: Run tests
         run: sbt test
+      - name: Monitor bundle size
+        run: sbt demo/bundleMon

@@ -135,6 +135,36 @@ Dialog(
 
 See the implementation of the `Slot` class to understand what it does.
 
+## Icons
+
+As you may read from SAP's documentation, Icons need to be imported manually via something like:
+
+```typescript
+import * as accidentalLeave from "@ui5/webcomponents-icons/dist/accidental-leave.js";
+```
+
+Or you can import all icons at once with
+
+```typescript
+import * as allIcons from "@ui5/webcomponents-icons/dist/AllIcons.js";
+```
+
+With these bindings, you don't need to do any of that. Scala.js will detect automatically the imports that are required based on your usage of the `IconName` values. For example, if you have somewhere in your code
+
+```scala
+Icon(
+  _.name := IconName.`accidental-leave`
+)
+```
+
+then the above import will be added in the compiled JS file.
+
+## Illustrated Messages
+
+[Illustrated Messages](https://sap.github.io/ui5-webcomponents/playground/components/IllustratedMessage/) work the same was as icons (see above).
+
+All possible choices are available in the `IllustratedMessageType` object. Illustrated messages within the `tnt` subdirectory are available in the `tnt` object thereof.
+
 ## How to read the source code
 
 Every component is implemented as an object with the following:
