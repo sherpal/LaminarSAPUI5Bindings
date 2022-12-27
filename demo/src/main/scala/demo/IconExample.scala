@@ -35,12 +35,7 @@ object IconExample extends Example("Icon") {
           )
       )
       //-- End
-    ),
-    MessageStrip(_.design := MessageStripDesign.Information,
-      div(
-        p("Using the icons in this demo required to add the following code."),
-        p("You can also evaluate `be.doeraene.webcomponents.ui5.AllIconsImport` if you prefer.")
-      ))
+    )
   )
 
 }
