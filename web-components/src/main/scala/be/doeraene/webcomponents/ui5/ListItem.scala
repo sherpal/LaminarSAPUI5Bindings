@@ -11,6 +11,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.internal.Slot
 
 /** The ui5-li represents the simplest type of item for a ui5-list. This is a list item, providing the most common use
   * cases such as text, image and icon.
@@ -44,6 +45,11 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
 
   lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
+  object slots {
+    val deleteButton: Slot = Slot("deleteButton")
+  }
+  
+  object events {}
   
 
 }
