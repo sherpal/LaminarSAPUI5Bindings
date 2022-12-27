@@ -44,9 +44,20 @@ object Toast extends WebComponent with HasIcon {
 
   object events {}
 
-  
-
   def getToastById(id: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
+
+  /** [[Observer]] you can feed a toast ref and a [[dom.HTMLElement]] to open the popover at the element. */
+  val showObserver: Observer[Ref] = Observer(_.show())
+
+  /** [[Mod]] for [[Toast]]s opening them each time the stream emits. */
+  def showFromEvents(openerEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.mapTo(el.ref) --> showObserver)
+
+  /** [[Mod]] for [[Toast]]s opening them each time the stream emits, putting the given text. */
+  def showFromTextEvents(openerEvents: EventStream[String]): Mod[ReactiveHtmlElement[Ref]] = List(
+    showFromEvents(openerEvents.mapTo(())),
+    child.text <-- openerEvents
+  )
 
 }

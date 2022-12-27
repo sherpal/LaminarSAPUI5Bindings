@@ -46,7 +46,7 @@ object AvatarExample extends Example("Avatar") {
       //-- End
     },
     DemoPanel("Avatar with 3 initials (since 1.9.0)") {
-      //-- Begin: Avatar with 3 initials
+      //-- Begin: Avatar with 3 initials (since 1.9.0)
       div(AvatarSize.allValues.map { size =>
         Avatar(_.size := size, _.initials := ('A', 'b', 'C'))
       })
