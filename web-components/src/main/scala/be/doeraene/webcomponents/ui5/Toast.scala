@@ -47,7 +47,7 @@ object Toast extends WebComponent with HasIcon {
   def getToastById(id: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
-  /** [[Observer]] you can feed a toast ref and a [[dom.HTMLElement]] to open the popover at the element. */
+  /** [[Observer]] you can feed a toast to show it. */
   val showObserver: Observer[Ref] = Observer(_.show())
 
   /** [[Mod]] for [[Toast]]s opening them each time the stream emits. */

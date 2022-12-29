@@ -129,7 +129,7 @@ Thanks to the `slots` object in the `Dialog` component, this is written in Scala
 
 ```scala
 Dialog(
-  _.footer := div("I'm a fotter")
+  _.slots.footer := div("I'm a footer")
 )
 ```
 
@@ -161,7 +161,7 @@ then the above import will be added in the compiled JS file.
 
 ## Illustrated Messages
 
-[Illustrated Messages](https://sap.github.io/ui5-webcomponents/playground/components/IllustratedMessage/) work the same was as icons (see above).
+[Illustrated Messages](https://sap.github.io/ui5-webcomponents/playground/components/IllustratedMessage/) work the same way as icons (see above).
 
 All possible choices are available in the `IllustratedMessageType` object. Illustrated messages within the `tnt` subdirectory are available in the `tnt` object thereof.
 
