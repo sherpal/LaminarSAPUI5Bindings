@@ -8,6 +8,8 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import com.raquo.domtypes.generic.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.keys.ReactiveHtmlAttr
 
 object TableRow extends WebComponent {
 
@@ -25,7 +27,7 @@ object TableRow extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-row")
 
-  
+  lazy val navigated: ReactiveHtmlAttr[Boolean] = customHtmlAttr("navigated", BooleanAsAttrPresenceCodec)
 
   //noinspection TypeAnnotation
   val cell = TableCell

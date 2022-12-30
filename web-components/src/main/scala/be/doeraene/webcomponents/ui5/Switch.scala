@@ -44,6 +44,8 @@ object Switch extends WebComponent with HasAccessibleName {
   lazy val checked: ReactiveHtmlAttr[Boolean]  = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
 
   lazy val design: ReactiveHtmlAttr[SwitchDesign] = customHtmlAttr("design", SwitchDesign.AsStringCodec)
+  
+  lazy val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
 
   object slots {}
 

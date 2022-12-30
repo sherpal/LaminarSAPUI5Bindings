@@ -1,5 +1,10 @@
 object IllustratedMessages {
 
+  private val nonIllustratedMessages = List(
+    "AllIllustrations"
+  )
+
+
   /** Map from the name of the enclosing sub-folder to the list of illustrated messages in that folder. None when it's
     * at the "root".
     */
@@ -13,6 +18,7 @@ object IllustratedMessages {
         .map(path => path.getSegment(path.segmentCount - 1))
         .filter(_.endsWith(".js"))
         .map(_.dropRight(3))
+        .filterNot(nonIllustratedMessages.contains[String])
         .sorted
     }.toMap
   }

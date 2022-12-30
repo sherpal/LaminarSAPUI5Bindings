@@ -16,11 +16,12 @@ object RadioButtonExample extends Example("RadioButton") {
       val name  = "GroupA"
 
       div(
-        RadioButton(_.text := texts(0), _.value := texts(0), _.checked := true, _.name := name),
+        RadioButton(_.text := texts.head, _.value := texts.head, _.checked := true, _.name := name),
         RadioButton(_.text := texts(1), _.value := texts(1), _.valueState := ValueState.None, _.name := name),
         RadioButton(_.text := texts(2), _.value := texts(2), _.valueState := ValueState.Warning, _.name := name),
         RadioButton(_.text := texts(6), _.value := texts(6), _.disabled := true, _.name := name),
-        RadioButton(_.text := texts(7), _.value := texts(7), _.readonly := true, _.name := name)
+        RadioButton(_.text := texts(7), _.value := texts(7), _.readonly := true, _.name := name),
+        RadioButton(_.text := texts(8), _.value := texts(8), _.required := true, _.name := name)
       )
       //-- End
     },

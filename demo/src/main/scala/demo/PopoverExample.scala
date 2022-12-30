@@ -25,14 +25,14 @@ object PopoverExample extends Example("Popover") {
           _.showAtFromEvents(openPopoverBus.events.collect { case Some(opener) => opener }),
           _.closeFromEvents(openPopoverBus.events.collect { case None => () }),
           _.headerText := "Newsletter subscription",
-                      div(
-              className := loginFormClass,
-              styleTagForLoginFormClass,
-              div(
-                Label(_.forId := "emailInput", _.required := true, "Email"),
-                Input(_.id := "emailInput", _.placeholder := "Enter Email", _.tpe := InputType.Email)
-              )
-            ),
+          div(
+            className := loginFormClass,
+            styleTagForLoginFormClass,
+            div(
+              Label(_.forId := "emailInput", _.required := true, "Email"),
+              Input(_.id := "emailInput", _.placeholder := "Enter Email", _.tpe := InputType.Email)
+            )
+          ),
           _.slots.footer := div(
             div(flex := "1"),
             Button(
