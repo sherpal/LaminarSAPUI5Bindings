@@ -3,7 +3,7 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
+import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 
 object SelectExample extends Example("Select") {
 
@@ -44,7 +44,60 @@ object SelectExample extends Example("Select") {
           )
       )
       //-- End
-    )
+    ),
+    DemoPanel("Keeping Select in sync with Signal") {
+      //-- Begin: Keeping Select in sync with Signal
+      val currentCountryVar = Var(someCountries.head)
+
+      def select = Select(
+        _.events.onChange.map(_.detail.selectedOption.dataset.get("name").get) --> currentCountryVar.writer,
+        marginRight := "1em",
+        someCountries.map(country =>
+          Select.option(country, dataAttr("name") := country, _.selected <-- currentCountryVar.signal.map(_ == country))
+        )
+      )
+
+      div(
+        p("These two select are bound (two-ways) to the same Var and are therefore kept in sync:"),
+        select,
+        select
+      )
+      //-- End
+    },
+    DemoPanel("Adding a bit of abstraction on top of Select") {
+      //-- Begin: Adding a bit of abstraction on top of Select
+      /** Select instances of type T, based on their key, showing their repr to the user. Selected instance feed all the
+        * provided observers.
+        */
+      def BetterSelect[T](
+          options: Seq[T]
+      )(key: T => String, repr: T => String, observers: Observer[T]*)(mods: Select.ComponentMod*) = {
+        val keysToT = options.map(t => key(t) -> t).toMap
+        Select(
+          options.map(t => Select.option(repr(t), dataAttr("key") := key(t))) +:
+            (_.events.onChange.map(_.detail.selectedOption.dataset.get("key").get).map(keysToT.apply) --> Observer
+              .combine(
+                observers: _*
+              )) +:
+            mods: _*
+        )
+      }
+
+      val selectedCardVar = Var(MTG.cards.head)
+
+      div(
+        div(
+          Label("Select a card: "),
+          BetterSelect(MTG.cards)(_.name, card => s"${card.name} (${card.cost})", selectedCardVar.writer)()
+        ),
+        div(
+          "You selected ",
+          child.text <-- selectedCardVar.signal.map(_.name),
+          "."
+        )
+      )
+      //-- End
+    }
   )
 
 }

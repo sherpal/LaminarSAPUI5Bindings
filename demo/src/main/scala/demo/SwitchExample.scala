@@ -18,11 +18,17 @@ object SwitchExample extends Example("Switch") {
     DemoPanel("Basic Switch")(
       //-- Begin: Basic Switch
       div(
-        Switch(_.textOn := "On", _.textOff := "Off"),
-        Switch(_.textOn := "On", _.textOff := "Off", _.checked := true),
-        Switch(),
-        Switch(_.textOn := "Yes", _.textOff := "No", _.disabled := true),
-        Switch(_.textOn := "Yes", _.textOff := "No", _.checked := true, _.disabled := true)
+        Switch(_.textOn := "On", _.textOff := "Off", _.tooltip := "On/Off Switch"),
+        Switch(_.textOn := "On", _.textOff := "Off", _.checked := true, _.tooltip := "On/Off Switch"),
+        Switch(_.tooltip := "Default Switch"),
+        Switch(_.textOn := "Yes", _.textOff := "No", _.disabled := true, _.tooltip := "Yes/No Switch"),
+        Switch(
+          _.textOn := "Yes",
+          _.textOff := "No",
+          _.checked := true,
+          _.disabled := true,
+          _.tooltip := "Yes/No Switch"
+        )
       )
       //-- End
     ),

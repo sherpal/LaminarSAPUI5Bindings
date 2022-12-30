@@ -19,7 +19,7 @@ object ToastExample extends Example("Toast") {
       div(
         Button("Basic Toast", _.events.onClick.mapTo(()) --> toastBus.writer),
         Toast(
-          inContext(el => toastBus.events.mapTo(()) --> Observer[Unit](_ => el.ref.show())),
+          _.showFromEvents(toastBus.events),
           "Basic Toast"
         ),
         MessageStrip(
@@ -31,44 +31,28 @@ object ToastExample extends Example("Toast") {
     },
     DemoPanel("Toast Duration") {
       //-- Begin: Toast Duration
-      val shortToastId = "short-toast-id"
-      val longToastId  = "long-toast-id"
+      val shortToastBus: EventBus[Unit] = new EventBus
+      val longToastBus: EventBus[Unit]  = new EventBus
 
       div(
-        Button(
-          "Short Toast",
-          _.events.onClick.mapTo(Toast.getToastById(shortToastId)) --> Observer[Option[Toast.Ref]] {
-            case Some(toast) => toast.show()
-            case None => throw new IllegalStateException(s"The dom does not contain any toast with id $shortToastId")
-          }
-        ),
+        Button("Short Toast", _.events.onClick.mapTo(()) --> shortToastBus.writer),
         Toast(
-          _.id := shortToastId,
           _.duration := 1500.millis,
           _.placement := ToastPlacement.BottomStart,
-          "Short Toast"
+          "Short Toast",
+          _.showFromEvents(shortToastBus.events)
         ),
-        Button(
-          "Long Toast",
-          _.events.onClick.mapTo(Toast.getToastById(longToastId)) --> Observer[Option[Toast.Ref]] {
-            case Some(toast) => toast.show()
-            case None => throw new IllegalStateException(s"The dom does not contain any toast with id $longToastId")
-          }
-        ),
+        Button("Long Toast", _.events.onClick.mapTo(()) --> longToastBus.writer),
         Toast(
-          _.id := longToastId,
           _.duration := 4500.millis,
           _.placement := ToastPlacement.BottomEnd,
-          "Long Toast"
-        ),
-        MessageStrip(
-          _.design := MessageStripDesign.Information,
-          "These toasts pops up by grabbing their reference using the Toast.getToastById function."
+          "Long Toast",
+          _.showFromEvents(longToastBus.events)
         )
       )
       //-- End
     },
-    DemoPanel("Toast Placements")(
+    DemoPanel("Toast Placements") {
       //-- Begin: Toast Placements
       div(
         ToastPlacement.allValues.flatMap { placement =>
@@ -76,16 +60,12 @@ object ToastExample extends Example("Toast") {
 
           List(
             Button(placement.value, _.events.onClick.mapTo(()) --> toastBus.writer),
-            Toast(
-              _.placement := placement,
-              inContext(el => toastBus.events.mapTo(()) --> Observer[Unit](_ => el.ref.show())),
-              placement.value
-            )
+            Toast(_.placement := placement, _.showFromEvents(toastBus.events), placement.value)
           )
         }
       )
       //-- End
-    )
+    }
   )
 
 }
