@@ -1,5 +1,6 @@
 package demo
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
@@ -7,6 +8,8 @@ import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 import demo.helpers.MTG
 
 object AvatarExample extends Example("Avatar") {
+
+  def webComponent: WebComponent = Avatar
 
   private def sherpal                       = img(src := "images/avatars/sherpal.png", alt := "sherpal")
   private def manaSymbolImage(name: String) = img(src := MTG.manaSymbolsRefs(name), alt := name)

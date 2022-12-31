@@ -1,5 +1,6 @@
 package demo
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
@@ -7,6 +8,8 @@ import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 import org.scalajs.dom
 
 object TreeExample extends Example("Tree") {
+
+  def webComponent: WebComponent = Tree
 
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo

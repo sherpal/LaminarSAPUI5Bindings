@@ -1,11 +1,14 @@
 package demo
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
 object BarExample extends Example("Bar") {
+
+  def webComponent: WebComponent = Bar
 
   private def headerBarContent(title: String) = List[Bar.ModFunction](
     _.slots.startContent := Button(

@@ -7,6 +7,8 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 
 import org.scalajs.dom
 
+import scala.scalajs.js
+
 /** Marker trait that all web components inherit.
   *
   * This can allow you to implement some shenanigans and abstract over some thins.
@@ -15,6 +17,10 @@ trait WebComponent {
   val id: ReactiveProp[String, String] = idAttr
 
   type Ref <: dom.HTMLElement
+
+  def RawImport: WebComponent.WithMetadata
+  
+  final def metadata: js.Object = RawImport.metadata
 
   type ModFunction = this.type => Mod[ReactiveHtmlElement[Ref]]
   type ComponentMod = ModFunction | Mod[ReactiveHtmlElement[Ref]]
@@ -41,5 +47,14 @@ trait WebComponent {
     * This function is only there for people using the library with Scala 2.13.
     */
   final def of(mods: ModFunction*): HtmlElement = tag(mods.map(_(this)): _*)
+
+}
+
+object WebComponent {
+
+  @js.native
+  trait WithMetadata extends js.Object {
+    def metadata: js.Object = js.native
+  }
 
 }

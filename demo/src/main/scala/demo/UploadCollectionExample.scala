@@ -1,13 +1,17 @@
 package demo
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 import org.scalajs.dom
+
 import scala.scalajs.js
 
 object UploadCollectionExample extends Example("UploadCollection") {
+
+  def webComponent: WebComponent = UploadCollection
 
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo

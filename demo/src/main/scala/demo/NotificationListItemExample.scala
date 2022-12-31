@@ -1,5 +1,6 @@
 package demo
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
@@ -7,6 +8,8 @@ import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 import org.scalajs.dom
 
 object NotificationListItemExample extends Example("NotificationListItem") {
+
+  def webComponent: WebComponent = NotificationListItem
 
   // I know it's a bit sketchy to put the below thing common, but in this case it's ok, just need to make sure that
   // the ids do not clash accross examples...

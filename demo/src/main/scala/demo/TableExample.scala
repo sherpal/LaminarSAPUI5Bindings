@@ -1,5 +1,6 @@
 package demo
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
@@ -9,6 +10,8 @@ import org.scalajs.dom
 import scala.scalajs.js
 
 object TableExample extends Example("Table") {
+
+  def webComponent: WebComponent = Table
 
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo

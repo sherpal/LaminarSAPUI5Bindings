@@ -28,7 +28,7 @@ object Switch extends WebComponent with HasAccessibleName {
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/Switch.js", JSImport.Default)
-  object RawImport extends js.Object
+  object RawImport extends WebComponent.WithMetadata
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)

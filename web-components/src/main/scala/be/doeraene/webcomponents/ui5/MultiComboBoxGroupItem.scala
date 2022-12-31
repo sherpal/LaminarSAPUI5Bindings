@@ -25,6 +25,8 @@ object MultiComboBoxGroupItem extends WebComponent with HasText {
   @js.native
   trait RawElement extends js.Object {}
 
+  def RawImport: WebComponent.WithMetadata = ???
+
   type Ref = dom.html.Element with RawElement
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-mcb-group-item")

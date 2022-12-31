@@ -1,5 +1,6 @@
 package demo
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
@@ -7,6 +8,8 @@ import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 import org.scalajs.dom.HTMLElement
 
 object ProductSwitchExample extends Example("ProductSwitch") {
+
+  def webComponent: WebComponent = ProductSwitch
 
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo

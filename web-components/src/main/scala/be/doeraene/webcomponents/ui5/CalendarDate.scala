@@ -25,6 +25,8 @@ object CalendarDate extends WebComponent with HasValue {
     def value: String = js.native
   }
 
+  def RawImport: WebComponent.WithMetadata = ???
+
   type Ref = dom.html.Element with RawElement
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-date")

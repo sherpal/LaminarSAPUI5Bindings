@@ -1,18 +1,23 @@
 package demo.helpers
 
 import com.raquo.laminar.api.L.*
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom
 import org.scalajs.dom.html
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js
+import scala.scalajs.js.JSON
 import scala.scalajs.js.annotation.JSImport
 
 /** An instance [[Example]] is bound to a specific component, and is used to display its functionalities.
   */
 trait Example(val name: String) {
+
+  def webComponent: WebComponent
 
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
@@ -32,11 +37,20 @@ trait Example(val name: String) {
       Link(_.href := "?", "here"),
       " to go back home."
     ),
-    div(
+    section(
       child <-- EventStream
         .fromFuture(FetchDemoPanelFromGithub.fetchAllDemoPanelInfo(name))
         .startWith(FetchDemoPanelFromGithub.CompleteDemoPanelInfo(None, Map.empty))
         .map(info => component(using info))
+    ),
+    Panel(
+      _.headerText := "Component metadata",
+      _.collapsed := true,
+      div(
+        p(s"Below, you can find the metadata associated with the $name component."),
+        pre(code(JSON.stringify(webComponent.metadata, null, 2))),
+        onMountCallback(_ => dom.window.asInstanceOf[js.Dynamic].updateDynamic(name)(webComponent.metadata))
+      )
     )
   )
 
@@ -60,8 +74,6 @@ trait Example(val name: String) {
     _.design := MessageStripDesign.Warning,
     "All images displayed on this page are the property of Wizard of the Coast."
   )
-
-
 
   def someIconValues: List[IconName] = List(
     IconName.`clear-all`,

@@ -1,5 +1,6 @@
 package demo
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
@@ -9,6 +10,8 @@ import org.scalajs.dom.HTMLElement
 import com.raquo.airstream.eventbus.EventBus
 
 object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
+
+  def webComponent: WebComponent = ColourPalettePopover
 
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo

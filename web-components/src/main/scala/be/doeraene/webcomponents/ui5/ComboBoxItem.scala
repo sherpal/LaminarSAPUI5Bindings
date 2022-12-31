@@ -29,7 +29,7 @@ object ComboBoxItem extends WebComponent {
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/ComboBoxItem.js", JSImport.Default)
-  object RawImport extends js.Object
+  object RawImport extends WebComponent.WithMetadata
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)

@@ -23,6 +23,8 @@ object SelectOption extends WebComponent with HasIcon with HasAdditionalText wit
     def value: String | Unit = js.native
   }
 
+  def RawImport: WebComponent.WithMetadata = ???
+
   object RawElement {
     implicit final class RichRawElement(val element: RawElement) extends AnyVal {
       def maybeValue: Option[String] = element.value match {
