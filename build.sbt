@@ -10,7 +10,13 @@ val usedScalacOptions = Seq(
   "-language:higherKinds",
   "-feature",
   "-language:implicitConversions"
-)
+) ++ {
+  val localSourcesPath = baseDirectory.value.toURI
+  val remoteSourcesPath = s"https://raw.githubusercontent.com/sherpal/LaminarSAPUI5Bindings/${git.gitHeadCommit.value.get}/"
+  val sourcesOptionName = if (scalaVersion.value.startsWith("2.")) "-P:scalajs:mapSourceURI" else "-scalajs-mapSourceURI"
+
+  s"${sourcesOptionName}:$localSourcesPath->$remoteSourcesPath"
+},
 
 val laminarVersion = "0.14.5"
 
