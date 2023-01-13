@@ -30,7 +30,7 @@ object ProductSwitchExample extends Example("ProductSwitch") {
       val togglePopoverOpeningEventBus: EventBus[HTMLElement] = new EventBus
 
       val togglePopoverOpeningEvents = togglePopoverOpeningEventBus.events
-        .foldLeft(Option.empty[HTMLElement]) {
+        .scanLeft(Option.empty[HTMLElement]) {
           case (Some(_), _)    => None
           case (None, element) => Some(element)
         }

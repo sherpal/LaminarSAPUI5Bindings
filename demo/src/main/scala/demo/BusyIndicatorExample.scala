@@ -29,14 +29,14 @@ object BusyIndicatorExample extends Example("BusyIndicator") {
       //-- Begin: Busy indicator wrapping other elements
       val fetchListDataBus: EventBus[Unit] = new EventBus
       val allData                          = (1 to 10).map(j => s"Data $j").toList
-      val numberOfDataToFetch              = fetchListDataBus.events.delay(3000).foldLeft(0)((acc, _) => acc + 3)
+      val numberOfDataToFetch              = fetchListDataBus.events.delay(3000).scanLeft(0)((acc, _) => acc + 3)
       val fetchedData                      = numberOfDataToFetch.map(allData.take)
       val busyStates = EventStream
         .merge(
           fetchListDataBus.events.mapTo(1),
           numberOfDataToFetch.changes.mapTo(-1)
         )
-        .foldLeft(0)(_ + _)
+        .scanLeft(0)(_ + _)
         .map(_ > 0)
       div(
         div(Button("Fetch list data", _.events.onClick.mapTo(()) --> fetchListDataBus.writer)),
