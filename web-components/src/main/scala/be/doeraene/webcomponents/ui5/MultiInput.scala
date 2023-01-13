@@ -2,16 +2,16 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import com.raquo.domtypes.generic.codecs.IntAsStringCodec
+import com.raquo.laminar.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.configkeys.InputType
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
@@ -55,29 +55,29 @@ object MultiInput extends WebComponent with HasAccessibleName with HasName with 
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-multi-input")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-multi-input")
 
-  lazy val showValueHelpIcon: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("show-value-help-icon", BooleanAsAttrPresenceCodec)
+  lazy val showValueHelpIcon: HtmlAttr[Boolean] =
+    htmlAttr("show-value-help-icon", BooleanAsAttrPresenceCodec)
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val maxlength: ReactiveHtmlAttr[Int] = customHtmlAttr("maxlength", IntAsStringCodec)
+  lazy val maxlength: HtmlAttr[Int] = htmlAttr("maxlength", IntAsStringCodec)
 
   // todo[1.4.0]
-  //lazy val noTypeahead: ReactiveHtmlAttr[Boolean] = customHtmlAttr("no-typeahead", BooleanAsAttrPresenceCodec)
+  //lazy val noTypeahead: HtmlAttr[Boolean] = htmlAttr("no-typeahead", BooleanAsAttrPresenceCodec)
 
-  lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val placeholder: HtmlAttr[String] = htmlAttr("placeholder", StringAsIsCodec)
 
-  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val readonly: HtmlAttr[Boolean] = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  lazy val showClearIcon: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
+  lazy val showClearIcon: HtmlAttr[Boolean] = htmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
 
-  lazy val showSuggestions: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
+  lazy val showSuggestions: HtmlAttr[Boolean] = htmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
 
-  lazy val tpe: ReactiveHtmlAttr[InputType] = customHtmlAttr("type", InputType.AsStringCodec)
+  lazy val tpe: HtmlAttr[InputType] = htmlAttr("type", InputType.AsStringCodec)
 
-  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 
   object slots {
 

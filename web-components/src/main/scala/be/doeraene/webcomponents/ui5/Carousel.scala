@@ -3,10 +3,10 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasSelectedIndex}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -38,22 +38,22 @@ object Carousel extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-carousel")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-carousel")
 
-  lazy val arrowsPlacement: ReactiveHtmlAttr[CarouselArrowsPlacement] =
-    customHtmlAttr("arrows-placement", CarouselArrowsPlacement.AsStringCodec)
+  lazy val arrowsPlacement: HtmlAttr[CarouselArrowsPlacement] =
+    htmlAttr("arrows-placement", CarouselArrowsPlacement.AsStringCodec)
 
-  lazy val cyclic: ReactiveHtmlAttr[Boolean] = customHtmlAttr("cyclic", BooleanAsAttrPresenceCodec)
+  lazy val cyclic: HtmlAttr[Boolean] = htmlAttr("cyclic", BooleanAsAttrPresenceCodec)
 
-  lazy val hideNavigationArrows: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("hide-navigation-arrows", BooleanAsAttrPresenceCodec)
+  lazy val hideNavigationArrows: HtmlAttr[Boolean] =
+    htmlAttr("hide-navigation-arrows", BooleanAsAttrPresenceCodec)
 
-  lazy val hidePageIndicator: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("hide-page-indicator", BooleanAsAttrPresenceCodec)
+  lazy val hidePageIndicator: HtmlAttr[Boolean] =
+    htmlAttr("hide-page-indicator", BooleanAsAttrPresenceCodec)
 
-  lazy val itemsPerPageL: ReactiveHtmlAttr[Int] = customHtmlAttr("items-per-page-l", IntAsStringCodec)
-  lazy val itemsPerPageM: ReactiveHtmlAttr[Int] = customHtmlAttr("items-per-page-m", IntAsStringCodec)
-  lazy val itemsPerPageS: ReactiveHtmlAttr[Int] = customHtmlAttr("items-per-page-s", IntAsStringCodec)
+  lazy val itemsPerPageL: HtmlAttr[Int] = htmlAttr("items-per-page-l", IntAsStringCodec)
+  lazy val itemsPerPageM: HtmlAttr[Int] = htmlAttr("items-per-page-m", IntAsStringCodec)
+  lazy val itemsPerPageS: HtmlAttr[Int] = htmlAttr("items-per-page-s", IntAsStringCodec)
 
   object slots {}
 

@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5.configkeys
 
-import com.raquo.domtypes.generic.codecs.Codec
+import com.raquo.laminar.codecs.Codec
 
 /** [[AvatarInitials]] are used within an Avatar instead of a picture.
   *

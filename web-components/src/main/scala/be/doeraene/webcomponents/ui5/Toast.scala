@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.ToastPlacement
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -34,11 +34,11 @@ object Toast extends WebComponent with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-toast")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-toast")
 
-  lazy val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
+  lazy val placement: HtmlAttr[ToastPlacement] = htmlAttr("placement", ToastPlacement.AsStringCodec)
 
-  lazy val duration: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
+  lazy val duration: HtmlAttr[FiniteDuration] = htmlAttr("duration", FiniteDurationCodec)
 
   object slots {}
 

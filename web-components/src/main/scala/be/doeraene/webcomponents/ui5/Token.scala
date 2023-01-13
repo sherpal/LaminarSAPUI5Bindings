@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -37,11 +37,11 @@ object Token extends WebComponent with HasText {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-token")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-token")
 
-  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val readonly: HtmlAttr[Boolean] = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   object slots {
     val closeIcon: Slot = new Slot("closeIcon")

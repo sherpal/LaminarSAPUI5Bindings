@@ -2,7 +2,7 @@ package be.doeraene.webcomponents
 
 import java.time.LocalDate
 
-import com.raquo.domtypes.generic.codecs.Codec
+import com.raquo.laminar.codecs.Codec
 
 import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js

@@ -12,7 +12,7 @@ val usedScalacOptions = Seq(
   "-language:implicitConversions"
 )
 
-val laminarVersion = "0.14.5"
+val laminarVersion = "15.0.0-M1"
 
 inThisBuild(
   List(

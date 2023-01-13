@@ -4,10 +4,10 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, Ico
 import be.doeraene.webcomponents.ui5.eventtypes.{HasColor, HasDetail}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.scaladsl.colour.Colour
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,25 +42,25 @@ object ColourPalettePopover extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette-popover")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-color-palette-popover")
 
-  lazy val defaultColour: ReactiveHtmlAttr[Colour] = customHtmlAttr("default-color", Colour.AsStringCodec)
+  lazy val defaultColour: HtmlAttr[Colour] = htmlAttr("default-color", Colour.AsStringCodec)
 
-  lazy val showDefaultColour: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
+  lazy val showDefaultColour: HtmlAttr[Boolean] =
+    htmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
 
   /** This import is required for the `showMoreColours` property to work. */
   @js.native
   @JSImport("@ui5/webcomponents/dist/features/ColorPaletteMoreColors.js", JSImport.Default)
   object ColourPaletteMoreColours extends js.Object
 
-  lazy val showMoreColours: ReactiveHtmlAttr[Boolean] = {
+  lazy val showMoreColours: HtmlAttr[Boolean] = {
     ColourPaletteMoreColours
-    customHtmlAttr("show-more-colors", BooleanAsAttrPresenceCodec)
+    htmlAttr("show-more-colors", BooleanAsAttrPresenceCodec)
   }
 
-  lazy val showRecentColours: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
+  lazy val showRecentColours: HtmlAttr[Boolean] =
+    htmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

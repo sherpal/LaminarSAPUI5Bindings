@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5.configkeys
 
-import com.raquo.domtypes.generic.codecs.Codec
+import com.raquo.laminar.codecs.Codec
 
 object EmbeddingAsIsCodec {
   def apply[T, U <: T]: Codec[U, T] = new Codec[U, T] {

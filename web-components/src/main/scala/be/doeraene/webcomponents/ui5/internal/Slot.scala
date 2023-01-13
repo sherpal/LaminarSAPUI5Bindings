@@ -1,8 +1,8 @@
 package be.doeraene.webcomponents.ui5.internal
 
-import com.raquo.domtypes.generic.codecs.StringAsIsCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.keys.ReactiveHtmlAttr
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveElement.Base
 
 import scala.annotation.targetName
@@ -16,7 +16,7 @@ import scala.annotation.targetName
   */
 final class Slot(name: String) {
 
-  private val slot: ReactiveHtmlAttr[String] = customHtmlAttr("slot", StringAsIsCodec)
+  private val slot: HtmlAttr[String] = htmlAttr("slot", StringAsIsCodec)
 
   def :=(element: HtmlElement): Inserter[Base] = <--(Val(element.amend(slot := name)))
 

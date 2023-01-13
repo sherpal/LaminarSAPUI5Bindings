@@ -1,15 +1,15 @@
 package be.doeraene.webcomponents.ui5
 
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
+import com.raquo.laminar.tags.HtmlTag
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
-import com.raquo.domtypes.generic.codecs.BooleanAsAttrPresenceCodec
-import com.raquo.laminar.keys.ReactiveHtmlAttr
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.keys.HtmlAttr
 
 object TableRow extends WebComponent {
 
@@ -25,9 +25,9 @@ object TableRow extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-row")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-table-row")
 
-  lazy val navigated: ReactiveHtmlAttr[Boolean] = customHtmlAttr("navigated", BooleanAsAttrPresenceCodec)
+  lazy val navigated: HtmlAttr[Boolean] = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
 
   //noinspection TypeAnnotation
   val cell = TableCell

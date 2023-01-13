@@ -29,7 +29,7 @@ object TableExample extends Example("Table") {
     DemoPanel("Basic Table") {
       //-- Begin: Basic Table
       val toggleStickyHeaderBus: EventBus[Unit] = new EventBus
-      val stickyHeaderSignal = toggleStickyHeaderBus.events.foldLeft(false)((isSticky, _) => !isSticky)
+      val stickyHeaderSignal = toggleStickyHeaderBus.events.scanLeft(false)((isSticky, _) => !isSticky)
       div(
         div(
           className := "header",
@@ -129,7 +129,7 @@ object TableExample extends Example("Table") {
       //-- Begin: Growing Table with 'More' button
       val loadMoreBus: EventBus[Unit] = new EventBus
       val totalNumberOfCards          = MTG.cards.length
-      val numberOfLoadedCards         = loadMoreBus.events.delay(3000).mapTo(4).foldLeft(4)(_ + _)
+      val numberOfLoadedCards         = loadMoreBus.events.delay(3000).mapTo(4).scanLeft(4)(_ + _)
 
       val cardsToDisplay = numberOfLoadedCards.map(MTG.cards.take)
 
@@ -138,7 +138,7 @@ object TableExample extends Example("Table") {
           loadMoreBus.events.mapTo(+1),
           numberOfLoadedCards.changes.mapTo(-1)
         )
-        .foldLeft(0)(_ + _)
+        .scanLeft(0)(_ + _)
         .map(_ > 0)
 
       Table(
@@ -175,7 +175,7 @@ object TableExample extends Example("Table") {
       //-- Begin: Growing Table on Scroll
       val loadMoreBus: EventBus[Unit] = new EventBus
       val totalNumberOfCards          = MTG.cards.length
-      val numberOfLoadedCards         = loadMoreBus.events.delay(3000).mapTo(4).foldLeft(4)(_ + _)
+      val numberOfLoadedCards         = loadMoreBus.events.delay(3000).mapTo(4).scanLeft(4)(_ + _)
 
       val cardsToDisplay = numberOfLoadedCards.map(MTG.cards.take)
 
@@ -184,7 +184,7 @@ object TableExample extends Example("Table") {
           loadMoreBus.events.mapTo(+1),
           numberOfLoadedCards.changes.mapTo(-1)
         )
-        .foldLeft(0)(_ + _)
+        .scanLeft(0)(_ + _)
         .map(_ > 0)
 
       div(
