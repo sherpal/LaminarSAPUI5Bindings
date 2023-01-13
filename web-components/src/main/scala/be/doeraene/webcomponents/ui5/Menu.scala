@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasTargetRef}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,9 +36,9 @@ object Menu extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-menu")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-menu")
 
-  lazy val headerText: HtmlAttr[String] = customHtmlAttr("headerText", StringAsIsCodec)
+  lazy val headerText: HtmlAttr[String] = htmlAttr("headerText", StringAsIsCodec)
 
   object events {
 

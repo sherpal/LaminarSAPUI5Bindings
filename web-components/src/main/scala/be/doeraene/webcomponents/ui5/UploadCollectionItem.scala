@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -49,27 +49,27 @@ object UploadCollectionItem extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-upload-collection-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-upload-collection-item")
 
   lazy val disableDeleteButton: HtmlAttr[Boolean] =
-    customHtmlAttr("disable-delete-button", BooleanAsAttrPresenceCodec)
+    htmlAttr("disable-delete-button", BooleanAsAttrPresenceCodec)
 
   lazy val fileName: HtmlAttr[String] =
-    customHtmlAttr("file-name", StringAsIsCodec)
+    htmlAttr("file-name", StringAsIsCodec)
 
   lazy val fileNameClickable: HtmlAttr[Boolean] =
-    customHtmlAttr("file-name-clickable", BooleanAsAttrPresenceCodec)
+    htmlAttr("file-name-clickable", BooleanAsAttrPresenceCodec)
 
   lazy val hideRetryButton: HtmlAttr[Boolean] =
-    customHtmlAttr("hide-retry-button", BooleanAsAttrPresenceCodec)
+    htmlAttr("hide-retry-button", BooleanAsAttrPresenceCodec)
 
   lazy val hideTerminateButton: HtmlAttr[Boolean] =
-    customHtmlAttr("hide-terminate-button", BooleanAsAttrPresenceCodec)
+    htmlAttr("hide-terminate-button", BooleanAsAttrPresenceCodec)
 
-  lazy val progress: HtmlAttr[Int] = customHtmlAttr("progress", IntAsStringCodec)
+  lazy val progress: HtmlAttr[Int] = htmlAttr("progress", IntAsStringCodec)
 
   lazy val uploadState: HtmlAttr[UploadState] =
-    customHtmlAttr("upload-state", UploadState.AsStringCodec)
+    htmlAttr("upload-state", UploadState.AsStringCodec)
 
   object slots {
     val thumbnail: Slot = new Slot("thumbnail")

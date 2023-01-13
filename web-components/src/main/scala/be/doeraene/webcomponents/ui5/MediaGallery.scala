@@ -9,7 +9,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -46,22 +46,22 @@ object MediaGallery extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-media-gallery")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-media-gallery")
 
   lazy val interactiveDisplayArea: HtmlAttr[Boolean] =
-    customHtmlAttr("interactive-display-area", BooleanAsAttrPresenceCodec)
+    htmlAttr("interactive-display-area", BooleanAsAttrPresenceCodec)
 
   lazy val layout: HtmlAttr[MediaGalleryLayout] =
-    customHtmlAttr("layout", MediaGalleryLayout.AsStringCodec)
+    htmlAttr("layout", MediaGalleryLayout.AsStringCodec)
 
   lazy val menuHorizontalAlign: HtmlAttr[MediaGalleryMenuHorizontalAlign] =
-    customHtmlAttr("menu-horizontal-align", MediaGalleryMenuHorizontalAlign.AsStringCodec)
+    htmlAttr("menu-horizontal-align", MediaGalleryMenuHorizontalAlign.AsStringCodec)
 
   lazy val menuVerticalAlign: HtmlAttr[MediaGalleryMenuVerticalAlign] =
-    customHtmlAttr("menu-vertical-align", MediaGalleryMenuVerticalAlign.AsStringCodec)
+    htmlAttr("menu-vertical-align", MediaGalleryMenuVerticalAlign.AsStringCodec)
 
   lazy val showAllThumbnails: HtmlAttr[Boolean] =
-    customHtmlAttr("show-all-thumbnails", BooleanAsAttrPresenceCodec)
+    htmlAttr("show-all-thumbnails", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

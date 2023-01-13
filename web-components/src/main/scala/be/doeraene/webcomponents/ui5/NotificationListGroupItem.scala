@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -37,23 +37,23 @@ object NotificationListGroupItem extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-notification-group")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-li-notification-group")
 
-  lazy val collapsed: HtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean] = htmlAttr("collapsed", BooleanAsAttrPresenceCodec)
 
-  lazy val showCounter: HtmlAttr[Boolean] = customHtmlAttr("show-counter", BooleanAsAttrPresenceCodec)
+  lazy val showCounter: HtmlAttr[Boolean] = htmlAttr("show-counter", BooleanAsAttrPresenceCodec)
 
-  lazy val busy: HtmlAttr[Boolean] = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busy: HtmlAttr[Boolean] = htmlAttr("busy", BooleanAsAttrPresenceCodec)
 
-  lazy val busyDelay: HtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
+  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
 
-  lazy val priority: HtmlAttr[Priority] = customHtmlAttr("priority", Priority.AsStringCodec)
+  lazy val priority: HtmlAttr[Priority] = htmlAttr("priority", Priority.AsStringCodec)
 
-  lazy val read: HtmlAttr[Boolean] = customHtmlAttr("read", BooleanAsAttrPresenceCodec)
+  lazy val read: HtmlAttr[Boolean] = htmlAttr("read", BooleanAsAttrPresenceCodec)
 
-  lazy val showClose: HtmlAttr[Boolean] = customHtmlAttr("show-close", BooleanAsAttrPresenceCodec)
+  lazy val showClose: HtmlAttr[Boolean] = htmlAttr("show-close", BooleanAsAttrPresenceCodec)
 
-  lazy val titleText: HtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String] = htmlAttr("title-text", StringAsIsCodec)
 
   object slots {
     val actions: Slot = Slot("actions")

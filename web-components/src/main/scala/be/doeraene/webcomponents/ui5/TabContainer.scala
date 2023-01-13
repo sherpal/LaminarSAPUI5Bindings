@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,15 +42,15 @@ object TabContainer extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-tabcontainer")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-tabcontainer")
 
-  lazy val disabled: HtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val collapsed: HtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
-  lazy val fixed: HtmlAttr[Boolean]        = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
-  lazy val showOverflow: HtmlAttr[Boolean] = customHtmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
-  lazy val tabLayout: HtmlAttr[TabLayout]  = customHtmlAttr("tab-layout", TabLayout.AsStringCodec)
+  lazy val disabled: HtmlAttr[Boolean]     = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean]    = htmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val fixed: HtmlAttr[Boolean]        = htmlAttr("fixed", BooleanAsAttrPresenceCodec)
+  lazy val showOverflow: HtmlAttr[Boolean] = htmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
+  lazy val tabLayout: HtmlAttr[TabLayout]  = htmlAttr("tab-layout", TabLayout.AsStringCodec)
   lazy val tabsOverflowMode: HtmlAttr[TabsOverflowMode] =
-    customHtmlAttr("tabs-overflow-mode", TabsOverflowMode.AsStringCodec)
+    htmlAttr("tabs-overflow-mode", TabsOverflowMode.AsStringCodec)
 
   object slots {
     val overflowButton: Slot      = new Slot("overflowButton")
@@ -78,7 +78,7 @@ object TabContainer extends WebComponent {
 
   def tabSeparator: HtmlElement = {
     TabSeparatorSupport
-    customHtmlTag("ui5-tab-separator").apply()
+    htmlTag("ui5-tab-separator").apply()
   }
 
 }

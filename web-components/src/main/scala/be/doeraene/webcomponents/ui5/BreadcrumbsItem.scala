@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName, LinkTar
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -32,14 +32,14 @@ object BreadcrumbsItem extends WebComponent with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-breadcrumbs-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-breadcrumbs-item")
 
   lazy val accessibleName: HtmlAttr[String] =
-    customHtmlAttr("accessible-name", StringAsIsCodec)
+    htmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val href: HtmlAttr[String] = customHtmlAttr("href", StringAsIsCodec)
+  lazy val href: HtmlAttr[String] = htmlAttr("href", StringAsIsCodec)
 
-  lazy val target: HtmlAttr[LinkTarget] = customHtmlAttr("target", LinkTarget.AsStringCodec)
+  lazy val target: HtmlAttr[LinkTarget] = htmlAttr("target", LinkTarget.AsStringCodec)
 
   
 

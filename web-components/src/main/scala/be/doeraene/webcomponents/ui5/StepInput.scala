@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -44,27 +44,27 @@ object StepInput extends WebComponent with HasAccessibleName with HasName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-step-input")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-step-input")
 
-  lazy val disabled: HtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val max: HtmlAttr[Double] = customHtmlAttr("max", DoubleAsStringCodec)
+  lazy val max: HtmlAttr[Double] = htmlAttr("max", DoubleAsStringCodec)
 
-  lazy val min: HtmlAttr[Double] = customHtmlAttr("min", DoubleAsStringCodec)
+  lazy val min: HtmlAttr[Double] = htmlAttr("min", DoubleAsStringCodec)
 
-  lazy val placeholder: HtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val placeholder: HtmlAttr[String] = htmlAttr("placeholder", StringAsIsCodec)
 
-  lazy val readonly: HtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val readonly: HtmlAttr[Boolean] = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  lazy val required: HtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean] = htmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  lazy val step: HtmlAttr[Double] = customHtmlAttr("step", DoubleAsStringCodec)
+  lazy val step: HtmlAttr[Double] = htmlAttr("step", DoubleAsStringCodec)
 
-  lazy val value: HtmlAttr[Double] = customHtmlAttr("value", DoubleAsStringCodec)
+  lazy val value: HtmlAttr[Double] = htmlAttr("value", DoubleAsStringCodec)
 
-  lazy val valuePrecision: HtmlAttr[Int] = customHtmlAttr("value-precision", IntAsStringCodec)
+  lazy val valuePrecision: HtmlAttr[Int] = htmlAttr("value-precision", IntAsStringCodec)
 
-  lazy val valueState: HtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 
   object slots {
     val valueStateMessage: Slot = Slot("valueStateMessage")

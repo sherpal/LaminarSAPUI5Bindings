@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,17 +35,17 @@ object CheckBox extends WebComponent with HasIcon with HasAccessibleName with Ha
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-checkbox")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-checkbox")
 
-  lazy val checked: HtmlAttr[Boolean]       = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
-  lazy val disabled: HtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val indeterminate: HtmlAttr[Boolean] = customHtmlAttr("indeterminate", BooleanAsAttrPresenceCodec)
-  lazy val readonly: HtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  lazy val required: HtmlAttr[Boolean]      = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val checked: HtmlAttr[Boolean]       = htmlAttr("checked", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean]      = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val indeterminate: HtmlAttr[Boolean] = htmlAttr("indeterminate", BooleanAsAttrPresenceCodec)
+  lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean]      = htmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  lazy val valueState: HtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 
-  lazy val wrappingType: HtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val wrappingType: HtmlAttr[WrappingType] = htmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   object slots {}
 

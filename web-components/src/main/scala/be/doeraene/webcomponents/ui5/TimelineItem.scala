@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,13 +42,13 @@ object TimelineItem extends WebComponent with HasIcon with HasName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-timeline-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-timeline-item")
 
-  lazy val nameClickable: HtmlAttr[Boolean] = customHtmlAttr("name-clickable", BooleanAsAttrPresenceCodec)
+  lazy val nameClickable: HtmlAttr[Boolean] = htmlAttr("name-clickable", BooleanAsAttrPresenceCodec)
 
-  lazy val subtitleText: HtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val subtitleText: HtmlAttr[String] = htmlAttr("subtitle-text", StringAsIsCodec)
 
-  lazy val titleText: HtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String] = htmlAttr("title-text", StringAsIsCodec)
 
   object slots {}
 

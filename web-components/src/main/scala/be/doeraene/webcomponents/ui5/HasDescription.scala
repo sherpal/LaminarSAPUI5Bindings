@@ -5,5 +5,5 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.keys.HtmlAttr
 
 trait HasDescription {
-  lazy val description: HtmlAttr[String] = customHtmlAttr("description", StringAsIsCodec)
+  lazy val description: HtmlAttr[String] = htmlAttr("description", StringAsIsCodec)
 }

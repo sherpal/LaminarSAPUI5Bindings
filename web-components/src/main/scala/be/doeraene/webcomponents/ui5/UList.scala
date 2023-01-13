@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.*
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,18 +35,18 @@ object UList extends WebComponent with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-list")
 
-  lazy val accessibleRole: HtmlAttr[String]    = customHtmlAttr("accessible-role", StringAsIsCodec)
-  lazy val busy: HtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
-  lazy val busyDelay: HtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
-  lazy val footerText: HtmlAttr[String]        = customHtmlAttr("footer-text", StringAsIsCodec)
-  lazy val growing: HtmlAttr[ListGrowingMode]  = customHtmlAttr("growing", ListGrowingMode.AsStringCodec)
-  lazy val headerText: HtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
-  lazy val indent: HtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
-  lazy val mode: HtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
-  lazy val noDataText: HtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
-  lazy val separators: HtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
+  lazy val accessibleRole: HtmlAttr[String]    = htmlAttr("accessible-role", StringAsIsCodec)
+  lazy val busy: HtmlAttr[Boolean]             = htmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
+  lazy val footerText: HtmlAttr[String]        = htmlAttr("footer-text", StringAsIsCodec)
+  lazy val growing: HtmlAttr[ListGrowingMode]  = htmlAttr("growing", ListGrowingMode.AsStringCodec)
+  lazy val headerText: HtmlAttr[String]        = htmlAttr("header-text", StringAsIsCodec)
+  lazy val indent: HtmlAttr[Boolean]           = htmlAttr("indent", BooleanAsAttrPresenceCodec)
+  lazy val mode: HtmlAttr[ListMode]            = htmlAttr("mode", ListMode.AsStringCodec)
+  lazy val noDataText: HtmlAttr[String]        = htmlAttr("no-data-text", StringAsIsCodec)
+  lazy val separators: HtmlAttr[ListSeparator] = htmlAttr("separators", ListSeparator.AsStringCodec)
 
   object events {
     val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-click")

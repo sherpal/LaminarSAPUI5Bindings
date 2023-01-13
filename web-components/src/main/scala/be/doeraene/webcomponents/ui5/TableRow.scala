@@ -25,9 +25,9 @@ object TableRow extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-row")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-table-row")
 
-  lazy val navigated: HtmlAttr[Boolean] = customHtmlAttr("navigated", BooleanAsAttrPresenceCodec)
+  lazy val navigated: HtmlAttr[Boolean] = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
 
   //noinspection TypeAnnotation
   val cell = TableCell

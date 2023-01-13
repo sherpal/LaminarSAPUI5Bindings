@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,13 +42,13 @@ object Breadcrumbs extends WebComponent with HasIcon {
     }
   }
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-breadcrumbs")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-breadcrumbs")
 
   lazy val separatorStyle: HtmlAttr[BreadcrumbsSeparatorStyle] =
-    customHtmlAttr("separator-style", BreadcrumbsSeparatorStyle.AsStringCodec)
+    htmlAttr("separator-style", BreadcrumbsSeparatorStyle.AsStringCodec)
 
   lazy val design: HtmlAttr[BreadcrumbsDesign] =
-    customHtmlAttr("design", BreadcrumbsDesign.AsStringCodec)
+    htmlAttr("design", BreadcrumbsDesign.AsStringCodec)
 
   object slots {}
 

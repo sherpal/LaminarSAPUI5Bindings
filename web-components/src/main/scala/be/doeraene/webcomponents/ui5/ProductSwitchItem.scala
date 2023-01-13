@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,15 +36,15 @@ object ProductSwitchItem extends WebComponent with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-product-switch-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-product-switch-item")
 
-  lazy val subtitleText: HtmlAttr[String] = customHtmlAttr[String]("subtitle-text", StringAsIsCodec)
+  lazy val subtitleText: HtmlAttr[String] = htmlAttr[String]("subtitle-text", StringAsIsCodec)
 
-  lazy val target: HtmlAttr[LinkTarget] = customHtmlAttr[LinkTarget]("target", LinkTarget.AsStringCodec)
+  lazy val target: HtmlAttr[LinkTarget] = htmlAttr[LinkTarget]("target", LinkTarget.AsStringCodec)
 
-  lazy val targetSrc: HtmlAttr[String] = customHtmlAttr[String]("target-src", StringAsIsCodec)
+  lazy val targetSrc: HtmlAttr[String] = htmlAttr[String]("target-src", StringAsIsCodec)
 
-  lazy val titleText: HtmlAttr[String] = customHtmlAttr[String]("title-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String] = htmlAttr[String]("title-text", StringAsIsCodec)
 
   object slots {}
 

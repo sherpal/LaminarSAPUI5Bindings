@@ -5,5 +5,5 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.keys.HtmlAttr
 
 trait HasValue {
-  lazy val value: HtmlAttr[String] = customHtmlAttr("value", StringAsIsCodec)
+  lazy val value: HtmlAttr[String] = htmlAttr("value", StringAsIsCodec)
 }

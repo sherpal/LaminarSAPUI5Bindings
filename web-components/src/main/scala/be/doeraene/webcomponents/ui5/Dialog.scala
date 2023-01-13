@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,18 +42,18 @@ object Dialog extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-dialog")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-dialog")
 
-  lazy val headerText: HtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
 
-  lazy val resizable: HtmlAttr[Boolean] = customHtmlAttr("resizable", BooleanAsAttrPresenceCodec)
-  lazy val stretch: HtmlAttr[Boolean]   = customHtmlAttr("stretch", BooleanAsAttrPresenceCodec)
-  lazy val draggable: HtmlAttr[Boolean] = customHtmlAttr("draggable", BooleanAsAttrPresenceCodec)
-  lazy val open: HtmlAttr[Boolean]      = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val resizable: HtmlAttr[Boolean] = htmlAttr("resizable", BooleanAsAttrPresenceCodec)
+  lazy val stretch: HtmlAttr[Boolean]   = htmlAttr("stretch", BooleanAsAttrPresenceCodec)
+  lazy val draggable: HtmlAttr[Boolean] = htmlAttr("draggable", BooleanAsAttrPresenceCodec)
+  lazy val open: HtmlAttr[Boolean]      = htmlAttr("open", BooleanAsAttrPresenceCodec)
   lazy val preventFocusRestore: HtmlAttr[Boolean] =
-    customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
-  lazy val state: HtmlAttr[ValueState] = customHtmlAttr("state", ValueState.AsStringCodec)
-  lazy val initialFocus: HtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
+    htmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
+  lazy val state: HtmlAttr[ValueState] = htmlAttr("state", ValueState.AsStringCodec)
+  lazy val initialFocus: HtmlAttr[String] = htmlAttr("initial-focus", StringAsIsCodec)
 
   //noinspection TypeAnnotation
   object slots {
@@ -67,14 +67,14 @@ object Dialog extends WebComponent {
   /** [[Observer]] you can feed to open the Dialog. */
   val showObserver: Observer[Ref] = Observer(_.show())
 
-  def showFromEvents(openerEvents: EventStream[Unit]): Mod[HtmlElement] =
-    inContext[HtmlElement](el => openerEvents.mapTo(el.ref) --> showObserver)
+  def showFromEvents(openerEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.mapTo(el.ref) --> showObserver)
 
   /** [[Observer]] you can feed a [[Dialog]] ref to close it. */
   val closeObserver: Observer[Ref] = Observer(_.close())
 
-  def closeFromEvents(closeEvents: EventStream[Unit]): Mod[HtmlElement] =
-    inContext[HtmlElement](el => closeEvents.mapTo(el.ref) --> closeObserver)
+  def closeFromEvents(closeEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => closeEvents.mapTo(el.ref) --> closeObserver)
 
   /** [[Observer]] you can feed a [[Dialog]] ref to apply focus to it. */
   val applyFocusObserver: Observer[Ref] = Observer(_.applyFocus())

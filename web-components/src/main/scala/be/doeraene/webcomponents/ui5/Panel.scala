@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,18 +36,18 @@ object Panel extends WebComponent with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-panel")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-panel")
 
   lazy val accessibleRole: HtmlAttr[PanelAccessibleRole] =
-    customHtmlAttr("accessible-role", PanelAccessibleRole.AsStringCodec)
+    htmlAttr("accessible-role", PanelAccessibleRole.AsStringCodec)
 
-  lazy val collapsed: HtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
-  lazy val fixed: HtmlAttr[Boolean]     = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean] = htmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val fixed: HtmlAttr[Boolean]     = htmlAttr("fixed", BooleanAsAttrPresenceCodec)
 
-  lazy val headerLevel: HtmlAttr[TitleLevel] = customHtmlAttr("header-level", TitleLevel.AsStringCodec)
-  lazy val headerText: HtmlAttr[String]      = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val headerLevel: HtmlAttr[TitleLevel] = htmlAttr("header-level", TitleLevel.AsStringCodec)
+  lazy val headerText: HtmlAttr[String]      = htmlAttr("header-text", StringAsIsCodec)
 
-  lazy val noAnimation: HtmlAttr[Boolean] = customHtmlAttr("no-animation", BooleanAsAttrPresenceCodec)
+  lazy val noAnimation: HtmlAttr[Boolean] = htmlAttr("no-animation", BooleanAsAttrPresenceCodec)
 
   object slots {
     val header: Slot = new Slot("header")

@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,14 +36,14 @@ object BusyIndicator extends WebComponent with HasText {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-busy-indicator")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-busy-indicator")
 
-  lazy val active: HtmlAttr[Boolean] = customHtmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
+  lazy val active: HtmlAttr[Boolean] = htmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
 
-  lazy val delay: HtmlAttr[FiniteDuration] = customHtmlAttr[FiniteDuration]("delay", FiniteDurationCodec)
+  lazy val delay: HtmlAttr[FiniteDuration] = htmlAttr[FiniteDuration]("delay", FiniteDurationCodec)
 
   lazy val size: HtmlAttr[BusyIndicatorSize] =
-    customHtmlAttr[BusyIndicatorSize]("size", BusyIndicatorSize.AsStringCodec)
+    htmlAttr[BusyIndicatorSize]("size", BusyIndicatorSize.AsStringCodec)
 
   
 

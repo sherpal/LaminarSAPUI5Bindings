@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.{AvatarColorScheme, AvatarInitia
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 //import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,26 +35,26 @@ object Avatar extends WebComponent with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-avatar")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-avatar")
 
-  lazy val accessibleName: HtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val interactive: HtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
+  lazy val interactive: HtmlAttr[Boolean] = htmlAttr("interactive", BooleanAsAttrPresenceCodec)
 
   lazy val raised: HtmlAttr[Boolean] =
-    customHtmlAttr("raised", BooleanAsAttrPresenceCodec)
+    htmlAttr("raised", BooleanAsAttrPresenceCodec)
   lazy val disabled: HtmlAttr[Boolean] =
-    customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+    htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
   lazy val colorScheme: HtmlAttr[AvatarColorScheme] =
-    customHtmlAttr("color-scheme", AvatarColorScheme.AsStringCodec)
+    htmlAttr("color-scheme", AvatarColorScheme.AsStringCodec)
 
-  lazy val shape: HtmlAttr[AvatarShape] = customHtmlAttr("shape", AvatarShape.AsStringCodec)
+  lazy val shape: HtmlAttr[AvatarShape] = htmlAttr("shape", AvatarShape.AsStringCodec)
 
   lazy val initials: HtmlAttr[AvatarInitials] =
-    customHtmlAttr("initials", AvatarInitials.AsStringCodec)
+    htmlAttr("initials", AvatarInitials.AsStringCodec)
 
-  lazy val size: HtmlAttr[AvatarSize] = customHtmlAttr("size", AvatarSize.AsStringCodec)
+  lazy val size: HtmlAttr[AvatarSize] = htmlAttr("size", AvatarSize.AsStringCodec)
 
   object slots {
     val badge: Slot = new Slot("badge")

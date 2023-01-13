@@ -16,7 +16,7 @@ import scala.annotation.targetName
   */
 final class Slot(name: String) {
 
-  private val slot: HtmlAttr[String] = customHtmlAttr("slot", StringAsIsCodec)
+  private val slot: HtmlAttr[String] = htmlAttr("slot", StringAsIsCodec)
 
   def :=(element: HtmlElement): Inserter[Base] = <--(Val(element.amend(slot := name)))
 

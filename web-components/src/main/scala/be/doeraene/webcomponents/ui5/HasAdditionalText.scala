@@ -5,5 +5,5 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.keys.HtmlAttr
 
 trait HasAdditionalText {
-  def additionalText: HtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  def additionalText: HtmlAttr[String] = htmlAttr("additional-text", StringAsIsCodec)
 }

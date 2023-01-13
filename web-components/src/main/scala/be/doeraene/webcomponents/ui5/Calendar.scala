@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -41,24 +41,24 @@ object Calendar extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-calendar")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-calendar")
 
-  lazy val hideWeekNumbers: HtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
+  lazy val hideWeekNumbers: HtmlAttr[Boolean] = htmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
 
   lazy val selectionMode: HtmlAttr[CalendarSelectionMode] =
-    customHtmlAttr("selection-mode", CalendarSelectionMode.AsStringCodec)
+    htmlAttr("selection-mode", CalendarSelectionMode.AsStringCodec)
 
-  lazy val formatPattern: HtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
+  lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
 
-  lazy val maxDateRaw: HtmlAttr[String] = customHtmlAttr("max-date", StringAsIsCodec)
+  lazy val maxDateRaw: HtmlAttr[String] = htmlAttr("max-date", StringAsIsCodec)
 
-  lazy val minDateRaw: HtmlAttr[String] = customHtmlAttr("min-date", StringAsIsCodec)
+  lazy val minDateRaw: HtmlAttr[String] = htmlAttr("min-date", StringAsIsCodec)
 
   lazy val primaryCalendarType: HtmlAttr[CalendarType] =
-    customHtmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
+    htmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
 
   lazy val secondaryCalendarType: HtmlAttr[CalendarType] =
-    customHtmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
+    htmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
 
   object slots {}
 

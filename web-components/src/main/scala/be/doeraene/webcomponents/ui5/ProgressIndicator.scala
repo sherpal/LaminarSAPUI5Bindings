@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,21 +35,21 @@ object ProgressIndicator extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-progress-indicator")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-progress-indicator")
 
   lazy val disabled: HtmlAttr[Boolean] =
-    customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+    htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
   lazy val displayValue: HtmlAttr[String] =
-    customHtmlAttr("display-value", StringAsIsCodec)
+    htmlAttr("display-value", StringAsIsCodec)
 
   lazy val hideValue: HtmlAttr[Boolean] =
-    customHtmlAttr("hide-value", BooleanAsAttrPresenceCodec)
+    htmlAttr("hide-value", BooleanAsAttrPresenceCodec)
 
-  lazy val value: HtmlAttr[Int] = customHtmlAttr("value", IntAsStringCodec)
+  lazy val value: HtmlAttr[Int] = htmlAttr("value", IntAsStringCodec)
 
   lazy val valueState: HtmlAttr[ValueState] =
-    customHtmlAttr("value-state", ValueState.AsStringCodec)
+    htmlAttr("value-state", ValueState.AsStringCodec)
 
   
 

@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -40,27 +40,27 @@ object RangeSlider extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-range-slider")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-range-slider")
 
-  lazy val endValue: HtmlAttr[Double] = customHtmlAttr("end-value", DoubleAsStringCodec)
+  lazy val endValue: HtmlAttr[Double] = htmlAttr("end-value", DoubleAsStringCodec)
 
-  lazy val startValue: HtmlAttr[Double] = customHtmlAttr("start-value", DoubleAsStringCodec)
+  lazy val startValue: HtmlAttr[Double] = htmlAttr("start-value", DoubleAsStringCodec)
 
-  lazy val accessibleName: HtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val disabled: HtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val labelInterval: HtmlAttr[Int] = customHtmlAttr("label-interval", IntAsStringCodec)
+  lazy val labelInterval: HtmlAttr[Int] = htmlAttr("label-interval", IntAsStringCodec)
 
-  lazy val max: HtmlAttr[Double] = customHtmlAttr("max", DoubleAsStringCodec)
+  lazy val max: HtmlAttr[Double] = htmlAttr("max", DoubleAsStringCodec)
 
-  lazy val min: HtmlAttr[Double] = customHtmlAttr("min", DoubleAsStringCodec)
+  lazy val min: HtmlAttr[Double] = htmlAttr("min", DoubleAsStringCodec)
 
-  lazy val showTickmarks: HtmlAttr[Boolean] = customHtmlAttr("show-tickmarks", BooleanAsAttrPresenceCodec)
+  lazy val showTickmarks: HtmlAttr[Boolean] = htmlAttr("show-tickmarks", BooleanAsAttrPresenceCodec)
 
-  lazy val showTooltip: HtmlAttr[Boolean] = customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
+  lazy val showTooltip: HtmlAttr[Boolean] = htmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
-  lazy val step: HtmlAttr[Int] = customHtmlAttr("step", IntAsStringCodec)
+  lazy val step: HtmlAttr[Int] = htmlAttr("step", IntAsStringCodec)
 
   object slots {}
 

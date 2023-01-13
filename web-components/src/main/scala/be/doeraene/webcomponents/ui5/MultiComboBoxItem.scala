@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, BooleanAsIsCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,11 +36,11 @@ object MultiComboBoxItem extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-mcb-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-mcb-item")
 
-  lazy val selected: HtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
-  lazy val text: HtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
-  lazy val additionalText: HtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  lazy val selected: HtmlAttr[Boolean]      = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val text: HtmlAttr[String]           = htmlAttr("text", StringAsIsCodec)
+  lazy val additionalText: HtmlAttr[String] = htmlAttr("additional-text", StringAsIsCodec)
 
   object slots {}
 

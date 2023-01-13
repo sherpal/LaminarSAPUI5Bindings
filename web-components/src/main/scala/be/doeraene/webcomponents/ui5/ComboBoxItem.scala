@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,10 +36,10 @@ object ComboBoxItem extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-cb-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-cb-item")
 
-  lazy val text: HtmlAttr[String]           = customHtmlAttr("text", StringAsIsCodec)
-  lazy val additionalText: HtmlAttr[String] = customHtmlAttr("additional-text", StringAsIsCodec)
+  lazy val text: HtmlAttr[String]           = htmlAttr("text", StringAsIsCodec)
+  lazy val additionalText: HtmlAttr[String] = htmlAttr("additional-text", StringAsIsCodec)
 
   object slots {}
 

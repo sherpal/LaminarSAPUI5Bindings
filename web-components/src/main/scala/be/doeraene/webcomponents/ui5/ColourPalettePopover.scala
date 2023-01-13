@@ -7,7 +7,7 @@ import be.doeraene.webcomponents.ui5.scaladsl.colour.Colour
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,12 +42,12 @@ object ColourPalettePopover extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-palette-popover")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-color-palette-popover")
 
-  lazy val defaultColour: HtmlAttr[Colour] = customHtmlAttr("default-color", Colour.AsStringCodec)
+  lazy val defaultColour: HtmlAttr[Colour] = htmlAttr("default-color", Colour.AsStringCodec)
 
   lazy val showDefaultColour: HtmlAttr[Boolean] =
-    customHtmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
+    htmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
 
   /** This import is required for the `showMoreColours` property to work. */
   @js.native
@@ -56,11 +56,11 @@ object ColourPalettePopover extends WebComponent {
 
   lazy val showMoreColours: HtmlAttr[Boolean] = {
     ColourPaletteMoreColours
-    customHtmlAttr("show-more-colors", BooleanAsAttrPresenceCodec)
+    htmlAttr("show-more-colors", BooleanAsAttrPresenceCodec)
   }
 
   lazy val showRecentColours: HtmlAttr[Boolean] =
-    customHtmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
+    htmlAttr("show-recent-colors", BooleanAsAttrPresenceCodec)
 
   object slots {}
 
@@ -77,7 +77,7 @@ object ColourPalettePopover extends WebComponent {
   val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
 
   /** [[Mod]] for [[ColourPalettePopover]]s opening them each time the stream emits an opener [[dom.HTMLElement]] */
-  def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[HtmlElement] =
-    inContext[HtmlElement](el => openerEvents.map(el.ref -> _) --> showAtObserver)
+  def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.map(el.ref -> _) --> showAtObserver)
 
 }

@@ -28,11 +28,11 @@ object TableColumn extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-column")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-table-column")
 
-  lazy val demandPopin: HtmlAttr[Boolean] = customHtmlAttr("demand-popin", BooleanAsAttrPresenceCodec)
-  lazy val minWidth: HtmlAttr[Int]        = customHtmlAttr("min-width", IntAsStringCodec)
-  lazy val popinText: HtmlAttr[String]    = customHtmlAttr("popin-text", StringAsIsCodec)
+  lazy val demandPopin: HtmlAttr[Boolean] = htmlAttr("demand-popin", BooleanAsAttrPresenceCodec)
+  lazy val minWidth: HtmlAttr[Int]        = htmlAttr("min-width", IntAsStringCodec)
+  lazy val popinText: HtmlAttr[String]    = htmlAttr("popin-text", StringAsIsCodec)
 
   
 

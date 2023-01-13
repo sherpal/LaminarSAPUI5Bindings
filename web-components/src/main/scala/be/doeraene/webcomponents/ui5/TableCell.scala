@@ -23,7 +23,7 @@ object TableCell extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table-cell")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-table-cell")
 
   
 

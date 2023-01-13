@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName, SwitchD
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.Event
@@ -35,17 +35,17 @@ object Switch extends WebComponent with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-switch")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-switch")
 
-  lazy val textOn: HtmlAttr[String]  = customHtmlAttr("text-on", StringAsIsCodec)
-  lazy val textOff: HtmlAttr[String] = customHtmlAttr("text-off", StringAsIsCodec)
+  lazy val textOn: HtmlAttr[String]  = htmlAttr("text-on", StringAsIsCodec)
+  lazy val textOff: HtmlAttr[String] = htmlAttr("text-off", StringAsIsCodec)
 
-  lazy val disabled: HtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val checked: HtmlAttr[Boolean]  = customHtmlAttr("checked", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val checked: HtmlAttr[Boolean]  = htmlAttr("checked", BooleanAsAttrPresenceCodec)
 
-  lazy val design: HtmlAttr[SwitchDesign] = customHtmlAttr("design", SwitchDesign.AsStringCodec)
+  lazy val design: HtmlAttr[SwitchDesign] = htmlAttr("design", SwitchDesign.AsStringCodec)
   
-  lazy val tooltip: HtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
+  lazy val tooltip: HtmlAttr[String] = htmlAttr("tooltip", StringAsIsCodec)
 
   object slots {}
 

@@ -3,7 +3,7 @@ package be.doeraene.webcomponents.ui5
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -34,16 +34,16 @@ object SuggestionItem extends WebComponent with HasIcon with HasDescription with
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-suggestion-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-suggestion-item")
 
-  lazy val iconEnd: HtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: HtmlAttr[Boolean] = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 
-  lazy val image: HtmlAttr[String] = customHtmlAttr("image", StringAsIsCodec)
+  lazy val image: HtmlAttr[String] = htmlAttr("image", StringAsIsCodec)
 
-  lazy val tpe: HtmlAttr[ListItemType] = customHtmlAttr("tpe", ListItemType.AsStringCodec)
+  lazy val tpe: HtmlAttr[ListItemType] = htmlAttr("tpe", ListItemType.AsStringCodec)
 
   lazy val additionalTextState: HtmlAttr[ValueState] =
-    customHtmlAttr("additional-text-state", ValueState.AsStringCodec)
+    htmlAttr("additional-text-state", ValueState.AsStringCodec)
 
   
 

@@ -6,7 +6,7 @@ import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.api.L.*
 
 trait HasIcon {
-  lazy val icon: HtmlAttr[IconName] = customHtmlAttr("icon", IconName.AsStringCodec)
+  lazy val icon: HtmlAttr[IconName] = htmlAttr("icon", IconName.AsStringCodec)
 
-  lazy val iconString: HtmlAttr[String] = customHtmlAttr("icon", StringAsIsCodec)
+  lazy val iconString: HtmlAttr[String] = htmlAttr("icon", StringAsIsCodec)
 }

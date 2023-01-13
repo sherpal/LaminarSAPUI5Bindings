@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,9 +35,9 @@ object SideNavigation extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-side-navigation")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-side-navigation")
 
-  lazy val collapsed: HtmlAttr[Boolean] = customHtmlAttr[Boolean]("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean] = htmlAttr[Boolean]("collapsed", BooleanAsAttrPresenceCodec)
 
   object slots {
     val fixedItems: Slot = new Slot("fixedItems")
