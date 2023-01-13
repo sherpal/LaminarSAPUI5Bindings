@@ -3,10 +3,10 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.{TableGrowingMode, TableMode}
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -33,15 +33,15 @@ object Table extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-table")
 
-  lazy val busy: ReactiveHtmlAttr[Boolean]                = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
-  lazy val busyDelay: ReactiveHtmlAttr[FiniteDuration]    = customHtmlAttr("busy-delay", FiniteDurationCodec)
-  lazy val growing: ReactiveHtmlAttr[TableGrowingMode]    = customHtmlAttr("growing", TableGrowingMode.AsStringCodec)
-  lazy val growingButtonSubtext: ReactiveHtmlAttr[String] = customHtmlAttr("growing-button-subtext", StringAsIsCodec)
-  lazy val growingButtonText: ReactiveHtmlAttr[String]    = customHtmlAttr("growing-button-text", StringAsIsCodec)
-  lazy val hideNoData: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("hide-no-data", BooleanAsAttrPresenceCodec)
-  lazy val mode: ReactiveHtmlAttr[TableMode]              = customHtmlAttr("mode", TableMode.AsStringCodec)
-  lazy val noDataText: ReactiveHtmlAttr[String]           = customHtmlAttr("no-data-text", StringAsIsCodec)
-  lazy val stickyColumnHeader: ReactiveHtmlAttr[Boolean] =
+  lazy val busy: HtmlAttr[Boolean]                = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busyDelay: HtmlAttr[FiniteDuration]    = customHtmlAttr("busy-delay", FiniteDurationCodec)
+  lazy val growing: HtmlAttr[TableGrowingMode]    = customHtmlAttr("growing", TableGrowingMode.AsStringCodec)
+  lazy val growingButtonSubtext: HtmlAttr[String] = customHtmlAttr("growing-button-subtext", StringAsIsCodec)
+  lazy val growingButtonText: HtmlAttr[String]    = customHtmlAttr("growing-button-text", StringAsIsCodec)
+  lazy val hideNoData: HtmlAttr[Boolean]          = customHtmlAttr("hide-no-data", BooleanAsAttrPresenceCodec)
+  lazy val mode: HtmlAttr[TableMode]              = customHtmlAttr("mode", TableMode.AsStringCodec)
+  lazy val noDataText: HtmlAttr[String]           = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val stickyColumnHeader: HtmlAttr[Boolean] =
     customHtmlAttr("sticky-column-header", BooleanAsAttrPresenceCodec)
 
   object slots {

@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,12 +35,12 @@ object Icon extends WebComponent with HasAccessibleName {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-icon")
 
-  lazy val name: ReactiveHtmlAttr[IconName] = customHtmlAttr("name", IconName.AsStringCodec)
+  lazy val name: HtmlAttr[IconName] = customHtmlAttr("name", IconName.AsStringCodec)
 
-  lazy val interactive: ReactiveHtmlAttr[Boolean] =
+  lazy val interactive: HtmlAttr[Boolean] =
     customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
 
-  lazy val showTooltip: ReactiveHtmlAttr[Boolean] =
+  lazy val showTooltip: HtmlAttr[Boolean] =
     customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
   

@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.*
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -46,7 +46,7 @@ object ViewSettingsDialog extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-view-settings-dialog")
 
-  lazy val sortDescending: ReactiveHtmlAttr[Boolean] = customHtmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
+  lazy val sortDescending: HtmlAttr[Boolean] = customHtmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
 
   object slots {
     val filterItems: Slot = Slot("filterItems")
@@ -92,13 +92,13 @@ object ViewSettingsDialog extends WebComponent {
 
   /** [[Mod]] showing the [[ViewSettingsDialog]] when the specified stream emits. */
   def showFromEvents(viewSettingsDialogShowEvents: EventStream[Unit]) =
-    inContext[ReactiveHtmlElement[Ref]](el => viewSettingsDialogShowEvents.mapTo(el.ref) --> showObserver)
+    inContext[HtmlElement](el => viewSettingsDialogShowEvents.mapTo(el.ref) --> showObserver)
 
   /** Feed an instance of [[ViewSettingsDialog]] ref with the desired [[ViewSettings]] to set these to it. */
   val setConfirmedSettingsObserver: Observer[(Ref, ViewSettings)] = Observer(_.setConfirmedSettings(_))
 
   /** [[Mod]] settings the [[ViewSettings]] to the [[ViewSettingsDialog]]. */
   def setConfirmedSettingsFromEvents(settingsEvent: EventStream[ViewSettings]) =
-    inContext[ReactiveHtmlElement[Ref]](el => settingsEvent.map(el.ref -> _) --> setConfirmedSettingsObserver)
+    inContext[HtmlElement](el => settingsEvent.map(el.ref -> _) --> setConfirmedSettingsObserver)
 
 }

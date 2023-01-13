@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.*
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -53,28 +53,28 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-datetime-picker")
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
+  lazy val hideWeekNumbers: HtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
 
-  lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val placeholder: HtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
 
-  lazy val readonly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val readonly: HtmlAttr[Boolean] = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  lazy val required: ReactiveHtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean] = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
-  lazy val formatPattern: ReactiveHtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
+  lazy val formatPattern: HtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
 
-  lazy val maxDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("max-date", StringAsIsCodec)
+  lazy val maxDateRaw: HtmlAttr[String] = customHtmlAttr("max-date", StringAsIsCodec)
 
-  lazy val minDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("min-date", StringAsIsCodec)
+  lazy val minDateRaw: HtmlAttr[String] = customHtmlAttr("min-date", StringAsIsCodec)
 
-  lazy val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+  lazy val primaryCalendarType: HtmlAttr[CalendarType] =
     customHtmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
 
-  lazy val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
+  lazy val secondaryCalendarType: HtmlAttr[CalendarType] =
     customHtmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
 
   object slots {
@@ -94,13 +94,13 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
 
   /** creates a [[Mod]] for your [[DateTimePicker]]s to close them when the stream emit. */
   def closePickerFromEvents(stream: EventStream[Unit]) =
-    inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> closePickerObserver)
+    inContext[HtmlElement](el => stream.mapTo(el.ref) --> closePickerObserver)
 
   /** You can feed [[DateTimePicker]] refs to this observer in order to open them. */
   val openPickerObserver: Observer[Ref] = Observer(_.openPicker())
 
   /** creates a [[Mod]] for your [[DateTimePicker]]s to close them when the stream emit. */
   def openPickerFromEvents(stream: EventStream[Unit]) =
-    inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> openPickerObserver)
+    inContext[HtmlElement](el => stream.mapTo(el.ref) --> openPickerObserver)
 
 }

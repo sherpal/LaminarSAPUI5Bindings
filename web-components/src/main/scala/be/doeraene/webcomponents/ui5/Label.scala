@@ -1,9 +1,9 @@
 package be.doeraene.webcomponents.ui5
 
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -33,10 +33,10 @@ object Label extends WebComponent with HasIcon {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-label")
 
-  lazy val required: ReactiveHtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  lazy val showColon: ReactiveHtmlAttr[Boolean]         = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)
-  lazy val forId: ReactiveHtmlAttr[String]              = customHtmlAttr("for", StringAsIsCodec)
-  lazy val wrappingType: ReactiveHtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val required: HtmlAttr[Boolean]          = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val showColon: HtmlAttr[Boolean]         = customHtmlAttr("show-colon", BooleanAsAttrPresenceCodec)
+  lazy val forId: HtmlAttr[String]              = customHtmlAttr("for", StringAsIsCodec)
+  lazy val wrappingType: HtmlAttr[WrappingType] = customHtmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   val isRequired: Setter[HtmlElement] = required := true
 

@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.ToastPlacement
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,9 +36,9 @@ object Toast extends WebComponent with HasIcon {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-toast")
 
-  lazy val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
+  lazy val placement: HtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
 
-  lazy val duration: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
+  lazy val duration: HtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
 
   object slots {}
 
@@ -51,11 +51,11 @@ object Toast extends WebComponent with HasIcon {
   val showObserver: Observer[Ref] = Observer(_.show())
 
   /** [[Mod]] for [[Toast]]s opening them each time the stream emits. */
-  def showFromEvents(openerEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
-    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.mapTo(el.ref) --> showObserver)
+  def showFromEvents(openerEvents: EventStream[Unit]): Mod[HtmlElement] =
+    inContext[HtmlElement](el => openerEvents.mapTo(el.ref) --> showObserver)
 
   /** [[Mod]] for [[Toast]]s opening them each time the stream emits, putting the given text. */
-  def showFromTextEvents(openerEvents: EventStream[String]): Mod[ReactiveHtmlElement[Ref]] = List(
+  def showFromTextEvents(openerEvents: EventStream[String]): Mod[HtmlElement] = List(
     showFromEvents(openerEvents.mapTo(())),
     child.text <-- openerEvents
   )

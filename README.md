@@ -240,10 +240,10 @@ In the `object`, add the following things:
 
 #### Filling the reactive attributes
 
-The official docs always have a "Properties/Attributes" section. All these properties should be converted into `ReactiveHtmlAttr`. For example, the `disabled` attribute of Button is defined as
+The official docs always have a "Properties/Attributes" section. All these properties should be converted into `HtmlAttr`. For example, the `disabled` attribute of Button is defined as
 
 ```scala
-val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+val disabled: HtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 ```
 
 Note that while it's not mandatory that the name of the variable matches the name of the attribute, it's customary to use the same (camelCase) naming.

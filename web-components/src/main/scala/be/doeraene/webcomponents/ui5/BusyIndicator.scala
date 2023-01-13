@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{BusyIndicatorSize, ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -38,11 +38,11 @@ object BusyIndicator extends WebComponent with HasText {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-busy-indicator")
 
-  lazy val active: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
+  lazy val active: HtmlAttr[Boolean] = customHtmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
 
-  lazy val delay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr[FiniteDuration]("delay", FiniteDurationCodec)
+  lazy val delay: HtmlAttr[FiniteDuration] = customHtmlAttr[FiniteDuration]("delay", FiniteDurationCodec)
 
-  lazy val size: ReactiveHtmlAttr[BusyIndicatorSize] =
+  lazy val size: HtmlAttr[BusyIndicatorSize] =
     customHtmlAttr[BusyIndicatorSize]("size", BusyIndicatorSize.AsStringCodec)
 
   

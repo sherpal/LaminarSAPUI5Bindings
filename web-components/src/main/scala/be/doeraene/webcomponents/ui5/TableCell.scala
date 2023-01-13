@@ -1,7 +1,7 @@
 package be.doeraene.webcomponents.ui5
 
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
+import com.raquo.laminar.tags.HtmlTag
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 

@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.PageBackgroundDesign
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,16 +35,16 @@ object Page extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-page")
 
-  lazy val backgroundDesign: ReactiveHtmlAttr[PageBackgroundDesign] =
+  lazy val backgroundDesign: HtmlAttr[PageBackgroundDesign] =
     customHtmlAttr("background-design", PageBackgroundDesign.AsStringCodec)
 
-  lazy val disableScrolling: ReactiveHtmlAttr[Boolean] =
+  lazy val disableScrolling: HtmlAttr[Boolean] =
     customHtmlAttr("disable-scrolling", BooleanAsAttrPresenceCodec)
 
-  lazy val floatingFooter: ReactiveHtmlAttr[Boolean] =
+  lazy val floatingFooter: HtmlAttr[Boolean] =
     customHtmlAttr("floating-footer", BooleanAsAttrPresenceCodec)
 
-  lazy val hideFooter: ReactiveHtmlAttr[Boolean] =
+  lazy val hideFooter: HtmlAttr[Boolean] =
     customHtmlAttr("hide-footer", BooleanAsAttrPresenceCodec)
 
   object slots {

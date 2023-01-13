@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -40,15 +40,15 @@ object UploadCollection extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-upload-collection")
 
-  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: HtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val hideDragOverlay: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-drag-overlay", BooleanAsAttrPresenceCodec)
+  lazy val hideDragOverlay: HtmlAttr[Boolean] = customHtmlAttr("hide-drag-overlay", BooleanAsAttrPresenceCodec)
 
-  lazy val mode: ReactiveHtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
+  lazy val mode: HtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
 
-  lazy val noDataDescription: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-description", StringAsIsCodec)
+  lazy val noDataDescription: HtmlAttr[String] = customHtmlAttr("no-data-description", StringAsIsCodec)
 
-  lazy val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val noDataText: HtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
 
   object slots {
     val header: Slot = new Slot("header")

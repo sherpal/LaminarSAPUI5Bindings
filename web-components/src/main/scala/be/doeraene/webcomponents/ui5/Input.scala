@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{InputType, ValueState}
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,21 +42,21 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-input")
 
-  lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val placeholder: HtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val required: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  lazy val readonly: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  lazy val noTypeahead: ReactiveHtmlAttr[Boolean] = customHtmlAttr("no-typeahead", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean]    = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean]    = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val readonly: HtmlAttr[Boolean]    = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val noTypeahead: HtmlAttr[Boolean] = customHtmlAttr("no-typeahead", BooleanAsAttrPresenceCodec)
 
-  lazy val tpe: ReactiveHtmlAttr[InputType] = customHtmlAttr("type", InputType.AsStringCodec)
+  lazy val tpe: HtmlAttr[InputType] = customHtmlAttr("type", InputType.AsStringCodec)
 
-  lazy val maxLength: ReactiveHtmlAttr[Int] = customHtmlAttr("maxlength", IntAsStringCodec)
+  lazy val maxLength: HtmlAttr[Int] = customHtmlAttr("maxlength", IntAsStringCodec)
 
-  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
 
-  lazy val showClearIcon: ReactiveHtmlAttr[Boolean]   = customHtmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
-  lazy val showSuggestions: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
+  lazy val showClearIcon: HtmlAttr[Boolean]   = customHtmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
+  lazy val showSuggestions: HtmlAttr[Boolean] = customHtmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")

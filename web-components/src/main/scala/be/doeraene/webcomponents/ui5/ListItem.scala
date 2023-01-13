@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ListItemType, ValueState}
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,15 +35,15 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-li")
 
-  lazy val additionalTextState: ReactiveHtmlAttr[ValueState] =
+  lazy val additionalTextState: HtmlAttr[ValueState] =
     customHtmlAttr("additional-text-state", ValueState.AsStringCodec)
 
-  lazy val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
-  lazy val image: ReactiveHtmlAttr[String]    = customHtmlAttr("image", StringAsIsCodec)
+  lazy val iconEnd: HtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val image: HtmlAttr[String]    = customHtmlAttr("image", StringAsIsCodec)
 
-  lazy val tpe: ReactiveHtmlAttr[ListItemType] = customHtmlAttr("type", ListItemType.AsStringCodec)
+  lazy val tpe: HtmlAttr[ListItemType] = customHtmlAttr("type", ListItemType.AsStringCodec)
 
-  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val selected: HtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   object slots {
     val deleteButton: Slot = Slot("deleteButton")

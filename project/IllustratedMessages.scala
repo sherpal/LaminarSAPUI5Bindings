@@ -94,7 +94,7 @@ object IllustratedMessages {
        |
        |// !! This file has been generated, do not edit manually!
        |
-       |import com.raquo.domtypes.generic.codecs.{Codec, StringAsIsCodec}
+       |import com.raquo.laminar.codecs.{Codec, StringAsIsCodec}
        |import $fullPackageName.IllustratedMessageTypeImports.*
        |
        |import scala.scalajs.js

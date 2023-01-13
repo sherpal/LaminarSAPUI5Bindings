@@ -2,17 +2,17 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import com.raquo.domtypes.generic.codecs.DoubleAsStringCodec
-import com.raquo.domtypes.generic.codecs.IntAsStringCodec
+import com.raquo.laminar.codecs.DoubleAsStringCodec
+import com.raquo.laminar.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
 
@@ -42,25 +42,25 @@ object RangeSlider extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-range-slider")
 
-  lazy val endValue: ReactiveHtmlAttr[Double] = customHtmlAttr("end-value", DoubleAsStringCodec)
+  lazy val endValue: HtmlAttr[Double] = customHtmlAttr("end-value", DoubleAsStringCodec)
 
-  lazy val startValue: ReactiveHtmlAttr[Double] = customHtmlAttr("start-value", DoubleAsStringCodec)
+  lazy val startValue: HtmlAttr[Double] = customHtmlAttr("start-value", DoubleAsStringCodec)
 
-  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: HtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val labelInterval: ReactiveHtmlAttr[Int] = customHtmlAttr("label-interval", IntAsStringCodec)
+  lazy val labelInterval: HtmlAttr[Int] = customHtmlAttr("label-interval", IntAsStringCodec)
 
-  lazy val max: ReactiveHtmlAttr[Double] = customHtmlAttr("max", DoubleAsStringCodec)
+  lazy val max: HtmlAttr[Double] = customHtmlAttr("max", DoubleAsStringCodec)
 
-  lazy val min: ReactiveHtmlAttr[Double] = customHtmlAttr("min", DoubleAsStringCodec)
+  lazy val min: HtmlAttr[Double] = customHtmlAttr("min", DoubleAsStringCodec)
 
-  lazy val showTickmarks: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-tickmarks", BooleanAsAttrPresenceCodec)
+  lazy val showTickmarks: HtmlAttr[Boolean] = customHtmlAttr("show-tickmarks", BooleanAsAttrPresenceCodec)
 
-  lazy val showTooltip: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
+  lazy val showTooltip: HtmlAttr[Boolean] = customHtmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
-  lazy val step: ReactiveHtmlAttr[Int] = customHtmlAttr("step", IntAsStringCodec)
+  lazy val step: HtmlAttr[Int] = customHtmlAttr("step", IntAsStringCodec)
 
   object slots {}
 

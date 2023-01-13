@@ -3,10 +3,10 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.{TabLayout, TabsOverflowMode}
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -44,12 +44,12 @@ object TabContainer extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-tabcontainer")
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val collapsed: ReactiveHtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
-  lazy val fixed: ReactiveHtmlAttr[Boolean]        = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
-  lazy val showOverflow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
-  lazy val tabLayout: ReactiveHtmlAttr[TabLayout]  = customHtmlAttr("tab-layout", TabLayout.AsStringCodec)
-  lazy val tabsOverflowMode: ReactiveHtmlAttr[TabsOverflowMode] =
+  lazy val disabled: HtmlAttr[Boolean]     = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean]    = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val fixed: HtmlAttr[Boolean]        = customHtmlAttr("fixed", BooleanAsAttrPresenceCodec)
+  lazy val showOverflow: HtmlAttr[Boolean] = customHtmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
+  lazy val tabLayout: HtmlAttr[TabLayout]  = customHtmlAttr("tab-layout", TabLayout.AsStringCodec)
+  lazy val tabsOverflowMode: HtmlAttr[TabsOverflowMode] =
     customHtmlAttr("tabs-overflow-mode", TabsOverflowMode.AsStringCodec)
 
   object slots {

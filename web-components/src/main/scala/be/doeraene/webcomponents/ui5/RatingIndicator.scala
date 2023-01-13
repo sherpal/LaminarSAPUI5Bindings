@@ -2,17 +2,17 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import com.raquo.domtypes.generic.codecs.IntAsStringCodec
-import com.raquo.domtypes.generic.codecs.DoubleAsStringCodec
+import com.raquo.laminar.codecs.IntAsStringCodec
+import com.raquo.laminar.codecs.DoubleAsStringCodec
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
 
@@ -41,11 +41,11 @@ object RatingIndicator extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-rating-indicator")
 
-  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
-  lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val max: ReactiveHtmlAttr[Int]               = customHtmlAttr("max", IntAsStringCodec)
-  lazy val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  lazy val value: ReactiveHtmlAttr[Double]          = customHtmlAttr("value", DoubleAsStringCodec)
+  lazy val accessibleName: HtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val disabled: HtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val max: HtmlAttr[Int]               = customHtmlAttr("max", IntAsStringCodec)
+  lazy val readonly: HtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val value: HtmlAttr[Double]          = customHtmlAttr("value", DoubleAsStringCodec)
 
   object slots {}
 

@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5.scaladsl.colour
 
-import com.raquo.domtypes.generic.codecs.Codec
+import com.raquo.laminar.codecs.Codec
 import org.scalajs.dom
 
 /** Facility class to working with colours.

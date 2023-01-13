@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.ListMode
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -40,11 +40,11 @@ object Tree extends WebComponent with HasAccessibleName {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-tree")
 
-  lazy val footerText: ReactiveHtmlAttr[String] = customHtmlAttr("footer-text", StringAsIsCodec)
-  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
-  lazy val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val footerText: HtmlAttr[String] = customHtmlAttr("footer-text", StringAsIsCodec)
+  lazy val headerText: HtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val noDataText: HtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
 
-  lazy val mode: ReactiveHtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
+  lazy val mode: HtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
 
   object events {
     val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(

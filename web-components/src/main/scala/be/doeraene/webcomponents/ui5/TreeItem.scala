@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,10 +36,10 @@ object TreeItem extends WebComponent with HasIcon with HasText {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-tree-item")
 
-  lazy val expanded: ReactiveHtmlAttr[Boolean]     = customHtmlAttr[Boolean]("expanded", BooleanAsAttrPresenceCodec)
-  lazy val hasChildren: ReactiveHtmlAttr[Boolean]  = customHtmlAttr[Boolean]("has-children", BooleanAsAttrPresenceCodec)
-  lazy val intermediate: ReactiveHtmlAttr[Boolean] = customHtmlAttr[Boolean]("intermediate", BooleanAsAttrPresenceCodec)
-  lazy val selected: ReactiveHtmlAttr[Boolean]     = customHtmlAttr[Boolean]("selected", BooleanAsAttrPresenceCodec)
+  lazy val expanded: HtmlAttr[Boolean]     = customHtmlAttr[Boolean]("expanded", BooleanAsAttrPresenceCodec)
+  lazy val hasChildren: HtmlAttr[Boolean]  = customHtmlAttr[Boolean]("has-children", BooleanAsAttrPresenceCodec)
+  lazy val intermediate: HtmlAttr[Boolean] = customHtmlAttr[Boolean]("intermediate", BooleanAsAttrPresenceCodec)
+  lazy val selected: HtmlAttr[Boolean]     = customHtmlAttr[Boolean]("selected", BooleanAsAttrPresenceCodec)
 
   def item: TreeItem.type = this
 

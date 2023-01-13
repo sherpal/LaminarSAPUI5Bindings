@@ -4,10 +4,10 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, Ico
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.scaladsl.colour.Colour
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -48,7 +48,7 @@ object ColourPicker extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-color-picker")
 
-  lazy val colour: ReactiveHtmlAttr[Colour] = customHtmlAttr("color", Colour.AsStringCodec)
+  lazy val colour: HtmlAttr[Colour] = customHtmlAttr("color", Colour.AsStringCodec)
 
   object slots {}
 

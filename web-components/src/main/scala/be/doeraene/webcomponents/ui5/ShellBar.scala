@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasTargetRef}
@@ -49,21 +49,21 @@ object ShellBar extends WebComponent with HasIcon {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar")
 
-  lazy val primaryTitle: ReactiveHtmlAttr[String] =
+  lazy val primaryTitle: HtmlAttr[String] =
     customHtmlAttr("primary-title", StringAsIsCodec)
-  lazy val secondaryTitle: ReactiveHtmlAttr[String] =
+  lazy val secondaryTitle: HtmlAttr[String] =
     customHtmlAttr("secondary-title", StringAsIsCodec)
 
-  lazy val notificationsCount: ReactiveHtmlAttr[String] =
+  lazy val notificationsCount: HtmlAttr[String] =
     customHtmlAttr("notifications-count", StringAsIsCodec)
 
-  lazy val showProductSwitch: ReactiveHtmlAttr[Boolean] =
+  lazy val showProductSwitch: HtmlAttr[Boolean] =
     customHtmlAttr("show-product-switch", BooleanAsAttrPresenceCodec)
 
-  lazy val showCoPilot: ReactiveHtmlAttr[Boolean] =
+  lazy val showCoPilot: HtmlAttr[Boolean] =
     customHtmlAttr("show-copilot", BooleanAsAttrPresenceCodec)
 
-  lazy val showNotifications: ReactiveHtmlAttr[Boolean] =
+  lazy val showNotifications: HtmlAttr[Boolean] =
     customHtmlAttr("show-notifications", BooleanAsAttrPresenceCodec)
 
   object events {

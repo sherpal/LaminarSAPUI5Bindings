@@ -48,7 +48,7 @@ object Icons { // I know this (and IllustratedMessages) could be abstracted away
        |
        |// !! This file has been generated, do not edit manually!
        |
-       |import com.raquo.domtypes.generic.codecs.{Codec, StringAsIsCodec}
+       |import com.raquo.laminar.codecs.{Codec, StringAsIsCodec}
        |import $fullPackageName.IconImports.*
        |
        |import scala.scalajs.js

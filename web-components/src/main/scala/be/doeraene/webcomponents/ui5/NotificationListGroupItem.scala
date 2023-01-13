@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName, Priority}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -39,21 +39,21 @@ object NotificationListGroupItem extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-notification-group")
 
-  lazy val collapsed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean] = customHtmlAttr("collapsed", BooleanAsAttrPresenceCodec)
 
-  lazy val showCounter: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-counter", BooleanAsAttrPresenceCodec)
+  lazy val showCounter: HtmlAttr[Boolean] = customHtmlAttr("show-counter", BooleanAsAttrPresenceCodec)
 
-  lazy val busy: ReactiveHtmlAttr[Boolean] = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busy: HtmlAttr[Boolean] = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
 
-  lazy val busyDelay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
+  lazy val busyDelay: HtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
 
-  lazy val priority: ReactiveHtmlAttr[Priority] = customHtmlAttr("priority", Priority.AsStringCodec)
+  lazy val priority: HtmlAttr[Priority] = customHtmlAttr("priority", Priority.AsStringCodec)
 
-  lazy val read: ReactiveHtmlAttr[Boolean] = customHtmlAttr("read", BooleanAsAttrPresenceCodec)
+  lazy val read: HtmlAttr[Boolean] = customHtmlAttr("read", BooleanAsAttrPresenceCodec)
 
-  lazy val showClose: ReactiveHtmlAttr[Boolean] = customHtmlAttr("show-close", BooleanAsAttrPresenceCodec)
+  lazy val showClose: HtmlAttr[Boolean] = customHtmlAttr("show-close", BooleanAsAttrPresenceCodec)
 
-  lazy val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
 
   object slots {
     val actions: Slot = Slot("actions")

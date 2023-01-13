@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -64,14 +64,14 @@ object BarcodeScannerDialog extends WebComponent {
   val closeObserver: Observer[Ref] = Observer(_.close())
 
   /** Can be used as modifier to close the Barcode Scanner every time the stream emits. */
-  def closeOnEvents(stream: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
-    inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> closeObserver)
+  def closeOnEvents(stream: EventStream[Unit]): Mod[HtmlElement] =
+    inContext[HtmlElement](el => stream.mapTo(el.ref) --> closeObserver)
 
   /** You can feed this [[Observer]] with a barcode scanner [[Ref]]s in order to open it. */
   val showObserver: Observer[Ref] = Observer(_.show())
 
   /** Can be used as modifier to open the Barcode Scanner every time the stream emits. */
-  def showOnEvents(stream: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
-    inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> showObserver)
+  def showOnEvents(stream: EventStream[Unit]): Mod[HtmlElement] =
+    inContext[HtmlElement](el => stream.mapTo(el.ref) --> showObserver)
 
 }

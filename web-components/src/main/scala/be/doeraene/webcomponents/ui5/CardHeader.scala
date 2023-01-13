@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr, ReactiveProp, ReactiveStyle}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -34,13 +34,13 @@ object CardHeader extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-card-header")
 
-  lazy val interactive: ReactiveHtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
+  lazy val interactive: HtmlAttr[Boolean] = customHtmlAttr("interactive", BooleanAsAttrPresenceCodec)
 
-  lazy val status: ReactiveHtmlAttr[String] = customHtmlAttr("status", StringAsIsCodec)
+  lazy val status: HtmlAttr[String] = customHtmlAttr("status", StringAsIsCodec)
 
-  lazy val subtitleText: ReactiveHtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val subtitleText: HtmlAttr[String] = customHtmlAttr("subtitle-text", StringAsIsCodec)
 
-  lazy val titleText: ReactiveHtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String] = customHtmlAttr("title-text", StringAsIsCodec)
 
   object slots {
     val action: Slot = new Slot("action")
