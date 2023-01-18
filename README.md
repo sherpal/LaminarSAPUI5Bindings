@@ -109,9 +109,13 @@ In order to run those, you need to have
 
 Perform the following steps:
 
+First time onl. Open a terminal. cd demo; npm install
+
 1. in one terminal, run `sbt ~demo/fastLinkJS`
 2. in another terminal, go to `demo` and run `npm install` then `npm run dev`
 3. when both steps are ready, go to `http://localhost:3000/laminar-ui5-demo/` and the demo should be there, waiting for you.
+
+If you're in vscode, try running the [task](https://code.visualstudio.com/docs/editor/tasks), "runDemo" build task, it will do the above 3 steps for you. 
 
 ### How to use slots?
 
