@@ -55,7 +55,7 @@ These bindings are barely "facades" types for the official UI5 library. They _wo
 
 ```
 "@ui5/webcomponents": "1.9.1",
-"@ui5/webcomponents-fiori": "1.9.",
+"@ui5/webcomponents-fiori": "1.9.1",
 "@ui5/webcomponents-icons": "1.9.1"
 ```
 
