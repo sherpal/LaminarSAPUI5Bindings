@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasTargetRef}
@@ -47,24 +47,24 @@ object ShellBar extends WebComponent with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-shellbar")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-shellbar")
 
-  lazy val primaryTitle: ReactiveHtmlAttr[String] =
-    customHtmlAttr("primary-title", StringAsIsCodec)
-  lazy val secondaryTitle: ReactiveHtmlAttr[String] =
-    customHtmlAttr("secondary-title", StringAsIsCodec)
+  lazy val primaryTitle: HtmlAttr[String] =
+    htmlAttr("primary-title", StringAsIsCodec)
+  lazy val secondaryTitle: HtmlAttr[String] =
+    htmlAttr("secondary-title", StringAsIsCodec)
 
-  lazy val notificationsCount: ReactiveHtmlAttr[String] =
-    customHtmlAttr("notifications-count", StringAsIsCodec)
+  lazy val notificationsCount: HtmlAttr[String] =
+    htmlAttr("notifications-count", StringAsIsCodec)
 
-  lazy val showProductSwitch: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("show-product-switch", BooleanAsAttrPresenceCodec)
+  lazy val showProductSwitch: HtmlAttr[Boolean] =
+    htmlAttr("show-product-switch", BooleanAsAttrPresenceCodec)
 
-  lazy val showCoPilot: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("show-copilot", BooleanAsAttrPresenceCodec)
+  lazy val showCoPilot: HtmlAttr[Boolean] =
+    htmlAttr("show-copilot", BooleanAsAttrPresenceCodec)
 
-  lazy val showNotifications: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("show-notifications", BooleanAsAttrPresenceCodec)
+  lazy val showNotifications: HtmlAttr[Boolean] =
+    htmlAttr("show-notifications", BooleanAsAttrPresenceCodec)
 
   object events {
     val onCopilotClick =

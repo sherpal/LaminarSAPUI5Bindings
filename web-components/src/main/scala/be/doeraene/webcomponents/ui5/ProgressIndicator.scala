@@ -1,16 +1,16 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import com.raquo.domtypes.generic.codecs.IntAsStringCodec
+import com.raquo.laminar.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.WebComponent
 
@@ -35,21 +35,21 @@ object ProgressIndicator extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-progress-indicator")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-progress-indicator")
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] =
+    htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val displayValue: ReactiveHtmlAttr[String] =
-    customHtmlAttr("display-value", StringAsIsCodec)
+  lazy val displayValue: HtmlAttr[String] =
+    htmlAttr("display-value", StringAsIsCodec)
 
-  lazy val hideValue: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("hide-value", BooleanAsAttrPresenceCodec)
+  lazy val hideValue: HtmlAttr[Boolean] =
+    htmlAttr("hide-value", BooleanAsAttrPresenceCodec)
 
-  lazy val value: ReactiveHtmlAttr[Int] = customHtmlAttr("value", IntAsStringCodec)
+  lazy val value: HtmlAttr[Int] = htmlAttr("value", IntAsStringCodec)
 
-  lazy val valueState: ReactiveHtmlAttr[ValueState] =
-    customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] =
+    htmlAttr("value-state", ValueState.AsStringCodec)
 
   
 

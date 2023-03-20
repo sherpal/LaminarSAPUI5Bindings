@@ -20,7 +20,7 @@ object WizardExample extends Example("Wizard") {
       def isSelectedStepSignal(stepNumber: Int) = currentStepVar.signal.map(_ == stepNumber)
 
       // Biggest step that was seen up to now
-      val maxSeenStep = currentStepVar.signal.foldLeft(identity)(_ max _)
+      val maxSeenStep = currentStepVar.signal.scanLeft(identity)(_ max _)
 
       // Modifiers for all the steps
       def commonModifiers(stepNumber: Int): Mod[ReactiveHtmlElement[WizardStep.Ref]] = List[WizardStep.ModFunction](

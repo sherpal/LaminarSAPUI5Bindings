@@ -23,6 +23,9 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
              }
          }
      }),
-    base: "/laminar-ui5-demo/"
+    base: "/laminar-ui5-demo/",
+    server: {
+      open: '/laminar-ui5-demo'
+    }
   }
 })

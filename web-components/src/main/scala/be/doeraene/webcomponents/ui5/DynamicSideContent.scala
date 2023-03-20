@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{SideContentFallDown, SideContentPosition, SideContentVisibility}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -41,22 +41,22 @@ object DynamicSideContent extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-dynamic-side-content")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-dynamic-side-content")
 
-  lazy val equalSplit: ReactiveHtmlAttr[Boolean] = customHtmlAttr("equal-split", BooleanAsAttrPresenceCodec)
+  lazy val equalSplit: HtmlAttr[Boolean] = htmlAttr("equal-split", BooleanAsAttrPresenceCodec)
 
-  lazy val hideMainContent: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-main-content", BooleanAsAttrPresenceCodec)
+  lazy val hideMainContent: HtmlAttr[Boolean] = htmlAttr("hide-main-content", BooleanAsAttrPresenceCodec)
 
-  lazy val hideSideContent: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-side-content", BooleanAsAttrPresenceCodec)
+  lazy val hideSideContent: HtmlAttr[Boolean] = htmlAttr("hide-side-content", BooleanAsAttrPresenceCodec)
 
-  lazy val sideContentFallDown: ReactiveHtmlAttr[SideContentFallDown] =
-    customHtmlAttr("side-content-fall-down", SideContentFallDown.AsStringCodec)
+  lazy val sideContentFallDown: HtmlAttr[SideContentFallDown] =
+    htmlAttr("side-content-fall-down", SideContentFallDown.AsStringCodec)
 
-  lazy val sideContentPosition: ReactiveHtmlAttr[SideContentPosition] =
-    customHtmlAttr("side-content-position", SideContentPosition.AsStringCodec)
+  lazy val sideContentPosition: HtmlAttr[SideContentPosition] =
+    htmlAttr("side-content-position", SideContentPosition.AsStringCodec)
 
-  lazy val sideContentVisibility: ReactiveHtmlAttr[SideContentVisibility] =
-    customHtmlAttr("side-content-visibility", SideContentVisibility.AsStringCodec)
+  lazy val sideContentVisibility: HtmlAttr[SideContentVisibility] =
+    htmlAttr("side-content-visibility", SideContentVisibility.AsStringCodec)
 
   object slots {
     val sideContent: Slot = new Slot("sideContent")

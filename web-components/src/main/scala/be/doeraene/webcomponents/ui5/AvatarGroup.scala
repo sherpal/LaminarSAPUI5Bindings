@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.AvatarGroupType
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -49,9 +49,9 @@ object AvatarGroup extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-avatar-group")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-avatar-group")
 
-  lazy val tpe: ReactiveHtmlAttr[AvatarGroupType] = customHtmlAttr("type", AvatarGroupType.AsStringCodec)
+  lazy val tpe: HtmlAttr[AvatarGroupType] = htmlAttr("type", AvatarGroupType.AsStringCodec)
 
   object slots {
     val overflowButton: Slot = Slot("overflowButton")

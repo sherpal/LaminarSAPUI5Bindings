@@ -1,18 +1,28 @@
 import java.nio.charset.StandardCharsets
 ThisBuild / scalaVersion := "3.2.0"
 
-val usedScalacOptions = Seq(
-  "-encoding",
-  "utf8",
-  "-Xfatal-warnings",
-  "-deprecation",
-  "-unchecked",
-  "-language:higherKinds",
-  "-feature",
-  "-language:implicitConversions"
-)
+val usedScalacOptions = Def.task{
+    Seq(
+    "-encoding",
+    "utf8",
+    "-Xfatal-warnings",
+    "-deprecation",
+    "-unchecked",
+    "-language:higherKinds",
+    "-feature",
+    "-language:implicitConversions"
+  )
+}
 
-val laminarVersion = "0.14.5"
+val withSourceMaps = Def.task{
+  val localSourcesPath = (LocalRootProject / baseDirectory).value.toURI.toString
+  val remoteSourcesPath = s"https://raw.githubusercontent.com/sherpal/LaminarSAPUI5Bindings/${git.gitHeadCommit.value.get}/"
+  val sourcesOptionName = if (scalaVersion.value.startsWith("2.")) "-P:scalajs:mapSourceURI" else "-scalajs-mapSourceURI"
+
+  Seq(s"${sourcesOptionName}:$localSourcesPath->$remoteSourcesPath") ++ usedScalacOptions.value
+}
+
+val laminarVersion = "15.0.0"
 
 inThisBuild(
   List(
@@ -37,7 +47,7 @@ lazy val `web-components-ui5` = project
   .enablePlugins(ScalaJSPlugin)
   .settings(name := "web-components-ui5")
   .settings(
-    scalacOptions ++= usedScalacOptions,
+    scalacOptions ++= withSourceMaps.value ,
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule)),
     libraryDependencies ++= List("com.raquo" %%% "laminar" % laminarVersion % Provided),
     Compile / doc := new java.io.File("no-doc")
@@ -56,7 +66,7 @@ lazy val demo = project
   .enablePlugins(ScalaJSPlugin)
   .enablePlugins(BundleMonPlugin)
   .settings(
-    scalacOptions ++= usedScalacOptions,
+    scalacOptions ++= withSourceMaps.value,
     libraryDependencies ++= List(
       "com.raquo" %%% "laminar" % laminarVersion
     ),

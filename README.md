@@ -16,7 +16,7 @@ In order to use these bindings within your Scala.js project, you need to add the
 // for Scala 3
 libraryDependencies ++= List(
   "be.doeraene" %%% "web-components-ui5" % "<currently supported version>",
-  "com.raquo" %%% "laminar" % "0.14.5"
+  "com.raquo" %%% "laminar" % "15.0.0"
 )
 ```
 
@@ -27,7 +27,7 @@ or
 scalacOptions ++= List("-Ytasty-reader")
 libraryDependencies ++= List(
   "be.doeraene" % "web-components-ui5_sjs1_3" % "<currently supported version>"
-  "com.raquo" %%% "laminar" % "0.14.5"
+  "com.raquo" %%% "laminar" % "15.0.0"
 )
 ```
 
@@ -109,9 +109,13 @@ In order to run those, you need to have
 
 Perform the following steps:
 
+First time onl. Open a terminal. cd demo; npm install
+
 1. in one terminal, run `sbt ~demo/fastLinkJS`
 2. in another terminal, go to `demo` and run `npm install` then `npm run dev`
 3. when both steps are ready, go to `http://localhost:3000/laminar-ui5-demo/` and the demo should be there, waiting for you.
+
+If you're in vscode, try running the [task](https://code.visualstudio.com/docs/editor/tasks), "runDemo" build task, it will do the above 3 steps for you. 
 
 ### How to use slots?
 
@@ -233,17 +237,17 @@ In the `object`, add the following things:
 - add an object `RawImport` extending `js.Object` and annotated with both `@js.native` and `@JSImport`, specifying the correct import (available in the official docs), setting `JSImport.Default` as second argument
 - call `used(RawImport)` the line after (this is done to be sure that scala-js actually import the JS dependency)
 - define an alias `type Ref` as `dom.html.Element & RawElement`
-- define the protected `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
+- define the protected `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: HtmlTag[Ref] = htmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
 - create an empty object `slots`
 - create an empty object `events`
 - in the case where your component is linked to other components (for example a `TableCell` is always contained in `TableRow`, so the `TableRow` object will have a reference to the `TableCell` object)
 
 #### Filling the reactive attributes
 
-The official docs always have a "Properties/Attributes" section. All these properties should be converted into `ReactiveHtmlAttr`. For example, the `disabled` attribute of Button is defined as
+The official docs always have a "Properties/Attributes" section. All these properties should be converted into `HtmlAttr`. For example, the `disabled` attribute of Button is defined as
 
 ```scala
-val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 ```
 
 Note that while it's not mandatory that the name of the variable matches the name of the attribute, it's customary to use the same (camelCase) naming.

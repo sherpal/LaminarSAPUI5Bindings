@@ -6,10 +6,10 @@ import be.doeraene.webcomponents.ui5.configkeys.{
   MediaGalleryMenuVerticalAlign
 }
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -46,22 +46,22 @@ object MediaGallery extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-media-gallery")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-media-gallery")
 
-  lazy val interactiveDisplayArea: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("interactive-display-area", BooleanAsAttrPresenceCodec)
+  lazy val interactiveDisplayArea: HtmlAttr[Boolean] =
+    htmlAttr("interactive-display-area", BooleanAsAttrPresenceCodec)
 
-  lazy val layout: ReactiveHtmlAttr[MediaGalleryLayout] =
-    customHtmlAttr("layout", MediaGalleryLayout.AsStringCodec)
+  lazy val layout: HtmlAttr[MediaGalleryLayout] =
+    htmlAttr("layout", MediaGalleryLayout.AsStringCodec)
 
-  lazy val menuHorizontalAlign: ReactiveHtmlAttr[MediaGalleryMenuHorizontalAlign] =
-    customHtmlAttr("menu-horizontal-align", MediaGalleryMenuHorizontalAlign.AsStringCodec)
+  lazy val menuHorizontalAlign: HtmlAttr[MediaGalleryMenuHorizontalAlign] =
+    htmlAttr("menu-horizontal-align", MediaGalleryMenuHorizontalAlign.AsStringCodec)
 
-  lazy val menuVerticalAlign: ReactiveHtmlAttr[MediaGalleryMenuVerticalAlign] =
-    customHtmlAttr("menu-vertical-align", MediaGalleryMenuVerticalAlign.AsStringCodec)
+  lazy val menuVerticalAlign: HtmlAttr[MediaGalleryMenuVerticalAlign] =
+    htmlAttr("menu-vertical-align", MediaGalleryMenuVerticalAlign.AsStringCodec)
 
-  lazy val showAllThumbnails: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("show-all-thumbnails", BooleanAsAttrPresenceCodec)
+  lazy val showAllThumbnails: HtmlAttr[Boolean] =
+    htmlAttr("show-all-thumbnails", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

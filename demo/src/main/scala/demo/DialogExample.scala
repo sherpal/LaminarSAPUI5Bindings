@@ -23,29 +23,29 @@ object DialogExample extends Example("Dialog") {
         div(
           MessageStrip(
             _.design := MessageStripDesign.Information,
-                          "The opening of this dialog works using an `EventBus`. " +
-                "Clicking on the 'Open Dialog' button writes to the bus, and the Dialog listens to it."
+            "The opening of this dialog works using an `EventBus`. " +
+              "Clicking on the 'Open Dialog' button writes to the bus, and the Dialog listens to it."
           )
         ),
         Dialog(
           _.showFromEvents(openDialogBus.events.filter(identity).mapTo(())),
           _.closeFromEvents(openDialogBus.events.map(!_).filter(identity).mapTo(())),
           _.headerText := "Register Form",
-                      section(
-              className := loginFormClass,
-              div(
-                Label(_.forId := "username", _.required := true, "Username:"),
-                Input(_.id := "username")
-              ),
-              div(
-                Label(_.forId := "password", _.required := true, "Password:"),
-                Input(_.id := "password", _.tpe := InputType.Password, _.valueState := ValueState.Error)
-              ),
-              div(
-                Label(_.forId := "email", _.required := true, "Email:"),
-                Input(_.id := "email", _.tpe := InputType.Email)
-              )
+          sectionTag(
+            className := loginFormClass,
+            div(
+              Label(_.forId := "username", _.required := true, "Username:"),
+              Input(_.id := "username")
             ),
+            div(
+              Label(_.forId := "password", _.required := true, "Password:"),
+              Input(_.id := "password", _.tpe := InputType.Password, _.valueState := ValueState.Error)
+            ),
+            div(
+              Label(_.forId := "email", _.required := true, "Email:"),
+              Input(_.id := "email", _.tpe := InputType.Email)
+            )
+          ),
           _.slots.footer := div(
             div(flex := "1"),
             Button(
@@ -76,15 +76,15 @@ object DialogExample extends Example("Dialog") {
         Dialog(
           _.id := dialogId,
           _.headerText := "Draggable/Resizable dialog",
-                      section(
-              "Resize this dialog by dragging it by its resize handle.",
-              br(),
-              "This feature is available only on Desktop",
-              br(),
-              "Move this dialog around the screen by dragging it by its header",
-              br(),
-              "This feature is available only on Desktop"
-            ),
+          sectionTag(
+            "Resize this dialog by dragging it by its resize handle.",
+            br(),
+            "This feature is available only on Desktop",
+            br(),
+            "Move this dialog around the screen by dragging it by its header",
+            br(),
+            "This feature is available only on Desktop"
+          ),
           _.slots.footer := div(
             div(flex := "1"),
             Button(

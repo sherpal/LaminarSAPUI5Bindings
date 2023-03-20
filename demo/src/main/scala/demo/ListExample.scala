@@ -61,7 +61,7 @@ object ListExample extends Example("List") {
       }
 
       val listGrowingBus: EventBus[Unit] = new EventBus
-      val numberOfFruitsToDisplaySignal  = listGrowingBus.events.delay(200).mapTo(5).foldLeft(5)(_ + _)
+      val numberOfFruitsToDisplaySignal  = listGrowingBus.events.delay(200).mapTo(5).scanLeft(5)(_ + _)
 
       val fruitsToDisplaySignal = numberOfFruitsToDisplaySignal.map(fruits.take)
 

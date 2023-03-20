@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "runDemo",
+          "runOptions": {
+              "runOn": "folderOpen"
+          },
+          "dependsOrder": "parallel",
+          "dependsOn": [
+              "fastLink",
+              "npmDev"              
+          ],
+          "problemMatcher": [],
+          "group": {
+              "kind": "build"
+          }
+      },
+      {
+          "label": "fastLink",
+          "type": "shell",
+          "command": "sbt \"~demo/fastLinkJS\"",
+          "presentation": {
+              "panel": "dedicated",
+              "group": "runDevCmd"
+          },
+          "group": "build"            
+      },
+      {
+          "label": "npmDev",
+          "type": "shell",
+          "command": "cd demo; npm run dev",
+          "presentation": {
+              "panel": "dedicated",
+              "group": "runDevCmd"
+          },
+          "group": "build"
+      }
+  ]
+}

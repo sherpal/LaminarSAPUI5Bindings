@@ -15,7 +15,7 @@ object SideNavigationExample extends Example("SideNavigation") {
       //-- Begin: Side Navigation in Application
       val toggleCollapseBus: EventBus[Unit] = new EventBus
 
-      val collapsedSignal = toggleCollapseBus.events.foldLeft(false)((collapsed, _) => !collapsed)
+      val collapsedSignal = toggleCollapseBus.events.scanLeft(false)((collapsed, _) => !collapsed)
       div(
         ShellBar(
           _.primaryTitle := "UI5 Web Components",

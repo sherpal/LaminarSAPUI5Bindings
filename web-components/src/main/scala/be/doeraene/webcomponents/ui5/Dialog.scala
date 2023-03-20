@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,18 +42,18 @@ object Dialog extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-dialog")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-dialog")
 
-  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
 
-  lazy val resizable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("resizable", BooleanAsAttrPresenceCodec)
-  lazy val stretch: ReactiveHtmlAttr[Boolean]   = customHtmlAttr("stretch", BooleanAsAttrPresenceCodec)
-  lazy val draggable: ReactiveHtmlAttr[Boolean] = customHtmlAttr("draggable", BooleanAsAttrPresenceCodec)
-  lazy val open: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
-  lazy val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
-  lazy val state: ReactiveHtmlAttr[ValueState] = customHtmlAttr("state", ValueState.AsStringCodec)
-  lazy val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
+  lazy val resizable: HtmlAttr[Boolean] = htmlAttr("resizable", BooleanAsAttrPresenceCodec)
+  lazy val stretch: HtmlAttr[Boolean]   = htmlAttr("stretch", BooleanAsAttrPresenceCodec)
+  lazy val draggable: HtmlAttr[Boolean] = htmlAttr("draggable", BooleanAsAttrPresenceCodec)
+  lazy val open: HtmlAttr[Boolean]      = htmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val preventFocusRestore: HtmlAttr[Boolean] =
+    htmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
+  lazy val state: HtmlAttr[ValueState] = htmlAttr("state", ValueState.AsStringCodec)
+  lazy val initialFocus: HtmlAttr[String] = htmlAttr("initial-focus", StringAsIsCodec)
 
   //noinspection TypeAnnotation
   object slots {
