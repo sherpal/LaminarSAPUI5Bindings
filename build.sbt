@@ -22,7 +22,7 @@ val withSourceMaps = Def.task{
   Seq(s"${sourcesOptionName}:$localSourcesPath->$remoteSourcesPath") ++ usedScalacOptions.value
 }
 
-val laminarVersion = "15.0.0-M1"
+val laminarVersion = "15.0.0"
 
 inThisBuild(
   List(
