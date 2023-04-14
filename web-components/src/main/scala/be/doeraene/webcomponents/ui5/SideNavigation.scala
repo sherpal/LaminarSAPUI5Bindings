@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -51,13 +51,11 @@ object SideNavigation extends WebComponent {
       def text: String = js.native
     }
 
-    val onSelectionChange: EventProp[dom.Event & HasDetail[HasItem[SideNavigationItemRawElement]]] = new EventProp(
+    val onSelectionChange: EventProp[dom.Event with HasDetail[HasItem[SideNavigationItemRawElement]]] = new EventProp(
       "selection-change"
     )
 
   }
-
-  
 
   def item: SideNavigationItem.type = SideNavigationItem
 

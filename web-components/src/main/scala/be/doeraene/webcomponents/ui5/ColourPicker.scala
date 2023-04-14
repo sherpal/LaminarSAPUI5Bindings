@@ -7,7 +7,7 @@ import be.doeraene.webcomponents.ui5.scaladsl.colour.Colour
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -53,9 +53,7 @@ object ColourPicker extends WebComponent {
   object slots {}
 
   object events {
-    val onChange: EventProp[EventWithPreciseTarget[dom.HTMLElement & RawElement]] = new EventProp("change")
+    val onChange: EventProp[EventWithPreciseTarget[dom.HTMLElement with RawElement]] = new EventProp("change")
   }
-
-  
 
 }

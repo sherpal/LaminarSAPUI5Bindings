@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -60,8 +60,8 @@ object UploadCollection extends WebComponent {
       def dataTransfer: dom.DataTransfer
     }
 
-    val onDrop: EventProp[EventWithPreciseTarget[Ref] & HasDataTransfer] = new EventProp("drop")
-    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[dom.HTMLElement]]] = new EventProp(
+    val onDrop: EventProp[EventWithPreciseTarget[Ref] with HasDataTransfer] = new EventProp("drop")
+    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[dom.HTMLElement]]] = new EventProp(
       "item-delete"
     )
 
@@ -74,12 +74,10 @@ object UploadCollection extends WebComponent {
       extension (info: SelectionChangeInfo) def selectedItems: List[dom.HTMLElement] = info.selectedItemsJS.toList
     }
 
-    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeInfo]] = new EventProp(
+    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectionChangeInfo]] = new EventProp(
       "selection-change"
     )
   }
-
-  
 
   def item: UploadCollectionItem.type = UploadCollectionItem
 

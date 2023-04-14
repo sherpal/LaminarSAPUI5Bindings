@@ -9,7 +9,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -68,12 +68,10 @@ object MediaGallery extends WebComponent {
   object events {
     val onDisplayAreaClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("display-area-click")
     val onOverflowClick: EventProp[EventWithPreciseTarget[Ref]]    = new EventProp("overflow-click")
-    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]] = new EventProp(
+    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]] = new EventProp(
       "selection-change"
     )
   }
-
-  
 
   def item: MediaGalleryItem.type = MediaGalleryItem
 

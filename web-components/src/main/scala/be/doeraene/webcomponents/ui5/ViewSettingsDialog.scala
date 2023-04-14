@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -77,15 +77,15 @@ object ViewSettingsDialog extends WebComponent {
       def sortByItem: dom.HTMLElement
     }
 
-    val onCancel: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ViewSettings & HasSortByItem]] = new EventProp(
-      "cancel"
-    )
-    val onConfirm: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ViewSettings & HasSortByItem]] = new EventProp(
-      "confirm"
-    )
+    val onCancel: EventProp[EventWithPreciseTarget[Ref] with HasDetail[ViewSettings with HasSortByItem]] =
+      new EventProp(
+        "cancel"
+      )
+    val onConfirm: EventProp[EventWithPreciseTarget[Ref] with HasDetail[ViewSettings with HasSortByItem]] =
+      new EventProp(
+        "confirm"
+      )
   }
-
-  
 
   /** Feed an instance of [[ViewSettingsDialog]] ref to this observer in order to show it. */
   val showObserver: Observer[Ref] = Observer(_.show())

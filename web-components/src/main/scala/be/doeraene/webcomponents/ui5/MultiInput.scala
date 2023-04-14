@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -95,7 +95,7 @@ object MultiInput extends WebComponent with HasAccessibleName with HasName with 
       def token: MultiInput.token.Ref
     }
 
-    val onTokenDelete: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasToken]] = new EventProp("token-delete")
+    val onTokenDelete: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasToken]] = new EventProp("token-delete")
 
     val onValueHelpTrigger: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("value-help-trigger")
 
@@ -109,14 +109,12 @@ object MultiInput extends WebComponent with HasAccessibleName with HasName with 
       def targetRef: suggestion.Ref
     }
 
-    val onSuggestionItemPreview: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SuggestionItemPreviewInfo]] =
+    val onSuggestionItemPreview: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SuggestionItemPreviewInfo]] =
       new EventProp("suggestion-item-preview")
 
-    val onSuggestionItemSelect: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[suggestion.Ref]]] =
+    val onSuggestionItemSelect: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[suggestion.Ref]]] =
       new EventProp("suggestion-item-select")
   }
-
-  
 
   def suggestion: SuggestionItem.type = SuggestionItem
 

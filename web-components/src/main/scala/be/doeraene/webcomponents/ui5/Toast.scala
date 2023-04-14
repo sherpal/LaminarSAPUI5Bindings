@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ToastPlacement
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -44,8 +44,8 @@ object Toast extends WebComponent with HasIcon {
 
   object events {}
 
-  def getToastById(id: String): Option[dom.HTMLElement & RawElement] =
-    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
+  def getToastById(id: String): Option[dom.HTMLElement with RawElement] =
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
 
   /** [[Observer]] you can feed a toast to show it. */
   val showObserver: Observer[Ref] = Observer(_.show())

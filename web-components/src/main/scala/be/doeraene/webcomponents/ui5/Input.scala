@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.{InputType, ValueState}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -70,14 +70,12 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
 
     val onSuggestionItemPreview =
-      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement] & HasItem[SuggestionItem.RawElement]]](
+      new EventProp[dom.Event with HasDetail[HasTargetRef[dom.HTMLElement] with HasItem[SuggestionItem.RawElement]]](
         "suggestion-item-preview"
       )
     val onSuggestionItemSelect =
-      new EventProp[dom.Event & HasDetail[HasItem[SuggestionItem.RawElement]]]("suggestion-item-select")
+      new EventProp[dom.Event with HasDetail[HasItem[SuggestionItem.RawElement]]]("suggestion-item-select")
   }
-
-  
 
   def suggestion: SuggestionItem.type           = SuggestionItem
   def suggestionGroup: SuggestionGroupItem.type = SuggestionGroupItem

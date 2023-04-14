@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -78,9 +78,7 @@ object FileUploader extends WebComponent with HasName with HasValue {
       extension (element: HasFiles) def files: List[dom.File] = element.filesJS.toList
     }
 
-    val onChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasFiles]] = new EventProp("change")
+    val onChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasFiles]] = new EventProp("change")
   }
-
-  
 
 }

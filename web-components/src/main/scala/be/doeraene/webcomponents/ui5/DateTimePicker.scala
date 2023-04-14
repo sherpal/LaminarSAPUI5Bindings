@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -83,11 +83,9 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
 
   object events {
     import DatePicker.events.DateEventData
-    val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
-    val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
+    val onChange = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[DateEventData]]("change")
+    val onInput  = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[DateEventData]]("input")
   }
-
-  
 
   /** You can feed [[DateTimePicker]] refs to this observer in order to close them. */
   val closePickerObserver: Observer[Ref] = Observer(_.closePicker())

@@ -5,5 +5,5 @@ import org.scalajs.dom
 import scala.scalajs.js
 
 trait HasItems[ExtraType] extends js.Object {
-  def items: js.Array[dom.HTMLElement & ExtraType]
+  def items: js.Array[dom.HTMLElement with ExtraType]
 }

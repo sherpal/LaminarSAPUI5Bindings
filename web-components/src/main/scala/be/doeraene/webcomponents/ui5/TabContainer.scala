@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -29,8 +29,7 @@ object TabContainer extends WebComponent {
   }
 
   object RawElement {
-    extension (element: RawElement)
-      def allItems: List[js.Object] = element.allItemsJs.toList
+    extension (element: RawElement) def allItems: List[js.Object] = element.allItemsJs.toList
   }
 
   @js.native
@@ -65,10 +64,8 @@ object TabContainer extends WebComponent {
       def tabIndex: Int = js.native
     }
 
-    val onTabSelect: EventProp[dom.Event & HasDetail[TabSelectDetail]] = new EventProp("tab-select")
+    val onTabSelect: EventProp[dom.Event with HasDetail[TabSelectDetail]] = new EventProp("tab-select")
   }
-
-  
 
   def tab: Tab.type = Tab
 
