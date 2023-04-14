@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -45,11 +45,9 @@ object SegmentedButton extends WebComponent {
   object slots {}
 
   object events {
-    val onSelectionChange: EventProp[dom.Event & HasDetail[HasSelectedItem[SegmentedButtonItem.Ref]]] =
+    val onSelectionChange: EventProp[dom.Event with HasDetail[HasSelectedItem[SegmentedButtonItem.Ref]]] =
       new EventProp("selection-change")
   }
-
-  
 
   def item: SegmentedButtonItem.type = SegmentedButtonItem
 

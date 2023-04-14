@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasTargetRef}
@@ -31,11 +31,11 @@ object ShellBar extends WebComponent with HasIcon {
     def accessibilityRoles: js.Object = js.native
     def accessibilityTexts: js.Object = js.native
 
-    def copilotDomRef: dom.HTMLElement = js.native
-    def logoDomRef: dom.HTMLElement = js.native
-    def overflowDomRef: dom.HTMLElement = js.native
+    def copilotDomRef: dom.HTMLElement       = js.native
+    def logoDomRef: dom.HTMLElement          = js.native
+    def overflowDomRef: dom.HTMLElement      = js.native
     def productSwitchDomRef: dom.HTMLElement = js.native
-    def profileDomRef: dom.HTMLElement = js.native
+    def profileDomRef: dom.HTMLElement       = js.native
   }
 
   @js.native
@@ -68,17 +68,17 @@ object ShellBar extends WebComponent with HasIcon {
 
   object events {
     val onCopilotClick =
-      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
+      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
     val onProfileClick =
-      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
+      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
     val onLogoClick =
-      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
+      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
     val onMenuItemClick =
-      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
+      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
     val onNotificationsClick =
-      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
+      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
     val onProductSwitchClick =
-      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
+      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
   }
 
   object slots {
@@ -88,8 +88,6 @@ object ShellBar extends WebComponent with HasIcon {
     def searchField: Slot = new Slot("searchField")
     def startButton: Slot = new Slot("startButton")
   }
-
-  
 
   def item: ShellBarItem.type = ShellBarItem
 

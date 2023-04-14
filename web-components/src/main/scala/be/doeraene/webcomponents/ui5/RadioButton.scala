@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -36,7 +36,7 @@ object RadioButton extends WebComponent with HasAccessibleName with HasName with
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element & RawElement
+  type Ref = dom.html.Element with RawElement
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-radio-button")
 

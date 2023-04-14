@@ -3,7 +3,7 @@ package be.doeraene.webcomponents.ui5
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -41,10 +41,8 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
   object slots {}
 
   object events {
-    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]] =
+    val onClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]] =
       new EventProp("click")
   }
-
-  
 
 }

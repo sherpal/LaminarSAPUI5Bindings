@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -40,10 +40,8 @@ object ColourPalette extends WebComponent {
   object slots {}
 
   object events {
-    val onItemClick: EventProp[dom.Event & HasDetail[HasColor]] = new EventProp("item-click")
+    val onItemClick: EventProp[dom.Event with HasDetail[HasColor]] = new EventProp("item-click")
   }
-
-  
 
   def item: ColourPaletteItem.type = ColourPaletteItem
 

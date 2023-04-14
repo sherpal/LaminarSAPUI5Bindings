@@ -88,14 +88,14 @@ object Popover extends WebComponent with HasAccessibleName {
       def escPressed: Boolean
     }
 
-    val onBeforeClose: EventProp[EventWithPreciseTarget[Ref] & HasDetail[BeforeCloseInfo]] = new EventProp(
+    val onBeforeClose: EventProp[EventWithPreciseTarget[Ref] with HasDetail[BeforeCloseInfo]] = new EventProp(
       "before-close"
     )
     val onBeforeOpen: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("before-open")
   }
 
   def getPopoverById(id: String): Option[Ref] =
-    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
 
   /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
   val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)

@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasTargetRef}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -47,13 +47,11 @@ object Menu extends WebComponent {
       def item: dom.HTMLElement = js.native
       def text: String          = js.native
     }
-    val onItemClick = new EventProp[dom.Event & HasDetail[ItemClickDetail]]("item-click")
+    val onItemClick = new EventProp[dom.Event with HasDetail[ItemClickDetail]]("item-click")
   }
 
-  
-
-  def getMenuById(menuId: String): Option[dom.HTMLElement & RawElement] =
-    Option(dom.document.getElementById(menuId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
+  def getMenuById(menuId: String): Option[dom.HTMLElement with RawElement] =
+    Option(dom.document.getElementById(menuId)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
 
   def item: MenuItem.type = MenuItem
 }

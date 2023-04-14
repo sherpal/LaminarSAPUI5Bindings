@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -70,11 +70,9 @@ object DynamicSideContent extends WebComponent {
       def sideContentVisible: Boolean
     }
 
-    val onLayoutChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[LayoutChangeInfo]] = new EventProp(
+    val onLayoutChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[LayoutChangeInfo]] = new EventProp(
       "layout-change"
     )
   }
-
-  
 
 }

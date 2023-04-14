@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -58,15 +58,13 @@ object Carousel extends WebComponent {
   object slots {}
 
   object events {
-    val onNavigate: EventProp[dom.Event & HasDetail[HasSelectedIndex]] = new EventProp("navigate")
+    val onNavigate: EventProp[dom.Event with HasDetail[HasSelectedIndex]] = new EventProp("navigate")
   }
 
-  
+  def getCarouselById(carouselId: String): Option[dom.HTMLElement with RawElement] =
+    Option(dom.document.getElementById(carouselId)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
 
-  def getCarouselById(carouselId: String): Option[dom.HTMLElement & RawElement] =
-    Option(dom.document.getElementById(carouselId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
-
-  def getCarousels: List[dom.HTMLElement & RawElement] =
-    dom.document.getElementsByTagName("ui5-carousel").toList.map(_.asInstanceOf[dom.HTMLElement & RawElement])
+  def getCarousels: List[dom.HTMLElement with RawElement] =
+    dom.document.getElementsByTagName("ui5-carousel").toList.map(_.asInstanceOf[dom.HTMLElement with RawElement])
 
 }

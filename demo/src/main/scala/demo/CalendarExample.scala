@@ -12,18 +12,17 @@ object CalendarExample extends Example("Calendar") {
       //-- Begin: Basic Calendar
       val maybeSelectedDateVar: Var[Option[Calendar.events.SelectedDatesChangeInfo]] = Var(None)
       div(
-        Label(          child.text <-- maybeSelectedDateVar.signal.map {
-            case None       => "No selected date yet."
-            case Some(info) => s"Selected dates: ${info.values.zip(info.dates).mkString(", ")}."
-          }
-        ),
+        Label(child.text <-- maybeSelectedDateVar.signal.map {
+          case None       => "No selected date yet."
+          case Some(info) => s"Selected dates: ${info.values.zip(info.dates).mkString(", ")}."
+        }),
         br(),
         Calendar(_.events.onSelectedDatesChange.map(_.detail) --> maybeSelectedDateVar.writer.contramapSome)
       )
       //-- End
     },
-    DemoPanel("Calendar with Minimum and Maximum Date & Format Pattern") {
-      //-- Begin: Calendar with Minimum and Maximum Date & Format Pattern
+    DemoPanel("Calendar with Minimum and Maximum Date with Format Pattern") {
+      //-- Begin: Calendar with Minimum and Maximum Date with Format Pattern
       Calendar(_.minDateRaw := "7/7/2020", _.maxDateRaw := "20/10/2020", _.formatPattern := "dd/MM/yyyy")
       //-- End
     },
