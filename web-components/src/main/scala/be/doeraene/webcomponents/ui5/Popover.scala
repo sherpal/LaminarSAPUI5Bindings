@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -94,8 +94,6 @@ object Popover extends WebComponent with HasAccessibleName {
     val onBeforeOpen: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("before-open")
   }
 
-  
-
   def getPopoverById(id: String): Option[Ref] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
@@ -112,6 +110,19 @@ object Popover extends WebComponent with HasAccessibleName {
   /** [[Mod]] for [[Popover]]s closing them each time the stream emits. */
   def closeFromEvents(closeEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
     inContext[ReactiveHtmlElement[Ref]](el => closeEvents.mapTo(el.ref) --> closeObserver)
+
+  /** Combines both showAtFromEvents and closeFromEvents from an event stream emitting maybe an opener.
+    *
+    * When the event stream emits Some an element, opens the [[Popover]] at that element. Otherwise, closes the
+    * [[Popover]]
+    */
+  def showAtAndCloseFromEvents(
+      openerAndCloseEvents: EventStream[Option[dom.HTMLElement]]
+  ): Mod[ReactiveHtmlElement[Ref]] =
+    List(
+      showAtFromEvents(openerAndCloseEvents.collect { case Some(element) => element }),
+      closeFromEvents(openerAndCloseEvents.collect { case None => () })
+    )
 
   /** [[Observer]] you can feed a popover ref to apply focus to it. */
   val applyFocusObserver: Observer[Ref] = Observer(_.applyFocus())
