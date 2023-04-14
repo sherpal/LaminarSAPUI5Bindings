@@ -22,8 +22,7 @@ object PopoverExample extends Example("Popover") {
           _.events.onClick.map(_.target).map(Some(_)) --> openPopoverBus.writer
         ),
         Popover(
-          _.showAtFromEvents(openPopoverBus.events.collect { case Some(opener) => opener }),
-          _.closeFromEvents(openPopoverBus.events.collect { case None => () }),
+          _.showAtAndCloseFromEvents(openPopoverBus.events),
           _.headerText := "Newsletter subscription",
           div(
             className := loginFormClass,
