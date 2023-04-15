@@ -57,6 +57,25 @@ object ToggleButtonExample extends Example("ToggleButton") {
         ToggleButton(_.icon := IconName.cart, _.design := ButtonDesign.Transparent, _.pressed := true)
       )
       //-- End
+    },
+    DemoPanel("ToggleButton with event handler") {
+      //-- Begin: ToggleButton with event handler
+      val toggleStateVar = Var(false)
+      div(
+        p(
+          "Toggle button is ",
+          child.text <-- toggleStateVar.signal.map(pressed => if pressed then "" else "not "),
+          "pressed."
+        ),
+        div(
+          ToggleButton(
+            _.icon := IconName.accept,
+            _.pressed <-- toggleStateVar.signal,
+            _.events.onClick.map(_.target.pressed) --> toggleStateVar.writer
+          )
+        )
+      )
+      //-- End
     }
   )
 

@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -27,6 +27,8 @@ object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
   @js.native
   trait RawElement extends js.Object {
     var accessibilityAttributes: js.Object = js.native
+
+    def pressed: Boolean = js.native
   }
 
   @js.native
@@ -62,7 +64,5 @@ object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
   object events {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
-
-  
 
 }
