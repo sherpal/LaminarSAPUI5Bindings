@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -31,23 +31,23 @@ object Button extends WebComponent with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element & RawElement
+  type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-button")
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
+  lazy val design: HtmlAttr[ButtonDesign] = htmlAttr("design", ButtonDesign.AsStringCodec)
 
-  lazy val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
+  lazy val tooltip: HtmlAttr[String] = htmlAttr("tooltip", StringAsIsCodec)
 
-  lazy val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: HtmlAttr[Boolean] = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 
-  lazy val iconOnly: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-only", BooleanAsAttrPresenceCodec)
+  lazy val iconOnly: HtmlAttr[Boolean] = htmlAttr("icon-only", BooleanAsAttrPresenceCodec)
 
-  lazy val submits: ReactiveHtmlAttr[Boolean] = {
+  lazy val submits: HtmlAttr[Boolean] = {
     SubmitsSupport
-    customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
+    htmlAttr("submits", BooleanAsAttrPresenceCodec)
   }
 
   object slots {}
@@ -55,7 +55,5 @@ object Button extends WebComponent with HasIcon {
   object events {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
-
-  
 
 }

@@ -1,10 +1,12 @@
-import { minifyHtml, injectHtml } from "vite-plugin-html"
 import { scalaMetadata } from "./scala-metadata"
+import { createHtmlPlugin } from 'vite-plugin-html'
+
+import { defineConfig } from 'vite'
 
 const scalaVersion = scalaMetadata.scalaVersion
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
+export default defineConfig(({ command, mode, ssrBuild }) => {
   const mainJS = `/target/scala-${scalaVersion}/demo-${
     mode === "production" ? "opt" : "fastopt"
   }/main.js`
@@ -13,14 +15,17 @@ export default ({ mode }) => {
 
   return {
     publicDir: "./public",
-    plugins: [
-      ...(process.env.NODE_ENV === "production" ? [minifyHtml()] : []),
-      injectHtml({
-        injectData: {
-          script,
-        },
-      }),
-    ],
-    base: "/laminar-ui5-demo/"
+    plugins: createHtmlPlugin({
+         minify: process.env.NODE_ENV === 'production',
+         inject: {
+             data: {
+                 script
+             }
+         }
+     }),
+    base: "/laminar-ui5-demo/",
+    server: {
+      open: '/laminar-ui5-demo'
+    }
   }
-}
+})

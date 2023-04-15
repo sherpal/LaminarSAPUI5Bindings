@@ -61,7 +61,7 @@ object ListExample extends Example("List") {
       }
 
       val listGrowingBus: EventBus[Unit] = new EventBus
-      val numberOfFruitsToDisplaySignal  = listGrowingBus.events.delay(200).mapTo(5).foldLeft(5)(_ + _)
+      val numberOfFruitsToDisplaySignal  = listGrowingBus.events.delay(200).mapTo(5).scanLeft(5)(_ + _)
 
       val fruitsToDisplaySignal = numberOfFruitsToDisplaySignal.map(fruits.take)
 
@@ -87,14 +87,14 @@ object ListExample extends Example("List") {
         ),
         _.events.onSelectionChange
           .map(_.detail.maybeSelectedItem.flatMap(_.dataset.get("countryName"))) --> maybeSelectedCountryVar.writer,
-                  countries.map { country =>
-            val isInactive = country == countries.last
-            UList.item(
-              country ++ (if isInactive then " (Item with 'type' set to 'Inactive')" else ""),
-              dataAttr("country-name") := country,
-              _.tpe.maybe(Option.when(isInactive)(ListItemType.Inactive))
-            )
-          }
+        countries.map { country =>
+          val isInactive = country == countries.last
+          UList.item(
+            country ++ (if isInactive then " (Item with 'type' set to 'Inactive')" else ""),
+            dataAttr("country-name") := country,
+            _.tpe.maybe(Option.when(isInactive)(ListItemType.Inactive))
+          )
+        }
       )
       //-- End
     },
@@ -162,8 +162,8 @@ object ListExample extends Example("List") {
       UList(_.headerText := "Products", _.noDataText := "No Data Available", _.separators := ListSeparator.None)
       //-- End
     ),
-    DemoPanel("List Item Speration Types")(
-      //-- Begin: List Item Speration Types
+    DemoPanel("List Item Speratior Types")(
+      //-- Begin: List Item Speratior Types
       div(
         UList(
           _.headerText := "No separators",
@@ -173,11 +173,34 @@ object ListExample extends Example("List") {
         UList(
           _.headerText := "Inner separators",
           _.separators := ListSeparator.Inner,
-          countries.drop(3).take(3).map(country => UList.item(country, _.icon := IconName.`hello-world`))
+          countries.slice(3, 6).map(country => UList.item(country, _.icon := IconName.`hello-world`))
         )
       )
       //-- End
-    )
+    ),
+    DemoPanel("List Item with delete button slot (since 1.9.0)") {
+      //-- Begin: List Item with delete button slot (since 1.9.0)
+      val countryDeleteBus = new EventBus[String]
+      div(
+        UList(
+          _.mode := ListMode.Delete,
+          countries
+            .map(country =>
+              UList.item(
+                country,
+                _.icon := IconName.world,
+                _.slots.deleteButton := Button(
+                  _.design := ButtonDesign.Transparent,
+                  _.icon := IconName.delete,
+                  onClick.mapTo(country) --> countryDeleteBus.writer
+                )
+              )
+            )
+        ),
+        Toast(_.showFromTextEvents(countryDeleteBus.events.map(country => s"Should delete $country")))
+      )
+      //-- End
+    }
   )
 
 }

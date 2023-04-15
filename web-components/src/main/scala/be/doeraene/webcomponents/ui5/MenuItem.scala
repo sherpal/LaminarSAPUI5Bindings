@@ -1,9 +1,9 @@
 package be.doeraene.webcomponents.ui5
 
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -31,15 +31,15 @@ object MenuItem extends WebComponent with HasIcon with HasText {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-menu-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-menu-item")
 
-  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val additionalText: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-text", StringAsIsCodec)
+  lazy val additionalText: HtmlAttr[String] = htmlAttr("accessible-text", StringAsIsCodec)
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val startsSection: ReactiveHtmlAttr[Boolean] = customHtmlAttr("starts-section", BooleanAsAttrPresenceCodec)
+  lazy val startsSection: HtmlAttr[Boolean] = htmlAttr("starts-section", BooleanAsAttrPresenceCodec)
 
   
 

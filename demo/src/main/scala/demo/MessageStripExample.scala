@@ -68,7 +68,7 @@ object MessageStripExample extends Example("MessageStrip") {
     DemoPanel("Dynamic Message Strip Generator") {
       //-- Begin: Dynamic Message Strip Generator
       val clickedBus: EventBus[Unit] = new EventBus
-      val numberOfClicks             = clickedBus.events.mapTo(1).foldLeft(0)(_ + _).changes
+      val numberOfClicks             = clickedBus.events.mapTo(1).scanLeft(0)(_ + _).changes
       div(
         Button("Generate MessageStrip", _.events.onClick.mapTo(()) --> clickedBus.writer),
         child <-- numberOfClicks.map(count =>

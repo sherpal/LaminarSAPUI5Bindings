@@ -12,13 +12,13 @@ object IconExample extends Example("Icon") {
   ): HtmlElement = div(
     DemoPanel("Basic Icons")(
       //-- Begin: Basic Icons
-      div(IconName.allValues.take(10).map(name => Icon(_.name := name, marginRight := "5px")))
+      div(someIconValues.take(10).map(name => Icon(_.name := name, marginRight := "5px")))
       //-- End
     ),
     DemoPanel("Customized Icons")(
       //-- Begin: Customized Icons
       div(
-        IconName.allValues.reverse
+        someIconValues.reverse
           .take(3)
           .map(name =>
             Icon(

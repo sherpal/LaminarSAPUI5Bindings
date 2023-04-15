@@ -1,9 +1,9 @@
 package be.doeraene.webcomponents.ui5
 
-import com.raquo.domtypes.generic.codecs.StringAsIsCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.keys.ReactiveHtmlAttr
+import com.raquo.laminar.keys.HtmlAttr
 
 trait HasValue {
-  lazy val value: ReactiveHtmlAttr[String] = customHtmlAttr("value", StringAsIsCodec)
+  lazy val value: HtmlAttr[String] = htmlAttr("value", StringAsIsCodec)
 }

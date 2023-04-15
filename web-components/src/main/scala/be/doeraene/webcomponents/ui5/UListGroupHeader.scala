@@ -1,9 +1,9 @@
 package be.doeraene.webcomponents.ui5
 
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -24,7 +24,7 @@ object UListGroupHeader extends WebComponent {
   trait RawElement extends js.Object {}
 
   @js.native
-  @JSImport("@ui5/webcomponents/dist/List.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents/dist/GroupHeaderListItem.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
@@ -32,10 +32,10 @@ object UListGroupHeader extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-li-groupheader")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-li-groupheader")
 
-  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
-  lazy val selected: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
+  lazy val selected: HtmlAttr[Boolean]      = htmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

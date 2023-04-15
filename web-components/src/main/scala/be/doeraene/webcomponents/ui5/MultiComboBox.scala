@@ -3,10 +3,10 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, ComboBoxFilter, IconName, ValueState}
 import be.doeraene.webcomponents.ui5.eventtypes.{EventWithPreciseTarget, HasDetail, HasItems}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,16 +35,16 @@ object MultiComboBox extends WebComponent with HasAccessibleName with HasValue {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-multi-combobox")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-multi-combobox")
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val filter: ReactiveHtmlAttr[ComboBoxFilter] = customHtmlAttr("filter", ComboBoxFilter.AsStringCodec)
-  lazy val placeholder: ReactiveHtmlAttr[String]    = customHtmlAttr("placeholder", StringAsIsCodec)
-  lazy val readonly: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  lazy val allowCustomValues: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("allow-custom-values", BooleanAsAttrPresenceCodec)
-  lazy val required: ReactiveHtmlAttr[Boolean]      = customHtmlAttr("required", BooleanAsAttrPresenceCodec)
-  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val disabled: HtmlAttr[Boolean]      = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val filter: HtmlAttr[ComboBoxFilter] = htmlAttr("filter", ComboBoxFilter.AsStringCodec)
+  lazy val placeholder: HtmlAttr[String]    = htmlAttr("placeholder", StringAsIsCodec)
+  lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val allowCustomValues: HtmlAttr[Boolean] =
+    htmlAttr("allow-custom-values", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean]      = htmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 
   object slots {
     val default: Slot           = new Slot("default")
@@ -55,12 +55,10 @@ object MultiComboBox extends WebComponent with HasAccessibleName with HasValue {
   object events {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
-    val onSelectionChange: EventProp[dom.Event & HasDetail[HasItems[MultiComboBoxItem.Ref]]] = new EventProp(
+    val onSelectionChange: EventProp[dom.Event with HasDetail[HasItems[MultiComboBoxItem.Ref]]] = new EventProp(
       "selection-change"
     )
   }
-
-  
 
   def item: MultiComboBoxItem.type       = MultiComboBoxItem
   def group: MultiComboBoxGroupItem.type = MultiComboBoxGroupItem

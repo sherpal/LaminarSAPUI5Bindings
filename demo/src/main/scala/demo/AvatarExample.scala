@@ -30,7 +30,7 @@ object AvatarExample extends Example("Avatar") {
     },
     DemoPanel("Avatar with icons") {
       //-- Begin: Avatar with icons
-      div(AvatarSize.allValues.zip(IconName.allValues).map((size, icon) => Avatar(_.size := size, _.icon := icon)))
+      div(AvatarSize.allValues.zip(someIconValues).map((size, icon) => Avatar(_.size := size, _.icon := icon)))
       //-- End
     },
     DemoPanel("Avatar with initials") {
@@ -42,6 +42,13 @@ object AvatarExample extends Example("Avatar") {
           case _               => throw new RuntimeException("Impossible")
         }
         Avatar(_.size := size, _.initials := initials)
+      })
+      //-- End
+    },
+    DemoPanel("Avatar with 3 initials (since 1.9.0)") {
+      //-- Begin: Avatar with 3 initials (since 1.9.0)
+      div(AvatarSize.allValues.map { size =>
+        Avatar(_.size := size, _.initials := ('A', 'b', 'C'))
       })
       //-- End
     }

@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{BreadcrumbsDesign, BreadcrumbsSeparatorStyle}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -42,18 +42,20 @@ object Breadcrumbs extends WebComponent with HasIcon {
     }
   }
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-breadcrumbs")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-breadcrumbs")
 
-  lazy val separatorStyle: ReactiveHtmlAttr[BreadcrumbsSeparatorStyle] =
-    customHtmlAttr("separator-style", BreadcrumbsSeparatorStyle.AsStringCodec)
+  lazy val separatorStyle: HtmlAttr[BreadcrumbsSeparatorStyle] =
+    htmlAttr("separator-style", BreadcrumbsSeparatorStyle.AsStringCodec)
 
-  lazy val design: ReactiveHtmlAttr[BreadcrumbsDesign] =
-    customHtmlAttr("design", BreadcrumbsDesign.AsStringCodec)
+  lazy val design: HtmlAttr[BreadcrumbsDesign] =
+    htmlAttr("design", BreadcrumbsDesign.AsStringCodec)
 
   object slots {}
 
   object events {
-    val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Item.Ref]]] = new EventProp("item-click")
+    val onItemClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[Item.Ref]]] = new EventProp(
+      "item-click"
+    )
   }
 
   def Item: BreadcrumbsItem.type = BreadcrumbsItem

@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{PopoverHorizontalAlign, PopoverPlacementType, PopoverVerticalAlign}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -43,37 +43,37 @@ object Popover extends WebComponent with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-popover")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-popover")
 
-  lazy val allowTargetOverlap: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
+  lazy val allowTargetOverlap: HtmlAttr[Boolean] =
+    htmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
 
-  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
+  lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
 
-  lazy val hideArrow: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-arrow", BooleanAsAttrPresenceCodec)
+  lazy val hideArrow: HtmlAttr[Boolean] = htmlAttr("hide-arrow", BooleanAsAttrPresenceCodec)
 
-  lazy val hideBackdrop: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-backdrop", BooleanAsAttrPresenceCodec)
+  lazy val hideBackdrop: HtmlAttr[Boolean] = htmlAttr("hide-backdrop", BooleanAsAttrPresenceCodec)
 
-  lazy val horizontalAlign: ReactiveHtmlAttr[PopoverHorizontalAlign] =
-    customHtmlAttr("horizontal-align", PopoverHorizontalAlign.AsStringCodec)
+  lazy val horizontalAlign: HtmlAttr[PopoverHorizontalAlign] =
+    htmlAttr("horizontal-align", PopoverHorizontalAlign.AsStringCodec)
 
-  lazy val modal: ReactiveHtmlAttr[Boolean] = customHtmlAttr("modal", BooleanAsAttrPresenceCodec)
+  lazy val modal: HtmlAttr[Boolean] = htmlAttr("modal", BooleanAsAttrPresenceCodec)
 
   /** id of the element that opens the popover */
-  lazy val opener: ReactiveHtmlAttr[String] = customHtmlAttr("opener", StringAsIsCodec)
+  lazy val opener: HtmlAttr[String] = htmlAttr("opener", StringAsIsCodec)
 
-  lazy val placementType: ReactiveHtmlAttr[PopoverPlacementType] =
-    customHtmlAttr("placement-type", PopoverPlacementType.AsStringCodec)
+  lazy val placementType: HtmlAttr[PopoverPlacementType] =
+    htmlAttr("placement-type", PopoverPlacementType.AsStringCodec)
 
-  lazy val verticalAlign: ReactiveHtmlAttr[PopoverVerticalAlign] =
-    customHtmlAttr("vertical-align", PopoverVerticalAlign.AsStringCodec)
+  lazy val verticalAlign: HtmlAttr[PopoverVerticalAlign] =
+    htmlAttr("vertical-align", PopoverVerticalAlign.AsStringCodec)
 
-  lazy val initialFocus: ReactiveHtmlAttr[String] = customHtmlAttr("initial-focus", StringAsIsCodec)
+  lazy val initialFocus: HtmlAttr[String] = htmlAttr("initial-focus", StringAsIsCodec)
 
-  lazy val open: ReactiveHtmlAttr[Boolean] = customHtmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
-  lazy val preventFocusRestore: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
+  lazy val preventFocusRestore: HtmlAttr[Boolean] =
+    htmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
 
   object slots {
     def header: Slot = new Slot("header")
@@ -88,16 +88,14 @@ object Popover extends WebComponent with HasAccessibleName {
       def escPressed: Boolean
     }
 
-    val onBeforeClose: EventProp[EventWithPreciseTarget[Ref] & HasDetail[BeforeCloseInfo]] = new EventProp(
+    val onBeforeClose: EventProp[EventWithPreciseTarget[Ref] with HasDetail[BeforeCloseInfo]] = new EventProp(
       "before-close"
     )
     val onBeforeOpen: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("before-open")
   }
 
-  
-
   def getPopoverById(id: String): Option[Ref] =
-    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
 
   /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
   val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
@@ -112,6 +110,19 @@ object Popover extends WebComponent with HasAccessibleName {
   /** [[Mod]] for [[Popover]]s closing them each time the stream emits. */
   def closeFromEvents(closeEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
     inContext[ReactiveHtmlElement[Ref]](el => closeEvents.mapTo(el.ref) --> closeObserver)
+
+  /** Combines both showAtFromEvents and closeFromEvents from an event stream emitting maybe an opener.
+    *
+    * When the event stream emits Some an element, opens the [[Popover]] at that element. Otherwise, closes the
+    * [[Popover]]
+    */
+  def showAtAndCloseFromEvents(
+      openerAndCloseEvents: EventStream[Option[dom.HTMLElement]]
+  ): Mod[ReactiveHtmlElement[Ref]] =
+    List(
+      showAtFromEvents(openerAndCloseEvents.collect { case Some(element) => element }),
+      closeFromEvents(openerAndCloseEvents.collect { case None => () })
+    )
 
   /** [[Observer]] you can feed a popover ref to apply focus to it. */
   val applyFocusObserver: Observer[Ref] = Observer(_.applyFocus())

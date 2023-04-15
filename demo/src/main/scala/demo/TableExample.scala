@@ -13,6 +13,7 @@ object TableExample extends Example("Table") {
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
   ): HtmlElement = div(
+    //-- Begin Common
     styleTag(s"""
     |.header {
     |    display: flex;
@@ -22,11 +23,13 @@ object TableExample extends Example("Table") {
     |    height: fit-content;
     |    padding: 0.5rem;
     |}
-    |""".stripMargin),
+    |""".stripMargin)
+    //-- End Common
+    ,
     DemoPanel("Basic Table") {
       //-- Begin: Basic Table
       val toggleStickyHeaderBus: EventBus[Unit] = new EventBus
-      val stickyHeaderSignal = toggleStickyHeaderBus.events.foldLeft(false)((isSticky, _) => !isSticky)
+      val stickyHeaderSignal = toggleStickyHeaderBus.events.scanLeft(false)((isSticky, _) => !isSticky)
       div(
         div(
           className := "header",
@@ -44,14 +47,14 @@ object TableExample extends Example("Table") {
             span(lineHeight := "1.4rem", "Comment")
           ),
           _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
-                      MTG.cards.map(card =>
-              Table.row(
-                _.cell(card.name),
-                _.cell(card.tpe),
-                _.cell(card.comment),
-                _.cell(card.cost)
-              )
+          MTG.cards.map(card =>
+            Table.row(
+              _.cell(card.name),
+              _.cell(card.tpe),
+              _.cell(card.comment),
+              _.cell(card.cost)
             )
+          )
         )
       )
       //-- End
@@ -69,14 +72,14 @@ object TableExample extends Example("Table") {
           span(lineHeight := "1.4rem", "Comment")
         ),
         _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
-                  MTG.cards.map(card =>
-            Table.row(
-              _.cell(card.name),
-              _.cell(card.tpe),
-              _.cell(card.comment),
-              _.cell(card.cost)
-            )
+        MTG.cards.map(card =>
+          Table.row(
+            _.cell(card.name),
+            _.cell(card.tpe),
+            _.cell(card.comment),
+            _.cell(card.cost)
           )
+        )
       )
       //-- End
     ),
@@ -94,15 +97,15 @@ object TableExample extends Example("Table") {
           span(lineHeight := "1.4rem", "Comment")
         ),
         _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
-                  MTG.cards.map(card =>
-            Table.row(
-              dataAttr("card-name") := card.name,
-              _.cell(card.name),
-              _.cell(card.tpe),
-              _.cell(card.comment),
-              _.cell(card.cost)
-            )
+        MTG.cards.map(card =>
+          Table.row(
+            dataAttr("card-name") := card.name,
+            _.cell(card.name),
+            _.cell(card.tpe),
+            _.cell(card.comment),
+            _.cell(card.cost)
           )
+        )
       )
       //-- End
     ),
@@ -126,7 +129,7 @@ object TableExample extends Example("Table") {
       //-- Begin: Growing Table with 'More' button
       val loadMoreBus: EventBus[Unit] = new EventBus
       val totalNumberOfCards          = MTG.cards.length
-      val numberOfLoadedCards         = loadMoreBus.events.delay(3000).mapTo(4).foldLeft(4)(_ + _)
+      val numberOfLoadedCards         = loadMoreBus.events.delay(3000).mapTo(4).scanLeft(4)(_ + _)
 
       val cardsToDisplay = numberOfLoadedCards.map(MTG.cards.take)
 
@@ -135,7 +138,7 @@ object TableExample extends Example("Table") {
           loadMoreBus.events.mapTo(+1),
           numberOfLoadedCards.changes.mapTo(-1)
         )
-        .foldLeft(0)(_ + _)
+        .scanLeft(0)(_ + _)
         .map(_ > 0)
 
       Table(
@@ -154,17 +157,17 @@ object TableExample extends Example("Table") {
           span(lineHeight := "1.4rem", "Comment")
         ),
         _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
-                  children <-- cardsToDisplay.map(
-            _.map(card =>
-              Table.row(
-                dataAttr("card-name") := card.name,
-                _.cell(card.name),
-                _.cell(card.tpe),
-                _.cell(card.comment),
-                _.cell(card.cost)
-              )
+        children <-- cardsToDisplay.map(
+          _.map(card =>
+            Table.row(
+              dataAttr("card-name") := card.name,
+              _.cell(card.name),
+              _.cell(card.tpe),
+              _.cell(card.comment),
+              _.cell(card.cost)
             )
           )
+        )
       )
       //-- End
     },
@@ -172,7 +175,7 @@ object TableExample extends Example("Table") {
       //-- Begin: Growing Table on Scroll
       val loadMoreBus: EventBus[Unit] = new EventBus
       val totalNumberOfCards          = MTG.cards.length
-      val numberOfLoadedCards         = loadMoreBus.events.delay(3000).mapTo(4).foldLeft(4)(_ + _)
+      val numberOfLoadedCards         = loadMoreBus.events.delay(3000).mapTo(4).scanLeft(4)(_ + _)
 
       val cardsToDisplay = numberOfLoadedCards.map(MTG.cards.take)
 
@@ -181,7 +184,7 @@ object TableExample extends Example("Table") {
           loadMoreBus.events.mapTo(+1),
           numberOfLoadedCards.changes.mapTo(-1)
         )
-        .foldLeft(0)(_ + _)
+        .scanLeft(0)(_ + _)
         .map(_ > 0)
 
       div(
@@ -200,17 +203,17 @@ object TableExample extends Example("Table") {
             span(lineHeight := "1.4rem", "Comment")
           ),
           _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
-                      children <-- cardsToDisplay.map(
-              _.map(card =>
-                Table.row(
-                  dataAttr("card-name") := card.name,
-                  _.cell(card.name),
-                  _.cell(card.tpe),
-                  _.cell(card.comment),
-                  _.cell(card.cost)
-                )
+          children <-- cardsToDisplay.map(
+            _.map(card =>
+              Table.row(
+                dataAttr("card-name") := card.name,
+                _.cell(card.name),
+                _.cell(card.tpe),
+                _.cell(card.comment),
+                _.cell(card.cost)
               )
             )
+          )
         )
       )
       //-- End
@@ -230,7 +233,44 @@ object TableExample extends Example("Table") {
         _.row(_.cell("Lille"), _.cell("1 million"), _.cell("France"))
       )
       //-- End
-    )
+    ),
+    DemoPanel("Controlling navigated cell") {
+      //-- Begin: Controlling navigated cell
+      val navigatedCardVar             = Var(Option(MTG.cards.head.name))
+      val isCurrentNavigatedCardSignal = (card: MTG.Card) => navigatedCardVar.signal.map(_.contains(card.name))
+      div(
+        div(
+          Label("Choose card to be 'navigated' (navigated table row have the vertical line on the right turned blue):"),
+          Select(
+            _.events.onChange.map(_.detail.selectedOption.dataset.get("name")) --> navigatedCardVar.writer,
+            MTG.cards.map(card =>
+              Select.option(card.name, _.selected <-- isCurrentNavigatedCardSignal(card), dataAttr("name") := card.name)
+            )
+          )
+        ),
+        Table(
+          _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+          _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
+          _.slots.columns := Table.column(
+            _.minWidth := 600,
+            _.popinText := "Comment",
+            _.demandPopin := true,
+            span(lineHeight := "1.4rem", "Comment")
+          ),
+          _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+          MTG.cards.map(card =>
+            Table.row(
+              _.navigated <-- isCurrentNavigatedCardSignal(card),
+              _.cell(card.name),
+              _.cell(card.tpe),
+              _.cell(card.comment),
+              _.cell(card.cost)
+            )
+          )
+        )
+      )
+      //-- End
+    }
   )
 
 }

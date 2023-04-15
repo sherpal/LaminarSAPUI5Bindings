@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{CalendarSelectionMode, CalendarType}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -41,24 +41,24 @@ object Calendar extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-calendar")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-calendar")
 
-  lazy val hideWeekNumbers: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
+  lazy val hideWeekNumbers: HtmlAttr[Boolean] = htmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
 
-  lazy val selectionMode: ReactiveHtmlAttr[CalendarSelectionMode] =
-    customHtmlAttr("selection-mode", CalendarSelectionMode.AsStringCodec)
+  lazy val selectionMode: HtmlAttr[CalendarSelectionMode] =
+    htmlAttr("selection-mode", CalendarSelectionMode.AsStringCodec)
 
-  lazy val formatPattern: ReactiveHtmlAttr[String] = customHtmlAttr("format-pattern", StringAsIsCodec)
+  lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
 
-  lazy val maxDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("max-date", StringAsIsCodec)
+  lazy val maxDateRaw: HtmlAttr[String] = htmlAttr("max-date", StringAsIsCodec)
 
-  lazy val minDateRaw: ReactiveHtmlAttr[String] = customHtmlAttr("min-date", StringAsIsCodec)
+  lazy val minDateRaw: HtmlAttr[String] = htmlAttr("min-date", StringAsIsCodec)
 
-  lazy val primaryCalendarType: ReactiveHtmlAttr[CalendarType] =
-    customHtmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
+  lazy val primaryCalendarType: HtmlAttr[CalendarType] =
+    htmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
 
-  lazy val secondaryCalendarType: ReactiveHtmlAttr[CalendarType] =
-    customHtmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
+  lazy val secondaryCalendarType: HtmlAttr[CalendarType] =
+    htmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
 
   object slots {}
 
@@ -77,13 +77,11 @@ object Calendar extends WebComponent {
         def dates: List[Long]    = info.datesJS.toList
     }
 
-    val onSelectedDatesChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectedDatesChangeInfo]] =
+    val onSelectedDatesChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectedDatesChangeInfo]] =
       new EventProp(
         "selected-dates-change"
       )
   }
-
-  
 
   def date: CalendarDate.type = CalendarDate
 

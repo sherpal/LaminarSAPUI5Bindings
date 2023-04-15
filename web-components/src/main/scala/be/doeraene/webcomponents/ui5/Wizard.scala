@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.*
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,7 +35,7 @@ object Wizard extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-wizard")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-wizard")
 
   object slots {}
 
@@ -46,10 +46,10 @@ object Wizard extends WebComponent {
       def changeWithClick: Boolean
     }
 
-    val onStepChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[StepChangeInfo]] = new EventProp("step-change")
+    val onStepChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[StepChangeInfo]] = new EventProp(
+      "step-change"
+    )
   }
-
-  
 
   def step: WizardStep.type = WizardStep
 

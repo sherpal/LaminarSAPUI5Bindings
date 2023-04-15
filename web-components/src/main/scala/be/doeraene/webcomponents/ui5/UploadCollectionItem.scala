@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -15,7 +15,7 @@ import be.doeraene.webcomponents.ui5.configkeys.{ListMode, UploadState}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
-import com.raquo.domtypes.generic.codecs.IntAsStringCodec
+import com.raquo.laminar.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.WebComponent
 
 /** This component allows you to represent files before uploading them to a server, with the help of
@@ -49,27 +49,27 @@ object UploadCollectionItem extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-upload-collection-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-upload-collection-item")
 
-  lazy val disableDeleteButton: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("disable-delete-button", BooleanAsAttrPresenceCodec)
+  lazy val disableDeleteButton: HtmlAttr[Boolean] =
+    htmlAttr("disable-delete-button", BooleanAsAttrPresenceCodec)
 
-  lazy val fileName: ReactiveHtmlAttr[String] =
-    customHtmlAttr("file-name", StringAsIsCodec)
+  lazy val fileName: HtmlAttr[String] =
+    htmlAttr("file-name", StringAsIsCodec)
 
-  lazy val fileNameClickable: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("file-name-clickable", BooleanAsAttrPresenceCodec)
+  lazy val fileNameClickable: HtmlAttr[Boolean] =
+    htmlAttr("file-name-clickable", BooleanAsAttrPresenceCodec)
 
-  lazy val hideRetryButton: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("hide-retry-button", BooleanAsAttrPresenceCodec)
+  lazy val hideRetryButton: HtmlAttr[Boolean] =
+    htmlAttr("hide-retry-button", BooleanAsAttrPresenceCodec)
 
-  lazy val hideTerminateButton: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("hide-terminate-button", BooleanAsAttrPresenceCodec)
+  lazy val hideTerminateButton: HtmlAttr[Boolean] =
+    htmlAttr("hide-terminate-button", BooleanAsAttrPresenceCodec)
 
-  lazy val progress: ReactiveHtmlAttr[Int] = customHtmlAttr("progress", IntAsStringCodec)
+  lazy val progress: HtmlAttr[Int] = htmlAttr("progress", IntAsStringCodec)
 
-  lazy val uploadState: ReactiveHtmlAttr[UploadState] =
-    customHtmlAttr("upload-state", UploadState.AsStringCodec)
+  lazy val uploadState: HtmlAttr[UploadState] =
+    htmlAttr("upload-state", UploadState.AsStringCodec)
 
   object slots {
     val thumbnail: Slot = new Slot("thumbnail")

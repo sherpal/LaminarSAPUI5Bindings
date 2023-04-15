@@ -16,7 +16,7 @@ In order to use these bindings within your Scala.js project, you need to add the
 // for Scala 3
 libraryDependencies ++= List(
   "be.doeraene" %%% "web-components-ui5" % "<currently supported version>",
-  "com.raquo" %%% "laminar" % "0.14.5"
+  "com.raquo" %%% "laminar" % "15.0.0"
 )
 ```
 
@@ -27,7 +27,7 @@ or
 scalacOptions ++= List("-Ytasty-reader")
 libraryDependencies ++= List(
   "be.doeraene" % "web-components-ui5_sjs1_3" % "<currently supported version>"
-  "com.raquo" %%% "laminar" % "0.14.5"
+  "com.raquo" %%% "laminar" % "15.0.0"
 )
 ```
 
@@ -54,9 +54,9 @@ First of all, don't panic. You can do the following things:
 These bindings are barely "facades" types for the official UI5 library. They _won't_ work if you don't handle that npm dependency on your own project. You will need the following imports in your `package.json` (or equivalent tool such as scala-js-bundler):
 
 ```
-"@ui5/webcomponents": "1.8.0",
-"@ui5/webcomponents-fiori": "1.8.0",
-"@ui5/webcomponents-icons": "1.8.0"
+"@ui5/webcomponents": "1.9.1",
+"@ui5/webcomponents-fiori": "1.9.1",
+"@ui5/webcomponents-icons": "1.9.1"
 ```
 
 (and thus `npm install` it). Then, you can use any of the components as defined in the `be.doeraene.webcomponents.ui5` package.
@@ -109,9 +109,13 @@ In order to run those, you need to have
 
 Perform the following steps:
 
+First time onl. Open a terminal. cd demo; npm install
+
 1. in one terminal, run `sbt ~demo/fastLinkJS`
 2. in another terminal, go to `demo` and run `npm install` then `npm run dev`
 3. when both steps are ready, go to `http://localhost:3000/laminar-ui5-demo/` and the demo should be there, waiting for you.
+
+If you're in vscode, try running the [task](https://code.visualstudio.com/docs/editor/tasks), "runDemo" build task, it will do the above 3 steps for you. 
 
 ### How to use slots?
 
@@ -129,11 +133,41 @@ Thanks to the `slots` object in the `Dialog` component, this is written in Scala
 
 ```scala
 Dialog(
-  _.footer := div("I'm a fotter")
+  _.slots.footer := div("I'm a footer")
 )
 ```
 
 See the implementation of the `Slot` class to understand what it does.
+
+## Icons
+
+As you may read from SAP's documentation, Icons need to be imported manually via something like:
+
+```typescript
+import * as accidentalLeave from "@ui5/webcomponents-icons/dist/accidental-leave.js";
+```
+
+Or you can import all icons at once with
+
+```typescript
+import * as allIcons from "@ui5/webcomponents-icons/dist/AllIcons.js";
+```
+
+With these bindings, you don't need to do any of that. Scala.js will detect automatically the imports that are required based on your usage of the `IconName` values. For example, if you have somewhere in your code
+
+```scala
+Icon(
+  _.name := IconName.`accidental-leave`
+)
+```
+
+then the above import will be added in the compiled JS file.
+
+## Illustrated Messages
+
+[Illustrated Messages](https://sap.github.io/ui5-webcomponents/playground/components/IllustratedMessage/) work the same way as icons (see above).
+
+All possible choices are available in the `IllustratedMessageType` object. Illustrated messages within the `tnt` subdirectory are available in the `tnt` object thereof.
 
 ## How to read the source code
 
@@ -202,18 +236,18 @@ In the `object`, add the following things:
 - create a trait `RawElement` extending `js.Object` and annotated with `@js.native`
 - add an object `RawImport` extending `js.Object` and annotated with both `@js.native` and `@JSImport`, specifying the correct import (available in the official docs), setting `JSImport.Default` as second argument
 - call `used(RawImport)` the line after (this is done to be sure that scala-js actually import the JS dependency)
-- define an alias `type Ref` as `dom.html.Element & RawElement`
-- define the protected `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
+- define an alias `type Ref` as `dom.html.Element with RawElement`
+- define the protected `tag` variable of type `HtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: HtmlTag[Ref] = htmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
 - create an empty object `slots`
 - create an empty object `events`
 - in the case where your component is linked to other components (for example a `TableCell` is always contained in `TableRow`, so the `TableRow` object will have a reference to the `TableCell` object)
 
 #### Filling the reactive attributes
 
-The official docs always have a "Properties/Attributes" section. All these properties should be converted into `ReactiveHtmlAttr`. For example, the `disabled` attribute of Button is defined as
+The official docs always have a "Properties/Attributes" section. All these properties should be converted into `HtmlAttr`. For example, the `disabled` attribute of Button is defined as
 
 ```scala
-val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 ```
 
 Note that while it's not mandatory that the name of the variable matches the name of the attribute, it's customary to use the same (camelCase) naming.
@@ -252,7 +286,7 @@ All these events are represented as values of type `EventProp`. It takes a type 
 
 Some common patterns are:
 
-- values have a `detail` field of a certain type. The library has a helper `HasDetail` trait, and in that case the complete type will look like `dom.Event & HasDetail[SomeOtherType]`. An example taken from the `Table` component is `val onSelectionChange = new EventProp[dom.Event & HasDetail[TableSelectionChangeDetail]]("selection-change")`.
+- values have a `detail` field of a certain type. The library has a helper `HasDetail` trait, and in that case the complete type will look like `dom.Event with HasDetail[SomeOtherType]`. An example taken from the `Table` component is `val onSelectionChange = new EventProp[dom.Event with HasDetail[TableSelectionChangeDetail]]("selection-change")`.
 - events with a more precise target type (when you need the precise type instead of just `HtmlElement`). This type is `EventWithPreciseTarget` and already extends `dom.Event`. An example from the `CheckBox` component is `val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")`
 - a combination of the above (combined with `&`)
 

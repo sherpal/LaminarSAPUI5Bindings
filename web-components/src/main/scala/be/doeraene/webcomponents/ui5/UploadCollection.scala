@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -38,17 +38,17 @@ object UploadCollection extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-upload-collection")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-upload-collection")
 
-  lazy val accessibleName: ReactiveHtmlAttr[String] = customHtmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val hideDragOverlay: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-drag-overlay", BooleanAsAttrPresenceCodec)
+  lazy val hideDragOverlay: HtmlAttr[Boolean] = htmlAttr("hide-drag-overlay", BooleanAsAttrPresenceCodec)
 
-  lazy val mode: ReactiveHtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
+  lazy val mode: HtmlAttr[ListMode] = htmlAttr("mode", ListMode.AsStringCodec)
 
-  lazy val noDataDescription: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-description", StringAsIsCodec)
+  lazy val noDataDescription: HtmlAttr[String] = htmlAttr("no-data-description", StringAsIsCodec)
 
-  lazy val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val noDataText: HtmlAttr[String] = htmlAttr("no-data-text", StringAsIsCodec)
 
   object slots {
     val header: Slot = new Slot("header")
@@ -60,8 +60,8 @@ object UploadCollection extends WebComponent {
       def dataTransfer: dom.DataTransfer
     }
 
-    val onDrop: EventProp[EventWithPreciseTarget[Ref] & HasDataTransfer] = new EventProp("drop")
-    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[dom.HTMLElement]]] = new EventProp(
+    val onDrop: EventProp[EventWithPreciseTarget[Ref] with HasDataTransfer] = new EventProp("drop")
+    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[dom.HTMLElement]]] = new EventProp(
       "item-delete"
     )
 
@@ -74,12 +74,10 @@ object UploadCollection extends WebComponent {
       extension (info: SelectionChangeInfo) def selectedItems: List[dom.HTMLElement] = info.selectedItemsJS.toList
     }
 
-    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeInfo]] = new EventProp(
+    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectionChangeInfo]] = new EventProp(
       "selection-change"
     )
   }
-
-  
 
   def item: UploadCollectionItem.type = UploadCollectionItem
 

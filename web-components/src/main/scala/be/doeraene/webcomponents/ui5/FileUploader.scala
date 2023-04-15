@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -49,19 +49,19 @@ object FileUploader extends WebComponent with HasName with HasValue {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-file-uploader")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-file-uploader")
 
-  lazy val accept: ReactiveHtmlAttr[List[String]] = customHtmlAttr("accept", ListCodec(StringAsIsCodec))
+  lazy val accept: HtmlAttr[List[String]] = htmlAttr("accept", ListCodec(StringAsIsCodec))
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val hideInput: ReactiveHtmlAttr[Boolean] = customHtmlAttr("hide-input", BooleanAsAttrPresenceCodec)
+  lazy val hideInput: HtmlAttr[Boolean] = htmlAttr("hide-input", BooleanAsAttrPresenceCodec)
 
-  lazy val multiple: ReactiveHtmlAttr[Boolean] = customHtmlAttr("multiple", BooleanAsAttrPresenceCodec)
+  lazy val multiple: HtmlAttr[Boolean] = htmlAttr("multiple", BooleanAsAttrPresenceCodec)
 
-  lazy val placeholder: ReactiveHtmlAttr[String] = customHtmlAttr("placeholder", StringAsIsCodec)
+  lazy val placeholder: HtmlAttr[String] = htmlAttr("placeholder", StringAsIsCodec)
 
-  lazy val valueState: ReactiveHtmlAttr[ValueState] = customHtmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")
@@ -78,9 +78,7 @@ object FileUploader extends WebComponent with HasName with HasValue {
       extension (element: HasFiles) def files: List[dom.File] = element.filesJS.toList
     }
 
-    val onChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasFiles]] = new EventProp("change")
+    val onChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasFiles]] = new EventProp("change")
   }
-
-  
 
 }

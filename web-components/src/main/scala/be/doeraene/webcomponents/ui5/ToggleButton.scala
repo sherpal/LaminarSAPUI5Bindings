@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -27,6 +27,8 @@ object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
   @js.native
   trait RawElement extends js.Object {
     var accessibilityAttributes: js.Object = js.native
+
+    def pressed: Boolean = js.native
   }
 
   @js.native
@@ -38,31 +40,29 @@ object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-toggle-button")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-toggle-button")
 
-  lazy val pressed: ReactiveHtmlAttr[Boolean] = customHtmlAttr("pressed", BooleanAsAttrPresenceCodec)
+  lazy val pressed: HtmlAttr[Boolean] = htmlAttr("pressed", BooleanAsAttrPresenceCodec)
 
   // This component has accessibilityAttributes but I currently don't know how to implement it
 
-  lazy val design: ReactiveHtmlAttr[ButtonDesign] = customHtmlAttr("design", ButtonDesign.AsStringCodec)
+  lazy val design: HtmlAttr[ButtonDesign] = htmlAttr("design", ButtonDesign.AsStringCodec)
 
-  lazy val disabled: ReactiveHtmlAttr[Boolean] = customHtmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val iconEnd: ReactiveHtmlAttr[Boolean] = customHtmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: HtmlAttr[Boolean] = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 
-  lazy val submits: ReactiveHtmlAttr[Boolean] = {
+  lazy val submits: HtmlAttr[Boolean] = {
     SubmitsSupport
-    customHtmlAttr("submits", BooleanAsAttrPresenceCodec)
+    htmlAttr("submits", BooleanAsAttrPresenceCodec)
   }
 
-  lazy val tooltip: ReactiveHtmlAttr[String] = customHtmlAttr("tooltip", StringAsIsCodec)
+  lazy val tooltip: HtmlAttr[String] = htmlAttr("tooltip", StringAsIsCodec)
 
   object slots {}
 
   object events {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
-
-  
 
 }

@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.ListMode
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -38,28 +38,28 @@ object Tree extends WebComponent with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-tree")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-tree")
 
-  lazy val footerText: ReactiveHtmlAttr[String] = customHtmlAttr("footer-text", StringAsIsCodec)
-  lazy val headerText: ReactiveHtmlAttr[String] = customHtmlAttr("header-text", StringAsIsCodec)
-  lazy val noDataText: ReactiveHtmlAttr[String] = customHtmlAttr("no-data-text", StringAsIsCodec)
+  lazy val footerText: HtmlAttr[String] = htmlAttr("footer-text", StringAsIsCodec)
+  lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
+  lazy val noDataText: HtmlAttr[String] = htmlAttr("no-data-text", StringAsIsCodec)
 
-  lazy val mode: ReactiveHtmlAttr[ListMode] = customHtmlAttr("mode", ListMode.AsStringCodec)
+  lazy val mode: HtmlAttr[ListMode] = htmlAttr("mode", ListMode.AsStringCodec)
 
   object events {
-    val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-click"
     )
-    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-delete"
     )
-    val onItemMouseOut: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemMouseOut: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-mouseout"
     )
-    val onItemMouseOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemMouseOver: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-mouseover"
     )
-    val onItemToggle: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemToggle: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-toggle"
     )
 
@@ -77,7 +77,7 @@ object Tree extends WebComponent with HasAccessibleName {
         def previouslySelectedItems: List[TreeItem.Ref] = detail.previouslySelectedItemsJS.toList
     }
 
-    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeDetail]] = new EventProp(
+    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectionChangeDetail]] = new EventProp(
       "selection-change"
     )
   }
@@ -85,8 +85,6 @@ object Tree extends WebComponent with HasAccessibleName {
   object slots {
     val header: Slot = new Slot("header")
   }
-
-  
 
   def item: TreeItem.type = TreeItem
 

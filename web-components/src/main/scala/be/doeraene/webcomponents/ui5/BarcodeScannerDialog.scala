@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -39,7 +39,7 @@ object BarcodeScannerDialog extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-barcode-scanner-dialog")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-barcode-scanner-dialog")
 
   object slots {}
 
@@ -48,17 +48,17 @@ object BarcodeScannerDialog extends WebComponent {
       def message: String
     }
 
-    val onScanError: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ErrorInfo]] = new EventProp("scan-error")
+    val onScanError: EventProp[EventWithPreciseTarget[Ref] with HasDetail[ErrorInfo]] = new EventProp("scan-error")
 
     trait SuccessInfo extends js.Object {
       def text: String
       def rawBytes: js.typedarray.Uint8Array
     }
 
-    val onScanSuccess: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SuccessInfo]] = new EventProp("scan-success")
+    val onScanSuccess: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SuccessInfo]] = new EventProp(
+      "scan-success"
+    )
   }
-
-  
 
   /** You can feed this [[Observer]] with a barcode scanner [[Ref]]s in order to close it. */
   val closeObserver: Observer[Ref] = Observer(_.close())

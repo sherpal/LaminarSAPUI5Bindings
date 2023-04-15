@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.*
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -44,9 +44,9 @@ object ViewSettingsDialog extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-view-settings-dialog")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-view-settings-dialog")
 
-  lazy val sortDescending: ReactiveHtmlAttr[Boolean] = customHtmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
+  lazy val sortDescending: HtmlAttr[Boolean] = htmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
 
   object slots {
     val filterItems: Slot = Slot("filterItems")
@@ -77,15 +77,15 @@ object ViewSettingsDialog extends WebComponent {
       def sortByItem: dom.HTMLElement
     }
 
-    val onCancel: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ViewSettings & HasSortByItem]] = new EventProp(
-      "cancel"
-    )
-    val onConfirm: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ViewSettings & HasSortByItem]] = new EventProp(
-      "confirm"
-    )
+    val onCancel: EventProp[EventWithPreciseTarget[Ref] with HasDetail[ViewSettings with HasSortByItem]] =
+      new EventProp(
+        "cancel"
+      )
+    val onConfirm: EventProp[EventWithPreciseTarget[Ref] with HasDetail[ViewSettings with HasSortByItem]] =
+      new EventProp(
+        "confirm"
+      )
   }
-
-  
 
   /** Feed an instance of [[ViewSettingsDialog]] ref to this observer in order to show it. */
   val showObserver: Observer[Ref] = Observer(_.show())

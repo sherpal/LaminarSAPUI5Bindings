@@ -7,6 +7,7 @@ import demo.helpers.Example
 import org.scalajs.dom
 import org.scalajs.dom.{window, URL}
 
+import demo.BadgeExample
 object EntryPoint {
   def main(args: Array[String]): Unit = {
     val demoElement = {
@@ -40,6 +41,7 @@ object EntryPoint {
         LabelExample,
         LinkExample,
         ListExample,
+        MakeError,
         MediaGalleryExample,
         MenuExample,
         MessageStripExample,

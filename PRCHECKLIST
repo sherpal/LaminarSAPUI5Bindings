@@ -1,0 +1,15 @@
+# Checklist for touching the demo
+
+--files /demo/** +title+ Demo testing checklist :art:
+--files /demo/** +task+ I made a quick tour on the demo locally and everything seems fine
+--files /demo/** +task+ I ran `sbt demo/fullLinkJS && cd demo && npm run build` and it worked
+
+# Checklist for touching the bindings
+
+--files /web-components/** +title+ Bindings testing checklist :art:
+--files /web-components/** +task+ I checked that the changes are made are in sync with the supported SAP UI5 version
+
+# Checklist for touching the workflows
+
+--files /.github/workflows/** +title+ Workflow testing checklist :art:
+--files /.github/workflows/** +task+ I checked that the new pipeline work on the desired branch

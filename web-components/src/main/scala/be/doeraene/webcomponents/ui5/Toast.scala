@@ -1,10 +1,10 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.ToastPlacement
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -34,19 +34,30 @@ object Toast extends WebComponent with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-toast")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-toast")
 
-  lazy val placement: ReactiveHtmlAttr[ToastPlacement] = customHtmlAttr("placement", ToastPlacement.AsStringCodec)
+  lazy val placement: HtmlAttr[ToastPlacement] = htmlAttr("placement", ToastPlacement.AsStringCodec)
 
-  lazy val duration: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("duration", FiniteDurationCodec)
+  lazy val duration: HtmlAttr[FiniteDuration] = htmlAttr("duration", FiniteDurationCodec)
 
   object slots {}
 
   object events {}
 
-  
+  def getToastById(id: String): Option[dom.HTMLElement with RawElement] =
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
 
-  def getToastById(id: String): Option[dom.HTMLElement & RawElement] =
-    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
+  /** [[Observer]] you can feed a toast to show it. */
+  val showObserver: Observer[Ref] = Observer(_.show())
+
+  /** [[Mod]] for [[Toast]]s opening them each time the stream emits. */
+  def showFromEvents(openerEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.mapTo(el.ref) --> showObserver)
+
+  /** [[Mod]] for [[Toast]]s opening them each time the stream emits, putting the given text. */
+  def showFromTextEvents(openerEvents: EventStream[String]): Mod[ReactiveHtmlElement[Ref]] = List(
+    showFromEvents(openerEvents.mapTo(())),
+    child.text <-- openerEvents
+  )
 
 }

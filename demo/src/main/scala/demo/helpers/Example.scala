@@ -3,7 +3,12 @@ package demo.helpers
 import com.raquo.laminar.api.L.*
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom.html
+
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
 
 /** An instance [[Example]] is bound to a specific component, and is used to display its functionalities.
   */
@@ -13,7 +18,8 @@ trait Example(val name: String) {
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
   ): HtmlElement
 
-  def completeComponent = div(
+  def completeComponent: HtmlElement = div(
+    padding := "5px",
     Title(_.level := TitleLevel.H1, name),
     div(
       "You can see the source code ",
@@ -22,7 +28,9 @@ trait Example(val name: String) {
         _.href := s"https://github.com/sherpal/LaminarSAPUI5Bindings/tree/master/demo/src/main/scala/demo/${name}Example.scala",
         _.target := LinkTarget._blank
       ),
-      ". Click ", Link(_.href := "?", "here"), " to go back home."
+      ". Click ",
+      Link(_.href := "?", "here"),
+      " to go back home."
     ),
     div(
       child <-- EventStream
@@ -40,7 +48,7 @@ trait Example(val name: String) {
 
   val loginFormClass = "login-form"
 
-  def styleTagForLoginFormClass = styleTag(s"""
+  def styleTagForLoginFormClass: ReactiveHtmlElement[html.Style] = styleTag(s"""
                                               |.$loginFormClass > div {
                                               |    display: grid;
                                               |    width: 15rem;
@@ -48,9 +56,29 @@ trait Example(val name: String) {
                                               |}
                                               |""".stripMargin)
 
-  def mtgImageWarning = MessageStrip(
+  def mtgImageWarning: HtmlElement = MessageStrip(
     _.design := MessageStripDesign.Warning,
     "All images displayed on this page are the property of Wizard of the Coast."
+  )
+
+
+
+  def someIconValues: List[IconName] = List(
+    IconName.`clear-all`,
+    IconName.`accidental-leave`,
+    IconName.`activity-items`,
+    IconName.`arrow-bottom`,
+    IconName.step,
+    IconName.loan,
+    IconName.heart,
+    IconName.`bar-chart`,
+    IconName.`hello-world`,
+    IconName.`arrow-top`,
+    IconName.`action-settings`,
+    IconName.`value-help`,
+    IconName.home,
+    IconName.palette,
+    IconName.contacts
   )
 
 }

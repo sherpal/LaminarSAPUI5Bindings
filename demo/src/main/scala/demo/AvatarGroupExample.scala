@@ -13,7 +13,7 @@ object AvatarGroupExample extends Example("AvatarGroup") {
       //-- Begin: Avatar Group - type 'Individual'
       AvatarGroup(
         _.tpe := AvatarGroupType.Individual,
-        IconName.allValues.take(5).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
+        someIconValues.take(5).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
       )
       //-- End
     },
@@ -21,13 +21,13 @@ object AvatarGroupExample extends Example("AvatarGroup") {
       //-- Begin: Avatar Group - type 'Group'
       AvatarGroup(
         _.tpe := AvatarGroupType.Group,
-        IconName.allValues.take(5).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
+        someIconValues.take(5).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
       )
       //-- End
     },
     DemoPanel("Avatar Group with overflow") {
       //-- Begin: Avatar Group with overflow
-      def allAvatars = IconName.allValues.take(10).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
+      def allAvatars = someIconValues.take(10).map(icon => Avatar(_.icon := icon, _.size := AvatarSize.M))
 
       val avatarsForPopoverBus: EventBus[List[HtmlElement]] = new EventBus
       val popoverOpenerBus: EventBus[dom.HTMLElement]       = new EventBus

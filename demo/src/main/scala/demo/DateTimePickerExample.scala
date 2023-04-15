@@ -4,8 +4,6 @@ import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
-import java.time.format.DateTimeFormatter
-import java.time.LocalDateTime
 import scala.util.Try
 
 object DateTimePickerExample extends Example("DateTimePicker") {
@@ -15,24 +13,18 @@ object DateTimePickerExample extends Example("DateTimePicker") {
   ): HtmlElement = div(
     DemoPanel("DateTimePicker") {
       //-- Begin: DateTimePicker
-      val localDateTimeFormatter                  = DateTimeFormatter.ofPattern("d MMM y, HH:mm:ss")
-      val valueUpdateBus: EventBus[LocalDateTime] = new EventBus
+      val valueUpdateBus: EventBus[String] = new EventBus
       div(
-        Label(          child.text <-- valueUpdateBus.events.startWithNone.map {
-            case None           => "No value selected yet"
-            case Some(dateTime) => s"Selected value: $dateTime"
-          }
-        ),
+        Label(child.text <-- valueUpdateBus.events.startWithNone.map {
+          case None           => "No value selected yet"
+          case Some(dateTime) => s"Selected value: $dateTime"
+        }),
         br(),
         DateTimePicker(
           _.events.onInput
-            .map(_.detail.value)
-            // Wrap in Try because input triggers even if element is not valid
-            .map(value => Try(LocalDateTime.parse(value, localDateTimeFormatter)).toOption)
-            .collect { case Some(dateTime) => dateTime } --> valueUpdateBus.writer,
+            .map(_.detail.value) --> valueUpdateBus.writer,
           _.events.onChange
-            .map(_.detail.value) // no need for Try shenanigans, change does not trigger for invalid values
-            .map(LocalDateTime.parse(_, localDateTimeFormatter)) --> valueUpdateBus.writer
+            .map(_.detail.value)  --> valueUpdateBus.writer
         )
       )
       //-- End

@@ -2,10 +2,10 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.{HtmlAttr}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -34,16 +34,16 @@ object SideNavigationItem extends WebComponent with HasText {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-side-navigation-item")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-side-navigation-item")
 
-  lazy val expanded: ReactiveHtmlAttr[Boolean] = customHtmlAttr("expanded", BooleanAsAttrPresenceCodec)
+  lazy val expanded: HtmlAttr[Boolean] = htmlAttr("expanded", BooleanAsAttrPresenceCodec)
 
-  lazy val icon: ReactiveHtmlAttr[IconName] = customHtmlAttr("icon", IconName.AsStringCodec)
+  lazy val icon: HtmlAttr[IconName] = htmlAttr("icon", IconName.AsStringCodec)
 
-  lazy val selected: ReactiveHtmlAttr[Boolean] = customHtmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
 
-  lazy val wholeItemToggleable: ReactiveHtmlAttr[Boolean] =
-    customHtmlAttr("whole-item-toggleable", BooleanAsAttrPresenceCodec)
+  lazy val wholeItemToggleable: HtmlAttr[Boolean] =
+    htmlAttr("whole-item-toggleable", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

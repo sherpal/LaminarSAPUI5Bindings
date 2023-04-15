@@ -3,10 +3,10 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.{ListGrowingMode, ListMode, ListSeparator}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.eventtypes.*
-import com.raquo.domtypes.generic.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.builders.HtmlTag
-import com.raquo.laminar.keys.{ReactiveHtmlAttr, ReactiveProp, ReactiveStyle}
+import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,24 +35,24 @@ object UList extends WebComponent with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = customHtmlTag("ui5-list")
+  protected val tag: HtmlTag[Ref] = htmlTag("ui5-list")
 
-  lazy val accessibleRole: ReactiveHtmlAttr[String]    = customHtmlAttr("accessible-role", StringAsIsCodec)
-  lazy val busy: ReactiveHtmlAttr[Boolean]             = customHtmlAttr("busy", BooleanAsAttrPresenceCodec)
-  lazy val busyDelay: ReactiveHtmlAttr[FiniteDuration] = customHtmlAttr("busy-delay", FiniteDurationCodec)
-  lazy val footerText: ReactiveHtmlAttr[String]        = customHtmlAttr("footer-text", StringAsIsCodec)
-  lazy val growing: ReactiveHtmlAttr[ListGrowingMode]  = customHtmlAttr("growing", ListGrowingMode.AsStringCodec)
-  lazy val headerText: ReactiveHtmlAttr[String]        = customHtmlAttr("header-text", StringAsIsCodec)
-  lazy val indent: ReactiveHtmlAttr[Boolean]           = customHtmlAttr("indent", BooleanAsAttrPresenceCodec)
-  lazy val mode: ReactiveHtmlAttr[ListMode]            = customHtmlAttr("mode", ListMode.AsStringCodec)
-  lazy val noDataText: ReactiveHtmlAttr[String]        = customHtmlAttr("no-data-text", StringAsIsCodec)
-  lazy val separators: ReactiveHtmlAttr[ListSeparator] = customHtmlAttr("separators", ListSeparator.AsStringCodec)
+  lazy val accessibleRole: HtmlAttr[String]    = htmlAttr("accessible-role", StringAsIsCodec)
+  lazy val busy: HtmlAttr[Boolean]             = htmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
+  lazy val footerText: HtmlAttr[String]        = htmlAttr("footer-text", StringAsIsCodec)
+  lazy val growing: HtmlAttr[ListGrowingMode]  = htmlAttr("growing", ListGrowingMode.AsStringCodec)
+  lazy val headerText: HtmlAttr[String]        = htmlAttr("header-text", StringAsIsCodec)
+  lazy val indent: HtmlAttr[Boolean]           = htmlAttr("indent", BooleanAsAttrPresenceCodec)
+  lazy val mode: HtmlAttr[ListMode]            = htmlAttr("mode", ListMode.AsStringCodec)
+  lazy val noDataText: HtmlAttr[String]        = htmlAttr("no-data-text", StringAsIsCodec)
+  lazy val separators: HtmlAttr[ListSeparator] = htmlAttr("separators", ListSeparator.AsStringCodec)
 
   object events {
-    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-click")
-    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-close")
-    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-delete")
-    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-toggle")
+    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]]("item-click")
+    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]]("item-close")
+    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]]("item-delete")
+    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]]("item-toggle")
     val onLoadMore   = new EventProp[EventWithPreciseTarget[Ref]]("load-more")
 
     @js.native
@@ -77,14 +77,12 @@ object UList extends WebComponent with HasAccessibleName {
     }
 
     val onSelectionChange =
-      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeDetail]]("selection-change")
+      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectionChangeDetail]]("selection-change")
   }
 
   object slots {
     val header: Slot = new Slot("header")
   }
-
-  
 
   @deprecated("Li was a badly designed name. Use `item` instead", "15/08/2022")
   def Li: ListItem.type = ListItem
