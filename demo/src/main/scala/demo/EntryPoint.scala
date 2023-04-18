@@ -125,7 +125,8 @@ object EntryPoint {
               flexWrap      := "wrap",
               "Components",
               Input(
-                _.placeholder := "Search",
+                _.placeholder   := "Search",
+                _.showClearIcon := true,
                 onInput.mapToValue.compose(_.throttle(1000)) --> { v =>
                   componentListVar.set(componentsDemo.filter(_.name.toLowerCase.contains(v)))
                 }
