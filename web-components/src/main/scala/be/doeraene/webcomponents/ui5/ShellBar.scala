@@ -28,8 +28,9 @@ object ShellBar extends WebComponent with HasIcon {
   trait RawElement extends js.Object {
     def closeOverflow(): Unit = js.native
 
-    def accessibilityRoles: js.Object = js.native
-    def accessibilityTexts: js.Object = js.native
+    def accessibilityRoles: js.Object      = js.native
+    def accessibilityTexts: js.Object      = js.native
+    def accessibilityAttributes: js.Object = js.native
 
     def copilotDomRef: dom.HTMLElement       = js.native
     def logoDomRef: dom.HTMLElement          = js.native

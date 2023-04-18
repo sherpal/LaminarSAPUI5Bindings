@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.EmbeddingAsIsCodec
+import be.doeraene.webcomponents.ui5.configkeys.{EmbeddingAsIsCodec, TableColumnPopinDisplay}
 import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
@@ -13,6 +13,7 @@ import scala.scalajs.js.annotation.JSImport
 import com.raquo.laminar.codecs.IntAsStringCodec
 import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.TableColumnPopinDisplay
 
 object TableColumn extends WebComponent {
 
@@ -33,7 +34,7 @@ object TableColumn extends WebComponent {
   lazy val demandPopin: HtmlAttr[Boolean] = htmlAttr("demand-popin", BooleanAsAttrPresenceCodec)
   lazy val minWidth: HtmlAttr[Int]        = htmlAttr("min-width", IntAsStringCodec)
   lazy val popinText: HtmlAttr[String]    = htmlAttr("popin-text", StringAsIsCodec)
-
-  
+  lazy val popinDisplay: HtmlAttr[TableColumnPopinDisplay] =
+    htmlAttr("popin-display", TableColumnPopinDisplay.AsStringCodec)
 
 }

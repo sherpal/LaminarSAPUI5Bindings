@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -38,17 +38,14 @@ object CustomListItem extends WebComponent {
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-li-custom")
 
   lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
-
-  lazy val tpe: HtmlAttr[ListItemType] = htmlAttr("type", ListItemType.AsStringCodec)
-
-  lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val tpe: HtmlAttr[ListItemType]      = htmlAttr("type", ListItemType.AsStringCodec)
+  lazy val selected: HtmlAttr[Boolean]      = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val navigated: HtmlAttr[Boolean]     = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
 
   object slots {}
 
   object events {
     val onDetailClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("detail-click")
   }
-
-  
 
 }
