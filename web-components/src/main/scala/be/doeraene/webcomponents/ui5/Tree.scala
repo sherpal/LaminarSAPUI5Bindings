@@ -86,6 +86,7 @@ object Tree extends WebComponent with HasAccessibleName {
     val header: Slot = new Slot("header")
   }
 
-  def item: TreeItem.type = TreeItem
+  def item: TreeItem.type             = TreeItem
+  def customItem: TreeItemCustom.type = TreeItemCustom
 
 }

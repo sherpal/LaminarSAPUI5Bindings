@@ -80,6 +80,8 @@ object EntryPoint {
         WizardExample
       ).sorted
 
+      val componentListVar = Var(componentsDemo)
+
       val componentNameVar = Var(componentNameFromSearchParam)
       window.onpopstate = _ => componentNameVar.set(componentNameFromSearchParam)
 
@@ -117,7 +119,19 @@ object EntryPoint {
         div(
           paddingRight("2rem"),
           Title(
-            "Components",
+            div(
+              display       := "flex",
+              flexDirection := "column",
+              flexWrap      := "wrap",
+              "Components",
+              Input(
+                _.placeholder   := "Search",
+                _.showClearIcon := true,
+                onInput.mapToValue.compose(_.throttle(1000)) --> { v =>
+                  componentListVar.set(componentsDemo.filter(_.name.toLowerCase.contains(v)))
+                }
+              )
+            ),
             padding("0.5rem"),
             cursor := "pointer",
             onClick --> (_ => {
@@ -133,14 +147,15 @@ object EntryPoint {
                 componentNameVar.set(v)
               case None => throw new IllegalArgumentException(s"This item did not have data 'componentName'.")
             },
-            componentsDemo.map(example =>
-              SideNavigation.item(
-                _.text := example.name,
-                width                      := "200px",
-                dataAttr("component-name") := example.name,
-                _.selected <-- componentNameVar.signal.map(_.exists(_ == example.name))
-              )
-            ),
+            children <-- componentListVar.signal
+              .split(_.name)((_, example, _) =>
+                SideNavigation.item(
+                  _.text                     := example.name,
+                  width                      := "200px",
+                  dataAttr("component-name") := example.name,
+                  _.selected                <-- componentNameVar.signal.map(_.exists(_ == example.name))
+                )
+              ),
             height    := "90vh",
             overflowY := "auto"
           )

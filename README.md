@@ -41,6 +41,8 @@ Important: this is only the "Scala part" of the installation. We do *not* manage
 
 This library is built against a certain version of Laminar, but it is set as "provided". That means that you have to depend on Laminar yourself, but (for a large deal) you are not bound to the specific version used here.
 
+Important: from 1.9.2 onwards, you are forced to use Laminar >= 15.0. Before 1.9.2, you are forced to use Laminar < 15.0. If you would like to keep using Laminar < 15.0 with newer versions of this library please open an issue.
+
 ## What if I find a missing bindings?
 
 First of all, don't panic. You can do the following things:
@@ -54,9 +56,9 @@ First of all, don't panic. You can do the following things:
 These bindings are barely "facades" types for the official UI5 library. They _won't_ work if you don't handle that npm dependency on your own project. You will need the following imports in your `package.json` (or equivalent tool such as scala-js-bundler):
 
 ```
-"@ui5/webcomponents": "1.9.1",
-"@ui5/webcomponents-fiori": "1.9.1",
-"@ui5/webcomponents-icons": "1.9.1"
+"@ui5/webcomponents": "1.10.0",
+"@ui5/webcomponents-fiori": "1.10.0",
+"@ui5/webcomponents-icons": "1.10.0"
 ```
 
 (and thus `npm install` it). Then, you can use any of the components as defined in the `be.doeraene.webcomponents.ui5` package.
