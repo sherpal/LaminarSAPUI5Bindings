@@ -13,6 +13,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.CarouselPageIndicatorStyle
 
 /** The Carousel allows the user to browse through a set of items. The component is mostly used for showing a gallery of
   * images, but can hold any other HTML element.
@@ -54,6 +55,9 @@ object Carousel extends WebComponent {
   lazy val itemsPerPageL: HtmlAttr[Int] = htmlAttr("items-per-page-l", IntAsStringCodec)
   lazy val itemsPerPageM: HtmlAttr[Int] = htmlAttr("items-per-page-m", IntAsStringCodec)
   lazy val itemsPerPageS: HtmlAttr[Int] = htmlAttr("items-per-page-s", IntAsStringCodec)
+
+  lazy val pageIndicatorStyle: HtmlAttr[CarouselPageIndicatorStyle] =
+    htmlAttr("page-indicator-style", CarouselPageIndicatorStyle.AsStringCodec)
 
   object slots {}
 

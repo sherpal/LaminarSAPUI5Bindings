@@ -16,6 +16,7 @@ import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.TableColumnPopinDisplay
 
 object Table extends WebComponent {
 
