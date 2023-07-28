@@ -16,7 +16,7 @@ In order to use these bindings within your Scala.js project, you need to add the
 // for Scala 3
 libraryDependencies ++= List(
   "be.doeraene" %%% "web-components-ui5" % "<currently supported version>",
-  "com.raquo" %%% "laminar" % "15.0.0"
+  "com.raquo" %%% "laminar" % "16.0.0"
 )
 ```
 
@@ -27,7 +27,7 @@ or
 scalacOptions ++= List("-Ytasty-reader")
 libraryDependencies ++= List(
   "be.doeraene" % "web-components-ui5_sjs1_3" % "<currently supported version>"
-  "com.raquo" %%% "laminar" % "15.0.0"
+  "com.raquo" %%% "laminar" % "16.0.0"
 )
 ```
 
