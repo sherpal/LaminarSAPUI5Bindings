@@ -6,12 +6,16 @@ package be.doeraene.webcomponents.ui5.configkeys
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
+//noinspection NoTargetNameAnnotationForOperatorLikeDefinition
 private[configkeys] object IllustratedMessageTypeImports {
   @inline def _illustratedMessage(obj: js.Object, name: String): IllustratedMessageType =
     name.asInstanceOf[IllustratedMessageType]
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/AddColumn.js", JSImport.Default)
   object `import-AddColumn` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/AddDimensions.js", JSImport.Default)
+  object `import-AddDimensions` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/AddPeople.js", JSImport.Default)
   object `import-AddPeople` extends js.Object
@@ -48,6 +52,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/NoData.js", JSImport.Default)
   object `import-NoData` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/NoDimensionsSet.js", JSImport.Default)
+  object `import-NoDimensionsSet` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/NoEntries.js", JSImport.Default)
   object `import-NoEntries` extends js.Object
@@ -169,8 +176,14 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/UploadCollection.js", JSImport.Default)
   object `import-UploadCollection` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/UploadToCloud.js", JSImport.Default)
+  object `import-UploadToCloud` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-AddColumn.js", JSImport.Default)
   object `import-sapIllus-Dialog-AddColumn` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-AddDimensions.js", JSImport.Default)
+  object `import-sapIllus-Dialog-AddDimensions` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-AddPeople.js", JSImport.Default)
   object `import-sapIllus-Dialog-AddPeople` extends js.Object
@@ -207,6 +220,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-NoData.js", JSImport.Default)
   object `import-sapIllus-Dialog-NoData` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-NoDimensionsSet.js", JSImport.Default)
+  object `import-sapIllus-Dialog-NoDimensionsSet` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-NoEntries.js", JSImport.Default)
   object `import-sapIllus-Dialog-NoEntries` extends js.Object
@@ -328,8 +344,14 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-UploadCollection.js", JSImport.Default)
   object `import-sapIllus-Dialog-UploadCollection` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-UploadToCloud.js", JSImport.Default)
+  object `import-sapIllus-Dialog-UploadToCloud` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-AddColumn.js", JSImport.Default)
   object `import-sapIllus-Scene-AddColumn` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-AddDimensions.js", JSImport.Default)
+  object `import-sapIllus-Scene-AddDimensions` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-AddPeople.js", JSImport.Default)
   object `import-sapIllus-Scene-AddPeople` extends js.Object
@@ -366,6 +388,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-NoData.js", JSImport.Default)
   object `import-sapIllus-Scene-NoData` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-NoDimensionsSet.js", JSImport.Default)
+  object `import-sapIllus-Scene-NoDimensionsSet` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-NoEntries.js", JSImport.Default)
   object `import-sapIllus-Scene-NoEntries` extends js.Object
@@ -487,8 +512,14 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-UploadCollection.js", JSImport.Default)
   object `import-sapIllus-Scene-UploadCollection` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-UploadToCloud.js", JSImport.Default)
+  object `import-sapIllus-Scene-UploadToCloud` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-AddColumn.js", JSImport.Default)
   object `import-sapIllus-Spot-AddColumn` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-AddDimensions.js", JSImport.Default)
+  object `import-sapIllus-Spot-AddDimensions` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-AddPeople.js", JSImport.Default)
   object `import-sapIllus-Spot-AddPeople` extends js.Object
@@ -525,6 +556,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-NoData.js", JSImport.Default)
   object `import-sapIllus-Spot-NoData` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-NoDimensionsSet.js", JSImport.Default)
+  object `import-sapIllus-Spot-NoDimensionsSet` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-NoEntries.js", JSImport.Default)
   object `import-sapIllus-Spot-NoEntries` extends js.Object
@@ -645,6 +679,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-UploadCollection.js", JSImport.Default)
   object `import-sapIllus-Spot-UploadCollection` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-UploadToCloud.js", JSImport.Default)
+  object `import-sapIllus-Spot-UploadToCloud` extends js.Object
 
   object tnt {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/ChartArea.js", JSImport.Default)

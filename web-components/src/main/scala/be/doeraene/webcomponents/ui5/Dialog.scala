@@ -1,18 +1,17 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
+import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName, PopupAccessibleRole, ValueState}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
-import be.doeraene.webcomponents.ui5.configkeys.ValueState
 
 /** The ui5-dialog component is used to temporarily display some information in a size-limited window in front of the
   * regular app screen.
@@ -44,16 +43,16 @@ object Dialog extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-dialog")
 
-  lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
-
-  lazy val resizable: HtmlAttr[Boolean] = htmlAttr("resizable", BooleanAsAttrPresenceCodec)
-  lazy val stretch: HtmlAttr[Boolean]   = htmlAttr("stretch", BooleanAsAttrPresenceCodec)
-  lazy val draggable: HtmlAttr[Boolean] = htmlAttr("draggable", BooleanAsAttrPresenceCodec)
-  lazy val open: HtmlAttr[Boolean]      = htmlAttr("open", BooleanAsAttrPresenceCodec)
-  lazy val preventFocusRestore: HtmlAttr[Boolean] =
-    htmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
-  lazy val state: HtmlAttr[ValueState] = htmlAttr("state", ValueState.AsStringCodec)
-  lazy val initialFocus: HtmlAttr[String] = htmlAttr("initial-focus", StringAsIsCodec)
+  lazy val accessibleRole: HtmlAttr[PopupAccessibleRole] =
+    htmlAttr("accessible-role", PopupAccessibleRole.AsStringCodec)
+  lazy val draggable: HtmlAttr[Boolean]           = htmlAttr("draggable", BooleanAsAttrPresenceCodec)
+  lazy val headerText: HtmlAttr[String]           = htmlAttr("header-text", StringAsIsCodec)
+  lazy val initialFocus: HtmlAttr[String]         = htmlAttr("initial-focus", StringAsIsCodec)
+  lazy val open: HtmlAttr[Boolean]                = htmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val preventFocusRestore: HtmlAttr[Boolean] = htmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
+  lazy val resizable: HtmlAttr[Boolean]           = htmlAttr("resizable", BooleanAsAttrPresenceCodec)
+  lazy val state: HtmlAttr[ValueState]            = htmlAttr("state", ValueState.AsStringCodec)
+  lazy val stretch: HtmlAttr[Boolean]             = htmlAttr("stretch", BooleanAsAttrPresenceCodec)
 
   //noinspection TypeAnnotation
   object slots {
