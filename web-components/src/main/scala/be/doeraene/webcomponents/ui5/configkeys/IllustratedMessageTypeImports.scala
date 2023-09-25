@@ -50,6 +50,9 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/NoActivities.js", JSImport.Default)
   object `import-NoActivities` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/NoColumnsSet.js", JSImport.Default)
+  object `import-NoColumnsSet` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/NoData.js", JSImport.Default)
   object `import-NoData` extends js.Object
 
@@ -161,6 +164,9 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/SuccessScreen.js", JSImport.Default)
   object `import-SuccessScreen` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/Survey.js", JSImport.Default)
+  object `import-Survey` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/Tent.js", JSImport.Default)
   object `import-Tent` extends js.Object
 
@@ -217,6 +223,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-NoActivities.js", JSImport.Default)
   object `import-sapIllus-Dialog-NoActivities` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-NoColumnsSet.js", JSImport.Default)
+  object `import-sapIllus-Dialog-NoColumnsSet` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-NoData.js", JSImport.Default)
   object `import-sapIllus-Dialog-NoData` extends js.Object
@@ -329,6 +338,9 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-SuccessScreen.js", JSImport.Default)
   object `import-sapIllus-Dialog-SuccessScreen` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-Survey.js", JSImport.Default)
+  object `import-sapIllus-Dialog-Survey` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-Tent.js", JSImport.Default)
   object `import-sapIllus-Dialog-Tent` extends js.Object
 
@@ -385,6 +397,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-NoActivities.js", JSImport.Default)
   object `import-sapIllus-Scene-NoActivities` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-NoColumnsSet.js", JSImport.Default)
+  object `import-sapIllus-Scene-NoColumnsSet` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-NoData.js", JSImport.Default)
   object `import-sapIllus-Scene-NoData` extends js.Object
@@ -497,6 +512,9 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-SuccessScreen.js", JSImport.Default)
   object `import-sapIllus-Scene-SuccessScreen` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-Survey.js", JSImport.Default)
+  object `import-sapIllus-Scene-Survey` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-Tent.js", JSImport.Default)
   object `import-sapIllus-Scene-Tent` extends js.Object
 
@@ -553,6 +571,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-NoActivities.js", JSImport.Default)
   object `import-sapIllus-Spot-NoActivities` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-NoColumnsSet.js", JSImport.Default)
+  object `import-sapIllus-Spot-NoColumnsSet` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-NoData.js", JSImport.Default)
   object `import-sapIllus-Spot-NoData` extends js.Object
@@ -664,6 +685,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-SuccessScreen.js", JSImport.Default)
   object `import-sapIllus-Spot-SuccessScreen` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-Survey.js", JSImport.Default)
+  object `import-sapIllus-Spot-Survey` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-Tent.js", JSImport.Default)
   object `import-sapIllus-Spot-Tent` extends js.Object

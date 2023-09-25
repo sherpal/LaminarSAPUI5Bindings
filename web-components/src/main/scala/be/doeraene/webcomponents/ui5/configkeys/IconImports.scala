@@ -389,6 +389,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/clinical-order.js", JSImport.Default)
   object `import-clinical-order` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/clinical-task-tracker.js", JSImport.Default)
+  object `import-clinical-task-tracker` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/clinical-tast-tracker.js", JSImport.Default)
   object `import-clinical-tast-tracker` extends js.Object
 
@@ -1124,6 +1127,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/map-3.js", JSImport.Default)
   object `import-map-3` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/map-fill.js", JSImport.Default)
+  object `import-map-fill` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/marketing-campaign.js", JSImport.Default)
   object `import-marketing-campaign` extends js.Object
 
@@ -1372,9 +1378,6 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/people-connected.js", JSImport.Default)
   object `import-people-connected` extends js.Object
-
-  @js.native @JSImport("@ui5/webcomponents-icons/dist/people-connected .js", JSImport.Default)
-  object `import-people-connected ` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/per-diem.js", JSImport.Default)
   object `import-per-diem` extends js.Object

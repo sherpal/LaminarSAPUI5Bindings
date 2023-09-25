@@ -12,9 +12,9 @@
     "vite-plugin-html": "3.2.0"
   },
   "dependencies": {
-    "@ui5/webcomponents": "1.11.0",
-    "@ui5/webcomponents-fiori": "1.11.0",
-    "@ui5/webcomponents-icons": "1.11.0",
+    "@ui5/webcomponents": "1.12.0",
+    "@ui5/webcomponents-fiori": "1.12.0",
+    "@ui5/webcomponents-icons": "1.12.0",
     "highlight.js": "^11.6.0"
   }
 }
