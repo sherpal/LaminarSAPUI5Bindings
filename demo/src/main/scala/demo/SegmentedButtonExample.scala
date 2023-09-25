@@ -39,7 +39,24 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
         _.item("Press me")
       )
       //-- End
-    )
+    ),
+    DemoPanel("SegmentedButton with multi-select") {
+      val selectedItemsVar = Var(Vector.empty[String])
+      //-- Begin: SegmentedButton with multi-select
+      div(
+        SegmentedButton(
+          _.mode := SegmentedButtonMode.MultiSelect,
+          _.item("First Item", _.accessibleName  := "first"),
+          _.item("Second Item", _.accessibleName := "second"),
+          _.item("Third Item", _.accessibleName  := "third"),
+          SegmentedButton.events.onSelectionChange.map(
+            _.detail.selectedItems.map(_.maybeAccessibleName.get)
+          ) --> selectedItemsVar.writer
+        ),
+        div(child.text <-- selectedItemsVar.signal.map(values => s"Selected values are: ${values.mkString(", ")}"))
+      )
+      //-- End
+    }
   )
 
 }
