@@ -22,13 +22,13 @@ object ButtonExample extends Example("Button") {
         //-- Begin: Basic Button
         div(
           className := exampleButtonContainerClass,
-          Button(_.design := ButtonDesign.Default, "Default"),
+          Button(_.design   := ButtonDesign.Default, "Default"),
           Button(_.disabled := true, "Disabled"),
-          Button(_.design := ButtonDesign.Transparent, "Cancel"),
-          Button(_.design := ButtonDesign.Positive, "Approve"),
-          Button(_.design := ButtonDesign.Negative, "Decline"),
-          Button(_.design := ButtonDesign.Attention, "Warning"),
-          Button(_.design := ButtonDesign.Emphasized, "Subscribe")
+          Button(_.design   := ButtonDesign.Transparent, "Cancel"),
+          Button(_.design   := ButtonDesign.Positive, "Approve"),
+          Button(_.design   := ButtonDesign.Negative, "Decline"),
+          Button(_.design   := ButtonDesign.Attention, "Warning"),
+          Button(_.design   := ButtonDesign.Emphasized, "Subscribe")
         )
         //-- End
       ),
@@ -36,11 +36,11 @@ object ButtonExample extends Example("Button") {
         //-- Begin: Button with Icon
         div(
           className := exampleButtonContainerClass,
-          Button(_.icon := IconName.employee, "Add"),
-          Button(_.icon := IconName.download, "Download"),
-          Button(_.design := ButtonDesign.Positive, _.icon := IconName.add, "Add"),
-          Button(_.design := ButtonDesign.Negative, _.icon := IconName.delete, "Remove"),
-          Button(_.design := ButtonDesign.Attention, _.icon := IconName.`message-warning`, "Warning"),
+          Button(_.icon   := IconName.employee, "Add"),
+          Button(_.icon   := IconName.download, "Download"),
+          Button(_.design := ButtonDesign.Positive, _.icon    := IconName.add, "Add"),
+          Button(_.design := ButtonDesign.Negative, _.icon    := IconName.delete, "Remove"),
+          Button(_.design := ButtonDesign.Attention, _.icon   := IconName.`message-warning`, "Warning"),
           Button(_.design := ButtonDesign.Transparent, _.icon := IconName.accept, "Transparent")
         )
         //-- End
@@ -53,9 +53,16 @@ object ButtonExample extends Example("Button") {
           Button(_.icon := IconName.`action-settings`),
           Button(_.icon := IconName.add),
           Button(_.icon := IconName.alert),
-          Button(_.icon := IconName.accept, _.design := ButtonDesign.Positive),
+          Button(_.icon := IconName.accept, _.design   := ButtonDesign.Positive),
           Button(_.icon := IconName.bookmark, _.design := ButtonDesign.Positive),
-          Button(_.icon := IconName.cart, _.design := ButtonDesign.Transparent)
+          Button(_.icon := IconName.cart, _.design     := ButtonDesign.Transparent)
+        )
+        //-- End
+      ),
+      DemoPanel("Button Types")(
+        //-- Begin: Button Types
+        div(
+          ButtonType.allValues.map(buttonType => Button(buttonType.value, _.tpe := buttonType))
         )
         //-- End
       )

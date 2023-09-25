@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
+import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ButtonType, IconName}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -35,20 +35,13 @@ object Button extends WebComponent with HasIcon {
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-button")
 
-  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-
   lazy val design: HtmlAttr[ButtonDesign] = htmlAttr("design", ButtonDesign.AsStringCodec)
-
-  lazy val tooltip: HtmlAttr[String] = htmlAttr("tooltip", StringAsIsCodec)
-
-  lazy val iconEnd: HtmlAttr[Boolean] = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
-
-  lazy val iconOnly: HtmlAttr[Boolean] = htmlAttr("icon-only", BooleanAsAttrPresenceCodec)
-
-  lazy val submits: HtmlAttr[Boolean] = {
-    SubmitsSupport
-    htmlAttr("submits", BooleanAsAttrPresenceCodec)
-  }
+  lazy val disabled: HtmlAttr[Boolean]    = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: HtmlAttr[Boolean]     = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val iconOnly: HtmlAttr[Boolean]    = htmlAttr("icon-only", BooleanAsAttrPresenceCodec)
+  lazy val submits: HtmlAttr[Boolean]     = htmlAttrWithSupport("submits", BooleanAsAttrPresenceCodec)(SubmitsSupport)
+  lazy val tooltip: HtmlAttr[String]      = htmlAttr("tooltip", StringAsIsCodec)
+  lazy val tpe: HtmlAttr[ButtonType]      = htmlAttrWithSupport("type", ButtonType.AsStringCodec)(SubmitsSupport)
 
   object slots {}
 

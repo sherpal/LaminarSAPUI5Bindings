@@ -3,6 +3,8 @@ package be.doeraene.webcomponents
 import java.time.LocalDate
 
 import com.raquo.laminar.codecs.Codec
+import com.raquo.laminar.api.L.htmlAttr
+import com.raquo.laminar.keys.HtmlAttr
 
 import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
@@ -21,7 +23,7 @@ package object ui5 {
   @js.native
   @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
   object InputElementsFormSupport extends js.Object
-  
+
   object FiniteDurationCodec extends Codec[FiniteDuration, String] {
     override def decode(domValue: String): FiniteDuration = domValue.toLong.millis
 
@@ -37,5 +39,10 @@ package object ui5 {
   @js.native
   @JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
   object SubmitsSupport extends js.Object
+
+  def htmlAttrWithSupport[V](name: String, codec: Codec[V, String])(support: => Any): HtmlAttr[V] = {
+    support
+    htmlAttr(name, codec)
+  }
 
 }
