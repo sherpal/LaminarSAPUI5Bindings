@@ -12,6 +12,8 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
+import scala.concurrent.duration.FiniteDuration
+
 /** Simple UI button
   *
   * @see
@@ -38,6 +40,8 @@ object Menu extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-menu")
 
+  lazy val busy: HtmlAttr[Boolean] = htmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
   lazy val headerText: HtmlAttr[String] = htmlAttr("headerText", StringAsIsCodec)
 
   object events {
