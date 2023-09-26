@@ -37,6 +37,8 @@ object Wizard extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-wizard")
 
+  lazy val contentLayout: HtmlAttr[WizardContentLayout] = htmlAttr("content-layout", WizardContentLayout.AsStringCodec)
+
   object slots {}
 
   object events {

@@ -55,6 +55,9 @@ object Select extends WebComponent with HasIcon with HasAccessibleName with HasN
     }
 
     val onChange = new EventProp[dom.Event with HasDetail[HasSelectedOption]]("change")
+
+    val onClose = new EventProp[dom.Event]("close")
+    val onOpen  = new EventProp[dom.Event]("open")
   }
 
   def option: SelectOption.type = SelectOption

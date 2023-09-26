@@ -1,6 +1,11 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{PopoverHorizontalAlign, PopoverPlacementType, PopoverVerticalAlign}
+import be.doeraene.webcomponents.ui5.configkeys.{
+  PopupAccessibleRole,
+  PopoverHorizontalAlign,
+  PopoverPlacementType,
+  PopoverVerticalAlign
+}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -44,6 +49,9 @@ object Popover extends WebComponent with HasAccessibleName {
   type Ref = dom.html.Element with RawElement
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-popover")
+
+  lazy val accessibleRole: HtmlAttr[PopupAccessibleRole] =
+    htmlAttr("accessible-role", PopupAccessibleRole.AsStringCodec)
 
   lazy val allowTargetOverlap: HtmlAttr[Boolean] =
     htmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)

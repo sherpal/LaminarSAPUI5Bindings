@@ -6,6 +6,7 @@ package be.doeraene.webcomponents.ui5.configkeys
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
+//noinspection NoTargetNameAnnotationForOperatorLikeDefinition
 private[configkeys] object IconImports {
   @inline def _iconName(obj: js.Object, name: String): IconName =
     name.asInstanceOf[IconName]
@@ -21,6 +22,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/accept.js", JSImport.Default)
   object `import-accept` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/accessibility.js", JSImport.Default)
+  object `import-accessibility` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/accidental-leave.js", JSImport.Default)
   object `import-accidental-leave` extends js.Object
@@ -63,6 +67,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/add-activity-2.js", JSImport.Default)
   object `import-add-activity-2` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/add-calendar.js", JSImport.Default)
+  object `import-add-calendar` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/add-contact.js", JSImport.Default)
   object `import-add-contact` extends js.Object
@@ -207,6 +214,15 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/bell.js", JSImport.Default)
   object `import-bell` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/bell-2.js", JSImport.Default)
+  object `import-bell-2` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/biometric-face.js", JSImport.Default)
+  object `import-biometric-face` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/biometric-thumb.js", JSImport.Default)
+  object `import-biometric-thumb` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/blank-tag.js", JSImport.Default)
   object `import-blank-tag` extends js.Object
@@ -382,6 +398,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/clinical-order.js", JSImport.Default)
   object `import-clinical-order` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/clinical-task-tracker.js", JSImport.Default)
+  object `import-clinical-task-tracker` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/clinical-tast-tracker.js", JSImport.Default)
   object `import-clinical-tast-tracker` extends js.Object
 
@@ -390,6 +409,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/cloud.js", JSImport.Default)
   object `import-cloud` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/cloud-check.js", JSImport.Default)
+  object `import-cloud-check` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/co.js", JSImport.Default)
   object `import-co` extends js.Object
@@ -493,6 +515,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/crossed-line-chart.js", JSImport.Default)
   object `import-crossed-line-chart` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/currency.js", JSImport.Default)
+  object `import-currency` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/curriculum.js", JSImport.Default)
   object `import-curriculum` extends js.Object
 
@@ -525,6 +550,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/customize.js", JSImport.Default)
   object `import-customize` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/dark-mode.js", JSImport.Default)
+  object `import-dark-mode` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/database.js", JSImport.Default)
   object `import-database` extends js.Object
@@ -672,6 +700,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/employee-rejections.js", JSImport.Default)
   object `import-employee-rejections` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/enablement.js", JSImport.Default)
+  object `import-enablement` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/end-user-experience-monitoring.js", JSImport.Default)
   object `import-end-user-experience-monitoring` extends js.Object
@@ -877,6 +908,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/hide.js", JSImport.Default)
   object `import-hide` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/high-priority.js", JSImport.Default)
+  object `import-high-priority` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/hint.js", JSImport.Default)
   object `import-hint` extends js.Object
 
@@ -1051,6 +1085,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/letter.js", JSImport.Default)
   object `import-letter` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/light-mode.js", JSImport.Default)
+  object `import-light-mode` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/lightbulb.js", JSImport.Default)
   object `import-lightbulb` extends js.Object
 
@@ -1074,6 +1111,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/locate-me.js", JSImport.Default)
   object `import-locate-me` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/locate-me-2.js", JSImport.Default)
+  object `import-locate-me-2` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/locked.js", JSImport.Default)
   object `import-locked` extends js.Object
@@ -1101,6 +1141,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/map-3.js", JSImport.Default)
   object `import-map-3` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/map-fill.js", JSImport.Default)
+  object `import-map-fill` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/marketing-campaign.js", JSImport.Default)
   object `import-marketing-campaign` extends js.Object
@@ -1348,6 +1391,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/pending.js", JSImport.Default)
   object `import-pending` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/people-connected.js", JSImport.Default)
+  object `import-people-connected` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/per-diem.js", JSImport.Default)
   object `import-per-diem` extends js.Object
 
@@ -1572,6 +1618,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/search.js", JSImport.Default)
   object `import-search` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/select-appointments.js", JSImport.Default)
+  object `import-select-appointments` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/settings.js", JSImport.Default)
   object `import-settings` extends js.Object
@@ -1857,6 +1906,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/time-entry-request.js", JSImport.Default)
   object `import-time-entry-request` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/time-off.js", JSImport.Default)
+  object `import-time-off` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/time-overtime.js", JSImport.Default)
   object `import-time-overtime` extends js.Object

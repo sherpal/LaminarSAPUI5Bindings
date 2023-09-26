@@ -26,7 +26,7 @@ or
 // for Scala 2.13.10 (at least .10)
 scalacOptions ++= List("-Ytasty-reader")
 libraryDependencies ++= List(
-  "be.doeraene" % "web-components-ui5_sjs1_3" % "<currently supported version>"
+  "be.doeraene" % "web-components-ui5_sjs1_3" % "<currently supported version>",
   "com.raquo" %%% "laminar" % "16.0.0"
 )
 ```
@@ -56,9 +56,9 @@ First of all, don't panic. You can do the following things:
 These bindings are barely "facades" types for the official UI5 library. They _won't_ work if you don't handle that npm dependency on your own project. You will need the following imports in your `package.json` (or equivalent tool such as scala-js-bundler):
 
 ```
-"@ui5/webcomponents": "1.10.0",
-"@ui5/webcomponents-fiori": "1.10.0",
-"@ui5/webcomponents-icons": "1.10.0"
+"@ui5/webcomponents": "1.17.0",
+"@ui5/webcomponents-fiori": "1.17.0",
+"@ui5/webcomponents-icons": "1.17.0"
 ```
 
 (and thus `npm install` it). Then, you can use any of the components as defined in the `be.doeraene.webcomponents.ui5` package.

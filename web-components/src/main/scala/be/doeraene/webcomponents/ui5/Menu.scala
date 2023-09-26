@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasTargetRef}
+import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasEscPressed, HasItem, HasTargetRef}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
@@ -11,6 +11,8 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+
+import scala.concurrent.duration.FiniteDuration
 
 /** Simple UI button
   *
@@ -38,7 +40,9 @@ object Menu extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-menu")
 
-  lazy val headerText: HtmlAttr[String] = htmlAttr("headerText", StringAsIsCodec)
+  lazy val busy: HtmlAttr[Boolean]             = htmlAttr("busy", BooleanAsAttrPresenceCodec)
+  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
+  lazy val headerText: HtmlAttr[String]        = htmlAttr("headerText", StringAsIsCodec)
 
   object events {
 
@@ -48,6 +52,11 @@ object Menu extends WebComponent {
       def text: String          = js.native
     }
     val onItemClick = new EventProp[dom.Event with HasDetail[ItemClickDetail]]("item-click")
+
+    val onAfterClose  = new EventProp[dom.Event]("after-close")
+    val onAfterOpen   = new EventProp[dom.Event]("after-open")
+    val onBeforeClose = new EventProp[dom.Event with HasDetail[HasEscPressed]]("before-close")
+    val onBeforeOpen  = new EventProp[dom.Event with HasDetail[HasItem[MenuItem.Ref]]]("before-open")
   }
 
   def getMenuById(menuId: String): Option[dom.HTMLElement with RawElement] =
