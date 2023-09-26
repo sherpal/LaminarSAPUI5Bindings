@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{AvatarColorScheme, AvatarInitials, AvatarShape, AvatarSize}
+import be.doeraene.webcomponents.ui5.configkeys.{AvatarColorScheme, AvatarInitials, AvatarShape, AvatarSize, IconName}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 //import com.raquo.laminar.tags.HtmlTag
@@ -40,6 +40,7 @@ object Avatar extends WebComponent with HasIcon {
   lazy val accessibleName: HtmlAttr[String]         = htmlAttr("accessible-name", StringAsIsCodec)
   lazy val colorScheme: HtmlAttr[AvatarColorScheme] = htmlAttr("color-scheme", AvatarColorScheme.AsStringCodec)
   lazy val disabled: HtmlAttr[Boolean]              = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val fallbackIcon: HtmlAttr[IconName]         = htmlAttr("fallback-icon", IconName.AsStringCodec)
   lazy val initials: HtmlAttr[AvatarInitials]       = htmlAttr("initials", AvatarInitials.AsStringCodec)
   lazy val interactive: HtmlAttr[Boolean]           = htmlAttr("interactive", BooleanAsAttrPresenceCodec)
   lazy val raised: HtmlAttr[Boolean]                = htmlAttr("raised", BooleanAsAttrPresenceCodec)
