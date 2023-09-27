@@ -72,6 +72,7 @@ object IllustratedMessages {
        |import scala.scalajs.js
        |import scala.scalajs.js.annotation.JSImport
        |
+       |//noinspection NoTargetNameAnnotationForOperatorLikeDefinition
        |private[$packageName] object IllustratedMessageTypeImports {
        |  @inline def _illustratedMessage(obj: js.Object, name: String): IllustratedMessageType =
        |    name.asInstanceOf[IllustratedMessageType]
