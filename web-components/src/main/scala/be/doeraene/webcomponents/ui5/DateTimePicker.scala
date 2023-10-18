@@ -48,28 +48,21 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
+  used(Localization)
 
   type Ref = dom.html.Element with RawElement
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-datetime-picker")
 
-  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-
+  lazy val disabled: HtmlAttr[Boolean]        = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val hideWeekNumbers: HtmlAttr[Boolean] = htmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
-
-  lazy val placeholder: HtmlAttr[String] = htmlAttr("placeholder", StringAsIsCodec)
-
-  lazy val readonly: HtmlAttr[Boolean] = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
-
-  lazy val required: HtmlAttr[Boolean] = htmlAttr("required", BooleanAsAttrPresenceCodec)
-
-  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
-
-  lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
-
-  lazy val maxDateRaw: HtmlAttr[String] = htmlAttr("max-date", StringAsIsCodec)
-
-  lazy val minDateRaw: HtmlAttr[String] = htmlAttr("min-date", StringAsIsCodec)
+  lazy val placeholder: HtmlAttr[String]      = htmlAttr("placeholder", StringAsIsCodec)
+  lazy val readonly: HtmlAttr[Boolean]        = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean]        = htmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val valueState: HtmlAttr[ValueState]   = htmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val formatPattern: HtmlAttr[String]    = htmlAttr("format-pattern", StringAsIsCodec)
+  lazy val maxDateRaw: HtmlAttr[String]       = htmlAttr("max-date", StringAsIsCodec)
+  lazy val minDateRaw: HtmlAttr[String]       = htmlAttr("min-date", StringAsIsCodec)
 
   lazy val primaryCalendarType: HtmlAttr[CalendarType] =
     htmlAttr("primary-calendar-type", CalendarType.AsStringCodec)

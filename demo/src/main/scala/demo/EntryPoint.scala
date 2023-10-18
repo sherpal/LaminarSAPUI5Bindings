@@ -74,6 +74,7 @@ object EntryPoint {
         TitleExample,
         ToastExample,
         ToggleButtonExample,
+        ToolbarExample,
         TreeExample,
         UploadCollectionExample,
         ViewSettingsDialogExample,

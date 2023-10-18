@@ -33,6 +33,7 @@ object Icons { // I know this (and IllustratedMessages) could be abstracted away
        |import scala.scalajs.js
        |import scala.scalajs.js.annotation.JSImport
        |
+       |//noinspection NoTargetNameAnnotationForOperatorLikeDefinition
        |private[$packageName] object IconImports {
        |  @inline def _iconName(obj: js.Object, name: String): IconName =
        |    name.asInstanceOf[IconName]

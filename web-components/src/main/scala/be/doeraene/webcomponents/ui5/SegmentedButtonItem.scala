@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -23,7 +23,15 @@ import be.doeraene.webcomponents.WebComponent
 object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasIcon {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    def accessibleName: js.UndefOr[String] = js.native
+  }
+
+  object RawElement {
+    extension (elem: RawElement) {
+      def maybeAccessibleName: Option[String] = elem.accessibleName.toOption
+    }
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/SegmentedButtonItem.js", JSImport.Default)
@@ -55,7 +63,5 @@ object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasI
   object events {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
-
-  
 
 }

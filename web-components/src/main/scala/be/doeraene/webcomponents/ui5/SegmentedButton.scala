@@ -1,7 +1,7 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
-import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasSelectedItem}
+import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName, SegmentedButtonMode}
+import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasSelectedItem, HasSelectedItems}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -11,7 +11,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-segmented-button shows a group of items. When the user clicks or taps one of the items, it stays in a
@@ -27,6 +27,15 @@ object SegmentedButton extends WebComponent {
   @js.native
   trait RawElement extends js.Object {
     def selectedItem: SegmentedButtonItem.Ref = js.native
+
+    @JSName("selectedItems")
+    def selectedItemsJS: js.Array[SegmentedButtonItem.Ref] = js.native
+  }
+
+  object RawElement {
+    extension (elem: RawElement) {
+      def selectedItems: Vector[SegmentedButtonItem.Ref] = elem.selectedItemsJS.toVector
+    }
   }
 
   @js.native
@@ -40,12 +49,15 @@ object SegmentedButton extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-segmented-button")
 
-  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleName: HtmlAttr[String]    = htmlAttr("accessible-name", StringAsIsCodec)
+  lazy val mode: HtmlAttr[SegmentedButtonMode] = htmlAttr("mode", SegmentedButtonMode.AsStringCodec)
 
   object slots {}
 
   object events {
-    val onSelectionChange: EventProp[dom.Event with HasDetail[HasSelectedItem[SegmentedButtonItem.Ref]]] =
+    val onSelectionChange: EventProp[
+      dom.Event with HasDetail[HasSelectedItem[SegmentedButtonItem.Ref] with HasSelectedItems[SegmentedButtonItem.Ref]]
+    ] =
       new EventProp("selection-change")
   }
 

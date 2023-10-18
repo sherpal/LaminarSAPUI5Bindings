@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -41,18 +41,18 @@ object RatingIndicator extends WebComponent {
 
   protected val tag: HtmlTag[Ref] = htmlTag("ui5-rating-indicator")
 
-  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
-  lazy val disabled: HtmlAttr[Boolean]      = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val max: HtmlAttr[Int]               = htmlAttr("max", IntAsStringCodec)
-  lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  lazy val value: HtmlAttr[Double]          = htmlAttr("value", DoubleAsStringCodec)
+  lazy val accessibleName: HtmlAttr[String]    = htmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleNameRef: HtmlAttr[String] = htmlAttr("accessible-name-ref", StringAsIsCodec)
+  lazy val disabled: HtmlAttr[Boolean]         = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val max: HtmlAttr[Int]                  = htmlAttr("max", IntAsStringCodec)
+  lazy val readonly: HtmlAttr[Boolean]         = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean]         = htmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val value: HtmlAttr[Double]             = htmlAttr("value", DoubleAsStringCodec)
 
   object slots {}
 
   object events {
     val onChange = new EventProp[EventWithPreciseTarget[Ref]]("change")
   }
-
-  
 
 }
