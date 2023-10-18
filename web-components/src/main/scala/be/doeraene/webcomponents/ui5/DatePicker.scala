@@ -49,10 +49,6 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
   object RawImport extends js.Object
 
   @js.native
-  @JSImport("@ui5/webcomponents-localization/dist/Assets.js", JSImport.Default)
-  object Localization extends js.Object
-
-  @js.native
   @JSImport("@ui5/webcomponents-base/dist/config/Language.js", "setLanguage")
   def setLanguage(language: String): Unit = js.native
 

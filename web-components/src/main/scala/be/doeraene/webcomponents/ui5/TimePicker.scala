@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -48,6 +48,7 @@ object TimePicker extends WebComponent with HasValue {
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
+  used(Localization)
 
   type Ref = dom.html.Element with RawElement
 
@@ -71,7 +72,5 @@ object TimePicker extends WebComponent with HasValue {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
   }
-
-  
 
 }
