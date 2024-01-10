@@ -1,8 +1,8 @@
 import java.nio.charset.StandardCharsets
 ThisBuild / scalaVersion := "3.3.0"
 
-val usedScalacOptions = Def.task{
-    Seq(
+val usedScalacOptions = Def.task {
+  Seq(
     "-encoding",
     "utf8",
     "-Xfatal-warnings",
@@ -14,10 +14,12 @@ val usedScalacOptions = Def.task{
   )
 }
 
-val withSourceMaps = Def.task{
+val withSourceMaps = Def.task {
   val localSourcesPath = (LocalRootProject / baseDirectory).value.toURI.toString
-  val remoteSourcesPath = s"https://raw.githubusercontent.com/sherpal/LaminarSAPUI5Bindings/${git.gitHeadCommit.value.get}/"
-  val sourcesOptionName = if (scalaVersion.value.startsWith("2.")) "-P:scalajs:mapSourceURI" else "-scalajs-mapSourceURI"
+  val remoteSourcesPath =
+    s"https://raw.githubusercontent.com/sherpal/LaminarSAPUI5Bindings/${git.gitHeadCommit.value.get}/"
+  val sourcesOptionName =
+    if (scalaVersion.value.startsWith("2.")) "-P:scalajs:mapSourceURI" else "-scalajs-mapSourceURI"
 
   Seq(s"${sourcesOptionName}:$localSourcesPath->$remoteSourcesPath") ++ usedScalacOptions.value
 }
@@ -26,11 +28,11 @@ val laminarVersion = "16.0.0"
 
 inThisBuild(
   List(
-    name := "web-components-ui5",
+    name         := "web-components-ui5",
     organization := "be.doeraene",
-    description := "Laminar bindings for the web-component library UI5 from SAP",
-    homepage := Some(url("https://github.com/sherpal/LaminarSAPUI5Bindings")),
-    licenses := List("MIT" -> url("http://www.opensource.org/licenses/mit-license.php")),
+    description  := "Laminar bindings for the web-component library UI5 from SAP",
+    homepage     := Some(url("https://github.com/sherpal/LaminarSAPUI5Bindings")),
+    licenses     := List("MIT" -> url("http://www.opensource.org/licenses/mit-license.php")),
     developers := List(
       Developer(
         "sherpal",
@@ -47,13 +49,13 @@ lazy val `web-components-ui5` = project
   .enablePlugins(ScalaJSPlugin)
   .settings(name := "web-components-ui5")
   .settings(
-    scalacOptions ++= withSourceMaps.value ,
+    scalacOptions ++= withSourceMaps.value,
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule)),
     libraryDependencies ++= List("com.raquo" %%% "laminar" % laminarVersion % Provided),
     Compile / doc := new java.io.File("no-doc")
   )
 
-// We need these dummy root for the publishing
+// We need this dummy root for the publishing
 lazy val root = project
   .in(file("."))
   .aggregate(`web-components-ui5`)
@@ -72,7 +74,7 @@ lazy val demo = project
     ),
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.ESModule) },
     scalaJSUseMainModuleInitializer := true,
-    publish / skip := true
+    publish / skip                  := true
   )
   .dependsOn(`web-components-ui5`)
 
@@ -94,23 +96,30 @@ Global / onLoad := {
   (Global / onLoad).value
 }
 
-val configKeyFolder = os.pwd / "web-components" / "src" / "main" / "scala" / "be" / "doeraene" / "webcomponents" / "ui5" / "configkeys"
+val configKeyFolder =
+  os.pwd / "web-components" / "src" / "main" / "scala" / "be" / "doeraene" / "webcomponents" / "ui5" / "configkeys"
 val configKeysFullPackageName = "be.doeraene.webcomponents.ui5.configkeys"
 
 val generateIcons = taskKey[List[File]]("Generate the code files necessary to use the icons from sap")
 
 generateIcons := {
-  CodeGeneration.generateIconsFiles(configKeysFullPackageName, configKeyFolder)
-    .map(_.toString).map(file)
+  CodeGeneration
+    .generateIconsFiles(configKeysFullPackageName, configKeyFolder)
+    .map(_.toString)
+    .map(file)
 }
 
-val checkGeneratedFilesUpToDate = taskKey[Unit]("Check that the content of the generated files is correct, otherwise fail.")
+val checkGeneratedFilesUpToDate =
+  taskKey[Unit]("Check that the content of the generated files is correct, otherwise fail.")
 
-val generateIllustratedMessages = taskKey[List[File]]("Generate the code files necessary to use the illustrated messages from sap")
+val generateIllustratedMessages =
+  taskKey[List[File]]("Generate the code files necessary to use the illustrated messages from sap")
 
 generateIllustratedMessages := {
-  CodeGeneration.generateIllustratedMessagesFiles(configKeysFullPackageName, configKeyFolder)
-    .map(_.toString).map(file)
+  CodeGeneration
+    .generateIllustratedMessagesFiles(configKeysFullPackageName, configKeyFolder)
+    .map(_.toString)
+    .map(file)
 }
 
 checkGeneratedFilesUpToDate := {

@@ -23,12 +23,11 @@ trait FromStringColourCache {
 object FromStringColourCache {
 
   val noCache: FromStringColourCache = new FromStringColourCache {
-    val canvas = dom.document.createElement("canvas").asInstanceOf[dom.HTMLCanvasElement]
-    canvas.width = 1
-    canvas.height = 1
-    val ctx = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
+    val canvas = new dom.OffscreenCanvas(1, 1)
+    val ctx    = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
 
     def fromString(colourString: String): Colour = {
+      ctx.clearRect(0, 0, 1, 1) // reset the single pixel to transparent black
       ctx.fillStyle = colourString
       ctx.fillRect(0, 0, 1, 1)
       val data  = ctx.getImageData(0, 0, 1, 1).data
