@@ -3,7 +3,7 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.{InputType, ValueState}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -40,7 +40,7 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-input")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-input")
 
   lazy val placeholder: HtmlAttr[String] = htmlAttr("placeholder", StringAsIsCodec)
 

@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.*
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -35,7 +35,7 @@ object Wizard extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-wizard")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-wizard")
 
   lazy val contentLayout: HtmlAttr[WizardContentLayout] = htmlAttr("content-layout", WizardContentLayout.AsStringCodec)
 

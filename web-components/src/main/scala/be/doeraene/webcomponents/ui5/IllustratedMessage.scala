@@ -3,7 +3,7 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.IllustratedMessageType
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -38,7 +38,7 @@ object IllustratedMessage extends WebComponent with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-illustrated-message")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-illustrated-message")
 
   lazy val accessibleNameRef: HtmlAttr[String] = htmlAttr("accessible-name-ref", StringAsIsCodec)
   lazy val name: HtmlAttr[IllustratedMessageType] =

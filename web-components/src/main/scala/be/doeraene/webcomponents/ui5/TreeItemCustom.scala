@@ -3,7 +3,7 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -46,7 +46,7 @@ object TreeItemCustom extends WebComponent with HasIcon with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-tree-item-custom")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tree-item-custom")
 
   lazy val expanded: HtmlAttr[Boolean]     = htmlAttr[Boolean]("expanded", BooleanAsAttrPresenceCodec)
   lazy val hasChildren: HtmlAttr[Boolean]  = htmlAttr[Boolean]("has-children", BooleanAsAttrPresenceCodec)

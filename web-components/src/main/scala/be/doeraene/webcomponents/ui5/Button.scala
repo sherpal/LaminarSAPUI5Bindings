@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ButtonType, IconN
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -33,7 +33,7 @@ object Button extends WebComponent with HasIcon {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-button")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-button")
 
   lazy val design: HtmlAttr[ButtonDesign] = htmlAttr("design", ButtonDesign.AsStringCodec)
   lazy val disabled: HtmlAttr[Boolean]    = htmlAttr("disabled", BooleanAsAttrPresenceCodec)

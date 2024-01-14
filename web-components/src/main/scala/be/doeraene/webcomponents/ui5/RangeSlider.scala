@@ -4,8 +4,8 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, Ico
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -40,7 +40,7 @@ object RangeSlider extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-range-slider")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-range-slider")
 
   lazy val endValue: HtmlAttr[Double] = htmlAttr("end-value", DoubleAsStringCodec)
 
@@ -68,7 +68,5 @@ object RangeSlider extends WebComponent {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
   }
-
-  
 
 }

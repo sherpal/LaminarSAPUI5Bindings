@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, Ico
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -35,7 +35,7 @@ object CustomListItem extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-li-custom")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-li-custom")
 
   lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
   lazy val tpe: HtmlAttr[ListItemType]      = htmlAttr("type", ListItemType.AsStringCodec)

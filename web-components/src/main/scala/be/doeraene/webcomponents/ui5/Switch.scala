@@ -3,7 +3,7 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName, SwitchDesign}
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -35,7 +35,7 @@ object Switch extends WebComponent with HasAccessibleName {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-switch")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-switch")
 
   lazy val textOn: HtmlAttr[String]       = htmlAttr("text-on", StringAsIsCodec)
   lazy val textOff: HtmlAttr[String]      = htmlAttr("text-off", StringAsIsCodec)
