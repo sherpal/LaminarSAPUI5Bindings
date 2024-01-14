@@ -2,8 +2,8 @@ package be.doeraene.webcomponents.ui5
 
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,7 +35,7 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-textarea")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-textarea")
 
   lazy val required: HtmlAttr[Boolean] = htmlAttr("required", BooleanAsAttrPresenceCodec)
   lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
@@ -58,7 +58,5 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
   }
-
-  
 
 }

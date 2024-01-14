@@ -4,8 +4,8 @@ import be.doeraene.webcomponents.ui5.configkeys.SemanticColour
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -35,7 +35,7 @@ object Tab extends WebComponent with HasIcon with HasText {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-tab")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tab")
 
   lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
@@ -47,7 +47,5 @@ object Tab extends WebComponent with HasIcon with HasText {
   object slots {
     val subTabs: Slot = new Slot("subTabs")
   }
-
-  
 
 }

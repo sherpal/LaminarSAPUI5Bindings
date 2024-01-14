@@ -5,7 +5,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasSelectedIndex}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -39,7 +39,7 @@ object Carousel extends WebComponent {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-carousel")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-carousel")
 
   lazy val arrowsPlacement: HtmlAttr[CarouselArrowsPlacement] =
     htmlAttr("arrows-placement", CarouselArrowsPlacement.AsStringCodec)

@@ -4,21 +4,21 @@ import com.raquo.laminar.api.L.*
 
 import org.scalajs.dom
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import com.raquo.laminar.tags.HtmlTag
+import com.raquo.laminar.tags.CustomHtmlTag
 
 /** Marker trait that all web components inherit.
   *
   * This can allow you to implement some shenanigans and abstract over some thins.
   */
 trait WebComponent {
-  val id: HtmlProp[String] = idAttr
+  val id: HtmlProp[String, String] = idAttr
 
   type Ref <: dom.HTMLElement
 
-  type ModFunction = this.type => Mod[ReactiveHtmlElement[Ref]]
+  type ModFunction  = this.type => Mod[ReactiveHtmlElement[Ref]]
   type ComponentMod = ModFunction | Mod[ReactiveHtmlElement[Ref]]
 
-  protected def tag: HtmlTag[Ref]
+  protected def tag: CustomHtmlTag[Ref]
 
   /** Instantiate this component using the specified modifiers.
     *

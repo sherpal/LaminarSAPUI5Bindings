@@ -18,14 +18,14 @@ final class Slot(name: String) {
 
   private val slot: HtmlAttr[String] = htmlAttr("slot", StringAsIsCodec)
 
-  def :=(element: HtmlElement): Inserter[Base] = <--(Val(element.amend(slot := name)))
+  def :=(element: HtmlElement): Inserter = <--(Val(element.amend(slot := name)))
 
-  def :=(elements: Seq[HtmlElement])(using DummyImplicit): Inserter[Base] = <--(Val(elements))
+  def :=(elements: Seq[HtmlElement])(using DummyImplicit): Inserter = <--(Val(elements))
 
-  def     <--(elementObservable: Observable[HtmlElement]): Inserter[Base] =
+  def <--(elementObservable: Observable[HtmlElement]): Inserter =
     child <-- elementObservable.map(_.amend(slot := name))
 
-  def        <--(elementsObservable: Observable[Seq[HtmlElement]])(using DummyImplicit): Inserter[Base] =
+  def <--(elementsObservable: Observable[Seq[HtmlElement]])(using DummyImplicit): Inserter =
     children <-- elementsObservable.map(_.map(_.amend(slot := name)))
 
 }

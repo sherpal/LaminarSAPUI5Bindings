@@ -4,8 +4,8 @@ import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, Ico
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -34,7 +34,7 @@ object SideNavigationSubItem extends WebComponent with HasText {
 
   type Ref = dom.html.Element with RawElement
 
-  protected val tag: HtmlTag[Ref] = htmlTag("ui5-side-navigation-sub-item")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-side-navigation-sub-item")
 
   lazy val icon: HtmlAttr[IconName] = htmlAttr("icon", IconName.AsStringCodec)
 
@@ -43,7 +43,5 @@ object SideNavigationSubItem extends WebComponent with HasText {
   object slots {}
 
   object events {}
-
-  
 
 }
