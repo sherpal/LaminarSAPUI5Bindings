@@ -20,11 +20,13 @@ import be.doeraene.webcomponents.WebComponent
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Select/">the doc</a> for more information.
   */
-object Select extends WebComponent with HasIcon with HasAccessibleName with HasName {
+object Select extends WebComponent with HasIcon with HasAccessibleName with HasName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
     def selectedOption: dom.HTMLElement = js.native
+
+    def value: String = js.native
   }
 
   @js.native

@@ -5,13 +5,14 @@ import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.LinkTarget
 
 /** The ui5-side-navigation-item is used within ui5-side-navigation only. Via the ui5-side-navigation-item you control
   * the content of the SideNavigation.
@@ -45,11 +46,13 @@ object SideNavigationItem extends WebComponent with HasText {
   lazy val wholeItemToggleable: HtmlAttr[Boolean] =
     htmlAttr("whole-item-toggleable", BooleanAsAttrPresenceCodec)
 
+  lazy val href: HtmlAttr[String] = htmlAttr("href", StringAsIsCodec)
+
+  lazy val target: HtmlAttr[LinkTarget] = htmlAttr("target", LinkTarget.AsStringCodec)
+
   object slots {}
 
   object events {}
-
-  
 
   def subItem: SideNavigationSubItem.type = SideNavigationSubItem
 
