@@ -14,6 +14,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** Represents a predefined range of colors for easier selection. Overview The ColorPalettePopover provides the users
   * with a slot to predefine colors. You can customize them with the use of the colors property. You can specify a
@@ -49,6 +50,10 @@ object ColourPalettePopover extends WebComponent {
   lazy val showDefaultColour: HtmlAttr[Boolean] =
     htmlAttr("show-default-color", BooleanAsAttrPresenceCodec)
 
+  lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
+
+  lazy val openerId: HtmlAttr[String] = htmlAttr("opener", StringAsIsCodec)
+
   /** This import is required for the `showMoreColours` property to work. */
   @js.native
   @JSImport("@ui5/webcomponents/dist/features/ColorPaletteMoreColors.js", JSImport.Default)
@@ -65,7 +70,9 @@ object ColourPalettePopover extends WebComponent {
   object slots {}
 
   object events {
-    val onItemClick: EventProp[dom.Event with HasDetail[HasColor]] = new EventProp("item-click")
+    val onItemClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasColor]] = new EventProp("item-click")
+
+    val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
   }
 
   def item: ColourPaletteItem.type = ColourPaletteItem
