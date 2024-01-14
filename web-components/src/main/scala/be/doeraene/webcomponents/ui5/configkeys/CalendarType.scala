@@ -37,19 +37,19 @@ object CalendarType extends EnumerationString[CalendarType] {
   object GregorianImport extends CalendarTypeImporter[Gregorian.type]
 
   @js.native
-  @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Buddhist.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Buddhist.js", JSImport.Namespace)
   object BuddhistImport extends CalendarTypeImporter[Buddhist.type]
 
   @js.native
-  @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Islamic.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Islamic.js", JSImport.Namespace)
   object IslamicImport extends CalendarTypeImporter[Islamic.type]
 
   @js.native
-  @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Japanese.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Japanese.js", JSImport.Namespace)
   object JapaneseImport extends CalendarTypeImporter[Japanese.type]
 
   @js.native
-  @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Persian.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Persian.js", JSImport.Namespace)
   object PersianImport extends CalendarTypeImporter[Persian.type]
 
   val allValues: List[CalendarType] = List(Gregorian, Buddhist, Islamic, Japanese, Persian)
