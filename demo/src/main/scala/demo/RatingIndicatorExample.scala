@@ -28,7 +28,7 @@ object RatingIndicatorExample extends Example("RatingIndicator") {
       //-- Begin: Rating Indicator With Different Max Value
       div(
         RatingIndicator(_.max := 10, _.value := 5),
-        RatingIndicator(_.max := 3, _.value := 3)
+        RatingIndicator(_.max := 3, _.value  := 3)
       )
       //-- End
     ),
@@ -36,8 +36,8 @@ object RatingIndicatorExample extends Example("RatingIndicator") {
       //-- Begin: Disabled Rating Indicator
       div(
         RatingIndicator(_.value := 4, _.disabled := true),
-        RatingIndicator(_.max := 10, _.value := 5, _.disabled := true),
-        RatingIndicator(_.value := 6, _.max := 6, _.disabled := true)
+        RatingIndicator(_.max   := 10, _.value   := 5, _.disabled := true),
+        RatingIndicator(_.value := 6, _.max      := 6, _.disabled := true)
       )
       //-- End
     ),
@@ -45,11 +45,33 @@ object RatingIndicatorExample extends Example("RatingIndicator") {
       //-- Begin: Readonly Rating Indicator
       div(
         RatingIndicator(_.value := 4, _.readonly := true),
-        RatingIndicator(_.max := 10, _.value := 5, _.readonly := true),
-        RatingIndicator(_.value := 6, _.max := 6, _.readonly := true)
+        RatingIndicator(_.max   := 10, _.value   := 5, _.readonly := true),
+        RatingIndicator(_.value := 6, _.max      := 6, _.readonly := true)
       )
       //-- End
-    )
+    ),
+    DemoPanel("Rating Indicator with tooltip") {
+      //-- Begin: Rating Indicator with tooltip
+      val valueVar = Var(0)
+      def tooltipContent(value: Int): String =
+        value match {
+          case 0 => "Unspeakably bad"
+          case 1 => "Very bad"
+          case 2 => "Bad"
+          case 3 => "Average"
+          case 4 => "Good"
+          case 5 => "Very good"
+          case _ => ""
+        }
+      div(
+        RatingIndicator(
+          _.value   <-- valueVar.signal.distinct.map(_.toDouble),
+          _.tooltip <-- valueVar.signal.map(_.toInt).distinct.map(tooltipContent),
+          _.events.onChange.map(_.target.value.toInt) --> valueVar.writer
+        )
+      )
+      //-- End
+    }
   )
 
 }
