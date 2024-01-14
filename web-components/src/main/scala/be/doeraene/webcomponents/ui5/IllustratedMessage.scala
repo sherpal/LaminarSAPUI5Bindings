@@ -4,7 +4,7 @@ import be.doeraene.webcomponents.ui5.configkeys.IllustratedMessageType
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.keys.{HtmlAttr}
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
@@ -12,6 +12,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
 
 /** Simple UI button
   *
@@ -42,19 +43,18 @@ object IllustratedMessage extends WebComponent with HasIcon {
   lazy val accessibleNameRef: HtmlAttr[String] = htmlAttr("accessible-name-ref", StringAsIsCodec)
   lazy val name: HtmlAttr[IllustratedMessageType] =
     htmlAttr("name", IllustratedMessageType.AsStringCodec)
-  
+
   /** Alternative to "name" for Scala 2.13 users. */
-  lazy val nameStr: HtmlAttr[String] = htmlAttr("name", StringAsIsCodec)
-  lazy val subtitleText: HtmlAttr[String] = htmlAttr("subtitle-text", StringAsIsCodec)
-  lazy val titleText: HtmlAttr[String]    = htmlAttr("title-text", StringAsIsCodec)
+  lazy val nameStr: HtmlAttr[String]        = htmlAttr("name", StringAsIsCodec)
+  lazy val subtitleText: HtmlAttr[String]   = htmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String]      = htmlAttr("title-text", StringAsIsCodec)
+  lazy val titleLevel: HtmlAttr[TitleLevel] = htmlAttr("title-level", TitleLevel.AsStringCodec)
 
   object slots {
     val subtitle: Slot = new Slot("subtitle")
-    val title: Slot = new Slot("title")
+    val title: Slot    = new Slot("title")
   }
 
   object events {}
-
-  
 
 }

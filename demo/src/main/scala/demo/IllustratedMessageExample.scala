@@ -14,10 +14,10 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
       //-- Begin: Illustrated Message
       IllustratedMessage(
         _.name := IllustratedMessageType.PageNotFound,
-                  List(
-            Button(_.design := ButtonDesign.Emphasized, "Action 1"),
-            Button("Action 2")
-          )
+        List(
+          Button(_.design := ButtonDesign.Emphasized, "Action 1"),
+          Button("Action 2")
+        )
       )
       //-- End
     ),
@@ -28,9 +28,9 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
         Button("Open Dialog", _.events.onClick.mapTo(true) --> dialogShowActionBus.writer),
         Dialog(
           _.headerText := "Error",
-                      inContext(el =>
-              dialogShowActionBus.events --> Observer[Boolean](if _ then el.ref.show() else el.ref.close())
-            ),
+          inContext(el =>
+            dialogShowActionBus.events --> Observer[Boolean](if _ then el.ref.show() else el.ref.close())
+          ),
           IllustratedMessage(_.name := IllustratedMessageType.ErrorScreen),
           _.slots.footer := Bar(
             _.design := BarDesign.Footer,
@@ -44,17 +44,17 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
       )
       //-- End
     },
-     DemoPanel(
-       "Illustrated Message with link in subtitle")(
-       //-- Begin: Illustrated Message with sub-title slot
-       IllustratedMessage(
-         _.name := IllustratedMessageType.tnt.UnsuccessfulAuth,
-         _.titleText := "Something wen wrong...",
-         _.slots.subtitle := div("Please try again or contact us at ", Link("example@example.com"), "."),
-         Button(_.icon := IconName.refresh, "Try again")
-       )
-       //-- End
-     )
+    DemoPanel("Illustrated Message with link in subtitle")(
+      //-- Begin: Illustrated Message with sub-title slot
+      IllustratedMessage(
+        _.name           := IllustratedMessageType.tnt.UnsuccessfulAuth,
+        _.titleText      := "Something went wrong...",
+        _.titleLevel     := TitleLevel.H4,
+        _.slots.subtitle := div("Please try again or contact us at ", Link("example@example.com"), "."),
+        Button(_.icon := IconName.refresh, "Try again")
+      )
+      //-- End
+    )
   )
 
 }

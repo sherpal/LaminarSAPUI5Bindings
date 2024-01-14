@@ -708,6 +708,12 @@ private[configkeys] object IllustratedMessageTypeImports {
   object `import-sapIllus-Spot-UploadToCloud` extends js.Object
 
   object tnt {
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Avatar.js", JSImport.Default)
+    object `import-Avatar` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Calculator.js", JSImport.Default)
+    object `import-Calculator` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/ChartArea.js", JSImport.Default)
     object `import-ChartArea` extends js.Object
 
@@ -744,8 +750,14 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Company.js", JSImport.Default)
     object `import-Company` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Compass.js", JSImport.Default)
+    object `import-Compass` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Components.js", JSImport.Default)
     object `import-Components` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Dialog.js", JSImport.Default)
+    object `import-Dialog` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/ExternalLink.js", JSImport.Default)
     object `import-ExternalLink` extends js.Object
@@ -756,11 +768,20 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Fingerprint.js", JSImport.Default)
     object `import-Fingerprint` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Handshake.js", JSImport.Default)
+    object `import-Handshake` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Help.js", JSImport.Default)
+    object `import-Help` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Lock.js", JSImport.Default)
     object `import-Lock` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Mission.js", JSImport.Default)
     object `import-Mission` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/MissionFailed.js", JSImport.Default)
+    object `import-MissionFailed` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/NoApplications.js", JSImport.Default)
     object `import-NoApplications` extends js.Object
@@ -774,6 +795,9 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Radar.js", JSImport.Default)
     object `import-Radar` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/RoadMap.js", JSImport.Default)
+    object `import-RoadMap` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Secrets.js", JSImport.Default)
     object `import-Secrets` extends js.Object
 
@@ -785,6 +809,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/SessionExpiring.js", JSImport.Default)
     object `import-SessionExpiring` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Settings.js", JSImport.Default)
+    object `import-Settings` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Success.js", JSImport.Default)
     object `import-Success` extends js.Object
@@ -801,6 +828,9 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Tools.js", JSImport.Default)
     object `import-Tools` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/Tutorials.js", JSImport.Default)
+    object `import-Tutorials` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/UnableToLoad.js", JSImport.Default)
     object `import-UnableToLoad` extends js.Object
 
@@ -812,6 +842,12 @@ private[configkeys] object IllustratedMessageTypeImports {
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/User2.js", JSImport.Default)
     object `import-User2` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Avatar.js", JSImport.Default)
+    object `import-tnt-Dialog-Avatar` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Calculator.js", JSImport.Default)
+    object `import-tnt-Dialog-Calculator` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-ChartArea.js", JSImport.Default)
     object `import-tnt-Dialog-ChartArea` extends js.Object
@@ -849,8 +885,14 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Company.js", JSImport.Default)
     object `import-tnt-Dialog-Company` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Compass.js", JSImport.Default)
+    object `import-tnt-Dialog-Compass` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Components.js", JSImport.Default)
     object `import-tnt-Dialog-Components` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Dialog.js", JSImport.Default)
+    object `import-tnt-Dialog-Dialog` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-ExternalLink.js", JSImport.Default)
     object `import-tnt-Dialog-ExternalLink` extends js.Object
@@ -861,11 +903,20 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Fingerprint.js", JSImport.Default)
     object `import-tnt-Dialog-Fingerprint` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Handshake.js", JSImport.Default)
+    object `import-tnt-Dialog-Handshake` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Help.js", JSImport.Default)
+    object `import-tnt-Dialog-Help` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Lock.js", JSImport.Default)
     object `import-tnt-Dialog-Lock` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Mission.js", JSImport.Default)
     object `import-tnt-Dialog-Mission` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-MissionFailed.js", JSImport.Default)
+    object `import-tnt-Dialog-MissionFailed` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-NoApplications.js", JSImport.Default)
     object `import-tnt-Dialog-NoApplications` extends js.Object
@@ -879,6 +930,9 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Radar.js", JSImport.Default)
     object `import-tnt-Dialog-Radar` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-RoadMap.js", JSImport.Default)
+    object `import-tnt-Dialog-RoadMap` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Secrets.js", JSImport.Default)
     object `import-tnt-Dialog-Secrets` extends js.Object
 
@@ -890,6 +944,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-SessionExpiring.js", JSImport.Default)
     object `import-tnt-Dialog-SessionExpiring` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Settings.js", JSImport.Default)
+    object `import-tnt-Dialog-Settings` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Success.js", JSImport.Default)
     object `import-tnt-Dialog-Success` extends js.Object
@@ -906,6 +963,9 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Tools.js", JSImport.Default)
     object `import-tnt-Dialog-Tools` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-Tutorials.js", JSImport.Default)
+    object `import-tnt-Dialog-Tutorials` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-UnableToLoad.js", JSImport.Default)
     object `import-tnt-Dialog-UnableToLoad` extends js.Object
 
@@ -917,6 +977,42 @@ private[configkeys] object IllustratedMessageTypeImports {
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dialog-User2.js", JSImport.Default)
     object `import-tnt-Dialog-User2` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-Avatar.js", JSImport.Default)
+    object `import-tnt-Dot-Avatar` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-Calculator.js", JSImport.Default)
+    object `import-tnt-Dot-Calculator` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-Compass.js", JSImport.Default)
+    object `import-tnt-Dot-Compass` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-Dialog.js", JSImport.Default)
+    object `import-tnt-Dot-Dialog` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-Handshake.js", JSImport.Default)
+    object `import-tnt-Dot-Handshake` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-Help.js", JSImport.Default)
+    object `import-tnt-Dot-Help` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-MissionFailed.js", JSImport.Default)
+    object `import-tnt-Dot-MissionFailed` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-RoadMap.js", JSImport.Default)
+    object `import-tnt-Dot-RoadMap` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-Settings.js", JSImport.Default)
+    object `import-tnt-Dot-Settings` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Dot-Tutorials.js", JSImport.Default)
+    object `import-tnt-Dot-Tutorials` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Avatar.js", JSImport.Default)
+    object `import-tnt-Scene-Avatar` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Calculator.js", JSImport.Default)
+    object `import-tnt-Scene-Calculator` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-ChartArea.js", JSImport.Default)
     object `import-tnt-Scene-ChartArea` extends js.Object
@@ -954,8 +1050,14 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Company.js", JSImport.Default)
     object `import-tnt-Scene-Company` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Compass.js", JSImport.Default)
+    object `import-tnt-Scene-Compass` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Components.js", JSImport.Default)
     object `import-tnt-Scene-Components` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Dialog.js", JSImport.Default)
+    object `import-tnt-Scene-Dialog` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-ExternalLink.js", JSImport.Default)
     object `import-tnt-Scene-ExternalLink` extends js.Object
@@ -966,11 +1068,20 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Fingerprint.js", JSImport.Default)
     object `import-tnt-Scene-Fingerprint` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Handshake.js", JSImport.Default)
+    object `import-tnt-Scene-Handshake` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Help.js", JSImport.Default)
+    object `import-tnt-Scene-Help` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Lock.js", JSImport.Default)
     object `import-tnt-Scene-Lock` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Mission.js", JSImport.Default)
     object `import-tnt-Scene-Mission` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-MissionFailed.js", JSImport.Default)
+    object `import-tnt-Scene-MissionFailed` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-NoApplications.js", JSImport.Default)
     object `import-tnt-Scene-NoApplications` extends js.Object
@@ -984,6 +1095,9 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Radar.js", JSImport.Default)
     object `import-tnt-Scene-Radar` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-RoadMap.js", JSImport.Default)
+    object `import-tnt-Scene-RoadMap` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Secrets.js", JSImport.Default)
     object `import-tnt-Scene-Secrets` extends js.Object
 
@@ -995,6 +1109,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-SessionExpiring.js", JSImport.Default)
     object `import-tnt-Scene-SessionExpiring` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Settings.js", JSImport.Default)
+    object `import-tnt-Scene-Settings` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Success.js", JSImport.Default)
     object `import-tnt-Scene-Success` extends js.Object
@@ -1011,6 +1128,9 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Tools.js", JSImport.Default)
     object `import-tnt-Scene-Tools` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-Tutorials.js", JSImport.Default)
+    object `import-tnt-Scene-Tutorials` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-UnableToLoad.js", JSImport.Default)
     object `import-tnt-Scene-UnableToLoad` extends js.Object
 
@@ -1022,6 +1142,12 @@ private[configkeys] object IllustratedMessageTypeImports {
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Scene-User2.js", JSImport.Default)
     object `import-tnt-Scene-User2` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Avatar.js", JSImport.Default)
+    object `import-tnt-Spot-Avatar` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Calculator.js", JSImport.Default)
+    object `import-tnt-Spot-Calculator` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-ChartArea.js", JSImport.Default)
     object `import-tnt-Spot-ChartArea` extends js.Object
@@ -1059,8 +1185,14 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Company.js", JSImport.Default)
     object `import-tnt-Spot-Company` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Compass.js", JSImport.Default)
+    object `import-tnt-Spot-Compass` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Components.js", JSImport.Default)
     object `import-tnt-Spot-Components` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Dialog.js", JSImport.Default)
+    object `import-tnt-Spot-Dialog` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-ExternalLink.js", JSImport.Default)
     object `import-tnt-Spot-ExternalLink` extends js.Object
@@ -1071,11 +1203,20 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Fingerprint.js", JSImport.Default)
     object `import-tnt-Spot-Fingerprint` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Handshake.js", JSImport.Default)
+    object `import-tnt-Spot-Handshake` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Help.js", JSImport.Default)
+    object `import-tnt-Spot-Help` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Lock.js", JSImport.Default)
     object `import-tnt-Spot-Lock` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Mission.js", JSImport.Default)
     object `import-tnt-Spot-Mission` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-MissionFailed.js", JSImport.Default)
+    object `import-tnt-Spot-MissionFailed` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-NoApplications.js", JSImport.Default)
     object `import-tnt-Spot-NoApplications` extends js.Object
@@ -1089,6 +1230,9 @@ private[configkeys] object IllustratedMessageTypeImports {
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Radar.js", JSImport.Default)
     object `import-tnt-Spot-Radar` extends js.Object
 
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-RoadMap.js", JSImport.Default)
+    object `import-tnt-Spot-RoadMap` extends js.Object
+
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Secrets.js", JSImport.Default)
     object `import-tnt-Spot-Secrets` extends js.Object
 
@@ -1100,6 +1244,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-SessionExpiring.js", JSImport.Default)
     object `import-tnt-Spot-SessionExpiring` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Settings.js", JSImport.Default)
+    object `import-tnt-Spot-Settings` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Success.js", JSImport.Default)
     object `import-tnt-Spot-Success` extends js.Object
@@ -1115,6 +1262,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Tools.js", JSImport.Default)
     object `import-tnt-Spot-Tools` extends js.Object
+
+    @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-Tutorials.js", JSImport.Default)
+    object `import-tnt-Spot-Tutorials` extends js.Object
 
     @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/tnt/tnt-Spot-UnableToLoad.js", JSImport.Default)
     object `import-tnt-Spot-UnableToLoad` extends js.Object
