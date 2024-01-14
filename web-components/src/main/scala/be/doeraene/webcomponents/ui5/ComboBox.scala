@@ -44,6 +44,7 @@ object ComboBox extends WebComponent with HasAccessibleName with HasValue {
   lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val required: HtmlAttr[Boolean]      = htmlAttr("required", BooleanAsAttrPresenceCodec)
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val noTypeahead: HtmlAttr[Boolean]   = htmlAttr("no-typeahead", BooleanAsAttrPresenceCodec)
 
   object slots {
     val default: Slot           = new Slot("default")

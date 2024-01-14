@@ -48,6 +48,7 @@ object RatingIndicator extends WebComponent {
   lazy val readonly: HtmlAttr[Boolean]         = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val required: HtmlAttr[Boolean]         = htmlAttr("required", BooleanAsAttrPresenceCodec)
   lazy val value: HtmlAttr[Double]             = htmlAttr("value", DoubleAsStringCodec)
+  lazy val tooltip: HtmlAttr[String]           = htmlAttr("tooltip", StringAsIsCodec)
 
   object slots {}
 

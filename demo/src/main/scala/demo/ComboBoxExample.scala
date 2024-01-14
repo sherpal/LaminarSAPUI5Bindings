@@ -44,7 +44,7 @@ object ComboBoxExample extends Example("ComboBox") {
       div(
         ComboBoxFilter.allValues.map(filter =>
           ComboBox(
-            _.filter := filter,
+            _.filter      := filter,
             _.placeholder := s"Filter is: ${filter.value}",
             someCountries.map(country => ComboBox.item(_.text := country))
           )
@@ -56,14 +56,28 @@ object ComboBoxExample extends Example("ComboBox") {
       //-- Begin: ComboBox with Two-Column Layout Items
       ComboBox(
         _.placeholder := "Two-column layout",
-                  someCountries
-            .zip(someCountryCodes)
-            .map((country, code) =>
-              ComboBox.item(
-                _.text := country,
-                _.additionalText := code
-              )
+        someCountries
+          .zip(someCountryCodes)
+          .map((country, code) =>
+            ComboBox.item(
+              _.text           := country,
+              _.additionalText := code
             )
+          )
+      )
+      //-- End
+    ),
+    DemoPanel("ComboBox with no type-ahead")(
+      //-- Begin: ComboBox with no type-ahead
+      ComboBox(
+        _.placeholder := "No type-ahead",
+        _.noTypeahead := true,
+        someCountries
+          .map(country =>
+            ComboBox.item(
+              _.text := country
+            )
+          )
       )
       //-- End
     ),
@@ -71,14 +85,14 @@ object ComboBoxExample extends Example("ComboBox") {
       //-- Begin: ComboBox with Grouping of Items
       ComboBox(
         _.placeholder := "ComboBox with grouping of suggestions",
-                  someOtherCountries
-            .groupBy(_.head)
-            .toList
-            .flatMap((firstLetter, countries) =>
-              ComboBox.group(_.text := firstLetter.toString()) +: countries.sorted.map(country =>
-                ComboBox.item(_.text := country)
-              )
+        someOtherCountries
+          .groupBy(_.head)
+          .toList
+          .flatMap((firstLetter, countries) =>
+            ComboBox.group(_.text := firstLetter.toString()) +: countries.sorted.map(country =>
+              ComboBox.item(_.text := country)
             )
+          )
       )
       //-- End
     )
