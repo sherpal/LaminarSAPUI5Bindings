@@ -10,7 +10,7 @@ object CodeGeneration {
 
   def dummyJSImport(folder: String, name: String, indent: Int): String = {
     val tab = "  " * indent
-    s"""$tab@js.native @JSImport("$folder/$name.js", JSImport.Default)
+    s"""$tab@js.native @JSImport("$folder/$name.js", JSImport.Namespace)
        |${tab}object ${importName(name)} extends js.Object
        |""".stripMargin
   }
