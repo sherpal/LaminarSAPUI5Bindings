@@ -16,7 +16,11 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
     DemoPanel("Color Palette Popover with recent colors, default color and more colors features") {
       //-- Begin: Color Palette Popover with recent colors, default color and more colors features
       val openPopoverBus: EventBus[HTMLElement] = new EventBus
+      val chosenColourBus                       = new EventBus[Colour]
       div(
+        div(
+          child.text <-- chosenColourBus.events.map(colour => s"Selected colour: $colour").startWith("No selection yet")
+        ),
         Button(
           "Open ColourPalettePopover",
           _.events.onClick.mapToEvent.map(_.target) --> openPopoverBus.writer
@@ -25,9 +29,11 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
           _.showAtFromEvents(openPopoverBus.events),
           ColourPaletteExample.someColourPaletteItems,
           _.showRecentColours := true,
-          _.showMoreColours := true,
+          _.showMoreColours   := true,
           _.showDefaultColour := true,
-          _.defaultColour := Colour.green
+          _.defaultColour     := Colour.green,
+          _.events.onItemClick.map(_.detail.scalaColour) --> chosenColourBus.writer,
+          _.events.onClose --> Observer[Any](x => org.scalajs.dom.console.log(x))
         )
       )
       //-- End
