@@ -110,6 +110,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/addresses.js", JSImport.Default)
   object `import-addresses` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/ai.js", JSImport.Default)
+  object `import-ai` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/alert.js", JSImport.Default)
   object `import-alert` extends js.Object
 
@@ -550,6 +553,12 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/customize.js", JSImport.Default)
   object `import-customize` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/da.js", JSImport.Default)
+  object `import-da` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/da-2.js", JSImport.Default)
+  object `import-da-2` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/dark-mode.js", JSImport.Default)
   object `import-dark-mode` extends js.Object
