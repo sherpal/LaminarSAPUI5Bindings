@@ -2,7 +2,7 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, DoubleAsIsCodec, DoubleAsStringCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
@@ -11,8 +11,6 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import com.raquo.laminar.codecs.DoubleAsStringCodec
-import com.raquo.laminar.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
 
@@ -54,7 +52,7 @@ object Slider extends WebComponent {
 
   lazy val showTooltip: HtmlAttr[Boolean] = htmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
-  lazy val step: HtmlAttr[Int] = htmlAttr("step", IntAsStringCodec)
+  lazy val step: HtmlAttr[Double] = htmlAttr("step", DoubleAsStringCodec)
 
   lazy val value: HtmlAttr[Double] = htmlAttr("value", DoubleAsStringCodec)
 

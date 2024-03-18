@@ -35,7 +35,7 @@ object MenuItem extends WebComponent with HasIcon with HasText {
 
   lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val additionalText: HtmlAttr[String] = htmlAttr("accessible-text", StringAsIsCodec)
+  lazy val additionalText: HtmlAttr[String] = htmlAttr("additional-text", StringAsIsCodec)
 
   lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

@@ -42,6 +42,18 @@ object SliderExample extends Example("Slider") {
         _.showTickmarks := true
       )
       //-- End
+    },
+    DemoPanel("Slider with non integer step") {
+      //-- Begin: Slider with non integer step
+      Slider(
+        _.min := 0,
+        _.max := 1,
+        _.step := 0.1,
+        _.value := 0,
+        _.showTooltip := true,
+        _.showTickmarks := true
+      )
+      //-- End
     }
   )
 
