@@ -41,7 +41,7 @@ object ColourPalettePopover extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-color-palette-popover")
 
@@ -70,7 +70,7 @@ object ColourPalettePopover extends WebComponent {
   object slots {}
 
   object events {
-    val onItemClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasColor]] = new EventProp("item-click")
+    val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasColor]] = new EventProp("item-click")
 
     val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
   }
@@ -81,7 +81,7 @@ object ColourPalettePopover extends WebComponent {
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
 
   /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
-  val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
+  val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_.showAt(_))
 
   /** [[Mod]] for [[ColourPalettePopover]]s opening them each time the stream emits an opener [[dom.HTMLElement]] */
   def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] =

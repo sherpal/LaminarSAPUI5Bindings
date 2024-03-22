@@ -28,12 +28,12 @@ object BarExample extends Example("Bar") {
   ): HtmlElement = div(
     List(BarDesign.Header, BarDesign.Subheader).map(design =>
       DemoPanel(s"${design.value} Bar")(
-        Bar((headerBarContent(s"${design.value} Title") :+ (_.design := design)): _*)
+        Bar((headerBarContent(s"${design.value} Title") :+ (_.design := design))*)
       )
     ),
     List(BarDesign.Footer, BarDesign.FloatingFooter).map(design =>
       DemoPanel(s"${design.value} Bar")(
-        Bar(footerBarContent: _*)
+        Bar(footerBarContent*)
       )
     )
   )

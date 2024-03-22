@@ -37,7 +37,7 @@ object BarcodeScannerDialog extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-barcode-scanner-dialog")
 
@@ -48,14 +48,14 @@ object BarcodeScannerDialog extends WebComponent {
       def message: String
     }
 
-    val onScanError: EventProp[EventWithPreciseTarget[Ref] with HasDetail[ErrorInfo]] = new EventProp("scan-error")
+    val onScanError: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ErrorInfo]] = new EventProp("scan-error")
 
     trait SuccessInfo extends js.Object {
       def text: String
       def rawBytes: js.typedarray.Uint8Array
     }
 
-    val onScanSuccess: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SuccessInfo]] = new EventProp(
+    val onScanSuccess: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SuccessInfo]] = new EventProp(
       "scan-success"
     )
   }

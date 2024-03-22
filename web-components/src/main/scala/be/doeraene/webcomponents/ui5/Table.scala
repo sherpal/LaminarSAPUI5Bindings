@@ -30,7 +30,7 @@ object Table extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-table")
 
@@ -59,13 +59,13 @@ object Table extends WebComponent {
       def selectedRows: js.Array[TableRow.Ref] = js.native
     }
 
-    val onSelectionChange = new EventProp[dom.Event with HasDetail[TableSelectionChangeDetail]]("selection-change")
+    val onSelectionChange = new EventProp[dom.Event & HasDetail[TableSelectionChangeDetail]]("selection-change")
   }
 
   def column: TableColumn.type = TableColumn
   def row: TableRow.type       = TableRow
 
   def groupRow(mods: Mod[ReactiveHtmlElement[dom.HTMLElement]]*): HtmlElement =
-    htmlTag[dom.HTMLElement]("ui5-table-group-row")(mods: _*)
+    htmlTag[dom.HTMLElement]("ui5-table-group-row")(mods*)
 
 }

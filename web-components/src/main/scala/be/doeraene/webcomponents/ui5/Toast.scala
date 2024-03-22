@@ -32,7 +32,7 @@ object Toast extends WebComponent with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-toast")
 
@@ -44,8 +44,8 @@ object Toast extends WebComponent with HasIcon {
 
   object events {}
 
-  def getToastById(id: String): Option[dom.HTMLElement with RawElement] =
-    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
+  def getToastById(id: String): Option[dom.HTMLElement & RawElement] =
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
   /** [[Observer]] you can feed a toast to show it. */
   val showObserver: Observer[Ref] = Observer(_.show())

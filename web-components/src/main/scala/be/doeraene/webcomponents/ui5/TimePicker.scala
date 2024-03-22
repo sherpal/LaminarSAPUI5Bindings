@@ -50,7 +50,7 @@ object TimePicker extends WebComponent with HasValue {
   used(RawImport)
   used(Localization)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-time-picker")
 

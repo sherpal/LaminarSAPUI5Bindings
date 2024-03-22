@@ -29,7 +29,7 @@ object CarouselExample extends Example("Carousel") {
     |""".stripMargin),
     DemoPanel("Carousel With Single Item per Page")(
       //-- Begin: Carousel With Single Item per Page
-      Carousel(threeMagicWallpapers: _*)
+      Carousel(threeMagicWallpapers*)
       //-- End
     ),
     DemoPanel("Carousel with Multiple items per Page")(
@@ -45,7 +45,7 @@ object CarouselExample extends Example("Carousel") {
     DemoPanel("Carousel With Arrow Placement and Cyclic")(
       //-- Begin: Carousel With Arrow Placement and Cyclic
       Carousel(
-        threeMagicWallpapers ++ List(_.arrowsPlacement := CarouselArrowsPlacement.Navigation, _.cyclic := true): _*
+        threeMagicWallpapers ++ List(_.arrowsPlacement := CarouselArrowsPlacement.Navigation, _.cyclic := true)*
       )
       //-- End
     ),

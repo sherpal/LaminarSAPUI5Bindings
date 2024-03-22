@@ -33,7 +33,7 @@ object Title extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-title")
 
@@ -46,32 +46,32 @@ object Title extends WebComponent {
 
   /** Creates Title of H1 level. */
   def h1(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H1): _*
+    mods :+ (_.level := TitleLevel.H1)*
   )
 
   /** Creates Title of H2 level. */
   def h2(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H2): _*
+    mods :+ (_.level := TitleLevel.H2)*
   )
 
   /** Creates Title of H3 level. */
   def h3(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H3): _*
+    mods :+ (_.level := TitleLevel.H3)*
   )
 
   /** Creates Title of H4 level. */
   def h4(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H4): _*
+    mods :+ (_.level := TitleLevel.H4)*
   )
 
   /** Creates Title of H4 level. */
   def h5(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H5): _*
+    mods :+ (_.level := TitleLevel.H5)*
   )
 
   /** Creates Title of H6 level. */
   def h6(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H6): _*
+    mods :+ (_.level := TitleLevel.H6)*
   )
 
 }

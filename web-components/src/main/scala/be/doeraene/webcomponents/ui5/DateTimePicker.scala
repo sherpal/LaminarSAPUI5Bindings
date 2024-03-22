@@ -50,7 +50,7 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
   used(RawImport)
   used(Localization)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-datetime-picker")
 
@@ -76,8 +76,8 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
 
   object events {
     import DatePicker.events.DateEventData
-    val onChange = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[DateEventData]]("change")
-    val onInput  = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[DateEventData]]("input")
+    val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
+    val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
   }
 
   /** You can feed [[DateTimePicker]] refs to this observer in order to close them. */

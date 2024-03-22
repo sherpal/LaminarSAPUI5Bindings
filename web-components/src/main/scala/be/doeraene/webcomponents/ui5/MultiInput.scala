@@ -53,7 +53,7 @@ object MultiInput extends WebComponent with HasAccessibleName with HasName with 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-multi-input")
 
@@ -95,7 +95,7 @@ object MultiInput extends WebComponent with HasAccessibleName with HasName with 
       def token: MultiInput.token.Ref
     }
 
-    val onTokenDelete: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasToken]] = new EventProp("token-delete")
+    val onTokenDelete: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasToken]] = new EventProp("token-delete")
 
     val onValueHelpTrigger: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("value-help-trigger")
 
@@ -109,10 +109,10 @@ object MultiInput extends WebComponent with HasAccessibleName with HasName with 
       def targetRef: suggestion.Ref
     }
 
-    val onSuggestionItemPreview: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SuggestionItemPreviewInfo]] =
+    val onSuggestionItemPreview: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SuggestionItemPreviewInfo]] =
       new EventProp("suggestion-item-preview")
 
-    val onSuggestionItemSelect: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[suggestion.Ref]]] =
+    val onSuggestionItemSelect: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[suggestion.Ref]]] =
       new EventProp("suggestion-item-select")
   }
 

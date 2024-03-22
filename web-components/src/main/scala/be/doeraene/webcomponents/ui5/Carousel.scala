@@ -37,7 +37,7 @@ object Carousel extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-carousel")
 
@@ -62,13 +62,13 @@ object Carousel extends WebComponent {
   object slots {}
 
   object events {
-    val onNavigate: EventProp[dom.Event with HasDetail[HasSelectedIndex]] = new EventProp("navigate")
+    val onNavigate: EventProp[dom.Event & HasDetail[HasSelectedIndex]] = new EventProp("navigate")
   }
 
-  def getCarouselById(carouselId: String): Option[dom.HTMLElement with RawElement] =
-    Option(dom.document.getElementById(carouselId)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
+  def getCarouselById(carouselId: String): Option[dom.HTMLElement & RawElement] =
+    Option(dom.document.getElementById(carouselId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
-  def getCarousels: List[dom.HTMLElement with RawElement] =
-    dom.document.getElementsByTagName("ui5-carousel").toList.map(_.asInstanceOf[dom.HTMLElement with RawElement])
+  def getCarousels: List[dom.HTMLElement & RawElement] =
+    dom.document.getElementsByTagName("ui5-carousel").toList.map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
 }

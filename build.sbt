@@ -1,5 +1,5 @@
 import java.nio.charset.StandardCharsets
-ThisBuild / scalaVersion := "3.3.0"
+ThisBuild / scalaVersion := "3.4.0"
 
 val usedScalacOptions = Def.task {
   Seq(
@@ -24,7 +24,7 @@ val withSourceMaps = Def.task {
   Seq(s"${sourcesOptionName}:$localSourcesPath->$remoteSourcesPath") ++ usedScalacOptions.value
 }
 
-val laminarVersion = "17.0.0-M2"
+val laminarVersion = "17.0.0-M8"
 
 inThisBuild(
   List(

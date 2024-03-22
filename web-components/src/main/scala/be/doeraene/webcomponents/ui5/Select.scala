@@ -36,7 +36,7 @@ object Select extends WebComponent with HasIcon with HasAccessibleName with HasN
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-select")
 
@@ -57,7 +57,7 @@ object Select extends WebComponent with HasIcon with HasAccessibleName with HasN
       def selectedOption: option.Ref = js.native
     }
 
-    val onChange = new EventProp[dom.Event with HasDetail[HasSelectedOption]]("change")
+    val onChange = new EventProp[dom.Event & HasDetail[HasSelectedOption]]("change")
 
     val onClose = new EventProp[dom.Event]("close")
     val onOpen  = new EventProp[dom.Event]("open")

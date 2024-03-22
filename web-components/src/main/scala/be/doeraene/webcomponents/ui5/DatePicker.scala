@@ -56,7 +56,7 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
   used(RawImport)
   used(Localization)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-date-picker")
 
@@ -93,13 +93,13 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
       def valid: Boolean
     }
 
-    val onChange = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[DateEventData]]("change")
-    val onInput  = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[DateEventData]]("input")
+    val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
+    val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
 
-    val onValidDateChange: EventProcessor[EventWithPreciseTarget[Ref] with HasDetail[DateEventData], String] =
+    val onValidDateChange: EventProcessor[EventWithPreciseTarget[Ref] & HasDetail[DateEventData], String] =
       onChange.map(_.detail).filter(_.valid).map(_.value)
 
-    val onValidDateInput: EventProcessor[EventWithPreciseTarget[Ref] with HasDetail[DateEventData], String] =
+    val onValidDateInput: EventProcessor[EventWithPreciseTarget[Ref] & HasDetail[DateEventData], String] =
       onInput.map(_.detail).filter(_.valid).map(_.value)
   }
 

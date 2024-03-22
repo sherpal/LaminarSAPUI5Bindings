@@ -46,7 +46,7 @@ object ShellBar extends WebComponent with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-shellbar")
 
@@ -69,17 +69,17 @@ object ShellBar extends WebComponent with HasIcon {
 
   object events {
     val onCopilotClick =
-      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("co-pilot-click")
     val onProfileClick =
-      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("profile-click")
     val onLogoClick =
-      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("logo-click")
     val onMenuItemClick =
-      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[dom.HTMLElement]]]("menu-item-click")
     val onNotificationsClick =
-      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
     val onProductSwitchClick =
-      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
   }
 
   object slots {

@@ -238,7 +238,7 @@ In the `object`, add the following things:
 - create a trait `RawElement` extending `js.Object` and annotated with `@js.native`
 - add an object `RawImport` extending `js.Object` and annotated with both `@js.native` and `@JSImport`, specifying the correct import (available in the official docs), setting `JSImport.Default` as second argument
 - call `used(RawImport)` the line after (this is done to be sure that scala-js actually import the JS dependency)
-- define an alias `type Ref` as `dom.html.Element with RawElement`
+- define an alias `type Ref` as `dom.html.Element & RawElement`
 - define the protected `tag` variable of type `CustomHtmlTag[Ref]` specifying the ui5 tag name from the doc (for example, for the Button component, it's `protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-button")`). ⚠️: when copy-pasting from an existing component, this is usually the one we forget! When that happens, you will observe a component doing basically nothing. It's a sign you put the wrong import.
 - create an empty object `slots`
 - create an empty object `events`
@@ -288,7 +288,7 @@ All these events are represented as values of type `EventProp`. It takes a type 
 
 Some common patterns are:
 
-- values have a `detail` field of a certain type. The library has a helper `HasDetail` trait, and in that case the complete type will look like `dom.Event with HasDetail[SomeOtherType]`. An example taken from the `Table` component is `val onSelectionChange = new EventProp[dom.Event with HasDetail[TableSelectionChangeDetail]]("selection-change")`.
+- values have a `detail` field of a certain type. The library has a helper `HasDetail` trait, and in that case the complete type will look like `dom.Event & HasDetail[SomeOtherType]`. An example taken from the `Table` component is `val onSelectionChange = new EventProp[dom.Event & HasDetail[TableSelectionChangeDetail]]("selection-change")`.
 - events with a more precise target type (when you need the precise type instead of just `HtmlElement`). This type is `EventWithPreciseTarget` and already extends `dom.Event`. An example from the `CheckBox` component is `val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")`
 - a combination of the above (combined with `&`)
 

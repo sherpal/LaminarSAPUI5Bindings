@@ -33,7 +33,7 @@ object Wizard extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-wizard")
 
@@ -48,7 +48,7 @@ object Wizard extends WebComponent {
       def changeWithClick: Boolean
     }
 
-    val onStepChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[StepChangeInfo]] = new EventProp(
+    val onStepChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[StepChangeInfo]] = new EventProp(
       "step-change"
     )
   }

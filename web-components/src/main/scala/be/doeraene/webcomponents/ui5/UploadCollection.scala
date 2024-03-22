@@ -36,7 +36,7 @@ object UploadCollection extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-upload-collection")
 
@@ -60,8 +60,8 @@ object UploadCollection extends WebComponent {
       def dataTransfer: dom.DataTransfer
     }
 
-    val onDrop: EventProp[EventWithPreciseTarget[Ref] with HasDataTransfer] = new EventProp("drop")
-    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[dom.HTMLElement]]] = new EventProp(
+    val onDrop: EventProp[EventWithPreciseTarget[Ref] & HasDataTransfer] = new EventProp("drop")
+    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[dom.HTMLElement]]] = new EventProp(
       "item-delete"
     )
 
@@ -74,7 +74,7 @@ object UploadCollection extends WebComponent {
       extension (info: SelectionChangeInfo) def selectedItems: List[dom.HTMLElement] = info.selectedItemsJS.toList
     }
 
-    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectionChangeInfo]] = new EventProp(
+    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeInfo]] = new EventProp(
       "selection-change"
     )
   }

@@ -26,8 +26,8 @@ object CalendarExample extends Example("Calendar") {
       Calendar(_.minDateRaw := "7/7/2020", _.maxDateRaw := "20/10/2020", _.formatPattern := "dd/MM/yyyy")
       //-- End
     },
-    DemoPanel("Calendar with Hidden Week Numbers") {
-      //-- Begin: Calendar with Hidden Week Numbers
+    DemoPanel("Calendar & Hidden Week Numbers") {
+      //-- Begin: Calendar & Hidden Week Numbers
       Calendar(_.hideWeekNumbers := true)
       //-- End
     },

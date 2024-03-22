@@ -39,7 +39,7 @@ object Calendar extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-calendar")
 
@@ -77,7 +77,7 @@ object Calendar extends WebComponent {
         def dates: List[Long]    = info.datesJS.toList
     }
 
-    val onSelectedDatesChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectedDatesChangeInfo]] =
+    val onSelectedDatesChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectedDatesChangeInfo]] =
       new EventProp(
         "selected-dates-change"
       )

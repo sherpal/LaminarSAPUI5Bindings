@@ -32,13 +32,13 @@ trait WebComponent {
         case mod: Mod[_ >: ReactiveHtmlElement[Ref]]                      => (_: this.type) => mod
         case mod: Function[_ >: this.type, _ <: ReactiveHtmlElement[Ref]] => mod
       }
-      .map(_(this)): _*
+      .map(_(this))*
   )
 
   /** Same as [[apply]], but accept only [[ModFunction]]s.
     *
     * This function is only there for people using the library with Scala 2.13.
     */
-  final def of(mods: ModFunction*): HtmlElement = tag(mods.map(_(this)): _*)
+  final def of(mods: ModFunction*): HtmlElement = tag(mods.map(_(this))*)
 
 }

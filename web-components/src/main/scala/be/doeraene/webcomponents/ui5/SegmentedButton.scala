@@ -45,7 +45,7 @@ object SegmentedButton extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-segmented-button")
 
@@ -56,7 +56,7 @@ object SegmentedButton extends WebComponent {
 
   object events {
     val onSelectionChange: EventProp[
-      dom.Event with HasDetail[HasSelectedItem[SegmentedButtonItem.Ref] with HasSelectedItems[SegmentedButtonItem.Ref]]
+      dom.Event & HasDetail[HasSelectedItem[SegmentedButtonItem.Ref] & HasSelectedItems[SegmentedButtonItem.Ref]]
     ] =
       new EventProp("selection-change")
   }

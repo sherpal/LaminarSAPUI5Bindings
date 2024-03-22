@@ -46,7 +46,7 @@ object Popover extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-popover")
 
@@ -96,17 +96,17 @@ object Popover extends WebComponent with HasAccessibleName {
       def escPressed: Boolean
     }
 
-    val onBeforeClose: EventProp[EventWithPreciseTarget[Ref] with HasDetail[BeforeCloseInfo]] = new EventProp(
+    val onBeforeClose: EventProp[EventWithPreciseTarget[Ref] & HasDetail[BeforeCloseInfo]] = new EventProp(
       "before-close"
     )
     val onBeforeOpen: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("before-open")
   }
 
   def getPopoverById(id: String): Option[Ref] =
-    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
+    Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
   /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
-  val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_ showAt _)
+  val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_.showAt(_))
 
   /** [[Mod]] for [[Popover]]s opening them each time the stream emits an opener [[dom.HTMLElement]] */
   def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] =

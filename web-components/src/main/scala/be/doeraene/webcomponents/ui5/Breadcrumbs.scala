@@ -33,7 +33,7 @@ object Breadcrumbs extends WebComponent with HasIcon {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   opaque type Breadcrumbs = HtmlElement
   object Breadcrumbs {
@@ -53,7 +53,7 @@ object Breadcrumbs extends WebComponent with HasIcon {
   object slots {}
 
   object events {
-    val onItemClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[Item.Ref]]] = new EventProp(
+    val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Item.Ref]]] = new EventProp(
       "item-click"
     )
   }

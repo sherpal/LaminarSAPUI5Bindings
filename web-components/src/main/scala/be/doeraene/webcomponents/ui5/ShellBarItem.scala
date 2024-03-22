@@ -32,7 +32,7 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-shellbar-item")
 
@@ -41,7 +41,7 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
   object slots {}
 
   object events {
-    val onClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasTargetRef[dom.HTMLElement]]] =
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]] =
       new EventProp("click")
   }
 

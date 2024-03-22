@@ -39,8 +39,8 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       )
       //-- End
     },
-    DemoPanel("Dynamic Side Content with hideMainContent set") {
-      //-- Begin: Dynamic Side Content with hideMainContent set
+    DemoPanel("Dynamic Side Content & HideMainContent set") {
+      //-- Begin: Dynamic Side Content & HideMainContent set
       DynamicSideContent(
         _.hideMainContent := true,
         div(h1("Main Content"), p(mainContent)),
@@ -48,8 +48,8 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       )
       //-- End
     },
-    DemoPanel("Dynamic Side Content with hideSideContent set") {
-      //-- Begin: Dynamic Side Content with hideSideContent set
+    DemoPanel("Dynamic Side Content & HideSideContent set") {
+      //-- Begin: Dynamic Side Content & HideSideContent set
       DynamicSideContent(
         _.hideSideContent := true,
         div(h1("Main Content"), p(mainContent)),

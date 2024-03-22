@@ -24,7 +24,7 @@ object WizardStep extends WebComponent with HasIcon {
   @js.native
   trait RawElement extends js.Object {}
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-wizard-step")
 

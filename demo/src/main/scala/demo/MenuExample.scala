@@ -19,7 +19,7 @@ object MenuExample extends Example("Menu") {
       div(
         Button("Open Menu", _.events.onClick.map(_.target) --> openMenuBus.writer),
         Menu(
-          inContext(el => openMenuBus.events.map(el.ref -> _) --> Observer[(Menu.Ref, HTMLElement)](_ showAt _)),
+          inContext(el => openMenuBus.events.map(el.ref -> _) --> Observer[(Menu.Ref, HTMLElement)](_.showAt(_))),
           _.item(_.text := "New File", _.icon    := IconName.`add-document`),
           _.item(_.text := "New Folder", _.icon  := IconName.`add-folder`, _.disabled           := true),
           _.item(_.text := "Open", _.icon        := IconName.`open-folder`, _.startsSection     := true),
@@ -38,7 +38,7 @@ object MenuExample extends Example("Menu") {
       div(
         Button("Open Menu", _.events.onClick.map(_.target) --> openMenuBus.writer),
         Menu(
-          inContext(el => openMenuBus.events.map(el.ref -> _) --> Observer[(Menu.Ref, HTMLElement)](_ showAt _)),
+          inContext(el => openMenuBus.events.map(el.ref -> _) --> Observer[(Menu.Ref, HTMLElement)](_.showAt(_))),
           _.item(_.text := "New File", _.icon   := IconName.`add-document`, _.additionalText := "Ctrl+N"),
           _.item(_.text := "New Folder", _.icon := IconName.`add-folder`, _.disabled         := true),
           _.item(

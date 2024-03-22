@@ -36,7 +36,7 @@ object Tree extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tree")
 
@@ -47,19 +47,19 @@ object Tree extends WebComponent with HasAccessibleName {
   lazy val mode: HtmlAttr[ListMode] = htmlAttr("mode", ListMode.AsStringCodec)
 
   object events {
-    val onItemClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-click"
     )
-    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemDelete: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-delete"
     )
-    val onItemMouseOut: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemMouseOut: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-mouseout"
     )
-    val onItemMouseOver: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemMouseOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-mouseover"
     )
-    val onItemToggle: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
+    val onItemToggle: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
       "item-toggle"
     )
 
@@ -77,7 +77,7 @@ object Tree extends WebComponent with HasAccessibleName {
         def previouslySelectedItems: List[TreeItem.Ref] = detail.previouslySelectedItemsJS.toList
     }
 
-    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectionChangeDetail]] = new EventProp(
+    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeDetail]] = new EventProp(
       "selection-change"
     )
   }

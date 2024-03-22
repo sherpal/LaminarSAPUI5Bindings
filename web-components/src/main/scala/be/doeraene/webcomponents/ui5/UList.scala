@@ -33,7 +33,7 @@ object UList extends WebComponent with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-list")
 
@@ -49,10 +49,10 @@ object UList extends WebComponent with HasAccessibleName {
   lazy val separators: HtmlAttr[ListSeparator] = htmlAttr("separators", ListSeparator.AsStringCodec)
 
   object events {
-    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]]("item-click")
-    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]]("item-close")
-    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]]("item-delete")
-    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]]("item-toggle")
+    val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-click")
+    val onItemClose  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-close")
+    val onItemDelete = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-delete")
+    val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-toggle")
     val onLoadMore   = new EventProp[EventWithPreciseTarget[Ref]]("load-more")
 
     @js.native
@@ -77,7 +77,7 @@ object UList extends WebComponent with HasAccessibleName {
     }
 
     val onSelectionChange =
-      new EventProp[EventWithPreciseTarget[Ref] with HasDetail[SelectionChangeDetail]]("selection-change")
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeDetail]]("selection-change")
   }
 
   object slots {

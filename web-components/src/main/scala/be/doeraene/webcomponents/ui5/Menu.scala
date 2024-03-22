@@ -36,7 +36,7 @@ object Menu extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-menu")
 
@@ -51,16 +51,16 @@ object Menu extends WebComponent {
       def item: dom.HTMLElement = js.native
       def text: String          = js.native
     }
-    val onItemClick = new EventProp[dom.Event with HasDetail[ItemClickDetail]]("item-click")
+    val onItemClick = new EventProp[dom.Event & HasDetail[ItemClickDetail]]("item-click")
 
     val onAfterClose  = new EventProp[dom.Event]("after-close")
     val onAfterOpen   = new EventProp[dom.Event]("after-open")
-    val onBeforeClose = new EventProp[dom.Event with HasDetail[HasEscPressed]]("before-close")
-    val onBeforeOpen  = new EventProp[dom.Event with HasDetail[HasItem[MenuItem.Ref]]]("before-open")
+    val onBeforeClose = new EventProp[dom.Event & HasDetail[HasEscPressed]]("before-close")
+    val onBeforeOpen  = new EventProp[dom.Event & HasDetail[HasItem[MenuItem.Ref]]]("before-open")
   }
 
-  def getMenuById(menuId: String): Option[dom.HTMLElement with RawElement] =
-    Option(dom.document.getElementById(menuId)).map(_.asInstanceOf[dom.HTMLElement with RawElement])
+  def getMenuById(menuId: String): Option[dom.HTMLElement & RawElement] =
+    Option(dom.document.getElementById(menuId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
   def item: MenuItem.type = MenuItem
 }

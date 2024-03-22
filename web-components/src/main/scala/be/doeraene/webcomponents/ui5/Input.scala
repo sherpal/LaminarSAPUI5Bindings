@@ -38,7 +38,7 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-input")
 
@@ -70,11 +70,11 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
 
     val onSuggestionItemPreview =
-      new EventProp[dom.Event with HasDetail[HasTargetRef[dom.HTMLElement] with HasItem[SuggestionItem.RawElement]]](
+      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement] & HasItem[SuggestionItem.RawElement]]](
         "suggestion-item-preview"
       )
     val onSuggestionItemSelect =
-      new EventProp[dom.Event with HasDetail[HasItem[SuggestionItem.RawElement]]]("suggestion-item-select")
+      new EventProp[dom.Event & HasDetail[HasItem[SuggestionItem.RawElement]]]("suggestion-item-select")
   }
 
   def suggestion: SuggestionItem.type           = SuggestionItem

@@ -44,7 +44,7 @@ object MediaGallery extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-media-gallery")
 
@@ -68,7 +68,7 @@ object MediaGallery extends WebComponent {
   object events {
     val onDisplayAreaClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("display-area-click")
     val onOverflowClick: EventProp[EventWithPreciseTarget[Ref]]    = new EventProp("overflow-click")
-    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasItem[item.Ref]]] = new EventProp(
+    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]] = new EventProp(
       "selection-change"
     )
   }

@@ -47,7 +47,7 @@ object FileUploader extends WebComponent with HasName with HasValue {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-file-uploader")
 
@@ -78,7 +78,7 @@ object FileUploader extends WebComponent with HasName with HasValue {
       extension (element: HasFiles) def files: List[dom.File] = element.filesJS.toList
     }
 
-    val onChange: EventProp[EventWithPreciseTarget[Ref] with HasDetail[HasFiles]] = new EventProp("change")
+    val onChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasFiles]] = new EventProp("change")
   }
 
 }

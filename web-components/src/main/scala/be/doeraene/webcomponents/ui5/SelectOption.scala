@@ -32,7 +32,7 @@ object SelectOption extends WebComponent with HasIcon with HasAdditionalText wit
     }
   }
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-option")
 

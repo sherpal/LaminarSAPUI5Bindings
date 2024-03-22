@@ -47,7 +47,7 @@ object AvatarGroup extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-avatar-group")
 
@@ -63,7 +63,7 @@ object AvatarGroup extends WebComponent {
       def overflowButtonClicked: Boolean
     }
 
-    val onClick: EventProp[EventWithPreciseTarget[Ref] with HasDetail[AvatarClickInfo]] = new EventProp("click")
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[AvatarClickInfo]] = new EventProp("click")
 
     val onOverflow: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("overflow")
   }

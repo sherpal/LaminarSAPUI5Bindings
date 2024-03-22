@@ -39,7 +39,7 @@ object TabContainer extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tabcontainer")
 
@@ -64,7 +64,7 @@ object TabContainer extends WebComponent {
       def tabIndex: Int = js.native
     }
 
-    val onTabSelect: EventProp[dom.Event with HasDetail[TabSelectDetail]] = new EventProp("tab-select")
+    val onTabSelect: EventProp[dom.Event & HasDetail[TabSelectDetail]] = new EventProp("tab-select")
   }
 
   def tab: Tab.type = Tab

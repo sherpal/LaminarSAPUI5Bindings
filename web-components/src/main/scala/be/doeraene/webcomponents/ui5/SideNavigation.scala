@@ -33,7 +33,7 @@ object SideNavigation extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-side-navigation")
 
@@ -51,7 +51,7 @@ object SideNavigation extends WebComponent {
       def text: String = js.native
     }
 
-    val onSelectionChange: EventProp[dom.Event with HasDetail[HasItem[SideNavigationItemRawElement]]] = new EventProp(
+    val onSelectionChange: EventProp[dom.Event & HasDetail[HasItem[SideNavigationItemRawElement]]] = new EventProp(
       "selection-change"
     )
 

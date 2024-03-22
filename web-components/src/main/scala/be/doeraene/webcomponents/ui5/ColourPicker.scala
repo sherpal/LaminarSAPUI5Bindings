@@ -44,7 +44,7 @@ object ColourPicker extends WebComponent {
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
   used(RawImport)
 
-  type Ref = dom.html.Element with RawElement
+  type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-color-picker")
 
@@ -53,7 +53,7 @@ object ColourPicker extends WebComponent {
   object slots {}
 
   object events {
-    val onChange: EventProp[EventWithPreciseTarget[dom.HTMLElement with RawElement]] = new EventProp("change")
+    val onChange: EventProp[EventWithPreciseTarget[dom.HTMLElement & RawElement]] = new EventProp("change")
   }
 
 }

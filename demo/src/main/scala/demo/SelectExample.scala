@@ -77,9 +77,9 @@ object SelectExample extends Example("Select") {
           options.map(t => Select.option(repr(t), dataAttr("key") := key(t))) +:
             (_.events.onChange.map(_.detail.selectedOption.dataset.get("key").get).map(keysToT.apply) --> Observer
               .combine(
-                observers: _*
+                observers*
               )) +:
-            mods: _*
+            mods*
         )
       }
 
