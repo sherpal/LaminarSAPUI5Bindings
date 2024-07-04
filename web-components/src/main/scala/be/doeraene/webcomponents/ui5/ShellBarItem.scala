@@ -26,7 +26,7 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
   trait RawElement extends js.Object {}
 
   @js.native
-  @JSImport("@ui5/webcomponents-fiori/dist/ShellBarItem", JSImport.Default)
+  @JSImport("@ui5/webcomponents-fiori/dist/ShellBarItem.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
