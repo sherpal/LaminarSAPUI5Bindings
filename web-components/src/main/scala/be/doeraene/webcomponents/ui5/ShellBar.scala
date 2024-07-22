@@ -80,6 +80,8 @@ object ShellBar extends WebComponent with HasIcon {
       new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("notifications-click")
     val onProductSwitchClick =
       new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
+    val onSearchButtonClick =
+      new EventProp[EventWithPreciseTarget[Ref]]("search-button-click")
   }
 
   object slots {

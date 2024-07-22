@@ -15,6 +15,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
+import scala.scalajs.js.annotation.JSName
 
 /** The ui5-date-picker component provides an input field with assigned calendar which opens on user action.
   *
@@ -93,6 +94,20 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
       def valid: Boolean
     }
 
+    @js.native
+    trait DatePickerValueStateChangeEventDetail extends js.Object {
+      def valid: Boolean = js.native
+
+      @JSName("valueState")
+      def valueStateJS: String = js.native
+    }
+
+    object DatePickerValueStateChangeEventDetail {
+      extension (detail: DatePickerValueStateChangeEventDetail) {
+        def valueState: ValueState = ValueState.AsStringCodec.decode(detail.valueStateJS)
+      }
+    }
+
     val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
     val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
 
@@ -101,6 +116,12 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
 
     val onValidDateInput: EventProcessor[EventWithPreciseTarget[Ref] & HasDetail[DateEventData], String] =
       onInput.map(_.detail).filter(_.valid).map(_.value)
+
+    val onValueStateChange =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DatePickerValueStateChangeEventDetail]](
+        "value-state-change"
+      )
+
   }
 
 }
