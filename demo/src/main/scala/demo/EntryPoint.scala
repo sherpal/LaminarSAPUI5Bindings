@@ -8,6 +8,7 @@ import org.scalajs.dom
 import org.scalajs.dom.{window, URL}
 
 import demo.BadgeExample
+import demo.helpers.ThemeSelector
 object EntryPoint {
   def main(args: Array[String]): Unit = {
     val demoElement = {
@@ -131,7 +132,8 @@ object EntryPoint {
                 onInput.mapToValue.compose(_.throttle(1000)) --> { v =>
                   componentListVar.set(componentsDemo.filter(_.name.toLowerCase.contains(v)))
                 }
-              )
+              ),
+              ThemeSelector()
             ),
             padding("0.5rem"),
             cursor := "pointer",
