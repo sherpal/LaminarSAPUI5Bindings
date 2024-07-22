@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.BadgeDesign
 
 /** The ui5-badge is a small non-interactive component which contains text information and color chosen from a list of
   * predefined color schemes. It serves the purpose to attract the user attention to some piece of information (state,
@@ -37,6 +38,7 @@ object Badge extends WebComponent {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-badge")
 
   lazy val colourScheme: HtmlAttr[ColourScheme] = htmlAttr("color-scheme", ColourScheme.AsStringCodec)
+  lazy val design: HtmlAttr[BadgeDesign]        = htmlAttr("design", BadgeDesign.AsStringCodec)
 
   object slots {
     // note that unlike most elements that have an attribute Icon, this element has a slot icon instead.
