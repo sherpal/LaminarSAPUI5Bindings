@@ -56,18 +56,6 @@ object AvatarColorScheme extends EnumerationString[AvatarColorScheme] {
 
   def valueOf(value: AvatarColorScheme): String = value.toString
 
-  val allValues: List[AvatarColorScheme] = List(
-    Accent1,
-    Accent2,
-    Accent3,
-    Accent4,
-    Accent5,
-    Accent6,
-    Accent7,
-    Accent8,
-    Accent9,
-    Accent10,
-    Placeholder
-  )
+  val allValues: List[AvatarColorScheme] = deriveAllValues
 
 }

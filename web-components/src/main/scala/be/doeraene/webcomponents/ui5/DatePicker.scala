@@ -94,12 +94,11 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
       def valid: Boolean
     }
 
-    @js.native
     trait DatePickerValueStateChangeEventDetail extends js.Object {
-      def valid: Boolean = js.native
+      def valid: Boolean
 
       @JSName("valueState")
-      def valueStateJS: String = js.native
+      def valueStateJS: String
     }
 
     object DatePickerValueStateChangeEventDetail {

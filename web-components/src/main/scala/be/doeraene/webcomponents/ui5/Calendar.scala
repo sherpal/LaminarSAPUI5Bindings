@@ -60,7 +60,11 @@ object Calendar extends WebComponent {
   lazy val secondaryCalendarType: HtmlAttr[CalendarType] =
     htmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
 
-  object slots {}
+  object slots {
+    val calendarLegend = new Slot("calendarLegend")
+
+    val specialDates = new Slot("specialDates")
+  }
 
   object events {
     trait SelectedDatesChangeInfo extends js.Object {
@@ -85,4 +89,5 @@ object Calendar extends WebComponent {
 
   def date: CalendarDate.type = CalendarDate
 
+  def specialDate: SpecialCalendarDate.type = SpecialCalendarDate
 }
