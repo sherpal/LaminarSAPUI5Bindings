@@ -22,6 +22,7 @@ object EntryPoint {
         BusyIndicatorExample,
         ButtonExample,
         CalendarExample,
+        CalendarLegendExample,
         CardExample,
         CarouselExample,
         CheckBoxExample,
@@ -125,7 +126,14 @@ object EntryPoint {
               display       := "flex",
               flexDirection := "column",
               flexWrap      := "wrap",
-              "Components",
+              span(
+                "Components",
+                cursor := "pointer",
+                onClick --> (_ => {
+                  updateHistory("")
+                  componentNameVar.set(None)
+                })
+              ),
               Input(
                 _.placeholder   := "Search",
                 _.showClearIcon := true,
@@ -135,12 +143,7 @@ object EntryPoint {
               ),
               ThemeSelector()
             ),
-            padding("0.5rem"),
-            cursor := "pointer",
-            onClick --> (_ => {
-              updateHistory("")
-              componentNameVar.set(None)
-            })
+            padding("0.5rem")
           ),
           SideNavigation(
             _.events.onSelectionChange

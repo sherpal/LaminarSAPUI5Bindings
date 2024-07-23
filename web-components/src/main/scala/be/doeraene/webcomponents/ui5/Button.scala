@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ButtonAccessibleRole
 
 /** The ui5-button component represents a simple push button. It enables users to trigger actions by clicking or tapping
   * the ui5-button, or by pressing certain keyboard keys, such as Enter.
@@ -34,6 +35,9 @@ object Button extends WebComponent with HasIcon {
   type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-button")
+
+  lazy val accessibleRole: HtmlAttr[ButtonAccessibleRole] =
+    htmlAttr("accessible-role", ButtonAccessibleRole.AsStringCodec)
 
   lazy val design: HtmlAttr[ButtonDesign] = htmlAttr("design", ButtonDesign.AsStringCodec)
   lazy val disabled: HtmlAttr[Boolean]    = htmlAttr("disabled", BooleanAsAttrPresenceCodec)

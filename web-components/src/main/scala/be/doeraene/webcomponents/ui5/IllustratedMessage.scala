@@ -13,6 +13,7 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
+import be.doeraene.webcomponents.ui5.configkeys.IllustratedMessageSize
 
 /** Simple UI button
   *
@@ -45,10 +46,11 @@ object IllustratedMessage extends WebComponent with HasIcon {
     htmlAttr("name", IllustratedMessageType.AsStringCodec)
 
   /** Alternative to "name" for Scala 2.13 users. */
-  lazy val nameStr: HtmlAttr[String]        = htmlAttr("name", StringAsIsCodec)
-  lazy val subtitleText: HtmlAttr[String]   = htmlAttr("subtitle-text", StringAsIsCodec)
-  lazy val titleText: HtmlAttr[String]      = htmlAttr("title-text", StringAsIsCodec)
-  lazy val titleLevel: HtmlAttr[TitleLevel] = htmlAttr("title-level", TitleLevel.AsStringCodec)
+  lazy val nameStr: HtmlAttr[String]              = htmlAttr("name", StringAsIsCodec)
+  lazy val size: HtmlAttr[IllustratedMessageSize] = IllustratedMessageSize.asHtmlAttr("size")
+  lazy val subtitleText: HtmlAttr[String]         = htmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String]            = htmlAttr("title-text", StringAsIsCodec)
+  lazy val titleLevel: HtmlAttr[TitleLevel]       = TitleLevel.asHtmlAttr("title-level")
 
   object slots {
     val subtitle: Slot = new Slot("subtitle")

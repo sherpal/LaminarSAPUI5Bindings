@@ -17,7 +17,7 @@ object BadgeDesign extends EnumerationString[BadgeDesign] {
   case object Negative    extends BadgeDesign
   case object Critical    extends BadgeDesign
 
-  val allValues: List[BadgeDesign] = List(Set1, Set2, Set3, Neutral, Information, Positive, Negative, Critical)
+  val allValues: List[BadgeDesign] = deriveAllValues
 
   def valueOf(value: BadgeDesign): String = value.toString
 

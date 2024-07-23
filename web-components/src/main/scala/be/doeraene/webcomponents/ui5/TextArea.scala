@@ -57,6 +57,8 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
   object events {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
+    val onScroll: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("scroll")
+    val onSelect: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("select")
   }
 
 }
