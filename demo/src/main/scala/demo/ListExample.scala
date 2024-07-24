@@ -17,30 +17,30 @@ object ListExample extends Example("List") {
       UList(
         width := "100%",
         _.item(
-          _.icon := IconName.`nutrition-activity`,
-          _.description := "Tropical plant with an edible fruit",
-          _.additionalText := "In-stock",
+          _.icon                := IconName.`nutrition-activity`,
+          _.description         := "Tropical plant with an edible fruit",
+          _.additionalText      := "In-stock",
           _.additionalTextState := ValueState.Success,
           "Pineapple"
         ),
         _.item(
-          _.icon := IconName.`nutrition-activity`,
-          _.description := "Occurs between red and yellow",
-          _.additionalText := "Expires",
+          _.icon                := IconName.`nutrition-activity`,
+          _.description         := "Occurs between red and yellow",
+          _.additionalText      := "Expires",
           _.additionalTextState := ValueState.Warning,
           "Orange"
         ),
         _.item(
-          _.icon := IconName.`nutrition-activity`,
-          _.description := "The yellow lengthy fruit",
-          _.additionalText := "Re-stock",
+          _.icon                := IconName.`nutrition-activity`,
+          _.description         := "The yellow lengthy fruit",
+          _.additionalText      := "Re-stock",
           _.additionalTextState := ValueState.Information,
           "Blueberry"
         ),
         _.item(
-          _.icon := IconName.`nutrition-activity`,
-          _.description := "The tropical stone fruit",
-          _.additionalText := "Re-stock",
+          _.icon                := IconName.`nutrition-activity`,
+          _.description         := "The tropical stone fruit",
+          _.additionalText      := "Re-stock",
           _.additionalTextState := ValueState.Error,
           "Mango"
         )
@@ -52,9 +52,9 @@ object ListExample extends Example("List") {
       val fruits = LazyList.from(0).map { fruitIndex =>
         val additionalTextState = ValueState.allValues(fruitIndex % ValueState.allValues.size)
         UList.item(
-          _.icon := IconName.`nutrition-activity`,
-          _.description := s"This is the description of fruit $fruitIndex",
-          _.additionalText := additionalTextState.value,
+          _.icon                := IconName.`nutrition-activity`,
+          _.description         := s"This is the description of fruit $fruitIndex",
+          _.additionalText      := additionalTextState.value,
           _.additionalTextState := additionalTextState,
           s"Fruit $fruitIndex"
         )
@@ -68,7 +68,7 @@ object ListExample extends Example("List") {
       UList(
         _.events.onLoadMore.mapTo(()) --> listGrowingBus.writer,
         children <-- fruitsToDisplaySignal,
-        height := "300px",
+        height    := "300px",
         _.growing := ListGrowingMode.Scroll,
         _.headerText <-- numberOfFruitsToDisplaySignal.map(numberOfFruits =>
           s"List of fruits (currently $numberOfFruits displayed)."
@@ -111,7 +111,13 @@ object ListExample extends Example("List") {
         _.headerText <-- selectedItemsInfoSignal.map(selectedItems =>
           s"Multiple selection is possible: ($selectedItems)"
         ),
-        countries.map(country => UList.item(country, dataAttr("country-name") := country)),
+        countries.map(country =>
+          UList.item(
+            country,
+            dataAttr("country-name") := country,
+            _.highlight              := (if country == "Belgium" then ValueState.Success else ValueState.None)
+          )
+        ),
         _.events.onSelectionChange.map(
           _.detail.selectedItems.flatMap(_.dataset.get("countryName"))
         ) --> selectedItemsVar.writer
@@ -127,11 +133,11 @@ object ListExample extends Example("List") {
       //-- Begin: List with GroupHeaders
       def expansionListItem(expansion: String) = (_: UList.type).item(
         _.iconEnd := true,
-        _.icon := IconName.`slim-arrow-right`,
+        _.icon    := IconName.`slim-arrow-right`,
         expansion
       )
       UList(
-        _.mode := ListMode.MultiSelect,
+        _.mode       := ListMode.MultiSelect,
         _.headerText := "Expansion list",
         _.group("Mirrodin Block"),
         expansionListItem("Mirrodin"),
@@ -151,7 +157,7 @@ object ListExample extends Example("List") {
     DemoPanel("List in Delete Mode")(
       //-- Begin: List in Delete Mode
       UList(
-        _.mode := ListMode.Delete,
+        _.mode       := ListMode.Delete,
         _.headerText := "Note: The list items removal is up to application developers",
         countries.map(country => UList.item(country))
       )
@@ -191,7 +197,7 @@ object ListExample extends Example("List") {
                 _.icon := IconName.world,
                 _.slots.deleteButton := Button(
                   _.design := ButtonDesign.Transparent,
-                  _.icon := IconName.delete,
+                  _.icon   := IconName.delete,
                   onClick.mapTo(country) --> countryDeleteBus.writer
                 )
               )

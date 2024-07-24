@@ -41,6 +41,11 @@ object Carousel extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-carousel")
 
+  lazy val accessibleName: HtmlAttr[String] =
+    htmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleNameRef: HtmlAttr[String] =
+    htmlAttr("accessible-name-ref", StringAsIsCodec)
+
   lazy val arrowsPlacement: HtmlAttr[CarouselArrowsPlacement] =
     htmlAttr("arrows-placement", CarouselArrowsPlacement.AsStringCodec)
 

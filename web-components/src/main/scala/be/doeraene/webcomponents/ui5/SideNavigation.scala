@@ -57,6 +57,7 @@ object SideNavigation extends WebComponent {
 
   }
 
-  def item: SideNavigationItem.type = SideNavigationItem
+  def item: SideNavigationItem.type   = SideNavigationItem
+  def group: SideNavigationGroup.type = SideNavigationGroup
 
 }

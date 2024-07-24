@@ -1,6 +1,12 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{BusyIndicatorSize, ButtonDesign, ColourScheme, IconName}
+import be.doeraene.webcomponents.ui5.configkeys.{
+  BusyIndicatorSize,
+  BusyIndicatorTextPlacement,
+  ButtonDesign,
+  ColourScheme,
+  IconName
+}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -41,6 +47,8 @@ object BusyIndicator extends WebComponent with HasText {
   lazy val active: HtmlAttr[Boolean] = htmlAttr[Boolean]("active", BooleanAsAttrPresenceCodec)
 
   lazy val delay: HtmlAttr[FiniteDuration] = htmlAttr[FiniteDuration]("delay", FiniteDurationCodec)
+
+  lazy val textPlacement: HtmlAttr[BusyIndicatorTextPlacement] = BusyIndicatorTextPlacement.asHtmlAttr("text-placement")
 
   lazy val size: HtmlAttr[BusyIndicatorSize] =
     htmlAttr[BusyIndicatorSize]("size", BusyIndicatorSize.AsStringCodec)
