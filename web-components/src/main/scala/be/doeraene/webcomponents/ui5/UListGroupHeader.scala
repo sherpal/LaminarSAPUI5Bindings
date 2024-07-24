@@ -21,7 +21,9 @@ import be.doeraene.webcomponents.WebComponent
 object UListGroupHeader extends WebComponent {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    def selected: Boolean = js.native
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/GroupHeaderListItem.js", JSImport.Default)

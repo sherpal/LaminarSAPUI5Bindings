@@ -14,6 +14,7 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.ListItemType
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.configkeys.ValueState
 
 /** A component to be used as custom list item within the ui5-list the same way as the standard ui5-li. The component
   * accepts arbitrary HTML content to allow full customization.
@@ -41,6 +42,7 @@ object CustomListItem extends WebComponent {
   lazy val tpe: HtmlAttr[ListItemType]      = htmlAttr("type", ListItemType.AsStringCodec)
   lazy val selected: HtmlAttr[Boolean]      = htmlAttr("selected", BooleanAsAttrPresenceCodec)
   lazy val navigated: HtmlAttr[Boolean]     = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
+  lazy val highlight: HtmlAttr[ValueState]  = ValueState.asHtmlAttr("highlight")
 
   object slots {}
 

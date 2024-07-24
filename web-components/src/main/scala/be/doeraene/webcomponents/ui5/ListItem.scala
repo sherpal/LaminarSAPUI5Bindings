@@ -38,11 +38,12 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
   lazy val additionalTextState: HtmlAttr[ValueState] =
     htmlAttr("additional-text-state", ValueState.AsStringCodec)
 
-  lazy val iconEnd: HtmlAttr[Boolean]   = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
-  lazy val image: HtmlAttr[String]      = htmlAttr("image", StringAsIsCodec)
-  lazy val navigated: HtmlAttr[Boolean] = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
-  lazy val tpe: HtmlAttr[ListItemType]  = htmlAttr("type", ListItemType.AsStringCodec)
-  lazy val selected: HtmlAttr[Boolean]  = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: HtmlAttr[Boolean]      = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val image: HtmlAttr[String]         = htmlAttr("image", StringAsIsCodec)
+  lazy val navigated: HtmlAttr[Boolean]    = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
+  lazy val tpe: HtmlAttr[ListItemType]     = htmlAttr("type", ListItemType.AsStringCodec)
+  lazy val selected: HtmlAttr[Boolean]     = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val highlight: HtmlAttr[ValueState] = ValueState.asHtmlAttr("highlight")
 
   object slots {
     val deleteButton: Slot = Slot("deleteButton")

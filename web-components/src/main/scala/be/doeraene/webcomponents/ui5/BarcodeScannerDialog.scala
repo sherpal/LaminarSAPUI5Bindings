@@ -28,6 +28,8 @@ object BarcodeScannerDialog extends WebComponent {
   trait RawElement extends js.Object {
     def close(): Unit = js.native
     def show(): Unit  = js.native
+
+    def open: Boolean = js.native
   }
 
   @js.native
@@ -40,6 +42,8 @@ object BarcodeScannerDialog extends WebComponent {
   type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-barcode-scanner-dialog")
+
+  lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
   object slots {}
 
