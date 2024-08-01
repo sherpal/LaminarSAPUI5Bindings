@@ -16,11 +16,11 @@ object ProductSwitchExample extends Example("ProductSwitch") {
       ProductSwitch(
         _.item(_.titleText := "Home", _.subtitleText := "Central Home", _.icon := IconName.home),
         _.item(
-          _.titleText := "Analytics Cloud",
+          _.titleText    := "Analytics Cloud",
           _.subtitleText := "Analystics Could",
-          _.icon := IconName.`business-objects-experience`
+          _.icon         := IconName.`business-objects-experience`
         ),
-        _.item(_.titleText := "Catalog", _.subtitleText := "Ariba", _.icon := IconName.contacts),
+        _.item(_.titleText := "Catalog", _.subtitleText          := "Ariba", _.icon  := IconName.contacts),
         _.item(_.titleText := "Travel & Expense", _.subtitleText := "Concur", _.icon := IconName.flight)
       )
       //-- End
@@ -38,31 +38,26 @@ object ProductSwitchExample extends Example("ProductSwitch") {
 
       div(
         ShellBar(
-          _.primaryTitle := "Corporate Portal",
-          _.secondaryTitle := "secondary title",
-          _.slots.logo := img(src := "/images/avatars/scala-logo.png"),
+          _.primaryTitle      := "Corporate Portal",
+          _.secondaryTitle    := "secondary title",
+          _.slots.logo        := img(src := "/images/avatars/scala-logo.png"),
           _.showProductSwitch := true,
-          _.showCoPilot := true,
+          _.showCoPilot       := true,
           _.events.onProductSwitchClick.map(_.detail.targetRef) --> togglePopoverOpeningEventBus.writer
         ),
         Popover(
-                      inContext(el =>
-              togglePopoverOpeningEvents --> Observer[Option[HTMLElement]] {
-                case Some(element) => el.ref.showAt(element)
-                case None          => el.ref.close()
-              }
+          _.showAtAndCloseFromEvents(togglePopoverOpeningEvents),
+          _.placement := PopoverPlacementType.Bottom,
+          ProductSwitch(
+            _.item(_.titleText := "Home", _.subtitleText := "Central Home", _.icon := IconName.home),
+            _.item(
+              _.titleText    := "Analytics Cloud",
+              _.subtitleText := "Analystics Could",
+              _.icon         := IconName.`business-objects-experience`
             ),
-          _.placementType := PopoverPlacementType.Bottom,
-                      ProductSwitch(
-              _.item(_.titleText := "Home", _.subtitleText := "Central Home", _.icon := IconName.home),
-              _.item(
-                _.titleText := "Analytics Cloud",
-                _.subtitleText := "Analystics Could",
-                _.icon := IconName.`business-objects-experience`
-              ),
-              _.item(_.titleText := "Catalog", _.subtitleText := "Ariba", _.icon := IconName.contacts),
-              _.item(_.titleText := "Travel & Expense", _.subtitleText := "Concur", _.icon := IconName.flight)
-            )
+            _.item(_.titleText := "Catalog", _.subtitleText          := "Ariba", _.icon  := IconName.contacts),
+            _.item(_.titleText := "Travel & Expense", _.subtitleText := "Concur", _.icon := IconName.flight)
+          )
         )
       )
       //-- End

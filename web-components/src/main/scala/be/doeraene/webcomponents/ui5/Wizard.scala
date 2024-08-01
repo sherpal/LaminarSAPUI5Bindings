@@ -45,7 +45,14 @@ object Wizard extends WebComponent {
     trait StepChangeInfo extends js.Object {
       def step: WizardStep.Ref
       def previousStep: WizardStep.Ref
-      def changeWithClick: Boolean
+      def withScroll: Boolean
+    }
+
+    object StepChangeInfo {
+      extension (info: StepChangeInfo) {
+        @deprecated("changeWithClick has been renamed to withScroll", since = "2.0.0")
+        def changeWithClick: Boolean = info.withScroll
+      }
     }
 
     val onStepChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[StepChangeInfo]] = new EventProp(

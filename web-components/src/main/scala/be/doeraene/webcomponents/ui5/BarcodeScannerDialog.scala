@@ -26,10 +26,19 @@ object BarcodeScannerDialog extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
-    def close(): Unit = js.native
-    def show(): Unit  = js.native
-
     def open: Boolean = js.native
+  }
+
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("The close method has been replaced by using the open property", since = "2.0.0")
+      def close(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(false)
+
+      @deprecated("The show method has been replaced by using the open property", since = "2.0.0")
+      def show(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
+    }
   }
 
   @js.native
@@ -65,16 +74,20 @@ object BarcodeScannerDialog extends WebComponent {
   }
 
   /** You can feed this [[Observer]] with a barcode scanner [[Ref]]s in order to close it. */
-  val closeObserver: Observer[Ref] = Observer(_.close())
+  @deprecated("The closeObserver has been replaced by using the open property", since = "2.0.0")
+  def closeObserver: Observer[Ref] = Observer(_.close())
 
   /** Can be used as modifier to close the Barcode Scanner every time the stream emits. */
+  @deprecated("The closeOnEvents has been replaced by using the open property", since = "2.0.0")
   def closeOnEvents(stream: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
     inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> closeObserver)
 
   /** You can feed this [[Observer]] with a barcode scanner [[Ref]]s in order to open it. */
+  @deprecated("The showObserver has been replaced by using the open property", since = "2.0.0")
   val showObserver: Observer[Ref] = Observer(_.show())
 
   /** Can be used as modifier to open the Barcode Scanner every time the stream emits. */
+  @deprecated("The showOnEvents has been replaced by using the open property", since = "2.0.0")
   def showOnEvents(stream: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
     inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> showObserver)
 

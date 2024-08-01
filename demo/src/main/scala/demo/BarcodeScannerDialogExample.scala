@@ -27,14 +27,13 @@ object BarcodeScannerDialogExample extends Example("BarcodeScannerDialog") {
 
       div(
         BarcodeScannerDialog(
-          _.showOnEvents(openScannerBus.events),
-          _.closeOnEvents(barcodeScanEvents),
+          _.open <-- EventStream.merge(openScannerBus.events.mapTo(true), barcodeScanEvents.mapTo(false)),
           _.events.onScanSuccess.map(_.detail) --> barcodeScanSuccessBus.writer,
           _.events.onScanError.map(_.detail) --> barcodeScanFailedBus.writer
         ),
         Title.h3("Click on the button below and show a QR code to the camera:"),
         Button(
-          _.icon := IconName.camera,
+          _.icon    := IconName.camera,
           _.tooltip := "Start Camera",
           "Scan",
           _.events.onClick.mapTo(()) --> openScannerBus.writer

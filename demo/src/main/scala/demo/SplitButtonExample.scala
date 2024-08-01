@@ -24,8 +24,7 @@ object SplitButtonExample extends Example("SplitButton") {
     DemoPanel("SplitButton with Icons") {
       //-- Begin: SplitButton with Icons
       div(
-        SplitButton("Icon", _.icon := IconName.add),
-        SplitButton("Icon + Active Icon", _.icon := IconName.add, _.activeIcon := IconName.accept)
+        SplitButton("Icon", _.icon := IconName.add)
       )
       //-- End
     },
@@ -33,12 +32,16 @@ object SplitButtonExample extends Example("SplitButton") {
       //-- Begin: SplitButton opening Popover on arrow-click
       val arrowClickBus: EventBus[dom.HTMLElement] = new EventBus
 
+      val openerId = "SplitButton-opening-Popover-on-arrow-click"
+
       div(
         Popover(
-          _.showAtFromEvents(arrowClickBus.events),
+          _.openerId := openerId,
+          _.open    <-- arrowClickBus.events.mapTo(true),
           "Put whatever you want do show on arrow-click."
         ),
         SplitButton(
+          idAttr := openerId,
           "Expand ->",
           _.events.onArrowClick.map(_.target) --> arrowClickBus.writer
         )

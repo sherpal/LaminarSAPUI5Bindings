@@ -41,11 +41,16 @@ object Button extends WebComponent with HasIcon {
 
   lazy val design: HtmlAttr[ButtonDesign] = htmlAttr("design", ButtonDesign.AsStringCodec)
   lazy val disabled: HtmlAttr[Boolean]    = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val iconEnd: HtmlAttr[Boolean]     = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val endIcon: HtmlAttr[IconName]    = htmlAttr("end-icon", IconName.AsStringCodec)
   lazy val iconOnly: HtmlAttr[Boolean]    = htmlAttr("icon-only", BooleanAsAttrPresenceCodec)
-  lazy val submits: HtmlAttr[Boolean]     = htmlAttrWithSupport("submits", BooleanAsAttrPresenceCodec)(SubmitsSupport)
+  lazy val submits: HtmlAttr[Boolean]     = htmlAttr("submits", BooleanAsAttrPresenceCodec)
   lazy val tooltip: HtmlAttr[String]      = htmlAttr("tooltip", StringAsIsCodec)
-  lazy val tpe: HtmlAttr[ButtonType]      = htmlAttrWithSupport("type", ButtonType.AsStringCodec)(SubmitsSupport)
+  lazy val tpe: HtmlAttr[ButtonType]      = htmlAttr("type", ButtonType.AsStringCodec)
+
+  @scala.annotation.compileTimeOnly(
+    """iconEnd has been removed and replaced by the new endIcon mecanic. If you previously had `Button(_.icon := IconName.upload, _.iconEnd := true, "Upload")`, you now have to replace by `Button(_.endIcon := IconName.upload, "Upload")`"""
+  )
+  def iconEnd: HtmlAttr[Boolean] = ???
 
   object slots {}
 

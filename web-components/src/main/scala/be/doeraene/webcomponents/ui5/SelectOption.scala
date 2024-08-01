@@ -12,9 +12,6 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-option component defines the content of an option in the ui5-select.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Select/">the doc</a> for more information.
   */
 object SelectOption extends WebComponent with HasIcon with HasAdditionalText with HasValue {
 
@@ -24,7 +21,7 @@ object SelectOption extends WebComponent with HasIcon with HasAdditionalText wit
   }
 
   object RawElement {
-    implicit final class RichRawElement(val element: RawElement) extends AnyVal {
+    extension (element: RawElement) {
       def maybeValue: Option[String] = element.value match {
         case value: String => Some(value)
         case _: Unit       => None
@@ -32,11 +29,22 @@ object SelectOption extends WebComponent with HasIcon with HasAdditionalText wit
     }
   }
 
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/Option.js", JSImport.Default)
+  object RawImport extends js.Object
+
+  // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
+  used(RawImport)
+
   type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-option")
 
-  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val tooltip: HtmlAttr[String]   = htmlAttr("tooltip", StringAsIsCodec)
 
+  @scala.annotation.compileTimeOnly(
+    "The disabled property of the ui5-option is removed. Now, it won't take effect - rendering disabled options is not recommended from a UX perspective."
+  )
+  def disabled: HtmlAttr[Boolean] = ???
 }

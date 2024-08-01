@@ -12,7 +12,7 @@ trait EnumerationString[Value] {
   /* Helper method to derive all the values, in the simple (but ubiquitous) case where the Value type is an "enum" */
   protected def deriveAllValues(using mirror: Mirror.Of[Value])(using
       tupleValue: EnumerationString.TupleValueOf[mirror.MirroredElemTypes]
-  )(using EnumerationString.AllSubtypesOf[mirror.MirroredElemTypes, Value]): List[Value] =
+  )(using EnumerationString.AllSubtypesOf[mirror.MirroredElemTypes, Value] =:= true): List[Value] =
     tupleValue.toListOf[Value]
 
   val allValues: List[Value]
@@ -34,7 +34,7 @@ trait EnumerationString[Value] {
 object EnumerationString {
 
   case class TupleValueOf[T <: Tuple](value: T) {
-    def toListOf[Upper](using AllSubtypesOf[T, Upper]): List[Upper] =
+    def toListOf[Upper](using AllSubtypesOf[T, Upper] =:= true): List[Upper] =
       value.toArray.toList.map(_.asInstanceOf[Upper])
   }
 
@@ -45,16 +45,10 @@ object EnumerationString {
   ): TupleValueOf[Head *: Tail] =
     TupleValueOf(ev(head).fromProduct(EmptyTuple).asInstanceOf[Head] *: tail.value)
 
-  sealed trait AllSubtypesOf[T <: Tuple, Upper]
-
-  object AllSubtypesOf {
-    given [Upper]: AllSubtypesOf[EmptyTuple, Upper] = new AllSubtypesOf {}
-
-    given [Head, Tail <: Tuple, Upper](using
-        Head <:< Upper,
-        AllSubtypesOf[Tail, Upper]
-    ): AllSubtypesOf[Head *: Tail, Upper] =
-      new AllSubtypesOf {}
+  type AllSubtypesOf[T <: Tuple, Upper] <: Boolean = T match {
+    case EmptyTuple    => true
+    case Upper *: rest => AllSubtypesOf[rest, Upper]
+    case _             => false
   }
 
 }

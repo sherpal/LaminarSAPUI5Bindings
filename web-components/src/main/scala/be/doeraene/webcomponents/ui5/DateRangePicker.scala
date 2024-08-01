@@ -26,23 +26,36 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
 
   @js.native
   trait RawElement extends js.Object {
+    def open: Boolean = js.native
+
     @JSName("endDateValue")
     def endDateValueJS: js.Date = js.native
 
     @JSName("startDateValue")
     def startDateValueJS: js.Date = js.native
 
+    @scala.annotation.compileTimeOnly(
+      "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
+    )
     def closePicker(): Unit = js.native
 
     def formatValue(date: js.Date): String = js.native
 
     def isInValidRange(value: String): Boolean = js.native
 
-    def isOpen(): Boolean = js.native
-
     def isValid(value: String): Boolean = js.native
 
+    @scala.annotation.compileTimeOnly(
+      "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
+    )
     def openPicker(): Unit = js.native
+  }
+
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("The methods openPicker(), closePicker() and isOpen() are replaced by open property.")
+      def isOpen(): Boolean = rawElement.open
+    }
   }
 
   @js.native
@@ -55,6 +68,8 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
   type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-daterange-picker")
+
+  lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
   lazy val delimiter: HtmlAttr[String] = htmlAttr("delimiter", StringAsIsCodec)
 
@@ -92,18 +107,22 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
     val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
   }
 
-  /** You can feed [[DateRangePicker]] refs to this observer in order to close them. */
-  val closePickerObserver: Observer[Ref] = Observer(_.closePicker())
+  /** You can feed [[DateTimePicker]] refs to this observer in order to close them. */
+  @deprecated("closePickerObserver has been deprecated in favour of using the open property", since = "2.0.0")
+  def closePickerObserver: Observer[Ref] = Observer(ref => ref.asInstanceOf[js.Dynamic].updateDynamic("open")(false))
 
-  /** creates a [[Mod]] for your [[DateRangePicker]]s to close them when the stream emit. */
+  /** creates a [[Mod]] for your [[DateTimePicker]]s to close them when the stream emit. */
+  @deprecated("closePickerFromEvents has been deprecated in favour of using the open property", since = "2.0.0")
   def closePickerFromEvents(stream: EventStream[Unit]) =
-    inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> closePickerObserver)
+    open <-- stream.mapTo(false)
 
-  /** You can feed [[DateRangePicker]] refs to this observer in order to open them. */
-  val openPickerObserver: Observer[Ref] = Observer(_.openPicker())
+  /** You can feed [[DateTimePicker]] refs to this observer in order to open them. */
+  @deprecated("openPickerObserver has been deprecated in favour of using the open property", since = "2.0.0")
+  def openPickerObserver: Observer[Ref] = Observer(ref => ref.asInstanceOf[js.Dynamic].updateDynamic("open")(true))
 
-  /** creates a [[Mod]] for your [[DateRangePicker]]s to close them when the stream emit. */
+  /** creates a [[Mod]] for your [[DateTimePicker]]s to close them when the stream emit. */
+  @deprecated("openPickerFromEvents has been deprecated in favour of using the open property", since = "2.0.0")
   def openPickerFromEvents(stream: EventStream[Unit]) =
-    inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> openPickerObserver)
+    open <-- stream.mapTo(true)
 
 }

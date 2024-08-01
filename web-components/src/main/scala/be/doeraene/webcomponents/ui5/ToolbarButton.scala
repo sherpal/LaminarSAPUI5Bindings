@@ -38,11 +38,14 @@ object ToolbarButton extends WebComponent {
   lazy val design: HtmlAttr[ButtonDesign]      = htmlAttr("design", ButtonDesign.AsStringCodec)
   lazy val disabled: HtmlAttr[Boolean]         = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val icon: HtmlAttr[IconName]            = htmlAttr("icon", IconName.AsStringCodec)
-  lazy val iconEnd: HtmlAttr[Boolean]          = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val endIcon: HtmlAttr[IconName]         = htmlAttr("endIcon", IconName.AsStringCodec)
   lazy val text: HtmlAttr[String]              = htmlAttr("text", StringAsIsCodec)
   lazy val tooltip: HtmlAttr[String]           = htmlAttr("tooltip", StringAsIsCodec)
   lazy val widthJS: HtmlAttr[String]           = htmlAttr("width", StringAsIsCodec)
   lazy val width: HtmlAttr[CSSSize]            = htmlAttr("width", CSSSize.AsStringCodec)
+
+  @scala.annotation.compileTimeOnly("iconEnd property has been removed in favour of the end-icon property")
+  def iconEnd: HtmlAttr[Boolean] = ???
 
   object slots {}
 

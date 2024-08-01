@@ -12,9 +12,9 @@ object DatePickerExample extends Example("DatePicker") {
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
   ): HtmlElement = div(
     MessageStrip(
-      _.design := MessageStripDesign.Warning,
-              "Note: you must provide an implementation for java.time classes in order to use the DatePicker. " +
-          "For example using the scala-java-time library."
+      _.design := MessageStripDesign.Critical,
+      "Note: you must provide an implementation for java.time classes in order to use the DatePicker. " +
+        "For example using the scala-java-time library."
     ),
     DemoPanel("Basic DatePicker")(
       //-- Begin: Basic DatePicker
@@ -25,9 +25,9 @@ object DatePickerExample extends Example("DatePicker") {
       //-- Begin: DatePicker with Placeholder, Tooltip, Events, ValueState and valueStateMessage
       val validityStateBus: EventBus[Boolean] = new EventBus
       DatePicker(
-        _.placeholder := "Delivery date...",
+        _.placeholder             := "Delivery date...",
         _.slots.valueStateMessage := div("The value is not valid. Please provide a valid value."),
-        _.valueState <-- validityStateBus.events.map(if _ then ValueState.None else ValueState.Error),
+        _.valueState             <-- validityStateBus.events.map(if _ then ValueState.None else ValueState.Negative),
         _.events.onChange.map(_.detail.valid) --> validityStateBus.writer
       )
       //-- End
@@ -36,8 +36,8 @@ object DatePickerExample extends Example("DatePicker") {
       //-- Begin: DatePicker with Minimum and Maximum Date - 1/1/2020 - 4/5/2020 format-pattern='yyyy-MM-dd'
       DatePicker(
         _.formatPattern := "yyyy-MM-dd",
-        _.minDateStr := "2020-01-01",
-        _.maxDateStr := "2020-05-04"
+        _.minDateStr    := "2020-01-01",
+        _.maxDateStr    := "2020-05-04"
       )
       //-- End
     ),

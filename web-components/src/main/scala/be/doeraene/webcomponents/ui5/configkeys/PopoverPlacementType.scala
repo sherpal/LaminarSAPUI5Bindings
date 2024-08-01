@@ -6,12 +6,17 @@ sealed trait PopoverPlacementType {
 
 object PopoverPlacementType extends EnumerationString[PopoverPlacementType] {
 
-  case object Left extends PopoverPlacementType
-  case object Right extends PopoverPlacementType
-  case object Top extends PopoverPlacementType
+  case object Start  extends PopoverPlacementType
+  case object End    extends PopoverPlacementType
+  case object Top    extends PopoverPlacementType
   case object Bottom extends PopoverPlacementType
 
-  val allValues: List[PopoverPlacementType] = List(Left, Right, Top, Bottom)
+  @deprecated("Left horizontal align has been renamed to Start", since = "2.0.0")
+  def Left = Start
+  @deprecated("Right horizontal align has been renamed to End", since = "2.0.0")
+  def Right = End
+
+  val allValues: List[PopoverPlacementType] = deriveAllValues
 
   def valueOf(value: PopoverPlacementType): String = value.value
 

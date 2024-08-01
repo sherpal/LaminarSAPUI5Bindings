@@ -44,9 +44,9 @@ object CheckBox extends WebComponent with HasIcon with HasAccessibleName with Ha
   lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val required: HtmlAttr[Boolean]      = htmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = ValueState.asHtmlAttr("value-state")
 
-  lazy val wrappingType: HtmlAttr[WrappingType] = htmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val wrappingType: HtmlAttr[WrappingType] = WrappingType.asHtmlAttr("wrapping-type")
 
   object slots {}
 

@@ -30,19 +30,32 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
   trait RawElement extends js.Object {
     def dateValue: js.Date = js.native
 
+    def open: Boolean = js.native
+
     var value: String = js.native
 
+    @scala.annotation.compileTimeOnly(
+      "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
+    )
     def closePicker(): Unit = js.native
 
     def formatValue(date: js.Date): String = js.native
 
     def isInValidRange(input: String): Boolean = js.native
 
-    def isOpen(): Boolean = js.native
-
     def isValid(value: String): Boolean = js.native
 
+    @scala.annotation.compileTimeOnly(
+      "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
+    )
     def openPicker(): Unit = js.native
+  }
+
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("The methods openPicker(), closePicker() and isOpen() are replaced by open property.")
+      def isOpen(): Boolean = rawElement.open
+    }
   }
 
   @js.native
@@ -76,6 +89,8 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
 
   lazy val maxDateStr: HtmlAttr[String] = htmlAttr("max-date", StringAsIsCodec)
   lazy val minDateStr: HtmlAttr[String] = htmlAttr("min-date", StringAsIsCodec)
+
+  lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
   lazy val primaryCalendarType: HtmlAttr[CalendarType] =
     htmlAttr("primary-calendar-type", CalendarType.AsStringCodec)

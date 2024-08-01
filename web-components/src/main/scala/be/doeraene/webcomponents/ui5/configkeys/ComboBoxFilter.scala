@@ -8,10 +8,10 @@ object ComboBoxFilter extends EnumerationString[ComboBoxFilter] {
 
   /** Available options are: StartsWithPerTerm, StartsWith and Contains. */
   case object StartsWithPerTerm extends ComboBoxFilter
-  case object StartsWith extends ComboBoxFilter
-  case object Contains extends ComboBoxFilter
+  case object StartsWith        extends ComboBoxFilter
+  case object Contains          extends ComboBoxFilter
 
-  val allValues: List[ComboBoxFilter] = List(StartsWithPerTerm, StartsWith, Contains)
+  val allValues: List[ComboBoxFilter] = deriveAllValues
 
   def valueOf(filter: ComboBoxFilter): String = filter.value
 }

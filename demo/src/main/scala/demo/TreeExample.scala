@@ -17,12 +17,12 @@ object TreeExample extends Example("Tree") {
         width := "100%",
         _.item(
           _.expanded := true,
-          _.text := "Tree 1",
-          _.icon := IconName.paste,
+          _.text     := "Tree 1",
+          _.icon     := IconName.paste,
           _.selected := true,
           _.item(
             _.expanded := true,
-            _.text := "Tree 1.1",
+            _.text     := "Tree 1.1",
             _.selected := true,
             _.item(_.text := "Tree 1.1.1"),
             _.item(_.text := "Tree 1.1.2")
@@ -38,7 +38,7 @@ object TreeExample extends Example("Tree") {
           )
         ),
         _.item(
-          _.text := "Tree 3 (no icon)",
+          _.text     := "Tree 3 (no icon)",
           _.expanded := true
         )
       )
@@ -47,18 +47,18 @@ object TreeExample extends Example("Tree") {
     DemoPanel("Tree with multiple selection")(
       //-- Begin: Tree with multiple selection
       Tree(
-        _.mode := ListMode.MultiSelect,
+        _.selectionMode := ListMode.Multiple,
         _.events.onSelectionChange
           .map(_.detail.selectedItems) --> Observer[List[TreeItem.Ref]](_.foreach(dom.console.log(_))),
         width := "100%",
         _.item(
           _.expanded := true,
-          _.text := "Tree 1",
-          _.icon := IconName.paste,
+          _.text     := "Tree 1",
+          _.icon     := IconName.paste,
           _.selected := true,
           _.item(
             _.expanded := true,
-            _.text := "Tree 1.1",
+            _.text     := "Tree 1.1",
             _.selected := true,
             _.item(_.text := "Tree 1.1.1"),
             _.item(_.text := "Tree 1.1.2")
@@ -74,7 +74,7 @@ object TreeExample extends Example("Tree") {
           )
         ),
         _.item(
-          _.text := "Tree 3 (no icon)",
+          _.text     := "Tree 3 (no icon)",
           _.expanded := true
         )
       )

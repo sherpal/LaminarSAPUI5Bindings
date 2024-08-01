@@ -4,6 +4,9 @@ import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
+import org.scalajs.dom
+
+import scala.scalajs.js
 
 object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
 
@@ -22,10 +25,10 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
 
       def startColumnListItem(card: Card): HtmlElement = UList.item(
         card.name,
-        _.description := card.tpe,
-        _.additionalText := s"Cost: ${card.cost}",
-        _.iconEnd := true,
-        _.icon := IconName.`slim-arrow-right`,
+        _.description         := card.tpe,
+        _.additionalText      := s"Cost: ${card.cost}",
+        _.iconEnd             := true,
+        _.icon                := IconName.`slim-arrow-right`,
         dataAttr("card-name") := card.name
       )
 
@@ -49,10 +52,11 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
           |""".stripMargin),
         FlexibleColumnLayout(
           _.layout <-- layoutBus.events.startWith(FCLLayout.OneColumn),
+          _.events.onLayoutChanged.map(_.detail) --> Observer[js.Any](obj => dom.console.log(obj)),
           _.slots.startColumn := div(
             ShellBar(_.primaryTitle := "Magic"),
             UList(
-              height := "500px",
+              height       := "500px",
               _.headerText := "Power Nine",
               cards.filter(_.comment == "Power Nine").map(startColumnListItem),
               _.events.onItemClick
@@ -67,22 +71,22 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
           _.slots.midColumn <-- maybeSelectedCardVar.signal.changes.collect { case Some(card) => card }.map { card =>
             div(
               div(
-                display := "flex",
+                display    := "flex",
                 alignItems := "center",
                 Button(
                   _.icon := IconName.`slim-arrow-left`,
                   _.events.onClick.mapTo(Option.empty[Card]) --> maybeSelectedCardVar.writer,
                   marginRight := "1em",
-                  _.design := ButtonDesign.Transparent
+                  _.design    := ButtonDesign.Transparent
                 ),
                 h1(card.name)
               ),
               img(src := MTG.cardImages(card.name))
             )
           },
-                      maybeSelectedCardVar.signal.changes.map(maybeCard =>
-              if maybeCard.isDefined then FCLLayout.TwoColumnsMidExpanded else FCLLayout.OneColumn
-            ) --> layoutBus.writer
+          maybeSelectedCardVar.signal.changes.map(maybeCard =>
+            if maybeCard.isDefined then FCLLayout.TwoColumnsMidExpanded else FCLLayout.OneColumn
+          ) --> layoutBus.writer
         )
       )
       //-- End

@@ -44,7 +44,7 @@ object Select extends WebComponent with HasIcon with HasAccessibleName with HasN
   lazy val required: HtmlAttr[Boolean] = htmlAttr("required", BooleanAsAttrPresenceCodec)
   lazy val readonly: HtmlAttr[Boolean] = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
-  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = ValueState.asHtmlAttr("value-state")
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")
@@ -64,5 +64,6 @@ object Select extends WebComponent with HasIcon with HasAccessibleName with HasN
   }
 
   def option: SelectOption.type = SelectOption
+  def optionCustom              = SelectOptionCustom
 
 }

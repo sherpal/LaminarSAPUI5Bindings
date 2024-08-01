@@ -26,7 +26,6 @@ object SegmentedButton extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
-    def selectedItem: SegmentedButtonItem.Ref = js.native
 
     @JSName("selectedItems")
     def selectedItemsJS: js.Array[SegmentedButtonItem.Ref] = js.native
@@ -35,6 +34,9 @@ object SegmentedButton extends WebComponent {
   object RawElement {
     extension (elem: RawElement) {
       def selectedItems: Vector[SegmentedButtonItem.Ref] = elem.selectedItemsJS.toVector
+
+      @deprecated("selectedItem has been deprecated and you should use selectedItems(0) instead", since = "2.0.0")
+      def selectedItem = elem.selectedItemsJS(0)
     }
   }
 
@@ -49,8 +51,11 @@ object SegmentedButton extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-segmented-button")
 
-  lazy val accessibleName: HtmlAttr[String]    = htmlAttr("accessible-name", StringAsIsCodec)
-  lazy val mode: HtmlAttr[SegmentedButtonMode] = htmlAttr("mode", SegmentedButtonMode.AsStringCodec)
+  lazy val accessibleName: HtmlAttr[String]             = htmlAttr("accessible-name", StringAsIsCodec)
+  lazy val selectionMode: HtmlAttr[SegmentedButtonMode] = SegmentedButtonMode.asHtmlAttr("selection-mode")
+
+  @deprecated("mode property of SegmentedButton has been renamed to selectionMode", since = "2.0.0")
+  def mode: HtmlAttr[SegmentedButtonMode] = selectionMode
 
   object slots {}
 

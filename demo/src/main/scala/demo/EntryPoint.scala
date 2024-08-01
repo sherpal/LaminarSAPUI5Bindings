@@ -7,7 +7,7 @@ import demo.helpers.Example
 import org.scalajs.dom
 import org.scalajs.dom.{window, URL}
 
-import demo.BadgeExample
+import demo.TagExample
 import demo.helpers.ThemeSelector
 object EntryPoint {
   def main(args: Array[String]): Unit = {
@@ -15,7 +15,7 @@ object EntryPoint {
       val componentsDemo: List[Example] = List(
         AvatarExample,
         AvatarGroupExample,
-        BadgeExample,
+        TagExample,
         BarExample,
         BarcodeScannerDialogExample,
         BreadcrumbsExample,

@@ -38,9 +38,12 @@ object ProgressIndicator extends WebComponent {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-progress-indicator")
 
   lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
-  lazy val disabled: HtmlAttr[Boolean]      = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val displayValue: HtmlAttr[String]   = htmlAttr("display-value", StringAsIsCodec)
   lazy val hideValue: HtmlAttr[Boolean]     = htmlAttr("hide-value", BooleanAsAttrPresenceCodec)
   lazy val value: HtmlAttr[Int]             = htmlAttr("value", IntAsStringCodec)
-  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState] = ValueState.asHtmlAttr("value-state")
+
+  @scala.annotation.compileTimeOnly("disabled property of progress indicator has been disabled")
+  def disabled: HtmlAttr[Boolean] = ???
+
 }

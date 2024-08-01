@@ -39,29 +39,33 @@ object NotificationListGroupItem extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-li-notification-group")
 
-  lazy val collapsed: HtmlAttr[Boolean] = htmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean]           = htmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val loading: HtmlAttr[Boolean]             = htmlAttr("loading", BooleanAsAttrPresenceCodec)
+  lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
+  lazy val read: HtmlAttr[Boolean]                = htmlAttr("read", BooleanAsAttrPresenceCodec)
+  lazy val titleText: HtmlAttr[String]            = htmlAttr("title-text", StringAsIsCodec)
 
-  lazy val showCounter: HtmlAttr[Boolean] = htmlAttr("show-counter", BooleanAsAttrPresenceCodec)
-
-  lazy val busy: HtmlAttr[Boolean] = htmlAttr("busy", BooleanAsAttrPresenceCodec)
-
-  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
-
-  lazy val priority: HtmlAttr[Priority] = htmlAttr("priority", Priority.AsStringCodec)
-
-  lazy val read: HtmlAttr[Boolean] = htmlAttr("read", BooleanAsAttrPresenceCodec)
-
-  lazy val showClose: HtmlAttr[Boolean] = htmlAttr("show-close", BooleanAsAttrPresenceCodec)
-
-  lazy val titleText: HtmlAttr[String] = htmlAttr("title-text", StringAsIsCodec)
+  @scala.annotation.compileTimeOnly("showClose property has been removed")
+  def showClose: HtmlAttr[Boolean] = ???
+  @scala.annotation.compileTimeOnly("showCounter property has been removed")
+  def showCounter: HtmlAttr[Boolean] = ???
+  @scala.annotation.compileTimeOnly("priority property has been removed")
+  def priority: HtmlAttr[Priority] = ???
+  @deprecated("busy property has been renamed to loading", since = "2.0.0")
+  def busy: HtmlAttr[Boolean] = loading
+  @deprecated("busyDelay property has been renamed to loadingDelay", since = "2.0.0")
+  def busyDelay: HtmlAttr[FiniteDuration] = loadingDelay
 
   object slots {
-    val actions: Slot = Slot("actions")
+    @scala.annotation.compileTimeOnly("actions slot has been removed")
+    def actions: Slot = Slot("actions")
   }
 
   object events {
     val onToggle: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("toggle")
-    val onClose: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("close")
+
+    @scala.annotation.compileTimeOnly("close event of NotificationListGroupItem has been removed")
+    def onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
   }
 
   def item: NotificationListItem.type = NotificationListItem

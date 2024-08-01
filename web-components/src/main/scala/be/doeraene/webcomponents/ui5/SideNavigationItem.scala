@@ -43,12 +43,14 @@ object SideNavigationItem extends WebComponent with HasText {
 
   lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
 
-  lazy val wholeItemToggleable: HtmlAttr[Boolean] =
-    htmlAttr("whole-item-toggleable", BooleanAsAttrPresenceCodec)
-
   lazy val href: HtmlAttr[String] = htmlAttr("href", StringAsIsCodec)
 
   lazy val target: HtmlAttr[LinkTarget] = htmlAttr("target", LinkTarget.AsStringCodec)
+
+  @scala.annotation.compileTimeOnly(
+    "The wholeItemToggleable property is now removed. The functionality of clicking the whole item to show/hide the sub-items is no longer available. The collapsing/expanding of the item can still be done by pressing the icon."
+  )
+  def wholeItemToggleable: HtmlAttr[Boolean] = ???
 
   object slots {}
 

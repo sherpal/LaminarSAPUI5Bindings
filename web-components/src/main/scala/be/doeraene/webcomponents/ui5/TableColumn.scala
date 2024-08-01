@@ -21,7 +21,7 @@ object TableColumn extends WebComponent {
   trait RawElement extends js.Object {}
 
   @js.native
-  @JSImport("@ui5/webcomponents/dist/TableColumn.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents-compat/dist/TableColumn.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination

@@ -27,8 +27,13 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
   @js.native
   trait RawElement extends js.Object {
     def value: String = js.native
+  }
 
-    def openPicker(): Unit = js.native
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("openPicker method has been removed. Use the public member 'open' instead", since = "2.0.0")
+      def openPicker(): Unit = rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
+    }
   }
 
   @js.native
@@ -58,6 +63,8 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
   lazy val showClearIcon: HtmlAttr[Boolean]   = htmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
   lazy val showSuggestions: HtmlAttr[Boolean] = htmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
 
+  lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
+
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")
 
@@ -69,12 +76,17 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
 
-    val onSuggestionItemPreview =
-      new EventProp[dom.Event & HasDetail[HasTargetRef[dom.HTMLElement] & HasItem[SuggestionItem.RawElement]]](
-        "suggestion-item-preview"
-      )
-    val onSuggestionItemSelect =
-      new EventProp[dom.Event & HasDetail[HasItem[SuggestionItem.RawElement]]]("suggestion-item-select")
+    val onSelectionChange: EventProp[
+      EventWithPreciseTarget[Ref] &
+        HasDetail[HasTargetRef[dom.HTMLElement] & HasItem[js.UndefOr[SuggestionItem.RawElement]]]
+    ] = new EventProp("selection-change")
+
+    @deprecated("onSuggestionItemPreview has been changed to onSelectionChange", since = "2.0.0")
+    def onSuggestionItemPreview = onSelectionChange
+
+    @scala.annotation.compileTimeOnly("onSuggestionItemSelect has been removed. Used onSelectionChange instead.")
+    def onSuggestionItemSelect: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[SuggestionItem.RawElement]]] =
+      ???
   }
 
   def suggestion: SuggestionItem.type           = SuggestionItem

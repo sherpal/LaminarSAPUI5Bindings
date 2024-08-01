@@ -23,7 +23,14 @@ object Tab extends WebComponent with HasIcon with HasText {
 
   @js.native
   trait RawElement extends js.Object {
-    def getTabInStripDomRef(): dom.Element = js.native
+    def getDomRefInStrip(): dom.Element = js.native
+  }
+
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("getTabInStripDomRef method of Tab element has been renamed to getDomRefInStrip", since = "2.0.0")
+      def getTabInStripDomRef(): dom.Element = rawElement.getDomRefInStrip()
+    }
   }
 
   @js.native
@@ -45,7 +52,10 @@ object Tab extends WebComponent with HasIcon with HasText {
   lazy val additionalText: HtmlAttr[String] = htmlAttr("additional-text", StringAsIsCodec)
 
   object slots {
-    val subTabs: Slot = new Slot("subTabs")
+    @deprecated("subTabs Tab slot has been renamed to items")
+    def subTabs: Slot = items
+
+    val items: Slot = Slot("items")
   }
 
 }

@@ -31,7 +31,18 @@ object ColourPalettePopover extends WebComponent {
   //noinspection ScalaUnusedSymbol
   @js.native
   trait RawElement extends js.Object {
-    def showAt(opener: dom.HTMLElement): Unit = js.native
+    var open: Boolean  = js.native
+    var opener: String = js.native
+  }
+
+  object RawElement {
+    extension (elem: RawElement) {
+
+      @scala.annotation.compileTimeOnly(
+        "showAt method has been removed, and replaced by using the open and openerId mecanic"
+      )
+      def showAt(opener: dom.HTMLElement): Unit = ???
+    }
   }
 
   @js.native
@@ -81,10 +92,30 @@ object ColourPalettePopover extends WebComponent {
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
 
   /** [[Observer]] you can feed a popover ref and a [[dom.HTMLElement]] to open the popover at the element. */
-  val showAtObserver: Observer[(Ref, dom.HTMLElement)] = Observer(_.showAt(_))
+  @scala.annotation.compileTimeOnly(
+    "showAtObserver was replaced in 2.0.0 by showAtObserverId, which requires you to give the element id"
+  )
+  def showAtObserver: Observer[(Ref, dom.HTMLElement)] = ???
+
+  /** [[Observer]] you can feed a popover ref and the id of a [[dom.HTMLElement]] to open the popover at the element. */
+  val showAtObserverId: Observer[(Ref, String)] =
+    Observer { (ref, openerId) =>
+      ref.opener = openerId
+      scala.scalajs.js.timers.setTimeout(0) {
+        ref.open = true
+      }
+    }
 
   /** [[Mod]] for [[ColourPalettePopover]]s opening them each time the stream emits an opener [[dom.HTMLElement]] */
-  def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] =
-    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.map(el.ref -> _) --> showAtObserver)
+  @scala.annotation.compileTimeOnly(
+    "showAtFromEvents was replaced in 2.0.0 by showAtOpenerIdFromEvents, which requires you to give the element id"
+  )
+  def showAtFromEvents(openerEvents: EventStream[dom.HTMLElement]): Mod[ReactiveHtmlElement[Ref]] = ???
+
+  /** [[Mod]] for [[ColourPalettePopover]]s opening them each time the stream emits an opener [[dom.HTMLElement]] with
+    * the id specified by the stream
+    */
+  def showAtOpenerIdFromEvents(openerEvents: EventStream[String]): Mod[ReactiveHtmlElement[Ref]] =
+    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.map(el.ref -> _) --> showAtObserverId)
 
 }

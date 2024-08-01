@@ -16,10 +16,10 @@ object CalendarExample extends Example("Calendar") {
       div(
         Label(child.text <-- maybeSelectedDateVar.signal.map {
           case None       => "No selected date yet."
-          case Some(info) => s"Selected dates: ${info.values.zip(info.dates).mkString(", ")}."
+          case Some(info) => s"Selected dates: ${info.selectedValues.zip(info.selectedDates).mkString(", ")}."
         }),
         br(),
-        Calendar(_.events.onSelectedDatesChange.map(_.detail) --> maybeSelectedDateVar.writer.contramapSome)
+        Calendar(_.events.onSelectionChange.map(_.detail) --> maybeSelectedDateVar.writer.contramapSome)
       )
       //-- End
     },

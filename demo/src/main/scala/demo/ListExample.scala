@@ -20,14 +20,14 @@ object ListExample extends Example("List") {
           _.icon                := IconName.`nutrition-activity`,
           _.description         := "Tropical plant with an edible fruit",
           _.additionalText      := "In-stock",
-          _.additionalTextState := ValueState.Success,
+          _.additionalTextState := ValueState.Positive,
           "Pineapple"
         ),
         _.item(
           _.icon                := IconName.`nutrition-activity`,
           _.description         := "Occurs between red and yellow",
           _.additionalText      := "Expires",
-          _.additionalTextState := ValueState.Warning,
+          _.additionalTextState := ValueState.Critical,
           "Orange"
         ),
         _.item(
@@ -41,7 +41,7 @@ object ListExample extends Example("List") {
           _.icon                := IconName.`nutrition-activity`,
           _.description         := "The tropical stone fruit",
           _.additionalText      := "Re-stock",
-          _.additionalTextState := ValueState.Error,
+          _.additionalTextState := ValueState.Negative,
           "Mango"
         )
       )
@@ -81,7 +81,7 @@ object ListExample extends Example("List") {
       val maybeSelectedCountryVar: Var[Option[String]] = Var(Option.empty)
 
       UList(
-        _.mode := ListMode.SingleSelect,
+        _.selectionMode := ListMode.Single,
         _.headerText <-- maybeSelectedCountryVar.signal.map(maybeCountry =>
           s"Select a country:${maybeCountry.fold("")(country => s" (selected: $country)")}"
         ),
@@ -107,7 +107,7 @@ object ListExample extends Example("List") {
       }
 
       UList(
-        _.mode := ListMode.MultiSelect,
+        _.selectionMode := ListMode.Multiple,
         _.headerText <-- selectedItemsInfoSignal.map(selectedItems =>
           s"Multiple selection is possible: ($selectedItems)"
         ),
@@ -115,7 +115,7 @@ object ListExample extends Example("List") {
           UList.item(
             country,
             dataAttr("country-name") := country,
-            _.highlight              := (if country == "Belgium" then ValueState.Success else ValueState.None)
+            _.highlight              := (if country == "Belgium" then ValueState.Positive else ValueState.None)
           )
         ),
         _.events.onSelectionChange.map(
@@ -124,41 +124,47 @@ object ListExample extends Example("List") {
       )
       //-- End
     },
-    DemoPanel("Buzy List")(
-      //-- Begin: Buzy List
-      UList(_.busy := true, _.headerText := "Fetching data...")
+    DemoPanel("Loading List")(
+      //-- Begin: Loading List
+      UList(_.loading := true, _.headerText := "Fetching data...")
       //-- End
     ),
     DemoPanel("List with GroupHeaders") {
       //-- Begin: List with GroupHeaders
-      def expansionListItem(expansion: String) = (_: UList.type).item(
+      def expansionListItem(expansion: String) = UList.item(
         _.iconEnd := true,
         _.icon    := IconName.`slim-arrow-right`,
         expansion
       )
       UList(
-        _.mode       := ListMode.MultiSelect,
-        _.headerText := "Expansion list",
-        _.group("Mirrodin Block"),
-        expansionListItem("Mirrodin"),
-        expansionListItem("Darksteel"),
-        expansionListItem("Fifth Dawn"),
-        _.group("Kamigawa Block"),
-        expansionListItem("Champions of Kamigawa"),
-        expansionListItem("Betrayers of Kamigawa"),
-        expansionListItem("Saviors of Kamigawa"),
-        _.group("Ravnica Block"),
-        expansionListItem("Ravnica: City of Guilds"),
-        expansionListItem("Guildpact"),
-        expansionListItem("Dissension")
+        _.selectionMode := ListMode.Multiple,
+        _.headerText    := "Expansion list",
+        _.grouped(
+          _.headerText := "Mirrodin Block",
+          expansionListItem("Mirrodin"),
+          expansionListItem("Darksteel"),
+          expansionListItem("Fifth Dawn")
+        ),
+        _.grouped(
+          _.headerText := "Kamigawa Block",
+          expansionListItem("Champions of Kamigawa"),
+          expansionListItem("Betrayers of Kamigawa"),
+          expansionListItem("Saviors of Kamigawa")
+        ),
+        _.grouped(
+          _.headerText := "Ravnica Block",
+          expansionListItem("Ravnica: City of Guilds"),
+          expansionListItem("Guildpact"),
+          expansionListItem("Dissension")
+        )
       )
       //-- End
     },
     DemoPanel("List in Delete Mode")(
       //-- Begin: List in Delete Mode
       UList(
-        _.mode       := ListMode.Delete,
-        _.headerText := "Note: The list items removal is up to application developers",
+        _.selectionMode := ListMode.Delete,
+        _.headerText    := "Note: The list items removal is up to application developers",
         countries.map(country => UList.item(country))
       )
       //-- End
@@ -189,7 +195,7 @@ object ListExample extends Example("List") {
       val countryDeleteBus = new EventBus[String]
       div(
         UList(
-          _.mode := ListMode.Delete,
+          _.selectionMode := ListMode.Delete,
           countries
             .map(country =>
               UList.item(
