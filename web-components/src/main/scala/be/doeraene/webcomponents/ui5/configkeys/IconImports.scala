@@ -1682,9 +1682,6 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/soccer.js", JSImport.Namespace)
   object `import-soccer` extends js.Object
 
-  @js.native @JSImport("@ui5/webcomponents-icons/dist/soccor.js", JSImport.Namespace)
-  object `import-soccor` extends js.Object
-
   @js.native @JSImport("@ui5/webcomponents-icons/dist/sonography.js", JSImport.Namespace)
   object `import-sonography` extends js.Object
 
