@@ -28,9 +28,7 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
         Button("Open Dialog", _.events.onClick.mapTo(true) --> dialogShowActionBus.writer),
         Dialog(
           _.headerText := "Error",
-          inContext(el =>
-            dialogShowActionBus.events --> Observer[Boolean](if _ then el.ref.show() else el.ref.close())
-          ),
+          _.open      <-- dialogShowActionBus.events,
           IllustratedMessage(_.name := IllustratedMessageType.ErrorScreen),
           _.slots.footer := Bar(
             _.design := BarDesign.Footer,
@@ -48,8 +46,7 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
       //-- Begin: Illustrated Message with sub-title slot
       IllustratedMessage(
         _.name           := IllustratedMessageType.tnt.UnsuccessfulAuth,
-        _.titleText      := "Something went wrong...",
-        _.titleLevel     := TitleLevel.H4,
+        _.slots.title    := Title.h4("Something went wrong..."),
         _.slots.subtitle := div("Please try again or contact us at ", Link("example@example.com"), "."),
         Button(_.icon := IconName.refresh, "Try again")
       )

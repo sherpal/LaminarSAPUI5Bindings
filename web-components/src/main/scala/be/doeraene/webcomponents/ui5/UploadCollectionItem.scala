@@ -54,6 +54,9 @@ object UploadCollectionItem extends WebComponent {
   lazy val disableDeleteButton: HtmlAttr[Boolean] =
     htmlAttr("disable-delete-button", BooleanAsAttrPresenceCodec)
 
+  lazy val hideDeleteButton: HtmlAttr[Boolean] =
+    htmlAttr("hide-delete-button", BooleanAsAttrPresenceCodec)
+
   lazy val fileName: HtmlAttr[String] =
     htmlAttr("file-name", StringAsIsCodec)
 

@@ -15,7 +15,7 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
       SegmentedButton(
         _.accessibleName := "Geographic location",
         _.item("Map"),
-        _.item("Satellite", _.pressed := true),
+        _.item("Satellite", _.selected := true),
         _.item("Terrain")
       )
       //-- End
@@ -23,7 +23,7 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
     DemoPanel("SegmentedButton with Icons")(
       //-- Begin: SegmentedButton with Icons
       SegmentedButton(
-        _.item(_.icon := IconName.employee, _.pressed := true),
+        _.item(_.icon := IconName.employee, _.selected := true),
         _.item(_.icon := IconName.menu),
         _.item(_.icon := IconName.factory)
       )
@@ -33,7 +33,7 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
       //-- Begin: SegmentedButton with 5 SegmentedButtonItems
       SegmentedButton(
         _.item("Item"),
-        _.item("Pressed SegmentedButtonItem With Bigger Text", _.pressed := true),
+        _.item("Pressed SegmentedButtonItem With Bigger Text", _.selected := true),
         _.item("Item"),
         _.item("SegmentedButtonItem"),
         _.item("Press me")
@@ -45,7 +45,7 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
       //-- Begin: SegmentedButton with multi-select
       div(
         SegmentedButton(
-          _.mode := SegmentedButtonMode.MultiSelect,
+          _.selectionMode := SegmentedButtonMode.Multiple,
           _.item("First Item", _.accessibleName  := "first"),
           _.item("Second Item", _.accessibleName := "second"),
           _.item("Third Item", _.accessibleName  := "third"),

@@ -97,6 +97,28 @@ object SelectExample extends Example("Select") {
         )
       )
       //-- End
+    },
+    DemoPanel("Custom Options") {
+      //-- Begin: Custom Options
+      def customOption(displayText: String, fullText: String) =
+        Select.optionCustom(
+          _.displayText := displayText,
+          div(
+            display.flex,
+            justifyContent.spaceBetween,
+            width := "100%",
+            Icon(_.name := IconName.soccer),
+            fullText,
+            Icon(_.name := IconName.employee)
+          )
+        )
+
+      Select(
+        customOption("BE", "Belgium"),
+        customOption("CH", "Switzerland"),
+        customOption("FR", "France")
+      )
+      //-- End
     }
   )
 

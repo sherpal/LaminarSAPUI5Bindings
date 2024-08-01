@@ -27,14 +27,23 @@ object ColourPicker extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
-    @JSName("color")
-    def colourJS: String = js.native
+
+    @JSName("value")
+    def valueJS: String = js.native
   }
 
   object RawElement {
     extension (rawElement: RawElement)
+      @deprecated("color attribute has been renamed to value", since = "2.0.0")
+      def colourJS: String = rawElement.valueJS
+
       /** The current colour as [[Colour]] instance. English UK spelling for consistency. */
-      def colour: Colour = Colour.fromString(rawElement.colourJS)
+      @deprecated("colour attribute has been renamed to value", since = "2.0.0")
+      def colour: Colour = rawElement.value
+
+      /** The current colour as [[Colour]] instance. English UK spelling for consistency. */
+      def value: Colour = Colour.fromString(rawElement.valueJS)
+
   }
 
   @js.native
@@ -48,7 +57,10 @@ object ColourPicker extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-color-picker")
 
-  lazy val colour: HtmlAttr[Colour] = htmlAttr("color", Colour.AsStringCodec)
+  @deprecated("colour attribute has been renamed to value", since = "2.0.0")
+  def colour: HtmlAttr[Colour] = value
+
+  lazy val value: HtmlAttr[Colour] = htmlAttr("value", Colour.AsStringCodec)
 
   object slots {}
 

@@ -34,7 +34,7 @@ object PanelExample extends Example("Panel") {
         _.headerText := "Select your country",
         width        := "100%",
         UList(
-          _.mode := ListMode.MultiSelect,
+          _.selectionMode := ListMode.Multiple,
           countries.map(country => UList.item(country))
         )
       )
@@ -46,7 +46,7 @@ object PanelExample extends Example("Panel") {
         _.fixed      := true,
         _.headerText := "Country Of Birth",
         UList(
-          _.mode := ListMode.SingleSelectBegin,
+          _.selectionMode := ListMode.SingleSelectBegin,
           countries.map(country => UList.item(country))
         )
       )
@@ -75,7 +75,7 @@ object PanelExample extends Example("Panel") {
             )
           ),
           UList(
-            _.mode := ListMode.MultiSelect,
+            _.selectionMode := ListMode.Multiple,
             countries.map(country => UList.item(country))
           )
         )

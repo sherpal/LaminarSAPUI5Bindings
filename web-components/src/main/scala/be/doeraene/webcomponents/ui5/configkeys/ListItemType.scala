@@ -6,12 +6,12 @@ sealed trait ListItemType {
 
 object ListItemType extends EnumerationString[ListItemType] {
 
-  case object Active extends ListItemType
-  case object Inactive extends ListItemType
-  case object Detail extends ListItemType
+  case object Active     extends ListItemType
+  case object Inactive   extends ListItemType
+  case object Detail     extends ListItemType
   case object Navigation extends ListItemType
 
-  val allValues: List[ListItemType] = List(Active, Inactive, Detail)
+  val allValues: List[ListItemType] = deriveAllValues
 
   def valueOf(value: ListItemType): String = value.value
 

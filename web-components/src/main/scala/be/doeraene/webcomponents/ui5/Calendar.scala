@@ -46,7 +46,7 @@ object Calendar extends WebComponent {
   lazy val hideWeekNumbers: HtmlAttr[Boolean] = htmlAttr("hide-week-numbers", BooleanAsAttrPresenceCodec)
 
   lazy val selectionMode: HtmlAttr[CalendarSelectionMode] =
-    htmlAttr("selection-mode", CalendarSelectionMode.AsStringCodec)
+    CalendarSelectionMode.asHtmlAttr("selection-mode")
 
   lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
 
@@ -68,23 +68,31 @@ object Calendar extends WebComponent {
 
   object events {
     trait SelectedDatesChangeInfo extends js.Object {
-      @JSName("values")
-      def valuesJS: js.Array[String]
+      @JSName("selectedValues")
+      def selectedValuesJS: js.Array[String]
 
-      @JSName("dates")
-      def datesJS: js.Array[Long]
+      @JSName("selectedDates")
+      def selectedDatesJS: js.Array[Long]
     }
 
     object SelectedDatesChangeInfo {
       extension (info: SelectedDatesChangeInfo)
-        def values: List[String] = info.valuesJS.toList
-        def dates: List[Long]    = info.datesJS.toList
+        @deprecated("values was renamed to selectedValues", since = "2.0.0")
+        def values: List[String] = info.selectedValues
+        @deprecated("values was renamed to selectedDates", since = "2.0.0")
+        def dates: List[Long] = info.selectedDates
+
+        def selectedValues: List[String] = info.selectedValuesJS.toList
+        def selectedDates: List[Long]    = info.selectedDatesJS.toList
     }
 
-    val onSelectedDatesChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectedDatesChangeInfo]] =
+    val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectedDatesChangeInfo]] =
       new EventProp(
-        "selected-dates-change"
+        "selection-change"
       )
+
+    @deprecated("onSelectedDatesChange has been renamed to onSelectionChange", since = "2.0.0")
+    def onSelectedDatesChange = onSelectionChange
   }
 
   def date: CalendarDate.type = CalendarDate

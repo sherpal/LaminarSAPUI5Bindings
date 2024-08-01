@@ -41,10 +41,12 @@ object MultiComboBox extends WebComponent with HasAccessibleName with HasValue {
   lazy val filter: HtmlAttr[ComboBoxFilter] = htmlAttr("filter", ComboBoxFilter.AsStringCodec)
   lazy val placeholder: HtmlAttr[String]    = htmlAttr("placeholder", StringAsIsCodec)
   lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  lazy val allowCustomValues: HtmlAttr[Boolean] =
-    htmlAttr("allow-custom-values", BooleanAsAttrPresenceCodec)
+  lazy val noValidation: HtmlAttr[Boolean]  = htmlAttr("no-validation", BooleanAsAttrPresenceCodec)
   lazy val required: HtmlAttr[Boolean]      = htmlAttr("required", BooleanAsAttrPresenceCodec)
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
+
+  @deprecated("allCustomValues has been renamed to noValidation", since = "2.0.0")
+  def allowCustomValues = noValidation
 
   object slots {
     val default: Slot           = new Slot("default")
@@ -58,6 +60,8 @@ object MultiComboBox extends WebComponent with HasAccessibleName with HasValue {
     val onSelectionChange: EventProp[dom.Event & HasDetail[HasItems[MultiComboBoxItem.Ref]]] = new EventProp(
       "selection-change"
     )
+    val onOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("open")
+    val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
   }
 
   def item: MultiComboBoxItem.type       = MultiComboBoxItem

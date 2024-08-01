@@ -45,10 +45,7 @@ object RadioButton extends WebComponent with HasAccessibleName with HasName with
   lazy val readonly: HtmlAttr[Boolean] = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val required: HtmlAttr[Boolean] = htmlAttr("required", BooleanAsAttrPresenceCodec)
 
-  lazy val value: HtmlAttr[String] = {
-    InputElementsFormSupport
-    htmlAttr("value", StringAsIsCodec)
-  }
+  lazy val value: HtmlAttr[String] = htmlAttr("value", StringAsIsCodec)
 
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 

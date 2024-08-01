@@ -15,6 +15,7 @@ import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 import scala.concurrent.duration.FiniteDuration
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ValueState
 
 /** The ui5-li-notification is a type of list item, meant to display notifications.
   *
@@ -41,24 +42,28 @@ object NotificationListItem extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-li-notification")
 
-  lazy val wrappingType: HtmlAttr[WrappingType] = htmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val wrappingType: HtmlAttr[WrappingType]   = htmlAttr("wrapping-type", WrappingType.AsStringCodec)
+  lazy val loading: HtmlAttr[Boolean]             = htmlAttr("loading", BooleanAsAttrPresenceCodec)
+  lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
+  lazy val state: HtmlAttr[ValueState]            = ValueState.asHtmlAttr("state")
+  lazy val read: HtmlAttr[Boolean]                = htmlAttr("read", BooleanAsAttrPresenceCodec)
+  lazy val showClose: HtmlAttr[Boolean]           = htmlAttr("show-close", BooleanAsAttrPresenceCodec)
+  lazy val titleText: HtmlAttr[String]            = htmlAttr("title-text", StringAsIsCodec)
 
-  lazy val busy: HtmlAttr[Boolean] = htmlAttr("busy", BooleanAsAttrPresenceCodec)
-
-  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
-
-  lazy val priority: HtmlAttr[Priority] = htmlAttr("priority", Priority.AsStringCodec)
-
-  lazy val read: HtmlAttr[Boolean] = htmlAttr("read", BooleanAsAttrPresenceCodec)
-
-  lazy val showClose: HtmlAttr[Boolean] = htmlAttr("show-close", BooleanAsAttrPresenceCodec)
-
-  lazy val titleText: HtmlAttr[String] = htmlAttr("title-text", StringAsIsCodec)
+  @deprecated("busy property has been renamed to loading", since = "2.0.0")
+  def busy: HtmlAttr[Boolean] = loading
+  @deprecated("busyDelay property has been renamed to loadingDelay", since = "2.0.0")
+  def busyDelay: HtmlAttr[FiniteDuration] = loadingDelay
+  @deprecated("priority property has been renamed to state", since = "2.0.0")
+  def priority: HtmlAttr[ValueState] = state
 
   object slots {
     val avatar: Slot    = Slot("avatar")
     val footnotes: Slot = Slot("footnotes")
-    val actions: Slot   = Slot("actions")
+    val menu: Slot      = Slot("menu")
+
+    @deprecated("The actions slot has been renamed to menu, which expect a Menu component", since = "2.0.0")
+    def actions: Slot = menu
   }
 
   object events {

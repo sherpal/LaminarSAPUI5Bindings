@@ -27,10 +27,12 @@ object MultiComboBoxGroupItem extends WebComponent with HasText {
 
   type Ref = dom.html.Element & RawElement
 
-  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-mcb-group-item")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-mcb-item-group")
 
   object slots {}
 
   object events {}
+
+  def item = MultiComboBoxItem
 
 }

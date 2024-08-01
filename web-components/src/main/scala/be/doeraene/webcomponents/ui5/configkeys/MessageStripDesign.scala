@@ -6,16 +6,14 @@ sealed trait MessageStripDesign {
 
 object MessageStripDesign extends EnumerationString[MessageStripDesign] {
   case object Information extends MessageStripDesign
-  case object Positive extends MessageStripDesign
-  case object Negative extends MessageStripDesign
-  case object Warning extends MessageStripDesign
+  case object Positive    extends MessageStripDesign
+  case object Negative    extends MessageStripDesign
+  case object Critical    extends MessageStripDesign
+
+  @deprecated("Warning MessageStripDesign was renamed to Critical", since = "2.0.0")
+  def Warning: MessageStripDesign = Critical
 
   override def valueOf(value: MessageStripDesign): String = value.value
 
-  override val allValues: List[MessageStripDesign] = List(
-    Information,
-    Positive,
-    Negative,
-    Warning
-  )
+  override val allValues: List[MessageStripDesign] = deriveAllValues
 }

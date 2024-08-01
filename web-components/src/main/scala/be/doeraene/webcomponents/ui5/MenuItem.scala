@@ -10,6 +10,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import scala.concurrent.duration.FiniteDuration
 
 /** ui5-menu-item is the item to use inside a ui5-menu. An arbitrary hierarchy structure can be represented by
   * recursively nesting menu items.
@@ -39,7 +40,11 @@ object MenuItem extends WebComponent with HasIcon with HasText {
 
   lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
-  lazy val startsSection: HtmlAttr[Boolean] = htmlAttr("starts-section", BooleanAsAttrPresenceCodec)
+  @scala.annotation.compileTimeOnly("startsSection has been replace by the MenuSeparator component")
+  def startsSection: HtmlAttr[Boolean] = ???
+
+  lazy val loading: HtmlAttr[Boolean]             = htmlAttr("loading", BooleanAsAttrPresenceCodec)
+  lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
 
   // reference to itself, useful for sub-menus
   def item: MenuItem.type = this

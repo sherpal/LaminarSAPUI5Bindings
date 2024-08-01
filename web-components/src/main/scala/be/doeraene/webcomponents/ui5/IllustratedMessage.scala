@@ -46,11 +46,16 @@ object IllustratedMessage extends WebComponent with HasIcon {
     htmlAttr("name", IllustratedMessageType.AsStringCodec)
 
   /** Alternative to "name" for Scala 2.13 users. */
-  lazy val nameStr: HtmlAttr[String]              = htmlAttr("name", StringAsIsCodec)
-  lazy val size: HtmlAttr[IllustratedMessageSize] = IllustratedMessageSize.asHtmlAttr("size")
-  lazy val subtitleText: HtmlAttr[String]         = htmlAttr("subtitle-text", StringAsIsCodec)
-  lazy val titleText: HtmlAttr[String]            = htmlAttr("title-text", StringAsIsCodec)
-  lazy val titleLevel: HtmlAttr[TitleLevel]       = TitleLevel.asHtmlAttr("title-level")
+  lazy val nameStr: HtmlAttr[String]                = htmlAttr("name", StringAsIsCodec)
+  lazy val design: HtmlAttr[IllustratedMessageSize] = IllustratedMessageSize.asHtmlAttr("design")
+  lazy val subtitleText: HtmlAttr[String]           = htmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String]              = htmlAttr("title-text", StringAsIsCodec)
+
+  @scala.annotation.compileTimeOnly("The titleLevel property has been removed and replaced by using the title slot")
+  def titleLevel: HtmlAttr[TitleLevel] = ???
+
+  @deprecated("size property of IllustratedMessage has been renamed to design")
+  def size: HtmlAttr[IllustratedMessageSize] = design
 
   object slots {
     val subtitle: Slot = new Slot("subtitle")

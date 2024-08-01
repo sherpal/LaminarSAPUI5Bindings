@@ -18,9 +18,8 @@ private[ui5] def used(any: Any): Unit = ()
 @JSImport("@ui5/webcomponents-icons/dist/AllIcons.js", JSImport.Namespace)
 object AllIconsImport extends js.Object
 
-@js.native
-@JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Namespace)
-object InputElementsFormSupport extends js.Object
+@deprecated("Form support is now natively supported, and does not require any import", since = "2.0.0")
+def InputElementsFormSupport = new js.Object {}
 
 object FiniteDurationCodec extends Codec[FiniteDuration, String] {
   override def decode(domValue: String): FiniteDuration = domValue.toLong.millis
@@ -33,10 +32,6 @@ case class ListCodec[A](codec: Codec[A, String]) extends Codec[List[A], String] 
 
   def encode(scalaValue: List[A]): String = scalaValue.map(codec.encode).mkString(",")
 }
-
-@js.native
-@JSImport("@ui5/webcomponents/dist/features/InputElementsFormSupport.js", JSImport.Default)
-object SubmitsSupport extends js.Object
 
 @js.native
 @JSImport("@ui5/webcomponents-localization/dist/Assets.js", JSImport.Namespace)

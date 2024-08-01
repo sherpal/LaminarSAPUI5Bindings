@@ -37,7 +37,7 @@ object TimePickerExample extends Example("TimePicker") {
     },
     DemoPanel("TimePicker with value-state and valueStateMessage") {
       //-- Begin: TimePicker with value-state and valueStateMessage
-      TimePicker(_.valueState := ValueState.Error, _.slots.valueStateMessage := div("Please provide a valid value"))
+      TimePicker(_.valueState := ValueState.Negative, _.slots.valueStateMessage := div("Please provide a valid value"))
       //-- End
     }
   )

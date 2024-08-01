@@ -16,12 +16,12 @@ object RadioButtonExample extends Example("RadioButton") {
       val name  = "GroupA"
 
       div(
-        RadioButton(_.text := texts.head, _.value := texts.head, _.checked := true, _.name := name),
-        RadioButton(_.text := texts(1), _.value := texts(1), _.valueState := ValueState.None, _.name := name),
-        RadioButton(_.text := texts(2), _.value := texts(2), _.valueState := ValueState.Warning, _.name := name),
-        RadioButton(_.text := texts(6), _.value := texts(6), _.disabled := true, _.name := name),
-        RadioButton(_.text := texts(7), _.value := texts(7), _.readonly := true, _.name := name),
-        RadioButton(_.text := texts(8), _.value := texts(8), _.required := true, _.name := name)
+        RadioButton(_.text := texts.head, _.value := texts.head, _.checked  := true, _.name                := name),
+        RadioButton(_.text := texts(1), _.value   := texts(1), _.valueState := ValueState.None, _.name     := name),
+        RadioButton(_.text := texts(2), _.value   := texts(2), _.valueState := ValueState.Critical, _.name := name),
+        RadioButton(_.text := texts(6), _.value   := texts(6), _.disabled   := true, _.name                := name),
+        RadioButton(_.text := texts(7), _.value   := texts(7), _.readonly   := true, _.name                := name),
+        RadioButton(_.text := texts(8), _.value   := texts(8), _.required   := true, _.name                := name)
       )
       //-- End
     },
@@ -33,14 +33,14 @@ object RadioButtonExample extends Example("RadioButton") {
         h1("Group of states"),
         Label(child.text <-- selectedValueVar.signal.map(state => s"Selected radio: $state")),
         div(
-          display := "flex",
+          display       := "flex",
           flexDirection := "column",
           ValueState.allValues.map(state =>
             RadioButton(
               _.name := "GroupB",
               _.text := state.value,
               _.events.onChange.mapToChecked.filter(identity).mapTo(state.value) --> selectedValueVar.writer,
-              _.checked <-- selectedValueVar.signal.map(_ == state.value),
+              _.checked   <-- selectedValueVar.signal.map(_ == state.value),
               _.valueState := state
             )
           )
@@ -52,16 +52,16 @@ object RadioButtonExample extends Example("RadioButton") {
       //-- Begin: RadioButton with Text Wrapping
       div(
         RadioButton(
-          width := "300px",
-          _.text := "ui5-radio-button with 'wrapping-type=Normal' set and some long text",
+          width          := "300px",
+          _.text         := "ui5-radio-button with 'wrapping-type=Normal' set and some long text",
           _.wrappingType := WrappingType.Normal,
-          _.name := "GroupD"
+          _.name         := "GroupD"
         ),
         RadioButton(
-          width := "200px",
-          _.text := "Another ui5-radio-button with very long text here",
+          width          := "200px",
+          _.text         := "Another ui5-radio-button with very long text here",
           _.wrappingType := WrappingType.Normal,
-          _.name := "GroupD"
+          _.name         := "GroupD"
         )
       )
       //-- End

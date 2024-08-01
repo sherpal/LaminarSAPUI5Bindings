@@ -5,10 +5,15 @@ sealed trait SegmentedButtonMode {
 }
 
 object SegmentedButtonMode extends EnumerationString[SegmentedButtonMode] {
-  case object SingleSelect extends SegmentedButtonMode
-  case object MultiSelect extends SegmentedButtonMode
+  case object Single   extends SegmentedButtonMode
+  case object Multiple extends SegmentedButtonMode
 
-  val allValues: List[SegmentedButtonMode] = List(SingleSelect, MultiSelect)
+  @deprecated("SingleSelect segmented button mode has been renamed to Single", since = "2.0.0")
+  def SingleSelect = Single
+  @deprecated("MultiSelect segmented button mode has been renamed to Multiple", since = "2.0.0")
+  def MultiSelect = Multiple
+
+  val allValues: List[SegmentedButtonMode] = deriveAllValues
 
   def valueOf(value: SegmentedButtonMode): String = value.value
 }

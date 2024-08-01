@@ -13,9 +13,9 @@ object ViewSettingsDialogExample extends Example("ViewSettingsDialog") {
   ): HtmlElement = div(
     MessageStrip(
       _.design := MessageStripDesign.Information,
-              "Using the ViewSettingsDialog is straightforward on paper as shown below. However, don't be fooled. You still" +
-          " need to process by hand whatever it spits out. Given it's dynamic nature, it's not as trivial as it " +
-          "may seem. (But perhaps adding some magic on top would make it more delightful to use.)"
+      "Using the ViewSettingsDialog is straightforward on paper as shown below. However, don't be fooled. You still" +
+        " need to process by hand whatever it spits out. Given it's dynamic nature, it's not as trivial as it " +
+        "may seem. (But perhaps adding some magic on top would make it more delightful to use.)"
     ),
     DemoPanel("Usage") {
       //-- Begin: Usage
@@ -24,7 +24,7 @@ object ViewSettingsDialogExample extends Example("ViewSettingsDialog") {
       div(
         Button("Open ViewSettingsDialog", _.events.onClick.mapTo(()) --> showSettingsDialogBus.writer),
         ViewSettingsDialog(
-          _.showFromEvents(showSettingsDialogBus.events),
+          _.open <-- showSettingsDialogBus.events.mapTo(true),
           _.events.onCancel.map(_.detail) --> settingsBus.writer,
           _.events.onConfirm.map(_.detail) --> settingsBus.writer,
           _.slots.sortItems := List(
@@ -35,11 +35,11 @@ object ViewSettingsDialogExample extends Example("ViewSettingsDialog") {
           ),
           _.slots.filterItems := List(
             FilterItem(
-              _.text := "Position",
+              _.text         := "Position",
               _.slots.values := List("CTO", "CPO", "VP").map(position => FilterItem.option(_.text := position))
             ),
             FilterItem(
-              _.text := "Department",
+              _.text         := "Department",
               _.slots.values := List("Sales", "Management", "PR").map(position => FilterItem.option(_.text := position))
             ),
             FilterItem(
@@ -49,7 +49,7 @@ object ViewSettingsDialogExample extends Example("ViewSettingsDialog") {
               )
             ),
             FilterItem(
-              _.text := "Report to",
+              _.text         := "Report to",
               _.slots.values := List("CTO", "CPO", "VP").map(position => FilterItem.option(_.text := position))
             )
           )

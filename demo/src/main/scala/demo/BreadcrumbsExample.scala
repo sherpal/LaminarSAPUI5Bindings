@@ -13,7 +13,7 @@ object BreadcrumbsExample extends Example("Breadcrumbs") {
       //-- Begin: Standard Breadcrumbs
       Breadcrumbs(
         _.Item(
-          _.href := "https://github.com/sherpal/LaminarSAPUI5Bindings",
+          _.href   := "https://github.com/sherpal/LaminarSAPUI5Bindings",
           _.target := LinkTarget._blank,
           "Root page"
         ),
@@ -28,7 +28,7 @@ object BreadcrumbsExample extends Example("Breadcrumbs") {
       Breadcrumbs(
         _.design := BreadcrumbsDesign.NoCurrentPage,
         _.Item(
-          _.href := "https://github.com/sherpal/LaminarSAPUI5Bindings",
+          _.href   := "https://github.com/sherpal/LaminarSAPUI5Bindings",
           _.target := LinkTarget._blank,
           "Root page"
         ),
@@ -41,9 +41,9 @@ object BreadcrumbsExample extends Example("Breadcrumbs") {
       div(
         BreadcrumbsSeparatorStyle.allValues.map(separatorStyle =>
           Breadcrumbs(
-            _.separatorStyle := separatorStyle,
+            _.separators := separatorStyle,
             _.Item(
-              _.href := "https://github.com/sherpal/LaminarSAPUI5Bindings",
+              _.href   := "https://github.com/sherpal/LaminarSAPUI5Bindings",
               _.target := LinkTarget._blank,
               "Root page"
             ),

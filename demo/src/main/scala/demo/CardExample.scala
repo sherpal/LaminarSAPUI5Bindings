@@ -41,23 +41,27 @@ object CardExample extends Example("Card") {
         Card(
           className := medium,
           _.slots.header := Card.header(
-            _.titleText := "Magic Mana Symbols",
-            _.subtitleText := "All of them",
-            _.status := "3 of 6",
-            _.slots.avatar := Icon(_.name := IconName.group),
-            _.slots.action := Button(_.design := ButtonDesign.Transparent, "View All")
+            _.titleText      := "Magic Mana Symbols",
+            _.subtitleText   := "All of them",
+            _.additionalText := "3 of 6",
+            _.slots.avatar   := Icon(_.name := IconName.group),
+            _.slots.action   := Button(_.design := ButtonDesign.Transparent, "View All")
           ),
           div(
             className := cardContentClassName,
             UList(
               _.separators := ListSeparator.None,
-              width := "100%",
+              width        := "100%",
               marginBottom := "0.75rem",
               MTG.manaSymbolsNames
                 .zip(MTG.manaSymbolsShortNames)
                 .take(3)
                 .map((name, shortName) =>
-                  UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, name)
+                  UList.item(
+                    _.slots.image := Avatar(img(src := MTG.manaSymbolsRefs(shortName))),
+                    _.description := name,
+                    name
+                  )
                 )
             )
           )
@@ -65,23 +69,27 @@ object CardExample extends Example("Card") {
         Card(
           className := medium,
           _.slots.header := Card.header(
-            _.titleText := "This header is interactive",
-            _.interactive := true,
-            _.subtitleText := "Click, press Enter or Space",
-            _.status := "3 of 6",
-            _.slots.avatar := Icon(_.name := IconName.group)
+            _.titleText      := "This header is interactive",
+            _.interactive    := true,
+            _.subtitleText   := "Click, press Enter or Space",
+            _.additionalText := "3 of 6",
+            _.slots.avatar   := Icon(_.name := IconName.group)
           ),
           div(
             className := cardContentClassName,
             UList(
               _.separators := ListSeparator.None,
-              width := "100%",
+              width        := "100%",
               marginBottom := "0.75rem",
               MTG.manaSymbolsNames
                 .zip(MTG.manaSymbolsShortNames)
                 .drop(3)
                 .map((name, shortName) =>
-                  UList.item(_.image := MTG.manaSymbolsRefs(shortName), _.description := name, name)
+                  UList.item(
+                    _.slots.image := Avatar(img(src := MTG.manaSymbolsRefs(shortName))),
+                    _.description := name,
+                    name
+                  )
                 )
             )
           )
@@ -99,15 +107,15 @@ object CardExample extends Example("Card") {
             |""".stripMargin),
         Card(
           _.slots.header := Card
-            .header(_.titleText := "New Purchase Orders", _.subtitleText := "Today", _.status := "3 of 15"),
+            .header(_.titleText := "New Purchase Orders", _.subtitleText := "Today", _.additionalText := "3 of 15"),
           Table(
-            className := contentPadding,
+            className       := contentPadding,
             _.slots.columns := TableColumn(Label("Sales Order")),
             _.slots.columns := TableColumn(Label("Customer")),
             _.slots.columns := TableColumn(Label("Net Amount")),
             _.slots.columns := TableColumn(
-              _.minWidth := 450,
-              _.popinText := "Status",
+              _.minWidth    := 450,
+              _.popinText   := "Status",
               _.demandPopin := true,
               Label("Status")
             ),

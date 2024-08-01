@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.IconDesign
+import be.doeraene.webcomponents.ui5.configkeys.IconMode
 
 /** The ui5-icon component represents an SVG icon. There are two main scenarios how the ui5-icon component is used: as a
   * purely decorative element; or as a visually appealing clickable area in the form of an icon button.
@@ -37,9 +38,12 @@ object Icon extends WebComponent with HasAccessibleName {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-icon")
 
   lazy val name: HtmlAttr[IconName] = htmlAttr("name", IconName.AsStringCodec)
+  lazy val mode: HtmlAttr[IconMode] = IconMode.asHtmlAttr("mode")
 
-  lazy val interactive: HtmlAttr[Boolean] =
-    htmlAttr("interactive", BooleanAsAttrPresenceCodec)
+  @scala.annotation.compileTimeOnly(
+    "The properties interactive and accessibleRole have been removed and replaced by property mode with the following values. Interactive: the icon will have role='button' and focus and press handling to enhance interactivity."
+  )
+  def interactive: HtmlAttr[Boolean] = ???
 
   lazy val showTooltip: HtmlAttr[Boolean] =
     htmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)

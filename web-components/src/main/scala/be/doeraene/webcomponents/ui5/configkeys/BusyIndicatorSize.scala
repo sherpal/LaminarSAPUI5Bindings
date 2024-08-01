@@ -6,12 +6,19 @@ sealed trait BusyIndicatorSize {
 
 object BusyIndicatorSize extends EnumerationString[BusyIndicatorSize] {
 
-  case object Small extends BusyIndicatorSize
-  case object Medium extends BusyIndicatorSize
-  case object Large extends BusyIndicatorSize
+  case object S extends BusyIndicatorSize
+  case object M extends BusyIndicatorSize
+  case object L extends BusyIndicatorSize
+
+  @deprecated("Small has been renamed to S", since = "2.0.0")
+  def Small = S
+  @deprecated("Medium has been renamed to M", since = "2.0.0")
+  def Medium = M
+  @deprecated("Large has been renamed to L", since = "2.0.0")
+  def Large = L
 
   override def valueOf(value: BusyIndicatorSize): String = value.value
 
-  override val allValues: List[BusyIndicatorSize] = List(Small, Medium, Large)
+  override val allValues: List[BusyIndicatorSize] = deriveAllValues
 
 }

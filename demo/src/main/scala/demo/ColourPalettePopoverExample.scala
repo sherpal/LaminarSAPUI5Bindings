@@ -22,11 +22,12 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
           child.text <-- chosenColourBus.events.map(colour => s"Selected colour: $colour").startWith("No selection yet")
         ),
         Button(
+          idAttr := "Color-Palette-Popover-with-recent-colors,-default-color-and-more-colors-features-Button",
           "Open ColourPalettePopover",
           _.events.onClick.mapToEvent.map(_.target) --> openPopoverBus.writer
         ),
         ColourPalettePopover(
-          _.showAtFromEvents(openPopoverBus.events),
+          _.showAtOpenerIdFromEvents(openPopoverBus.events.map(_.id)),
           ColourPaletteExample.someColourPaletteItems,
           _.showRecentColours := true,
           _.showMoreColours   := true,
@@ -40,14 +41,17 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
     },
     DemoPanel("Color Palette Popover without any additional features") {
       //-- Begin: Color Palette Popover without any additional features
-      val openPopoverBus: EventBus[HTMLElement] = new EventBus
+      val openPopoverBus: EventBus[Unit] = new EventBus
+      val openerId                       = "Color-Palette-Popover-without-any-additional-features-Button"
       div(
         Button(
           "Open ColourPalettePopover",
-          _.events.onClick.mapToEvent.map(_.target) --> openPopoverBus.writer
+          idAttr := openerId,
+          _.events.onClick.mapTo(()) --> openPopoverBus.writer
         ),
         ColourPalettePopover(
-          _.showAtFromEvents(openPopoverBus.events),
+          _.openerId := openerId,
+          _.open    <-- openPopoverBus.events.mapTo(true),
           ColourPaletteExample.someColourPaletteItems,
           _.defaultColour := Colour.green
         )

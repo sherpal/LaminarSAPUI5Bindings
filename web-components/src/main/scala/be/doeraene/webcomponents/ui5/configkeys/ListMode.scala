@@ -6,14 +6,28 @@ sealed trait ListMode {
 
 object ListMode extends EnumerationString[ListMode] {
 
-  case object None extends ListMode
-  case object SingleSelect extends ListMode
-  case object SingleSelectBegin extends ListMode
-  case object SingleSelectEnd extends ListMode
-  case object MultiSelect extends ListMode
-  case object Delete extends ListMode
+  sealed trait UploadCollectionMode { self: ListMode =>
+    def uploadCollectionModeValue = self.value
+  }
+  object UploadCollectionMode extends EnumerationString[UploadCollectionMode] {
+    def valueOf(value: UploadCollectionMode): String = value.uploadCollectionModeValue
+    val allValues                                    = deriveAllValues
+  }
 
-  val allValues: List[ListMode] = List(None, SingleSelect, SingleSelectBegin, SingleSelectEnd, MultiSelect, Delete)
+  case object None              extends ListMode with UploadCollectionMode
+  case object Single            extends ListMode with UploadCollectionMode
+  case object SingleSelectBegin extends ListMode with UploadCollectionMode
+  case object SingleSelectEnd   extends ListMode with UploadCollectionMode
+  case object SingleSelectAuto  extends ListMode with UploadCollectionMode
+  case object Multiple          extends ListMode with UploadCollectionMode
+  case object Delete            extends ListMode
+
+  @deprecated("SingleSelect ListMode has been renamed to Single")
+  def SingleSelect: ListMode = Single
+  @deprecated("MultiSelect ListMode has been renamed to Multiple")
+  def MultiSelect: ListMode = Multiple
+
+  val allValues: List[ListMode] = deriveAllValues
 
   def valueOf(value: ListMode): String = value.value
 

@@ -14,9 +14,6 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-card-header is a component, meant to be used as a header of the ui5-card component.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Card/">the doc</a> for more information.
   */
 object CardHeader extends WebComponent {
 
@@ -36,11 +33,14 @@ object CardHeader extends WebComponent {
 
   lazy val interactive: HtmlAttr[Boolean] = htmlAttr("interactive", BooleanAsAttrPresenceCodec)
 
-  lazy val status: HtmlAttr[String] = htmlAttr("status", StringAsIsCodec)
+  lazy val additionalText: HtmlAttr[String] = htmlAttr("additional-text", StringAsIsCodec)
 
   lazy val subtitleText: HtmlAttr[String] = htmlAttr("subtitle-text", StringAsIsCodec)
 
   lazy val titleText: HtmlAttr[String] = htmlAttr("title-text", StringAsIsCodec)
+
+  @deprecated("status has been renamed to additionalText", since = "2.0.0")
+  def status: HtmlAttr[String] = additionalText
 
   object slots {
     val action: Slot = new Slot("action")

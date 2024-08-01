@@ -37,6 +37,10 @@ Using these bindings with an earlier version of UI5 will probably show stuff tha
 
 Important: this is only the "Scala part" of the installation. We do *not* manage the dependencies to the npm library itself. See the "How to use" section below.
 
+## Migration to Version 2.x
+
+Please review our [migration note](./VERSION2MIGRATION.md).
+
 ### Note on the Laminar version
 
 This library is built against a certain version of Laminar, but it is set as "provided". That means that you have to depend on Laminar yourself, but (for a large deal) you are not bound to the specific version used here.

@@ -25,12 +25,13 @@ object NotificationAction extends WebComponent with HasText with HasIcon {
   @js.native
   trait RawElement extends js.Object {}
 
-  @js.native
-  @JSImport("@ui5/webcomponents-fiori/dist/NotificationAction.js", JSImport.Default)
-  object RawImport extends js.Object
+  // todo: migration notification action
+  // @js.native
+  // @JSImport("@ui5/webcomponents-fiori/dist/NotificationAction.js", JSImport.Default)
+  // object RawImport extends js.Object
 
-  // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
-  used(RawImport)
+  // // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
+  // used(RawImport)
 
   type Ref = dom.html.Element & RawElement
 

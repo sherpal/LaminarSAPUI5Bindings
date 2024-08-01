@@ -20,13 +20,6 @@ object DialogExample extends Example("Dialog") {
           "Open Dialog",
           _.events.onClick.mapTo(true) --> openDialogBus.writer
         ),
-        div(
-          MessageStrip(
-            _.design := MessageStripDesign.Information,
-            "The opening of this dialog works using an `EventBus`. " +
-              "Clicking on the 'Open Dialog' button writes to the bus, and the Dialog listens to it."
-          )
-        ),
         Dialog(
           _.showFromEvents(openDialogBus.events.filter(identity).mapTo(())),
           _.closeFromEvents(openDialogBus.events.map(!_).filter(identity).mapTo(())),
@@ -35,15 +28,15 @@ object DialogExample extends Example("Dialog") {
             className := loginFormClass,
             div(
               Label(_.forId := "username", _.required := true, "Username:"),
-              Input(_.id := "username")
+              Input(_.id    := "username")
             ),
             div(
               Label(_.forId := "password", _.required := true, "Password:"),
-              Input(_.id := "password", _.tpe := InputType.Password, _.valueState := ValueState.Error)
+              Input(_.id    := "password", _.tpe      := InputType.Password, _.valueState := ValueState.Negative)
             ),
             div(
               Label(_.forId := "email", _.required := true, "Email:"),
-              Input(_.id := "email", _.tpe := InputType.Email)
+              Input(_.id    := "email", _.tpe      := InputType.Email)
             )
           ),
           _.slots.footer := div(
@@ -60,21 +53,14 @@ object DialogExample extends Example("Dialog") {
     },
     DemoPanel("Draggable and Resizable Dialog") {
       //-- Begin: Draggable and Resizable Dialog
-      val dialogId = "the-dialog-id"
+      val openDialogBus: EventBus[Boolean] = new EventBus
       div(
         Button(
           "Open Draggable/Resizable dialog",
-          _.events.onClick.mapTo(Dialog.getDialogById(dialogId)) --> Observer[Option[Dialog.Ref]] {
-            case Some(dialog) => dialog.show()
-            case None         => throw new IllegalStateException(s"The Dialog with id $dialogId does not exist.")
-          }
-        ),
-        MessageStrip(
-          _.design := MessageStripDesign.Information,
-          "The opening of this dialog works by finding the dialog by id (with `Dialog.getDialogById`)."
+          _.events.onClick.mapTo(true) --> openDialogBus.writer
         ),
         Dialog(
-          _.id := dialogId,
+          _.open      <-- openDialogBus.events,
           _.headerText := "Draggable/Resizable dialog",
           sectionTag(
             "Resize this dialog by dragging it by its resize handle.",
@@ -90,10 +76,7 @@ object DialogExample extends Example("Dialog") {
             Button(
               _.design := ButtonDesign.Emphasized,
               "Close",
-              _.events.onClick.mapTo(Dialog.getDialogById(dialogId)) --> Observer[Option[Dialog.Ref]] {
-                case Some(dialog) => dialog.close()
-                case None         => throw new IllegalStateException(s"Dialog with id $dialogId does not exist.")
-              }
+              _.events.onClick.mapTo(false) --> openDialogBus.writer
             )
           ),
           _.draggable := true,

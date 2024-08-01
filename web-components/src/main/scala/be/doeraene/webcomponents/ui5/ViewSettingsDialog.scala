@@ -17,22 +17,25 @@ import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-view-settings-dialog component helps the user to sort data within a list or a table. It consists of several
   * lists like Sort order which is built-in and Sort By and Filter By lists, for which you must be provide
-  * items(ui5-sort-item & ui5-filter-item respectively) These options can be used to create sorters for a table. The
-  * ui5-view-settings-dialog interrupts the current application processing as it is the only focused UI element and the
-  * main screen is dimmed/blocked. The ui5-view-settings-dialog is modal, which means that user action is required
-  * before returning to the parent window is possible.
+  * items(ui5-sort-item & ui5-filter-item respectively) These options can be used to create sorters for a table.
   *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ViewSettingsDialog/">the doc</a> for more
-  *   information.
+  * The ui5-view-settings-dialog interrupts the current application processing as it is the only focused UI element and
+  * the main screen is dimmed/blocked. The ui5-view-settings-dialog is modal, which means that user action is required
+  * before returning to the parent window is possible.
   */
 object ViewSettingsDialog extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
     def setConfirmedSettings(settings: ViewSettings): Unit = js.native
+  }
 
-    def show(): Unit = js.native
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("The public show method has been replaced by using the open property", since = "2.0.0")
+      def show(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
+    }
   }
 
   @js.native
@@ -47,6 +50,7 @@ object ViewSettingsDialog extends WebComponent {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-view-settings-dialog")
 
   lazy val sortDescending: HtmlAttr[Boolean] = htmlAttr("sort-descending", BooleanAsAttrPresenceCodec)
+  lazy val open: HtmlAttr[Boolean]           = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
   object slots {
     val filterItems: Slot = Slot("filterItems")
@@ -88,11 +92,13 @@ object ViewSettingsDialog extends WebComponent {
   }
 
   /** Feed an instance of [[ViewSettingsDialog]] ref to this observer in order to show it. */
-  val showObserver: Observer[Ref] = Observer(_.show())
+  @deprecated("showObserver has been replaced by using the open property", since = "2.0.0")
+  def showObserver: Observer[Ref] = Observer(_.show())
 
   /** [[Mod]] showing the [[ViewSettingsDialog]] when the specified stream emits. */
+  @deprecated("showFromEvents has been replaced by using the open property", since = "2.0.0")
   def showFromEvents(viewSettingsDialogShowEvents: EventStream[Unit]) =
-    inContext[ReactiveHtmlElement[Ref]](el => viewSettingsDialogShowEvents.mapTo(el.ref) --> showObserver)
+    open <-- viewSettingsDialogShowEvents.mapTo(true)
 
   /** Feed an instance of [[ViewSettingsDialog]] ref with the desired [[ViewSettings]] to set these to it. */
   val setConfirmedSettingsObserver: Observer[(Ref, ViewSettings)] = Observer(_.setConfirmedSettings(_))

@@ -15,7 +15,7 @@ object ColourPickerExample extends Example("ColourPicker") {
       //-- Begin: Pick Colour
       val maybeChosenColourVar: Var[Option[Colour]] = Var(Option.empty)
       div(
-        ColourPicker(_.events.onChange.map(_.target.colour).map(Some(_)) --> maybeChosenColourVar.writer),
+        ColourPicker(_.events.onChange.map(_.target.value).map(Some(_)) --> maybeChosenColourVar.writer),
         div(
           child.text <-- maybeChosenColourVar.signal.map {
             case Some(colour) => s"You have chosen colour ${colour.rgba}."

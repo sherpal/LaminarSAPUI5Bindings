@@ -88,9 +88,10 @@ object ComboBoxExample extends Example("ComboBox") {
         someOtherCountries
           .groupBy(_.head)
           .toList
-          .flatMap((firstLetter, countries) =>
-            ComboBox.group(_.text := firstLetter.toString()) +: countries.sorted.map(country =>
-              ComboBox.item(_.text := country)
+          .map((firstLetter, countries) =>
+            ComboBox.group(
+              _.headerText := firstLetter.toString(),
+              countries.sorted.map(country => ComboBox.item(_.text := country))
             )
           )
       )

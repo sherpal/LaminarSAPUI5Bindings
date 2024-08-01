@@ -31,14 +31,13 @@ object UploadCollectionExample extends Example("UploadCollection") {
             // from adding twice the same group of file in a row. (The glitch actually exists on their official docs)
             FileUploader(
               _.hideInput := true,
-              _.multiple := true,
+              _.multiple  := true,
               Button(_.icon := IconName.add, _.design := ButtonDesign.Transparent),
               _.events.onChange.map(_.target.files.map(_ -> new js.Date())) --> newFilesArrivedObserver
             )
           ),
           Button("Upload all", _.events.onClick.mapTo(()) --> uploadAllBus.writer)
         ),
-        _.mode := ListMode.Delete,
         _.events.onItemDelete.map(_.detail.item.dataset("index").toInt) --> allStagedFilesVar.updater[Int](
           _.patch(_, Nil, 1)
         ),
@@ -48,7 +47,8 @@ object UploadCollectionExample extends Example("UploadCollection") {
         ),
         children <-- allStagedFilesVar.signal.map(_.zipWithIndex.map { case ((file, selectedAt), index) =>
           UploadCollection.item(
-            _.fileName := file.name,
+            _.hideDeleteButton  := true,
+            _.fileName          := file.name,
             _.fileNameClickable := true,
             s"Selected at: $selectedAt",
             dataAttr("index") := index.toString,
@@ -77,7 +77,7 @@ object UploadCollectionExample extends Example("UploadCollection") {
         ) --> newFilesArrivedObserver,
         children <-- allStagedFilesVar.signal.map(_.zipWithIndex.map { case ((file, selectedAt), index) =>
           UploadCollection.item(
-            _.fileName := file.name,
+            _.fileName          := file.name,
             _.fileNameClickable := true,
             s"Selected at: $selectedAt",
             dataAttr("index") := index.toString,
