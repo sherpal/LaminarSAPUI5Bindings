@@ -38,5 +38,6 @@ object ThemeSelector {
   // registering the themes
   Theming.WebComponentsAssets
   Theming.WebComponentsFioriAssets
+  Theming.WebComponentsCompatAssets
 
 }

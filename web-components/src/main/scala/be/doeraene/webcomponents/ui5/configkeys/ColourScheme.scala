@@ -8,15 +8,15 @@ sealed trait ColourScheme {
 
 object ColourScheme extends EnumerationString[ColourScheme] {
 
-  case object _1 extends ColourScheme
-  case object _2 extends ColourScheme
-  case object _3 extends ColourScheme
-  case object _4 extends ColourScheme
-  case object _5 extends ColourScheme
-  case object _6 extends ColourScheme
-  case object _7 extends ColourScheme
-  case object _8 extends ColourScheme
-  case object _9 extends ColourScheme
+  case object _1  extends ColourScheme
+  case object _2  extends ColourScheme
+  case object _3  extends ColourScheme
+  case object _4  extends ColourScheme
+  case object _5  extends ColourScheme
+  case object _6  extends ColourScheme
+  case object _7  extends ColourScheme
+  case object _8  extends ColourScheme
+  case object _9  extends ColourScheme
   case object _10 extends ColourScheme
 
   inline def fromInt[N <: Int](n: N): ColourScheme =
@@ -33,7 +33,7 @@ object ColourScheme extends EnumerationString[ColourScheme] {
       case 10 => _10
     }
 
-  override val allValues: List[ColourScheme] = _1 :: _2 :: _3 :: _4 :: _5 :: _6 :: _7 :: _8 :: _9 :: _10 :: Nil
+  override val allValues: List[ColourScheme] = deriveAllValues
 
   override def valueOf(value: ColourScheme): String = value.value
 

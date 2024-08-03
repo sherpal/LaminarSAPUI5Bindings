@@ -103,7 +103,9 @@ object UList extends WebComponent with HasAccessibleName {
   )
   def group = ???
 
-  def notificationItem: NotificationListItem.type       = NotificationListItem
+  @scala.annotation.compileTimeOnly("notificationItem has been removed from UList. Use NotificationList instead")
+  def notificationItem: NotificationListItem.type = NotificationListItem
+  @scala.annotation.compileTimeOnly("notificationGroup has been removed from UList. Use NotificationList instead")
   def notificationGroup: NotificationListGroupItem.type = NotificationListGroupItem
 
 }

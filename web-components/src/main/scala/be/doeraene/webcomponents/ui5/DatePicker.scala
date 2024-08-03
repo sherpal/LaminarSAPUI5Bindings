@@ -34,27 +34,31 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
 
     var value: String = js.native
 
-    @scala.annotation.compileTimeOnly(
-      "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
-    )
-    def closePicker(): Unit = js.native
-
     def formatValue(date: js.Date): String = js.native
 
     def isInValidRange(input: String): Boolean = js.native
 
     def isValid(value: String): Boolean = js.native
-
-    @scala.annotation.compileTimeOnly(
-      "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
-    )
-    def openPicker(): Unit = js.native
   }
 
   object RawElement {
     extension (rawElement: RawElement) {
       @deprecated("The methods openPicker(), closePicker() and isOpen() are replaced by open property.")
       def isOpen(): Boolean = rawElement.open
+
+      @deprecated(
+        "The methods openPicker(), closePicker() and isOpen() are replaced by open property.",
+        since = "2.0.0"
+      )
+      def openPicker(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
+
+      @deprecated(
+        "The methods openPicker(), closePicker() and isOpen() are replaced by open property.",
+        since = "2.0.0"
+      )
+      def closePicker(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(false)
     }
   }
 

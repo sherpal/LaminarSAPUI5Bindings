@@ -18,6 +18,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
 import be.doeraene.webcomponents.WebComponent
+import scala.scalajs.js.annotation.JSName
 
 /** A ui5-multi-input field allows the user to enter multiple values, which are displayed as ui5-token. User can choose
   * interaction for creating tokens. Fiori Guidelines say that user should create tokens when:
@@ -92,7 +93,16 @@ object MultiInput extends WebComponent with HasAccessibleName with HasName with 
 
   object events {
     trait HasToken extends js.Object {
-      def token: MultiInput.token.Ref
+      @JSName("tokens")
+      def tokensJS: js.Array[MultiInput.token.Ref]
+    }
+
+    object HasToken {
+      extension (hasToken: HasToken) {
+        def tokens: Vector[MultiInput.token.Ref] = hasToken.tokensJS.toVector
+
+        def token: MultiInput.token.Ref = hasToken.tokensJS.head
+      }
     }
 
     val onTokenDelete: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasToken]] = new EventProp("token-delete")

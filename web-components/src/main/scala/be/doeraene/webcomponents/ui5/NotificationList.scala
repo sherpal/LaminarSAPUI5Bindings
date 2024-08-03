@@ -45,6 +45,7 @@ object NotificationList extends WebComponent {
     val onItemToggle = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-toggle")
   }
 
-  def item = NotificationListItem
+  def item  = NotificationListItem
+  def group = NotificationListGroupItem
 
 }

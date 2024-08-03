@@ -45,7 +45,7 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
     DemoPanel("Illustrated Message with link in subtitle")(
       //-- Begin: Illustrated Message with sub-title slot
       IllustratedMessage(
-        _.name           := IllustratedMessageType.tnt.UnsuccessfulAuth,
+        _.name           := IllustratedMessageType.tnt.Avatar,
         _.slots.title    := Title.h4("Something went wrong..."),
         _.slots.subtitle := div("Please try again or contact us at ", Link("example@example.com"), "."),
         Button(_.icon := IconName.refresh, "Try again")

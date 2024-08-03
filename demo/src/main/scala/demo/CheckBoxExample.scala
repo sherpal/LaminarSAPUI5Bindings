@@ -44,18 +44,20 @@ object CheckBoxExample extends Example("CheckBox") {
       )
       //-- End
     ),
-    DemoPanel("CheckBox with Text Wrapping")(
-      //-- Begin: CheckBox with Text Wrapping
+    DemoPanel("CheckBox text is wrapped by default since 2.0")(
+      //-- Begin: CheckBox text is wrapped by default since 2.0
       div(
         CheckBox(
-          _.text         := "ui5-checkbox with 'wrapping-type=Normal' set and some long text.",
-          _.wrappingType := WrappingType.Normal,
-          width          := "200px"
+          _.text := "ui5-checkbox set and some very long text that will be wrapped. Before 2.0, you needed to explicity set the wrapping-type to Normal.",
+          width := "200px"
         ),
         CheckBox(
-          _.text         := "Another ui5-checkbox with very long text here",
-          _.wrappingType := WrappingType.Normal,
-          width          := "200px"
+          _.text := "Another ui5-checkbox with very long text here",
+          width  := "200px"
+        ),
+        CheckBox(
+          _.text         := "Here the text is cropped because we set wrapping-type to None",
+          _.wrappingType := WrappingType.None
         )
       )
       //-- End

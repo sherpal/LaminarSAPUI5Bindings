@@ -97,8 +97,8 @@ object MultiInputExample extends Example("MultiInput") {
         _.slots.tokens <-- tokenValuesVar.signal.map(_.map(tokenValue => MultiInput.token(_.text := tokenValue))),
         _.events.onChange.map(_.target.value) --> changeBus.writer,
         newValuesChanges --> tokenValuesVar.writer,
-        _.events.onTokenDelete.map(_.detail.token.text) --> tokenValuesVar.updater((values, toRemove) =>
-          values.filterNot(_ == toRemove)
+        _.events.onTokenDelete.map(_.detail.tokens.map(_.text).toSet) --> tokenValuesVar.updater[Set[String]](
+          (values, toRemove) => values.filterNot(toRemove.contains)
         )
       )
       //-- End

@@ -57,7 +57,7 @@ object FileUploaderExample extends Example("FileUploader") {
       //-- Begin: Custom File Uploaders
       div(
         FileUploader(_.hideInput := true, Avatar(_.icon := IconName.upload)),
-        FileUploader(_.hideInput := true, Tag("Upload File"))
+        FileUploader(_.hideInput := true, Button(_.icon := IconName.soccer, "Upload File"))
       )
       //-- End
     },
