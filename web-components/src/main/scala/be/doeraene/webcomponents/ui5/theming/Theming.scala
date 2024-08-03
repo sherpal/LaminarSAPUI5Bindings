@@ -38,4 +38,11 @@ object Theming {
   )
   object WebComponentsFioriAssets extends js.Object
 
+  @js.native
+  @JSImport(
+    "@ui5/webcomponents-compat/dist/Assets.js",
+    JSImport.Namespace
+  )
+  object WebComponentsCompatAssets extends js.Object
+
 }
