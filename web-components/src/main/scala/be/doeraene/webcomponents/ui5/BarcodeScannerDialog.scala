@@ -71,6 +71,9 @@ object BarcodeScannerDialog extends WebComponent {
     val onScanSuccess: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SuccessInfo]] = new EventProp(
       "scan-success"
     )
+
+    val onOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("open")
+    val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
   }
 
   /** You can feed this [[Observer]] with a barcode scanner [[Ref]]s in order to close it. */

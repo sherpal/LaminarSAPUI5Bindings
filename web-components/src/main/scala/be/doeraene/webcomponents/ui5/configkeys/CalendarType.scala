@@ -3,7 +3,7 @@ package be.doeraene.webcomponents.ui5.configkeys
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-trait CalendarType {
+sealed trait CalendarType {
   def value: String = toString
 
   /** You can call this object wherever in your code to be sure that you have support for this [[CalendarType]] */
@@ -52,7 +52,7 @@ object CalendarType extends EnumerationString[CalendarType] {
   @JSImport("@ui5/webcomponents-localization/dist/features/calendar/Persian.js", JSImport.Namespace)
   object PersianImport extends CalendarTypeImporter[Persian.type]
 
-  val allValues: List[CalendarType] = List(Gregorian, Buddhist, Islamic, Japanese, Persian)
+  val allValues: List[CalendarType] = deriveAllValues
 
   def valueOf(value: CalendarType): String = value.value
 }

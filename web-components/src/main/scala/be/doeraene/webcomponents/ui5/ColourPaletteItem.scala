@@ -23,7 +23,11 @@ import be.doeraene.webcomponents.WebComponent
 object ColourPaletteItem extends WebComponent {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    def selected: Boolean
+
+    def value: String
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/ColorPalette.js", JSImport.Default)
@@ -36,7 +40,8 @@ object ColourPaletteItem extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-color-palette-item")
 
-  lazy val value: HtmlAttr[Colour] = htmlAttr("value", Colour.AsStringCodec)
+  lazy val value: HtmlAttr[Colour]     = htmlAttr("value", Colour.AsStringCodec)
+  lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

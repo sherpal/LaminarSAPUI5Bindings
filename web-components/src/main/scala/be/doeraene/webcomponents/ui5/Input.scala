@@ -15,12 +15,9 @@ import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRe
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
 
-/** The ui5-input component allows the user to enter and edit text or numeric values in one line.
+/** <ui5-input> The ui5-input component allows the user to enter and edit text or numeric values in one line.
   *
   * Additionally, you can provide suggestionItems, that are displayed in a popover right under the input.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
 object Input extends WebComponent with HasValue with HasAccessibleName {
 
@@ -75,6 +72,10 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
   object events {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
+
+    val onSelect: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("select")
+    val onOpen: EventProp[EventWithPreciseTarget[Ref]]   = new EventProp("open")
+    val onClose: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("close")
 
     val onSelectionChange: EventProp[
       EventWithPreciseTarget[Ref] &
