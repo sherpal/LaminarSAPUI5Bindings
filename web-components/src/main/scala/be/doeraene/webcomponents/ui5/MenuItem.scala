@@ -11,6 +11,8 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 import scala.concurrent.duration.FiniteDuration
+import be.doeraene.webcomponents.ui5.internal.Slot
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** ui5-menu-item is the item to use inside a ui5-menu. An arbitrary hierarchy structure can be represented by
   * recursively nesting menu items.
@@ -45,6 +47,15 @@ object MenuItem extends WebComponent with HasIcon with HasText {
 
   lazy val loading: HtmlAttr[Boolean]             = htmlAttr("loading", BooleanAsAttrPresenceCodec)
   lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
+
+  object slots {
+    val endContent: Slot   = Slot("endContent")
+    val deleteButton: Slot = Slot("deleteButton")
+  }
+
+  object events {
+    val onDetailClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("detail-click")
+  }
 
   // reference to itself, useful for sub-menus
   def item: MenuItem.type = this

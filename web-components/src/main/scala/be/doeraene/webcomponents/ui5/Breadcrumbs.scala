@@ -62,4 +62,6 @@ object Breadcrumbs extends WebComponent with HasIcon {
 
   def Item: BreadcrumbsItem.type = BreadcrumbsItem
 
+  inline def item = Item
+
 }

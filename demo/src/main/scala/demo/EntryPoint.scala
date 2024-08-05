@@ -34,6 +34,7 @@ object EntryPoint {
         DateRangePickerExample,
         DateTimePickerExample,
         DialogExample,
+        DynamicPageExample,
         DynamicSideContentExample,
         FileUploaderExample,
         FlexibleColumnLayoutExample,
@@ -70,6 +71,7 @@ object EntryPoint {
         SwitchExample,
         TabContainerExample,
         TableExample,
+        TextExample,
         TextAreaExample,
         TimePickerExample,
         TimelineExample,
@@ -174,7 +176,7 @@ object EntryPoint {
           div(
             padding  := "10px",
             minWidth := "40%",
-            maxWidth := "calc(100% - 320px)",
+            width    := "100%",
             child <-- componentNameVar.signal
               .map(
                 _.flatMap(cn => componentsDemo.find(_.name == cn).map(_.completeComponent))

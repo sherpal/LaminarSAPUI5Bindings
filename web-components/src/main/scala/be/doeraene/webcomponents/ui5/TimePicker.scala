@@ -27,19 +27,28 @@ object TimePicker extends WebComponent with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
+    def open: Boolean = js.native
+
     def dateValue: js.Date = js.native
 
     def value: String = js.native
 
-    def closePicker(): Unit = js.native
-
     def formatValue(date: js.Date): String = js.native
 
-    def isOpen(): Boolean = js.native
-
     def isValid(value: String): Boolean = js.native
+  }
 
-    def openPicker(): Unit = js.native
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("isOpen method is deprecated, use the open property instead", since = "2.0.0")
+      def isOpen(): Boolean = rawElement.open
+
+      def closePicker(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(false)
+
+      def openPicker(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
+    }
   }
 
   @js.native
@@ -54,15 +63,12 @@ object TimePicker extends WebComponent with HasValue {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-time-picker")
 
-  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-
-  lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
-
-  lazy val placeholder: HtmlAttr[String] = htmlAttr("placeholder", StringAsIsCodec)
-
-  lazy val readonly: HtmlAttr[Boolean] = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
-
+  lazy val disabled: HtmlAttr[Boolean]      = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val formatPattern: HtmlAttr[String]  = htmlAttr("format-pattern", StringAsIsCodec)
+  lazy val placeholder: HtmlAttr[String]    = htmlAttr("placeholder", StringAsIsCodec)
+  lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val open: HtmlAttr[Boolean]          = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
   object slots {
     val valueStateMessage: Slot = Slot("valueStateMessage")
@@ -71,6 +77,8 @@ object TimePicker extends WebComponent with HasValue {
   object events {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
+    val onOpen: EventProp[EventWithPreciseTarget[Ref]]   = new EventProp("open")
+    val onClose: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("close")
   }
 
 }

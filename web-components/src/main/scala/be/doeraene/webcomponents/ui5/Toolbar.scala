@@ -15,6 +15,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.{TableColumnPopinDisplay, ToolbarAlign}
+import be.doeraene.webcomponents.ui5.configkeys.ToolbarDesign
 
 object Toolbar extends WebComponent {
 
@@ -34,7 +35,8 @@ object Toolbar extends WebComponent {
 
   lazy val accessibleName: HtmlAttr[String]     = htmlAttr("accessible-name", StringAsIsCodec)
   lazy val accessibleNameRef: HtmlAttr[String]  = htmlAttr("accessible-name-ref", StringAsIsCodec)
-  lazy val alignContent: HtmlAttr[ToolbarAlign] = htmlAttr("align-content", ToolbarAlign.AsStringCodec)
+  lazy val alignContent: HtmlAttr[ToolbarAlign] = ToolbarAlign.asHtmlAttr("align-content")
+  lazy val design: HtmlAttr[ToolbarDesign]      = ToolbarDesign.asHtmlAttr("design")
 
   object slots {}
 

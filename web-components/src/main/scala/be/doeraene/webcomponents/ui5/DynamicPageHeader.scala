@@ -1,6 +1,5 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -12,25 +11,24 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
-/** The ui5-mcb-item-group is type of suggestion item, that can be used to split the ui5-multi-combobox suggestions into
-  * groups.
+/** Header of the DynamicPage.
+  *
+  * The DynamicPageHeader ui5-dynamic-page-header is part of the DynamicPage family and is used to serve as header of
+  * the DynamicPage.
   */
-object MultiComboBoxGroupItem extends WebComponent {
+object DynamicPageHeader extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
 
   type Ref = dom.html.Element & RawElement
 
-  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-mcb-item-group")
-
-  lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-dynamic-page-header")
 
   object slots {}
 
   object events {}
-
-  def item = MultiComboBoxItem
 
 }

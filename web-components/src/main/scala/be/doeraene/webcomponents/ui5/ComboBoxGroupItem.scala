@@ -13,12 +13,8 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
-/** The ui5-combobox-group-item is type of suggestion item, that can be used to split the ui5-combobox suggestions into
+/** The ui5-cb-group-item is type of suggestion item, that can be used to split the ui5-combobox suggestions into
   * groups.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ComboBox/">the doc</a> for more
-  *   information.
   */
 object ComboBoxGroupItem extends WebComponent {
 
