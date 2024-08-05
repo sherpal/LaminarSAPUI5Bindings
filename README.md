@@ -60,9 +60,9 @@ First of all, don't panic. You can do the following things:
 These bindings are barely "facades" types for the official UI5 library. They _won't_ work if you don't handle that npm dependency on your own project. You will need the following imports in your `package.json` (or equivalent tool such as scala-js-bundler):
 
 ```
-"@ui5/webcomponents": "1.24.7",
-"@ui5/webcomponents-fiori": "1.24.7",
-"@ui5/webcomponents-icons": "1.24.7"
+"@ui5/webcomponents": "2.0.1",
+"@ui5/webcomponents-fiori": "2.0.1",
+"@ui5/webcomponents-icons": "2.0.1"
 ```
 
 (and thus `npm install` it). Then, you can use any of the components as defined in the `be.doeraene.webcomponents.ui5` package.
