@@ -24,7 +24,16 @@ import be.doeraene.webcomponents.WebComponent
 object UList extends WebComponent with HasAccessibleName {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    @JSName("listItems")
+    def listItemsJS: js.Array[item.Ref] = js.native
+  }
+
+  object RawElement extends js.Object {
+    extension (rawElement: RawElement) {
+      def listItems: List[item.Ref] = rawElement.listItemsJS.toList
+    }
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/List.js", JSImport.Default)
@@ -85,6 +94,13 @@ object UList extends WebComponent with HasAccessibleName {
 
     val onSelectionChange =
       new EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeDetail]]("selection-change")
+
+    lazy val onMove: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[item.Ref]]] = new EventProp(
+      "move"
+    )
+    lazy val onMoveOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[item.Ref]]] = new EventProp(
+      "move-over"
+    )
   }
 
   object slots {

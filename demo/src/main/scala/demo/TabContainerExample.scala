@@ -4,6 +4,9 @@ import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
+import demo.helpers.MTG
+import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
+import org.scalajs.dom
 
 object TabContainerExample extends Example("TabContainer") {
 
@@ -127,7 +130,42 @@ object TabContainerExample extends Example("TabContainer") {
         )
       )
       //-- End
-    )
+    ),
+    DemoPanel("Tabs with Drag and Drop (since 2.0)") {
+      //-- Begin: Tabs with Drag and Drop (since 2.0)
+      case class TabWithPlacement(text: String, index: Int)
+      val tabsVar = Var(Vector("tab1", "tab2", "tab3", "tab4"))
+
+      val moveBus: EventBus[MoveEventDetail[dom.html.Element]] = new EventBus
+      val moveHandler = moveBus.events.withCurrentValueOf(tabsVar.signal).map { (eventDetail, tabs) =>
+        val sourceIndex           = eventDetail.source.element.dataset("index").toInt
+        val destinationIndexShift = if eventDetail.destination.placement == "Before" then 0 else 1
+        val destinationIndex      = eventDetail.destination.element.dataset("index").toInt + destinationIndexShift
+
+        val tabsSourceRemoved = tabs.patch(sourceIndex, Nil, 1)
+        val tabsAfterChange =
+          if destinationIndex < sourceIndex then tabsSourceRemoved.patch(destinationIndex, List(tabs(sourceIndex)), 0)
+          else tabsSourceRemoved.patch(destinationIndex - 1, List(tabs(sourceIndex)), 0)
+        tabsAfterChange
+      }
+
+      TabContainer(
+        children <-- tabsVar.signal
+          .map(_.zipWithIndex.map(TabWithPlacement(_, _)))
+          .map(_.map { tab =>
+            Tab(
+              _.movable         := true,
+              dataAttr("index") := tab.index.toString,
+              _.text            := tab.text,
+              s"This is the content for tab ${tab.text}"
+            )
+          }),
+        _.events.onMoveOver.preventDefault --> Observer.empty,
+        _.events.onMove.map(_.detail) --> moveBus.writer,
+        moveHandler --> tabsVar.writer
+      )
+      //-- End
+    }
   )
 
 }

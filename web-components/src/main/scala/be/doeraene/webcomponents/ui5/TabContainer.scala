@@ -13,6 +13,8 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** Tab container
   *
@@ -71,7 +73,14 @@ object TabContainer extends WebComponent {
       def tabIndex: Int = js.native
     }
 
-    val onTabSelect: EventProp[dom.Event & HasDetail[TabSelectDetail]] = new EventProp("tab-select")
+    val onTabSelect: EventProp[EventWithPreciseTarget[Ref] & HasDetail[TabSelectDetail]] = new EventProp("tab-select")
+
+    lazy val onMove: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[tab.Ref]]] = new EventProp(
+      "move"
+    )
+    lazy val onMoveOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[tab.Ref]]] = new EventProp(
+      "move-over"
+    )
   }
 
   def tab: Tab.type = Tab
