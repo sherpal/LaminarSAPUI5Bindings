@@ -79,7 +79,16 @@ object TreeExample extends Example("Tree") {
         )
       )
       //-- End
-    )
+    ),
+    DemoPanel("Tree with Drag and Drop (since 2.0)") {
+      //-- Begin: Tree with Drag and Drop (since 2.0)
+      MessageStrip(
+        "Looking for an example with Drag and Drop? Check out examples for tabs or lists, they are similar (you can also contribute to make one here!)",
+        _.design          := MessageStripDesign.Information,
+        _.hideCloseButton := true
+      )
+      //-- End
+    }
   )
 
 }

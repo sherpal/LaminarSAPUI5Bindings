@@ -13,11 +13,8 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
-/** Element contained in a [[TabContainer]].
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TabContainer/">the doc</a> for more
-  *   information.
+/** The ui5-tab represents a selectable item inside a ui5-tabcontainer. It defines both the item in the tab strip (top
+  * part of the ui5-tabcontainer) and the content that is presented to the user once the tab is selected.
   */
 object Tab extends WebComponent with HasIcon with HasText {
 
@@ -44,12 +41,11 @@ object Tab extends WebComponent with HasIcon with HasText {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tab")
 
-  lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
-
+  lazy val disabled: HtmlAttr[Boolean]      = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val selected: HtmlAttr[Boolean]      = htmlAttr("selected", BooleanAsAttrPresenceCodec)
   lazy val design: HtmlAttr[SemanticColour] = htmlAttr("design", SemanticColour.AsStringCodec)
-
   lazy val additionalText: HtmlAttr[String] = htmlAttr("additional-text", StringAsIsCodec)
+  lazy val movable: HtmlAttr[Boolean]       = htmlAttr("movable", BooleanAsAttrPresenceCodec)
 
   object slots {
     @deprecated("subTabs Tab slot has been renamed to items")

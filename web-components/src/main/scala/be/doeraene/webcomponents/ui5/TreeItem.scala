@@ -42,13 +42,14 @@ object TreeItem extends WebComponent with HasIcon with HasText {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tree-item")
 
-  lazy val expanded: HtmlAttr[Boolean]     = htmlAttr[Boolean]("expanded", BooleanAsAttrPresenceCodec)
-  lazy val hasChildren: HtmlAttr[Boolean]  = htmlAttr[Boolean]("has-children", BooleanAsAttrPresenceCodec)
-  lazy val intermediate: HtmlAttr[Boolean] = htmlAttr[Boolean]("intermediate", BooleanAsAttrPresenceCodec)
-  lazy val selected: HtmlAttr[Boolean]     = htmlAttr[Boolean]("selected", BooleanAsAttrPresenceCodec)
+  lazy val expanded: HtmlAttr[Boolean]     = htmlAttr("expanded", BooleanAsAttrPresenceCodec)
+  lazy val hasChildren: HtmlAttr[Boolean]  = htmlAttr("has-children", BooleanAsAttrPresenceCodec)
+  lazy val intermediate: HtmlAttr[Boolean] = htmlAttr("intermediate", BooleanAsAttrPresenceCodec)
+  lazy val selected: HtmlAttr[Boolean]     = htmlAttr("selected", BooleanAsAttrPresenceCodec)
   lazy val highlight: HtmlAttr[ValueState] = ValueState.asHtmlAttr("highlight")
   lazy val tooltip: HtmlAttr[String]       = htmlAttr("tooltip", StringAsIsCodec)
-  lazy val navigated: HtmlAttr[Boolean]    = htmlAttr[Boolean]("navigated", BooleanAsAttrPresenceCodec)
+  lazy val navigated: HtmlAttr[Boolean]    = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
+  lazy val movable: HtmlAttr[Boolean]      = htmlAttr("movable", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

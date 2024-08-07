@@ -43,6 +43,7 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
   lazy val tpe: HtmlAttr[ListItemType]     = ListItemType.asHtmlAttr("type")
   lazy val selected: HtmlAttr[Boolean]     = htmlAttr("selected", BooleanAsAttrPresenceCodec)
   lazy val highlight: HtmlAttr[ValueState] = ValueState.asHtmlAttr("highlight")
+  lazy val movable: HtmlAttr[Boolean]      = htmlAttr("movable", BooleanAsAttrPresenceCodec)
 
   @scala.annotation.compileTimeOnly("The image property has been replaced by the image slot.")
   def image: HtmlAttr[String] = ???

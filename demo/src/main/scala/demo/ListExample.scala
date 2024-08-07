@@ -4,6 +4,8 @@ import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
+import demo.helpers.MTG
+import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
 
 object ListExample extends Example("List") {
 
@@ -210,6 +212,37 @@ object ListExample extends Example("List") {
             )
         ),
         Toast(_.showFromTextEvents(countryDeleteBus.events.map(country => s"Should delete $country")))
+      )
+      //-- End
+    },
+    DemoPanel("Example of drag and drop (since 2.0.0)") {
+      //-- Begin: Example of drag and drop (since 2.0.0)
+      case class CardWithPlacement(card: MTG.Card, index: Int)
+      val cardsVar = Var(MTG.cards)
+
+      val moveBus: EventBus[MoveEventDetail[UList.item.Ref]] = new EventBus
+      val moveHandler = moveBus.events.withCurrentValueOf(cardsVar.signal).map { (eventDetail, cards) =>
+        val sourceIndex           = eventDetail.source.element.dataset("index").toInt
+        val destinationIndexShift = if eventDetail.destination.placement == "Before" then 0 else 1
+        val destinationIndex      = eventDetail.destination.element.dataset("index").toInt + destinationIndexShift
+
+        val cardsSourceRemoved = cards.patch(sourceIndex, Nil, 1)
+        val cardsAfterChange =
+          if destinationIndex < sourceIndex then cardsSourceRemoved.patch(destinationIndex, List(cards(sourceIndex)), 0)
+          else cardsSourceRemoved.patch(destinationIndex - 1, List(cards(sourceIndex)), 0)
+        cardsAfterChange
+      }
+
+      UList(
+        _.headerText := "You can change items order!",
+        children <-- cardsVar.signal
+          .map(_.zipWithIndex.map(CardWithPlacement(_, _)))
+          .map(_.map { card =>
+            UList.item(_.movable := true, dataAttr("index") := card.index.toString, card.card.name)
+          }),
+        _.events.onMoveOver.preventDefault --> Observer.empty,
+        _.events.onMove.map(_.detail) --> moveBus.writer,
+        moveHandler --> cardsVar.writer
       )
       //-- End
     }
