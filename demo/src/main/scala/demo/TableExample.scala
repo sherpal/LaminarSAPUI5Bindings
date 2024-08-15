@@ -36,19 +36,19 @@ object TableExample extends Example("Table") {
           span("Cards table - resize your browser to make some columns pop-in"),
           Button(_.events.onClick.mapTo(()) --> toggleStickyHeaderBus, "Toggle Sticky Column Header")
         ),
-        Table(
+        compat.Table(
           _.stickyColumnHeader <-- stickyHeaderSignal,
-          _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
-          _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
-          _.slots.columns := Table.column(
-            _.minWidth := 600,
-            _.popinText := "Comment",
+          _.slots.columns       := compat.Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+          _.slots.columns       := compat.Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
+          _.slots.columns := compat.Table.column(
+            _.minWidth    := 600,
+            _.popinText   := "Comment",
             _.demandPopin := true,
             span(lineHeight := "1.4rem", "Comment")
           ),
-          _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+          _.slots.columns := compat.Table.column(span(lineHeight := "1.4rem", "Cost")),
           MTG.cards.map(card =>
-            Table.row(
+            compat.Table.row(
               _.cell(card.name),
               _.cell(card.tpe),
               _.cell(card.comment),
@@ -61,19 +61,19 @@ object TableExample extends Example("Table") {
     },
     DemoPanel("Table in SingleSelect-mode")(
       //-- Begin: Table in SingleSelect-mode
-      Table(
-        _.mode := TableMode.SingleSelect,
-        _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
-        _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
-        _.slots.columns := Table.column(
-          _.minWidth := 600,
-          _.popinText := "Comment",
+      compat.Table(
+        _.mode          := TableMode.SingleSelect,
+        _.slots.columns := compat.Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+        _.slots.columns := compat.Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
+        _.slots.columns := compat.Table.column(
+          _.minWidth    := 600,
+          _.popinText   := "Comment",
           _.demandPopin := true,
           span(lineHeight := "1.4rem", "Comment")
         ),
-        _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+        _.slots.columns := compat.Table.column(span(lineHeight := "1.4rem", "Cost")),
         MTG.cards.map(card =>
-          Table.row(
+          compat.Table.row(
             _.cell(card.name),
             _.cell(card.tpe),
             _.cell(card.comment),
@@ -85,20 +85,20 @@ object TableExample extends Example("Table") {
     ),
     DemoPanel("Table in MultiSelect mode")(
       //-- Begin: Table in MultiSelect mode"
-      Table(
+      compat.Table(
         _.events.onSelectionChange.map(_.detail.selectedRows.map(_.dataset.toMap)) --> Observer(println),
-        _.mode := TableMode.MultiSelect,
-        _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
-        _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
-        _.slots.columns := Table.column(
-          _.minWidth := 600,
-          _.popinText := "Comment",
+        _.mode          := TableMode.MultiSelect,
+        _.slots.columns := compat.Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+        _.slots.columns := compat.Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
+        _.slots.columns := compat.Table.column(
+          _.minWidth    := 600,
+          _.popinText   := "Comment",
           _.demandPopin := true,
           span(lineHeight := "1.4rem", "Comment")
         ),
-        _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+        _.slots.columns := compat.Table.column(span(lineHeight := "1.4rem", "Cost")),
         MTG.cards.map(card =>
-          Table.row(
+          compat.Table.row(
             dataAttr("card-name") := card.name,
             _.cell(card.name),
             _.cell(card.tpe),
@@ -111,17 +111,17 @@ object TableExample extends Example("Table") {
     ),
     DemoPanel("Table with No Data")(
       //-- Begin: Table with No Data
-      Table(
-        _.noDataText := "No Data",
-        _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
-        _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
-        _.slots.columns := Table.column(
-          _.minWidth := 600,
-          _.popinText := "Comment",
+      compat.Table(
+        _.noDataText    := "No Data",
+        _.slots.columns := compat.Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+        _.slots.columns := compat.Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
+        _.slots.columns := compat.Table.column(
+          _.minWidth    := 600,
+          _.popinText   := "Comment",
           _.demandPopin := true,
           span(lineHeight := "1.4rem", "Comment")
         ),
-        _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost"))
+        _.slots.columns := compat.Table.column(span(lineHeight := "1.4rem", "Cost"))
       )
       //-- End
     ),
@@ -141,25 +141,25 @@ object TableExample extends Example("Table") {
         .scanLeft(0)(_ + _)
         .map(_ > 0)
 
-      Table(
-        _.busy <-- busyState,
+      compat.Table(
+        _.busy   <-- busyState,
         _.growing := TableGrowingMode.Button,
         _.growingButtonSubtext <-- numberOfLoadedCards
           .map(_ min totalNumberOfCards)
           .map(n => s"[$n / $totalNumberOfCards]"),
         _.events.onLoadMore.mapTo(()) --> loadMoreBus,
-        _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
-        _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
-        _.slots.columns := Table.column(
-          _.minWidth := 600,
-          _.popinText := "Comment",
+        _.slots.columns := compat.Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+        _.slots.columns := compat.Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
+        _.slots.columns := compat.Table.column(
+          _.minWidth    := 600,
+          _.popinText   := "Comment",
           _.demandPopin := true,
           span(lineHeight := "1.4rem", "Comment")
         ),
-        _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+        _.slots.columns := compat.Table.column(span(lineHeight := "1.4rem", "Cost")),
         children <-- cardsToDisplay.map(
           _.map(card =>
-            Table.row(
+            compat.Table.row(
               dataAttr("card-name") := card.name,
               _.cell(card.name),
               _.cell(card.tpe),
@@ -189,23 +189,23 @@ object TableExample extends Example("Table") {
 
       div(
         overflowY := "scroll",
-        height := "400px",
-        Table(
-          _.busy <-- busyState,
+        height    := "400px",
+        compat.Table(
+          _.busy   <-- busyState,
           _.growing := TableGrowingMode.Scroll,
           _.events.onLoadMore.mapTo(()) --> loadMoreBus,
-          _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
-          _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
-          _.slots.columns := Table.column(
-            _.minWidth := 600,
-            _.popinText := "Comment",
+          _.slots.columns := compat.Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+          _.slots.columns := compat.Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
+          _.slots.columns := compat.Table.column(
+            _.minWidth    := 600,
+            _.popinText   := "Comment",
             _.demandPopin := true,
             span(lineHeight := "1.4rem", "Comment")
           ),
-          _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+          _.slots.columns := compat.Table.column(span(lineHeight := "1.4rem", "Cost")),
           children <-- cardsToDisplay.map(
             _.map(card =>
-              Table.row(
+              compat.Table.row(
                 dataAttr("card-name") := card.name,
                 _.cell(card.name),
                 _.cell(card.tpe),
@@ -220,11 +220,11 @@ object TableExample extends Example("Table") {
     },
     DemoPanel("Table with grouping (SingleSelect)")(
       //-- Begin: Table with grouping (SingleSelect)
-      Table(
-        _.mode := TableMode.SingleSelect,
-        _.slots.columns := Table.column(Label("City")),
-        _.slots.columns := Table.column(Label("Population")),
-        _.slots.columns := Table.column(Label("Country")),
+      compat.Table(
+        _.mode          := TableMode.SingleSelect,
+        _.slots.columns := compat.Table.column(Label("City")),
+        _.slots.columns := compat.Table.column(Label("Population")),
+        _.slots.columns := compat.Table.column(Label("Country")),
         _.groupRow("Country: Belgium"),
         _.row(_.cell("Brussels"), _.cell("1.2 millions"), _.cell("Belgium")),
         _.row(_.cell("Antwerp"), _.cell("500,000"), _.cell("Belgium")),
@@ -248,18 +248,18 @@ object TableExample extends Example("Table") {
             )
           )
         ),
-        Table(
-          _.slots.columns := Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
-          _.slots.columns := Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
-          _.slots.columns := Table.column(
-            _.minWidth := 600,
-            _.popinText := "Comment",
+        compat.Table(
+          _.slots.columns := compat.Table.column(width := "12rem", span(lineHeight := "1.4rem", "Card")),
+          _.slots.columns := compat.Table.column(_.minWidth := 800, span(lineHeight := "1.4rem", "Type")),
+          _.slots.columns := compat.Table.column(
+            _.minWidth    := 600,
+            _.popinText   := "Comment",
             _.demandPopin := true,
             span(lineHeight := "1.4rem", "Comment")
           ),
-          _.slots.columns := Table.column(span(lineHeight := "1.4rem", "Cost")),
+          _.slots.columns := compat.Table.column(span(lineHeight := "1.4rem", "Cost")),
           MTG.cards.map(card =>
-            Table.row(
+            compat.Table.row(
               _.navigated <-- isCurrentNavigatedCardSignal(card),
               _.cell(card.name),
               _.cell(card.tpe),

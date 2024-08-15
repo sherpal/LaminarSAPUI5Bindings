@@ -108,30 +108,30 @@ object CardExample extends Example("Card") {
         Card(
           _.slots.header := Card
             .header(_.titleText := "New Purchase Orders", _.subtitleText := "Today", _.additionalText := "3 of 15"),
-          Table(
+          compat.Table(
             className       := contentPadding,
-            _.slots.columns := TableColumn(Label("Sales Order")),
-            _.slots.columns := TableColumn(Label("Customer")),
-            _.slots.columns := TableColumn(Label("Net Amount")),
-            _.slots.columns := TableColumn(
+            _.slots.columns := compat.TableColumn(Label("Sales Order")),
+            _.slots.columns := compat.TableColumn(Label("Customer")),
+            _.slots.columns := compat.TableColumn(Label("Net Amount")),
+            _.slots.columns := compat.TableColumn(
               _.minWidth    := 450,
               _.popinText   := "Status",
               _.demandPopin := true,
               Label("Status")
             ),
-            TableRow(
+            compat.TableRow(
               _.cell(Label("5000010050")),
               _.cell(Label("Entertainment Argentinia")),
               _.cell(Label("6k USD")),
               _.cell(className := statusSuccess, "Approved")
             ),
-            TableRow(
+            compat.TableRow(
               _.cell(Label("5000010051")),
               _.cell(Label("Brazil Technologies")),
               _.cell(Label("2k USD")),
               _.cell(className := statusError, "Rejected")
             ),
-            TableRow(
+            compat.TableRow(
               _.cell(Label("5000010052")),
               _.cell(Label("Robert Brown Ent.")),
               _.cell(Label("17k USD")),
