@@ -10,15 +10,13 @@ import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
-import scala.compiletime.ops.int.<=
-
 import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.TableColumnPopinDisplay
 
-object Table extends WebComponent {
+object TableCompat extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -54,16 +52,16 @@ object Table extends WebComponent {
 
     @js.native
     trait TableSelectionChangeDetail extends js.Object {
-      def previouslySelectedRows: js.Array[TableRow.Ref] = js.native
+      def previouslySelectedRows: js.Array[TableRowCompat.Ref] = js.native
 
-      def selectedRows: js.Array[TableRow.Ref] = js.native
+      def selectedRows: js.Array[TableRowCompat.Ref] = js.native
     }
 
     val onSelectionChange = new EventProp[dom.Event & HasDetail[TableSelectionChangeDetail]]("selection-change")
   }
 
-  def column: TableColumn.type = TableColumn
-  def row: TableRow.type       = TableRow
+  def column: TableColumnCompat.type = TableColumnCompat
+  def row: TableRowCompat.type       = TableRowCompat
 
   def groupRow(mods: Mod[ReactiveHtmlElement[dom.HTMLElement]]*): HtmlElement =
     htmlTag[dom.HTMLElement]("ui5-table-group-row")(mods*)

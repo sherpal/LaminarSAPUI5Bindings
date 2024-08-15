@@ -12,7 +12,7 @@ Despite that, some changes live outside of these compiler messages, and we highl
 
 ## 🚨 Breaking changes requiring your attention
 
-1. Table has changed, and requires a new npm package import. If you were using the `Table` component, you need to add this extra package import in your `package.json`: `"@ui5/webcomponents-compat": "2.0.1"`.
+1. Table has changed, and requires a new npm package import. If you were using the `Table` component, you need to add this extra package import in your `package.json`: `"@ui5/webcomponents-compat": "2.0.1"`. Also, since there will be a new `Table`, we moved the current Table implementation inside a `compat` object. This will be notified via deprecation notice, unless you skipped 2.0.0 and went directly higher, then you will end up with the new one "by mistake".
 2. The default value of wrapping types has been switch. if you want to have word wrapping, you now need to actively add `_.wrappingType := WrappingType.None`
 3. In ComboBox with groups, grouping is now done via nesting of items inside the groups, rather than a flat structure
 

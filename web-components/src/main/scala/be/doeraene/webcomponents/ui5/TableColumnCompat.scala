@@ -15,7 +15,7 @@ import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.TableColumnPopinDisplay
 
-object TableColumn extends WebComponent {
+object TableColumnCompat extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
