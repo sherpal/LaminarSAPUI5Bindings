@@ -27,7 +27,7 @@ object LabelExample extends Example("Label") {
     ),
     DemoPanel("Truncated Label")(
       //-- Begin: Truncated Label
-      Label(width := "200px", "Long labels are truncated by default.")
+      Label(width := "200px", _.wrappingType := WrappingType.None, "Long labels are truncated with wrapping type None.")
       //-- End
     ),
     DemoPanel("Label 'for'")(
@@ -38,10 +38,10 @@ object LabelExample extends Example("Label") {
         div(
           Label(_.id := "myLabel", _.forId := "myInput", _.required := true, _.showColon := true, "First name"),
           Input(
-            _.id := "myInput",
-            aria.required := true,
+            _.id                := "myInput",
+            aria.required       := true,
             _.accessibleNameRef := "myLabel",
-            _.placeholder := "Enter your name"
+            _.placeholder       := "Enter your name"
           )
         ),
         div(
@@ -51,8 +51,8 @@ object LabelExample extends Example("Label") {
         div(
           Label(_.id := "myLabel3", _.forId := "mySelect", _.required := true, _.showColon := true, "Job"),
           Select(
-            _.id := "mySelect",
-            aria.required := true,
+            _.id                := "mySelect",
+            aria.required       := true,
             _.accessibleNameRef := "myLabel3",
             _.option("Manager"),
             _.option("Sales"),
@@ -61,23 +61,23 @@ object LabelExample extends Example("Label") {
         ),
         div(
           Label(
-            _.id := "myLabel4",
-            _.forId := "myTextArea",
-            _.required := true,
+            _.id        := "myLabel4",
+            _.forId     := "myTextArea",
+            _.required  := true,
             _.showColon := true,
             "Description label test"
           ),
           TextArea(
-            _.id := "myTextArea",
+            _.id                := "myTextArea",
             _.accessibleNameRef := "myLabel4",
-            aria.required := true,
-            _.placeholder := "Type as much text as you wish."
+            aria.required       := true,
+            _.placeholder       := "Type as much text as you wish."
           )
         ),
         div(
-          Label(_.forId := "myRB", _.required := true, _.showColon := true, "Gender"),
-          RadioButton(_.id := "myRB", _.name := "a", _.text := "Choice 1"),
-          RadioButton(_.id := "myRB2", _.name := "a", _.checked := true, _.text := "Choice 2")
+          Label(_.forId    := "myRB", _.required := true, _.showColon := true, "Gender"),
+          RadioButton(_.id := "myRB", _.name     := "a", _.text       := "Choice 1"),
+          RadioButton(_.id := "myRB2", _.name    := "a", _.checked    := true, _.text := "Choice 2")
         ),
         div(
           Label(_.forId := "myCB", _.required := true, _.showColon := true, "Accept terms of use"),

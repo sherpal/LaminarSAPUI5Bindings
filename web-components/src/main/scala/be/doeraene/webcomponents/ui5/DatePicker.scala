@@ -15,6 +15,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
+import scala.scalajs.js.annotation.JSName
 
 /** The ui5-date-picker component provides an input field with assigned calendar which opens on user action.
   *
@@ -29,19 +30,36 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
   trait RawElement extends js.Object {
     def dateValue: js.Date = js.native
 
-    var value: String = js.native
+    def open: Boolean = js.native
 
-    def closePicker(): Unit = js.native
+    var value: String = js.native
 
     def formatValue(date: js.Date): String = js.native
 
     def isInValidRange(input: String): Boolean = js.native
 
-    def isOpen(): Boolean = js.native
-
     def isValid(value: String): Boolean = js.native
+  }
 
-    def openPicker(): Unit = js.native
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("The methods openPicker(), closePicker() and isOpen() are replaced by open property.")
+      def isOpen(): Boolean = rawElement.open
+
+      @deprecated(
+        "The methods openPicker(), closePicker() and isOpen() are replaced by open property.",
+        since = "2.0.0"
+      )
+      def openPicker(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
+
+      @deprecated(
+        "The methods openPicker(), closePicker() and isOpen() are replaced by open property.",
+        since = "2.0.0"
+      )
+      def closePicker(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(false)
+    }
   }
 
   @js.native
@@ -76,6 +94,8 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
   lazy val maxDateStr: HtmlAttr[String] = htmlAttr("max-date", StringAsIsCodec)
   lazy val minDateStr: HtmlAttr[String] = htmlAttr("min-date", StringAsIsCodec)
 
+  lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
+
   lazy val primaryCalendarType: HtmlAttr[CalendarType] =
     htmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
 
@@ -93,6 +113,19 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
       def valid: Boolean
     }
 
+    trait DatePickerValueStateChangeEventDetail extends js.Object {
+      def valid: Boolean
+
+      @JSName("valueState")
+      def valueStateJS: String
+    }
+
+    object DatePickerValueStateChangeEventDetail {
+      extension (detail: DatePickerValueStateChangeEventDetail) {
+        def valueState: ValueState = ValueState.AsStringCodec.decode(detail.valueStateJS)
+      }
+    }
+
     val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
     val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
 
@@ -101,6 +134,12 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
 
     val onValidDateInput: EventProcessor[EventWithPreciseTarget[Ref] & HasDetail[DateEventData], String] =
       onInput.map(_.detail).filter(_.valid).map(_.value)
+
+    val onValueStateChange =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DatePickerValueStateChangeEventDetail]](
+        "value-state-change"
+      )
+
   }
 
 }

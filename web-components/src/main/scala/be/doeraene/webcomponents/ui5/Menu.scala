@@ -13,20 +13,30 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
 import scala.concurrent.duration.FiniteDuration
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
-/** Simple UI button
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Menu/">the doc</a> for more information.
+/** ui5-menu component represents a hierarchical menu structure.
   */
 object Menu extends WebComponent {
 
   //noinspection ScalaUnusedSymbol
   @js.native
-  trait RawElement extends js.Object {
-    def close(): Unit = js.native
+  trait RawElement extends js.Object {}
 
-    def showAt(opener: dom.HTMLElement): Unit = js.native
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("close method is replaced by using the open property", since = "2.0.0")
+      def close(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(false)
+
+      @deprecated("showAt method is replaced by using the open and opener property", since = "2.0.0")
+      def showAt(opener: dom.HTMLElement): Unit = {
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("opener")(opener)
+        scala.scalajs.js.timers.setTimeout(0) {
+          rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
+        }
+      }
+    }
   }
 
   @js.native
@@ -40,9 +50,18 @@ object Menu extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-menu")
 
-  lazy val busy: HtmlAttr[Boolean]             = htmlAttr("busy", BooleanAsAttrPresenceCodec)
-  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
-  lazy val headerText: HtmlAttr[String]        = htmlAttr("headerText", StringAsIsCodec)
+  lazy val loading: HtmlAttr[Boolean]             = htmlAttr("loading", BooleanAsAttrPresenceCodec)
+  lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
+  lazy val headerText: HtmlAttr[String]           = htmlAttr("headerText", StringAsIsCodec)
+
+  lazy val open: HtmlAttr[Boolean]    = htmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val openerId: HtmlAttr[String] = htmlAttr("opener", StringAsIsCodec)
+
+  @deprecated("busy was renamed to loading", since = "2.0.0")
+  def busy: HtmlAttr[Boolean] = loading
+
+  @deprecated("busyDelay was renamed to loadingDelay", since = "2.0.0")
+  def busyDelay: HtmlAttr[FiniteDuration] = loadingDelay
 
   object events {
 
@@ -51,16 +70,23 @@ object Menu extends WebComponent {
       def item: dom.HTMLElement = js.native
       def text: String          = js.native
     }
-    val onItemClick = new EventProp[dom.Event & HasDetail[ItemClickDetail]]("item-click")
+    def onItemClick = new EventProp[dom.Event & HasDetail[ItemClickDetail]]("item-click")
 
-    val onAfterClose  = new EventProp[dom.Event]("after-close")
-    val onAfterOpen   = new EventProp[dom.Event]("after-open")
-    val onBeforeClose = new EventProp[dom.Event & HasDetail[HasEscPressed]]("before-close")
-    val onBeforeOpen  = new EventProp[dom.Event & HasDetail[HasItem[MenuItem.Ref]]]("before-open")
+    def onClose       = new EventProp[EventWithPreciseTarget[Ref]]("close")
+    def onOpen        = new EventProp[EventWithPreciseTarget[Ref]]("open")
+    def onBeforeClose = new EventProp[dom.Event & HasDetail[HasEscPressed]]("before-close")
+    def onBeforeOpen  = new EventProp[dom.Event & HasDetail[HasItem[MenuItem.Ref]]]("before-open")
+
+    @deprecated("onAfterClose was renamed to onClose", since = "2.0.0")
+    def onAfterClose = onClose
+
+    @deprecated("onAfterOpen was renamed to onOpen", since = "2.0.0")
+    def onAfterOpen = onOpen
   }
 
   def getMenuById(menuId: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(menuId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
   def item: MenuItem.type = MenuItem
+  def separator           = MenuSeparator
 }

@@ -47,6 +47,9 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/GroupTable.js", JSImport.Namespace)
   object `import-GroupTable` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/NewMail.js", JSImport.Namespace)
+  object `import-NewMail` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/NoActivities.js", JSImport.Namespace)
   object `import-NoActivities` extends js.Object
 
@@ -103,6 +106,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/SearchFolder.js", JSImport.Namespace)
   object `import-SearchFolder` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/SignOut.js", JSImport.Namespace)
+  object `import-SignOut` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/SimpleBalloon.js", JSImport.Namespace)
   object `import-SimpleBalloon` extends js.Object
@@ -221,6 +227,9 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-GroupTable.js", JSImport.Namespace)
   object `import-sapIllus-Dialog-GroupTable` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-NewMail.js", JSImport.Namespace)
+  object `import-sapIllus-Dialog-NewMail` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-NoActivities.js", JSImport.Namespace)
   object `import-sapIllus-Dialog-NoActivities` extends js.Object
 
@@ -277,6 +286,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-SearchFolder.js", JSImport.Namespace)
   object `import-sapIllus-Dialog-SearchFolder` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-SignOut.js", JSImport.Namespace)
+  object `import-sapIllus-Dialog-SignOut` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-SimpleBalloon.js", JSImport.Namespace)
   object `import-sapIllus-Dialog-SimpleBalloon` extends js.Object
@@ -359,6 +371,150 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dialog-UploadToCloud.js", JSImport.Namespace)
   object `import-sapIllus-Dialog-UploadToCloud` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-AddColumn.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-AddColumn` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-AddDimensions.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-AddDimensions` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-AddPeople.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-AddPeople` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-BalloonSky.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-BalloonSky` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-Connection.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-Connection` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-EmptyCalendar.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-EmptyCalendar` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-EmptyList.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-EmptyList` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-EmptyPlanningCalendar.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-EmptyPlanningCalendar` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-ErrorScreen.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-ErrorScreen` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-FilterTable.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-FilterTable` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-GroupTable.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-GroupTable` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-NewMail.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-NewMail` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-NoColumnsSet.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-NoColumnsSet` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-NoDimensionsSet.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-NoDimensionsSet` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-NoFilterResults.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-NoFilterResults` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-NoMail_v1.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-NoMail_v1` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-NoSavedItems_v1.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-NoSavedItems_v1` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-NoSearchResults.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-NoSearchResults` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-NoTasks_v1.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-NoTasks_v1` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-PageNotFound.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-PageNotFound` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-ReloadScreen.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-ReloadScreen` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-ResizeColumn.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-ResizeColumn` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SearchEarth.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SearchEarth` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SearchFolder.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SearchFolder` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SignOut.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SignOut` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleBalloon.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleBalloon` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleBell.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleBell` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleCalendar.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleCalendar` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleCheckMark.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleCheckMark` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleConnection.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleConnection` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleEmptyDoc.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleEmptyDoc` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleEmptyList.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleEmptyList` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleError.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleError` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleMagnifier.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleMagnifier` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleMail.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleMail` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleNoSavedItems.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleNoSavedItems` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleNotFoundMagnifier.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleNotFoundMagnifier` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleReload.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleReload` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SimpleTask.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SimpleTask` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SleepingBell.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SleepingBell` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SortColumn.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SortColumn` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SuccessHighFive.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SuccessHighFive` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-SuccessScreen.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-SuccessScreen` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-Survey.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-Survey` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-Tent.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-Tent` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-UnableToLoadImage.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-UnableToLoadImage` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-UploadCollection.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-UploadCollection` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Dot-UploadToCloud.js", JSImport.Namespace)
+  object `import-sapIllus-Dot-UploadToCloud` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-AddColumn.js", JSImport.Namespace)
   object `import-sapIllus-Scene-AddColumn` extends js.Object
 
@@ -394,6 +550,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-GroupTable.js", JSImport.Namespace)
   object `import-sapIllus-Scene-GroupTable` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-NewMail.js", JSImport.Namespace)
+  object `import-sapIllus-Scene-NewMail` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-NoActivities.js", JSImport.Namespace)
   object `import-sapIllus-Scene-NoActivities` extends js.Object
@@ -451,6 +610,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-SearchFolder.js", JSImport.Namespace)
   object `import-sapIllus-Scene-SearchFolder` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-SignOut.js", JSImport.Namespace)
+  object `import-sapIllus-Scene-SignOut` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Scene-SimpleBalloon.js", JSImport.Namespace)
   object `import-sapIllus-Scene-SimpleBalloon` extends js.Object
@@ -569,6 +731,9 @@ private[configkeys] object IllustratedMessageTypeImports {
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-GroupTable.js", JSImport.Namespace)
   object `import-sapIllus-Spot-GroupTable` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-NewMail.js", JSImport.Namespace)
+  object `import-sapIllus-Spot-NewMail` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-NoActivities.js", JSImport.Namespace)
   object `import-sapIllus-Spot-NoActivities` extends js.Object
 
@@ -625,6 +790,9 @@ private[configkeys] object IllustratedMessageTypeImports {
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-SearchFolder.js", JSImport.Namespace)
   object `import-sapIllus-Spot-SearchFolder` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-SignOut.js", JSImport.Namespace)
+  object `import-sapIllus-Spot-SignOut` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-fiori/dist/illustrations/sapIllus-Spot-SimpleBalloon.js", JSImport.Namespace)
   object `import-sapIllus-Spot-SimpleBalloon` extends js.Object

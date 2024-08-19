@@ -41,7 +41,8 @@ object MessageStrip extends WebComponent {
 
   lazy val hideCloseButton: HtmlAttr[Boolean] = htmlAttr("hide-close-button", BooleanAsAttrPresenceCodec)
 
-  lazy val hideIcon: HtmlAttr[Boolean] = htmlAttr("hide-icon", BooleanAsAttrPresenceCodec)
+  lazy val hideIcon: HtmlAttr[Boolean]          = htmlAttr("hide-icon", BooleanAsAttrPresenceCodec)
+  lazy val colourScheme: HtmlAttr[ColourScheme] = ColourScheme.asHtmlAttr("color-scheme")
 
   object slots {
     val icon: Slot = new Slot("icon")

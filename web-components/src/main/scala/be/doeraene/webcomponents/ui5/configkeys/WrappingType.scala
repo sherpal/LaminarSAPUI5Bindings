@@ -6,10 +6,10 @@ sealed trait WrappingType {
 
 object WrappingType extends EnumerationString[WrappingType] {
 
-  case object None extends WrappingType
+  case object None   extends WrappingType
   case object Normal extends WrappingType
 
-  override val allValues: List[WrappingType] = List(None, Normal)
+  override val allValues: List[WrappingType] = deriveAllValues
 
   override def valueOf(value: WrappingType): String = value.value
 

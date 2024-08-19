@@ -14,12 +14,11 @@ import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
 
-/** A link to another page.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Link/">the doc</a> for more information.
+/** The ui5-link is a hyperlink component that is used to navigate to other apps and web pages, or to trigger actions.
+  * It is a clickable text element, visualized in such a way that it stands out from the standard text. On hover, it
+  * changes its style to an underlined text to provide additional feedback to the user.
   */
-object Link extends WebComponent with HasIcon with HasAccessibleName {
+object Link extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -39,6 +38,9 @@ object Link extends WebComponent with HasIcon with HasAccessibleName {
     htmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val href: HtmlAttr[String]       = htmlAttr("href", StringAsIsCodec)
   lazy val target: HtmlAttr[LinkTarget] = htmlAttr("target", LinkTarget.AsStringCodec)
+  lazy val tooltip: HtmlAttr[String]    = htmlAttr("tooltip", StringAsIsCodec)
+  lazy val icon: HtmlAttr[IconName]     = htmlAttr("icon", IconName.AsStringCodec)
+  lazy val endIcon: HtmlAttr[IconName]  = htmlAttr("end-icon", IconName.AsStringCodec)
 
   lazy val design: HtmlAttr[LinkDesign] =
     htmlAttr("design", LinkDesign.AsStringCodec)

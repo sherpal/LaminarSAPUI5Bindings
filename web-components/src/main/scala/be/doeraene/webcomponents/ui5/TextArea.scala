@@ -43,7 +43,7 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
   lazy val growing: HtmlAttr[Boolean]  = htmlAttr("growing", BooleanAsAttrPresenceCodec)
   lazy val showExceededText: HtmlAttr[Boolean] =
     htmlAttr("show-exceeded-text", BooleanAsAttrPresenceCodec)
-  lazy val growingMaxLines: HtmlAttr[Int]   = htmlAttr("growing-max-lines", IntAsStringCodec)
+  lazy val growingMaxRows: HtmlAttr[Int]    = htmlAttr("growing-max-rows", IntAsStringCodec)
   lazy val maxLength: HtmlAttr[Int]         = htmlAttr("maxlength", IntAsStringCodec)
   lazy val rows: HtmlAttr[Int]              = htmlAttr("rows", IntAsStringCodec)
   lazy val placeholder: HtmlAttr[String]    = htmlAttr("placeholder", StringAsIsCodec)
@@ -51,12 +51,17 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
 
   val isRequired: Setter[HtmlElement] = required := true
 
+  @deprecated("growingMaxLines has been renamed to growingMaxRows", since = "2.0.0")
+  def growingMaxLines: HtmlAttr[Int] = growingMaxRows
+
   object slots {
     val valueStateMessage = new Slot("valueStateMessage")
   }
   object events {
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
     val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
+    val onScroll: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("scroll")
+    val onSelect: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("select")
   }
 
 }

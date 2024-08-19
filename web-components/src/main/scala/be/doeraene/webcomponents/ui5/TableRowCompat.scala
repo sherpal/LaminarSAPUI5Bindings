@@ -11,13 +11,13 @@ import be.doeraene.webcomponents.WebComponent
 import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
 import com.raquo.laminar.keys.HtmlAttr
 
-object TableRow extends WebComponent {
+object TableRowCompat extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
 
   @js.native
-  @JSImport("@ui5/webcomponents/dist/TableRow.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents-compat/dist/TableRow.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
@@ -30,5 +30,5 @@ object TableRow extends WebComponent {
   lazy val navigated: HtmlAttr[Boolean] = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
 
   //noinspection TypeAnnotation
-  val cell = TableCell
+  val cell = TableCellCompat
 }

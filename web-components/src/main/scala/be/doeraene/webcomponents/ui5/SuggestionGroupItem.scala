@@ -18,13 +18,13 @@ import be.doeraene.webcomponents.WebComponent
   * @see
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
   */
-object SuggestionGroupItem extends WebComponent with HasText {
+object SuggestionGroupItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
 
   @js.native
-  @JSImport("@ui5/webcomponents/dist/features/InputSuggestions.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents/dist/features/SuggestionGroupItem.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
@@ -32,7 +32,13 @@ object SuggestionGroupItem extends WebComponent with HasText {
 
   type Ref = dom.html.Element & RawElement
 
-  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-ui5-suggestion-group-item")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-suggestion-item-group")
+
+  lazy val headerText: HtmlAttr[String]           = htmlAttr("header-text", StringAsIsCodec)
+  lazy val headerAccessibleName: HtmlAttr[String] = htmlAttr("header-accessible-name", StringAsIsCodec)
+
+  @deprecated("text has been replaced by headerText", since = "2.0.0")
+  def text: HtmlAttr[String] = headerText
 
   object slots {}
 

@@ -14,17 +14,16 @@ import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRe
 import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-li-groupheader is a special list item, used only to separate other list items into logical groups.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
   */
-object UListGroupHeader extends WebComponent {
+object UListGroup extends WebComponent {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    def selected: Boolean = js.native
+  }
 
   @js.native
-  @JSImport("@ui5/webcomponents/dist/GroupHeaderListItem.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents/dist/ListItemGroup.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
@@ -32,12 +31,14 @@ object UListGroupHeader extends WebComponent {
 
   type Ref = dom.html.Element & RawElement
 
-  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-li-groupheader")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-li-group")
 
-  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
-  lazy val selected: HtmlAttr[Boolean]      = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val headerText: HtmlAttr[String]            = htmlAttr("header-text", StringAsIsCodec)
+  lazy val headerAccessibleName: HtmlAttr[Boolean] = htmlAttr("header-accessible-name", BooleanAsAttrPresenceCodec)
 
-  object slots {}
+  object slots {
+    val header: Slot = Slot("header")
+  }
 
   object events {}
 

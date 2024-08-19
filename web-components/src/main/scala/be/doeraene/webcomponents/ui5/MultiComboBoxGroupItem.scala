@@ -13,24 +13,24 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
-/** The ui5-mcb-group-item is type of suggestion item, that can be used to split the ui5-multi-combobox suggestions into
+/** The ui5-mcb-item-group is type of suggestion item, that can be used to split the ui5-multi-combobox suggestions into
   * groups.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/MultiComboBox/">the doc</a> for more
-  *   information.
   */
-object MultiComboBoxGroupItem extends WebComponent with HasText {
+object MultiComboBoxGroupItem extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
 
   type Ref = dom.html.Element & RawElement
 
-  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-mcb-group-item")
+  protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-mcb-item-group")
+
+  lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
 
   object slots {}
 
   object events {}
+
+  def item = MultiComboBoxItem
 
 }

@@ -5,6 +5,8 @@ import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
+import scala.scalajs.js
+
 object CalendarExample extends Example("Calendar") {
 
   def component(using demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo): HtmlElement = div(
@@ -14,10 +16,10 @@ object CalendarExample extends Example("Calendar") {
       div(
         Label(child.text <-- maybeSelectedDateVar.signal.map {
           case None       => "No selected date yet."
-          case Some(info) => s"Selected dates: ${info.values.zip(info.dates).mkString(", ")}."
+          case Some(info) => s"Selected dates: ${info.selectedValues.zip(info.selectedDates).mkString(", ")}."
         }),
         br(),
-        Calendar(_.events.onSelectedDatesChange.map(_.detail) --> maybeSelectedDateVar.writer.contramapSome)
+        Calendar(_.events.onSelectionChange.map(_.detail) --> maybeSelectedDateVar.writer.contramapSome)
       )
       //-- End
     },
@@ -53,6 +55,38 @@ object CalendarExample extends Example("Calendar") {
           Calendar(_.primaryCalendarType := calendarType)
         )
       })
+      //-- End
+    },
+    DemoPanel("Calendar with Legend") {
+      //-- Begin: Calendar with Legend
+      val types = Vector(CalendarLegendItemType.Type05, CalendarLegendItemType.Type07, CalendarLegendItemType.Type12)
+
+      val now   = new js.Date()
+      val year  = now.getFullYear().toInt
+      val month = now.getMonth().toInt
+
+      val specialDates = scala.util.Random.shuffle((1 to 28).toVector).take(10).map { day =>
+        new js.Date(year, month, day, 1, 0, 0, 0)
+      }
+
+      def formatDate(date: js.Date): String = date.toISOString().take(10)
+
+      Calendar(
+        _.formatPattern := "YYYY-MM-dd",
+        specialDates.zip(LazyList.continually(types).flatten).map { (date, tpe) =>
+          Calendar.slots.specialDates := Calendar.specialDate(
+            _.tpe   := tpe,
+            _.value := formatDate(date)
+          )
+        },
+        _.slots.calendarLegend := CalendarLegend(
+          _.hideToday       := true,
+          _.hideSelectedDay := true,
+          _.item(_.text := "Holiday", _.tpe         := CalendarLegendItemType.Type05),
+          _.item(_.text := "School Vacation", _.tpe := CalendarLegendItemType.Type07),
+          _.item(_.text := "Wedding", _.tpe         := CalendarLegendItemType.Type12)
+        )
+      )
       //-- End
     }
   )

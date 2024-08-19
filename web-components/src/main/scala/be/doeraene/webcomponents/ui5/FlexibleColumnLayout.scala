@@ -12,13 +12,11 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.{EventWithPreciseTarget, HasDetail}
 
-/** The FlexibleColumnLayout implements the master-detail-detail paradigm by displaying up to three pages in separate
-  * columns.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/FlexibleColumnLayout /">the doc</a> for
-  *   more information.
+/** The FlexibleColumnLayout implements the list-detail-detail paradigm by displaying up to three pages in separate
+  * columns. There are several possible layouts that can be changed either with the component API, or by dragging the
+  * column separators.
   */
 object FlexibleColumnLayout extends WebComponent {
 
@@ -28,7 +26,7 @@ object FlexibleColumnLayout extends WebComponent {
 
     def endColumnVisible: Boolean = js.native
 
-    def hideArrows: Boolean = js.native
+    def disableResizing: Boolean = js.native
 
     def layout: FCLLayout.StringFCLLayout = js.native
 
@@ -40,7 +38,12 @@ object FlexibleColumnLayout extends WebComponent {
   }
 
   object RawElement {
-    extension (element: RawElement) def layoutADT: FCLLayout = FCLLayout.AsStringCodec.decode(element.layout)
+    extension (element: RawElement) {
+      def layoutADT: FCLLayout = FCLLayout.AsStringCodec.decode(element.layout)
+
+      @deprecated("hideArrows property has been renamed to disableResizing", since = "2.0.0")
+      def hideArrows: Boolean = element.disableResizing
+    }
   }
 
   @js.native
@@ -54,11 +57,25 @@ object FlexibleColumnLayout extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-flexible-column-layout")
 
-  lazy val hideArrows: HtmlAttr[Boolean] = htmlAttr("hide-arrows", BooleanAsAttrPresenceCodec)
+  lazy val disableResizing: HtmlAttr[Boolean] = htmlAttr("disable-resizing", BooleanAsAttrPresenceCodec)
 
   lazy val layout: HtmlAttr[FCLLayout] = htmlAttr("layout", FCLLayout.AsStringCodec)
 
-  val onLayoutChanged = new EventProp[dom.Event]("layout-change")
+  @deprecated("hideArrows property has been renamed to disableResizing", since = "2.0.0")
+  def hideArrows: HtmlAttr[Boolean] = disableResizing
+
+  @deprecated("onLayoutChanged has been moved within the events object")
+  def onLayoutChanged = events.onLayoutChanged
+
+  object events {
+    trait LayoutChangedDetail extends js.Object {
+      def separatorsUsed: Boolean
+
+      def resized: Boolean
+    }
+
+    val onLayoutChanged = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[LayoutChangedDetail]]("layout-change")
+  }
 
   object slots {
     val endColumn: Slot   = new Slot("endColumn")

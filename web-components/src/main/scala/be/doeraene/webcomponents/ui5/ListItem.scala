@@ -25,7 +25,7 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
   trait RawElement extends js.Object {}
 
   @js.native
-  @JSImport("@ui5/webcomponents/dist/StandardListItem.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents/dist/ListItemStandard.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
@@ -38,15 +38,21 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
   lazy val additionalTextState: HtmlAttr[ValueState] =
     htmlAttr("additional-text-state", ValueState.AsStringCodec)
 
-  lazy val iconEnd: HtmlAttr[Boolean]   = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
-  lazy val image: HtmlAttr[String]      = htmlAttr("image", StringAsIsCodec)
-  lazy val navigated: HtmlAttr[Boolean] = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
-  lazy val tpe: HtmlAttr[ListItemType]  = htmlAttr("type", ListItemType.AsStringCodec)
-  lazy val selected: HtmlAttr[Boolean]  = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val iconEnd: HtmlAttr[Boolean]      = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val navigated: HtmlAttr[Boolean]    = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
+  lazy val tpe: HtmlAttr[ListItemType]     = ListItemType.asHtmlAttr("type")
+  lazy val selected: HtmlAttr[Boolean]     = htmlAttr("selected", BooleanAsAttrPresenceCodec)
+  lazy val highlight: HtmlAttr[ValueState] = ValueState.asHtmlAttr("highlight")
+  lazy val movable: HtmlAttr[Boolean]      = htmlAttr("movable", BooleanAsAttrPresenceCodec)
+
+  @scala.annotation.compileTimeOnly("The image property has been replaced by the image slot.")
+  def image: HtmlAttr[String] = ???
 
   object slots {
     val deleteButton: Slot = Slot("deleteButton")
-    val imageContent: Slot = Slot("imageContent")
+    val image: Slot        = Slot("image")
+
+    def imageContent: Slot = image
   }
 
   object events {}

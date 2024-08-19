@@ -14,10 +14,10 @@ object CheckBoxExample extends Example("CheckBox") {
     DemoPanel("Basic CheckBox")(
       //-- Begin: Basic CheckBox
       div(
-        CheckBox(_.text := "Chocolate", _.checked := true),
+        CheckBox(_.text := "Chocolate", _.checked  := true),
         CheckBox(_.text := "Strawberry", _.checked := true),
-        CheckBox(_.text := "Waffles", _.checked := true, _.valueState := ValueState.Error),
-        CheckBox(_.text := "Cake", _.checked := true, _.valueState := ValueState.Warning)
+        CheckBox(_.text := "Waffles", _.checked    := true, _.valueState := ValueState.Negative),
+        CheckBox(_.text := "Cake", _.checked       := true, _.valueState := ValueState.Critical)
       )
       //-- End
     ),
@@ -34,28 +34,30 @@ object CheckBoxExample extends Example("CheckBox") {
                                                                                                        " indeterminate"
                                                                                                      else "")
         } yield CheckBox(
-          _.text := text,
-          _.valueState := valueState,
+          _.text          := text,
+          _.valueState    := valueState,
           _.indeterminate := isIndeterminate,
-          _.readonly := isReadonly,
-          _.disabled := isDisabled,
-          _.checked := true
+          _.readonly      := isReadonly,
+          _.disabled      := isDisabled,
+          _.checked       := true
         )
       )
       //-- End
     ),
-    DemoPanel("CheckBox with Text Wrapping")(
-      //-- Begin: CheckBox with Text Wrapping
+    DemoPanel("CheckBox text is wrapped by default since 2.0")(
+      //-- Begin: CheckBox text is wrapped by default since 2.0
       div(
         CheckBox(
-          _.text := "ui5-checkbox with 'wrapping-type=Normal' set and some long text.",
-          _.wrappingType := WrappingType.Normal,
+          _.text := "ui5-checkbox set and some very long text that will be wrapped. Before 2.0, you needed to explicity set the wrapping-type to Normal.",
           width := "200px"
         ),
         CheckBox(
           _.text := "Another ui5-checkbox with very long text here",
-          _.wrappingType := WrappingType.Normal,
-          width := "200px"
+          width  := "200px"
+        ),
+        CheckBox(
+          _.text         := "Here the text is cropped because we set wrapping-type to None",
+          _.wrappingType := WrappingType.None
         )
       )
       //-- End
@@ -74,7 +76,7 @@ object CheckBoxExample extends Example("CheckBox") {
 
       div(
         CheckBox(
-          _.text := "Select / deselect all",
+          _.text           := "Select / deselect all",
           _.indeterminate <-- numberOfCheckedSignal.map(count => count != 0 && count != 3),
           _.checked       <-- numberOfCheckedSignal.map(_ > 0),
           // mapToChecked is possible but a bit hacky
@@ -83,7 +85,7 @@ object CheckBoxExample extends Example("CheckBox") {
         hr(),
         texts.map(text =>
           CheckBox(
-            _.text := text,
+            _.text     := text,
             _.checked <-- textsStatusesVar.signal.map(_(text)),
             // map(_.target.checked) is completely typesafe
             _.events.onChange.map(_.target.checked).map(text -> _) --> textsStatusesUpdater

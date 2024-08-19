@@ -24,14 +24,14 @@ object ResponsivePopoverExample extends Example("ResponsivePopover") {
         ),
         ResponsivePopover(
           _.showAtFromEvents(openPopoverBus.events),
-          _.closeFromEvents(closePopoverBus.events),
+          _.open      <-- closePopoverBus.events.mapTo(false),
           _.headerText := "Newsletter subscription",
           div(
             className := loginFormClass,
             styleTagForLoginFormClass,
             div(
-              Label(_.forId := "emailInput", _.required := true, "Email"),
-              Input(_.id := "emailInput", _.placeholder := "Enter Email", _.tpe := InputType.Email)
+              Label(_.forId := "emailInput", _.required    := true, "Email"),
+              Input(_.id    := "emailInput", _.placeholder := "Enter Email", _.tpe := InputType.Email)
             )
           ),
           _.slots.footer := div(

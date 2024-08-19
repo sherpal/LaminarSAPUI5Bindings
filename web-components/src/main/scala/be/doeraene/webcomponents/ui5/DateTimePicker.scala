@@ -17,10 +17,6 @@ import be.doeraene.webcomponents.WebComponent
 
 /** The DateTimePicker component alows users to select both date (day, month and year) and time (hours, minutes and
   * seconds) and for the purpose it consists of input field and Date/Time picker.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DateTimePicker/">the doc</a> for more
-  *   information.
   */
 object DateTimePicker extends WebComponent with HasAccessibleName with HasName with HasValue {
 
@@ -29,17 +25,30 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
     @JSName("dateValue")
     def dateValueJS: js.Date = js.native
 
+    def open: Boolean = js.native
+
+    @scala.annotation.compileTimeOnly(
+      "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
+    )
     def closePicker(): Unit = js.native
 
     def formatValue(date: js.Date): String = js.native
 
     def isInValidRange(value: String): Boolean = js.native
 
-    def isOpen(): Boolean = js.native
-
     def isValid(value: String): Boolean = js.native
 
+    @scala.annotation.compileTimeOnly(
+      "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
+    )
     def openPicker(): Unit = js.native
+  }
+
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("The methods openPicker(), closePicker() and isOpen() are replaced by open property.")
+      def isOpen(): Boolean = rawElement.open
+    }
   }
 
   @js.native
@@ -63,6 +72,7 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
   lazy val formatPattern: HtmlAttr[String]    = htmlAttr("format-pattern", StringAsIsCodec)
   lazy val maxDateRaw: HtmlAttr[String]       = htmlAttr("max-date", StringAsIsCodec)
   lazy val minDateRaw: HtmlAttr[String]       = htmlAttr("min-date", StringAsIsCodec)
+  lazy val open: HtmlAttr[Boolean]            = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
   lazy val primaryCalendarType: HtmlAttr[CalendarType] =
     htmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
@@ -81,17 +91,21 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
   }
 
   /** You can feed [[DateTimePicker]] refs to this observer in order to close them. */
-  val closePickerObserver: Observer[Ref] = Observer(_.closePicker())
+  @deprecated("closePickerObserver has been deprecated in favour of using the open property", since = "2.0.0")
+  def closePickerObserver: Observer[Ref] = Observer(ref => ref.asInstanceOf[js.Dynamic].updateDynamic("open")(false))
 
   /** creates a [[Mod]] for your [[DateTimePicker]]s to close them when the stream emit. */
+  @deprecated("closePickerFromEvents has been deprecated in favour of using the open property", since = "2.0.0")
   def closePickerFromEvents(stream: EventStream[Unit]) =
-    inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> closePickerObserver)
+    open <-- stream.mapTo(false)
 
   /** You can feed [[DateTimePicker]] refs to this observer in order to open them. */
-  val openPickerObserver: Observer[Ref] = Observer(_.openPicker())
+  @deprecated("openPickerObserver has been deprecated in favour of using the open property", since = "2.0.0")
+  def openPickerObserver: Observer[Ref] = Observer(ref => ref.asInstanceOf[js.Dynamic].updateDynamic("open")(true))
 
   /** creates a [[Mod]] for your [[DateTimePicker]]s to close them when the stream emit. */
+  @deprecated("openPickerFromEvents has been deprecated in favour of using the open property", since = "2.0.0")
   def openPickerFromEvents(stream: EventStream[Unit]) =
-    inContext[ReactiveHtmlElement[Ref]](el => stream.mapTo(el.ref) --> openPickerObserver)
+    open <-- stream.mapTo(true)
 
 }

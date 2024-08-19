@@ -52,10 +52,7 @@ object ToggleButton extends WebComponent with HasAccessibleName with HasIcon {
 
   lazy val iconEnd: HtmlAttr[Boolean] = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
 
-  lazy val submits: HtmlAttr[Boolean] = {
-    SubmitsSupport
-    htmlAttr("submits", BooleanAsAttrPresenceCodec)
-  }
+  lazy val submits: HtmlAttr[Boolean] = htmlAttr("submits", BooleanAsAttrPresenceCodec)
 
   lazy val tooltip: HtmlAttr[String] = htmlAttr("tooltip", StringAsIsCodec)
 

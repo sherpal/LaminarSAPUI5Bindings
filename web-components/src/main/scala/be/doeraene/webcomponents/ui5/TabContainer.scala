@@ -13,6 +13,8 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** Tab container
   *
@@ -43,17 +45,24 @@ object TabContainer extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tabcontainer")
 
-  lazy val disabled: HtmlAttr[Boolean]     = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val collapsed: HtmlAttr[Boolean]    = htmlAttr("collapsed", BooleanAsAttrPresenceCodec)
-  lazy val fixed: HtmlAttr[Boolean]        = htmlAttr("fixed", BooleanAsAttrPresenceCodec)
-  lazy val showOverflow: HtmlAttr[Boolean] = htmlAttr("show-overflow", BooleanAsAttrPresenceCodec)
-  lazy val tabLayout: HtmlAttr[TabLayout]  = htmlAttr("tab-layout", TabLayout.AsStringCodec)
-  lazy val tabsOverflowMode: HtmlAttr[TabsOverflowMode] =
-    htmlAttr("tabs-overflow-mode", TabsOverflowMode.AsStringCodec)
+  lazy val disabled: HtmlAttr[Boolean]    = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean]   = htmlAttr("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val tabLayout: HtmlAttr[TabLayout] = htmlAttr("tab-layout", TabLayout.AsStringCodec)
+  lazy val overflowMode: HtmlAttr[TabsOverflowMode] =
+    htmlAttr("overflow-mode", TabsOverflowMode.AsStringCodec)
+
+  @scala.annotation.compileTimeOnly("fixed property of TabContainer has been removed")
+  def fixed: HtmlAttr[Boolean] = ???
+
+  @deprecated("tabsOverflowMode property has been renamed to overflowMode", since = "2.0.0")
+  def tabsOverflowMode: HtmlAttr[TabsOverflowMode] = overflowMode
+
+  @scala.annotation.compileTimeOnly("showOverflow property has been removed. Use the overflowButton slot instead.")
+  def showOverflow: HtmlAttr[Boolean] = ???
 
   object slots {
-    val overflowButton: Slot      = new Slot("overflowButton")
-    val startOverflowButton: Slot = new Slot("startOverflowButton")
+    val overflowButton: Slot      = Slot("overflowButton")
+    val startOverflowButton: Slot = Slot("startOverflowButton")
   }
 
   object events {
@@ -64,7 +73,14 @@ object TabContainer extends WebComponent {
       def tabIndex: Int = js.native
     }
 
-    val onTabSelect: EventProp[dom.Event & HasDetail[TabSelectDetail]] = new EventProp("tab-select")
+    val onTabSelect: EventProp[EventWithPreciseTarget[Ref] & HasDetail[TabSelectDetail]] = new EventProp("tab-select")
+
+    lazy val onMove: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[tab.Ref]]] = new EventProp(
+      "move"
+    )
+    lazy val onMoveOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[tab.Ref]]] = new EventProp(
+      "move-over"
+    )
   }
 
   def tab: Tab.type = Tab

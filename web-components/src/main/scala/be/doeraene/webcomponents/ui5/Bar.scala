@@ -17,9 +17,6 @@ import be.doeraene.webcomponents.WebComponent
   * functionality is the basis for page headers and footers. The component consists of three areas to hold its content -
   * startContent slot, default slot and endContent slot. It has the capability to center content, such as a title, while
   * having other components on the left and right side.
-  *
-  * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Bar/">the doc</a> for more information.
   */
 object Bar extends WebComponent {
 
@@ -27,7 +24,7 @@ object Bar extends WebComponent {
   trait RawElement extends js.Object {}
 
   @js.native
-  @JSImport("@ui5/webcomponents-fiori/dist/Bar.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents/dist/Bar.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination

@@ -13,7 +13,8 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
-import be.doeraene.webcomponents.ui5.configkeys.CarouselPageIndicatorStyle
+import be.doeraene.webcomponents.ui5.configkeys.CarouselPageIndicatorType
+import com.raquo.laminar.codecs.Codec
 
 /** The Carousel allows the user to browse through a set of items. The component is mostly used for showing a gallery of
   * images, but can hold any other HTML element.
@@ -41,6 +42,11 @@ object Carousel extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-carousel")
 
+  lazy val accessibleName: HtmlAttr[String] =
+    htmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleNameRef: HtmlAttr[String] =
+    htmlAttr("accessible-name-ref", StringAsIsCodec)
+
   lazy val arrowsPlacement: HtmlAttr[CarouselArrowsPlacement] =
     htmlAttr("arrows-placement", CarouselArrowsPlacement.AsStringCodec)
 
@@ -52,12 +58,28 @@ object Carousel extends WebComponent {
   lazy val hidePageIndicator: HtmlAttr[Boolean] =
     htmlAttr("hide-page-indicator", BooleanAsAttrPresenceCodec)
 
-  lazy val itemsPerPageL: HtmlAttr[Int] = htmlAttr("items-per-page-l", IntAsStringCodec)
-  lazy val itemsPerPageM: HtmlAttr[Int] = htmlAttr("items-per-page-m", IntAsStringCodec)
-  lazy val itemsPerPageS: HtmlAttr[Int] = htmlAttr("items-per-page-s", IntAsStringCodec)
+  case class ItemsPerPage(small: Int, medium: Int, large: Int, extraLarge: Int)
 
-  lazy val pageIndicatorStyle: HtmlAttr[CarouselPageIndicatorStyle] =
-    htmlAttr("page-indicator-style", CarouselPageIndicatorStyle.AsStringCodec)
+  object ItemsPerPageAsStringCodec extends Codec[ItemsPerPage, String] {
+    def decode(domValue: String): ItemsPerPage = ???
+
+    def encode(v: ItemsPerPage): String = s"S${v.small} M${v.medium} L${v.large} XL${v.extraLarge}"
+  }
+
+  lazy val itemsPerPage: HtmlAttr[ItemsPerPage] = htmlAttr("items-per-page", ItemsPerPageAsStringCodec)
+
+  @scala.annotation.compileTimeOnly("Items per page are now managed through the unique itemsPerPage key")
+  def itemsPerPageL: HtmlAttr[Int] = ???
+  @scala.annotation.compileTimeOnly("Items per page are now managed through the unique itemsPerPage key")
+  def itemsPerPageM: HtmlAttr[Int] = ???
+  @scala.annotation.compileTimeOnly("Items per page are now managed through the unique itemsPerPage key")
+  def itemsPerPageS: HtmlAttr[Int] = ???
+
+  lazy val pageIndicatorType: HtmlAttr[CarouselPageIndicatorType] =
+    CarouselPageIndicatorType.asHtmlAttr("page-indicator-type")
+
+  @deprecated("pageIndicatorStyle has been renamed to pageIndicatorType", since = "2.0.0")
+  def pageIndicatorStyle: HtmlAttr[CarouselPageIndicatorType] = pageIndicatorType
 
   object slots {}
 

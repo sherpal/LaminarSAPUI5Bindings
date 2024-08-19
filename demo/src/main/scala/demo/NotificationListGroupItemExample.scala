@@ -12,38 +12,31 @@ object NotificationListGroupItemExample extends Example("NotificationListGroupIt
   ): HtmlElement = div(
     DemoPanel("NotificationListGroupItem") {
       //-- Begin: NotificationListGroupItem
-      UList(
-        _.headerText := "Notifications grouped",
-        _.notificationGroup(
-          _.showClose := true,
-          _.showCounter := true,
-          _.priority := Priority.High,
+      NotificationList(
+        _.group(
           _.titleText := "Some high priority notifications",
           _.item(
             _.showClose := true,
             _.titleText := "Some notification was triggered!",
-            _.priority := Priority.High
+            _.state     := ValueState.Critical
           ),
           _.item(
             _.showClose := true,
             _.titleText := "Some other notification was triggered!",
-            _.priority := Priority.High
+            _.state     := ValueState.Critical
           )
         ),
-        _.notificationGroup(
-          _.showClose := true,
-          _.showCounter := true,
-          _.priority := Priority.Medium,
+        _.group(
           _.titleText := "Some medium priority notifications",
           _.item(
             _.showClose := true,
             _.titleText := "Some medium notification was triggered!",
-            _.priority := Priority.Medium
+            _.state     := ValueState.Information
           ),
           _.item(
             _.showClose := true,
             _.titleText := "Some other medium notification was triggered!",
-            _.priority := Priority.Medium
+            _.state     := ValueState.Information
           )
         )
       )

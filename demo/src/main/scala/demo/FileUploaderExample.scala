@@ -19,7 +19,7 @@ object FileUploaderExample extends Example("FileUploader") {
       div(
         div(
           FileUploader(
-            _.accept := List("image/*"),
+            _.accept   := List("image/*"),
             _.multiple := true,
             _.events.onChange.map(_.target.files) --> selectedImagesVar.writer.contramapSome,
             Button("Upload Images", _.icon := IconName.upload)
@@ -37,9 +37,9 @@ object FileUploaderExample extends Example("FileUploader") {
             case files =>
               files.map { file =>
                 img(
-                  widthAttr := 100,
+                  widthAttr  := 100,
                   heightAttr := 100,
-                  src := dom.URL.createObjectURL(file),
+                  src        := dom.URL.createObjectURL(file),
                   inContext(el => onLoad --> Observer[Any](_ => dom.URL.revokeObjectURL(el.ref.src)))
                 )
               }
@@ -57,7 +57,7 @@ object FileUploaderExample extends Example("FileUploader") {
       //-- Begin: Custom File Uploaders
       div(
         FileUploader(_.hideInput := true, Avatar(_.icon := IconName.upload)),
-        FileUploader(_.hideInput := true, Badge("Upload File"))
+        FileUploader(_.hideInput := true, Button(_.icon := IconName.soccer, "Upload File"))
       )
       //-- End
     },
@@ -65,7 +65,7 @@ object FileUploaderExample extends Example("FileUploader") {
       //-- Begin: Button With Icon File Uploader
       div(
         FileUploader(Button(_.icon := IconName.upload, "Upload")),
-        FileUploader(Button(_.icon := IconName.upload, _.iconEnd := true, "Upload")),
+        FileUploader(Button(_.endIcon := IconName.upload, "Upload")),
         FileUploader(Button(_.icon := IconName.upload, _.iconOnly := true))
       )
       //-- End

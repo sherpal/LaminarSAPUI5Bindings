@@ -12,6 +12,7 @@ import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** Simple UI button
   *
@@ -21,8 +22,14 @@ import be.doeraene.webcomponents.WebComponent
 object Toast extends WebComponent with HasIcon {
 
   @js.native
-  trait RawElement extends js.Object {
-    def show(): Unit = js.native
+  trait RawElement extends js.Object
+
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated("show method on Toast has been replaced by the open property", since = "2.0.0")
+      def show(): Unit =
+        rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
+    }
   }
 
   @js.native
@@ -36,27 +43,31 @@ object Toast extends WebComponent with HasIcon {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-toast")
 
-  lazy val placement: HtmlAttr[ToastPlacement] = htmlAttr("placement", ToastPlacement.AsStringCodec)
-
-  lazy val duration: HtmlAttr[FiniteDuration] = htmlAttr("duration", FiniteDurationCodec)
+  lazy val placement: HtmlAttr[ToastPlacement] = ToastPlacement.asHtmlAttr("placement")
+  lazy val open: HtmlAttr[Boolean]             = htmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val duration: HtmlAttr[FiniteDuration]  = htmlAttr("duration", FiniteDurationCodec)
 
   object slots {}
 
-  object events {}
+  object events {
+    val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
+  }
 
   def getToastById(id: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
   /** [[Observer]] you can feed a toast to show it. */
-  val showObserver: Observer[Ref] = Observer(_.show())
+  @deprecated("showObserver has been replaced by using the open property", since = "2.0.0")
+  def showObserver: Observer[Ref] = Observer(_.show())
 
   /** [[Mod]] for [[Toast]]s opening them each time the stream emits. */
+  @deprecated("showFromEvents has been replaced by using the open property", since = "2.0.0")
   def showFromEvents(openerEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
-    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.mapTo(el.ref) --> showObserver)
+    open <-- openerEvents.mapTo(true)
 
   /** [[Mod]] for [[Toast]]s opening them each time the stream emits, putting the given text. */
   def showFromTextEvents(openerEvents: EventStream[String]): Mod[ReactiveHtmlElement[Ref]] = List(
-    showFromEvents(openerEvents.mapTo(())),
+    open       <-- openerEvents.mapTo(true),
     child.text <-- openerEvents
   )
 

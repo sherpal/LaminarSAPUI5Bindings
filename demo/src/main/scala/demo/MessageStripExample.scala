@@ -37,7 +37,7 @@ object MessageStripExample extends Example("MessageStrip") {
         MessageStripDesign.allValues.map(design =>
           MessageStrip(
             _.hideCloseButton := true,
-            _.design := design,
+            _.design          := design,
             s"${design.value} MessageStrip with No Close Button"
           )
         )
@@ -85,38 +85,38 @@ object MessageStripExample extends Example("MessageStrip") {
       //-- Begin: Custom MessageStrip
       div(
         MessageStrip(
-          _.design := MessageStripDesign.Information,
-          width := "300px",
-          _.hideIcon := true,
+          _.design          := MessageStripDesign.Information,
+          width             := "300px",
+          _.hideIcon        := true,
           _.hideCloseButton := true,
           "You have new message"
         ),
         MessageStrip(
-          _.design := MessageStripDesign.Positive,
-          width := "300px",
+          _.design          := MessageStripDesign.Positive,
+          width             := "300px",
           _.hideCloseButton := true,
           "Successful login!"
         ),
         MessageStrip(
-          _.design := MessageStripDesign.Negative,
-          width := "300px",
+          _.design   := MessageStripDesign.Negative,
+          width      := "300px",
           _.hideIcon := true,
           "Access denied!"
         ),
-        MessageStrip(_.design := MessageStripDesign.Warning, width := "300px", "Update is required"),
+        MessageStrip(_.design := MessageStripDesign.Critical, width := "300px", "Update is required"),
         MessageStrip(
-          _.design := MessageStripDesign.Warning,
-          width := "300px",
+          _.design     := MessageStripDesign.Critical,
+          width        := "300px",
           _.slots.icon := Icon(_.name := IconName.palette),
           "Custom Icon"
         ),
         MessageStrip(
           _.design := MessageStripDesign.Positive,
-          width := "300px",
+          width    := "300px",
           "Custom animated icon",
           _.slots.icon := img(
-            src := "https://sap.github.io/ui5-webcomponents/assets/images/loading.gif",
-            width := "16px",
+            src    := "https://sap.github.io/ui5-webcomponents/assets/images/loading.gif",
+            width  := "16px",
             height := "16px"
           )
         )

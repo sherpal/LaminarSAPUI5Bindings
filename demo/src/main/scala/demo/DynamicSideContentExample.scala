@@ -98,16 +98,15 @@ object DynamicSideContentExample extends Example("DynamicSideContent") {
       val toggleContentsBus: EventBus[Unit] = new EventBus
 
       Page(
-        height := "500px",
-        maxWidth := "360px",
-        _.floatingFooter := true,
+        height       := "500px",
+        maxWidth     := "360px",
         _.hideFooter := false,
         //maxWidth := "360px",
-                  DynamicSideContent(
-            inContext(el => toggleContentsBus.events --> Observer[Any](_ => el.ref.toggleContents())),
-            div(h1("Main Content"), p(mainContent)),
-            _.slots.sideContent := div(h1("Side Content"), p(sideContent))
-          ),
+        DynamicSideContent(
+          inContext(el => toggleContentsBus.events --> Observer[Any](_ => el.ref.toggleContents())),
+          div(h1("Main Content"), p(mainContent)),
+          _.slots.sideContent := div(h1("Side Content"), p(sideContent))
+        ),
         _.slots.footer := Bar(
           _.design := BarDesign.FloatingFooter,
           _.slots.endContent := Button(

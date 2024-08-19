@@ -7,20 +7,22 @@ import demo.helpers.Example
 import org.scalajs.dom
 import org.scalajs.dom.{window, URL}
 
-import demo.BadgeExample
+import demo.TagExample
+import demo.helpers.ThemeSelector
 object EntryPoint {
   def main(args: Array[String]): Unit = {
     val demoElement = {
       val componentsDemo: List[Example] = List(
         AvatarExample,
         AvatarGroupExample,
-        BadgeExample,
+        TagExample,
         BarExample,
         BarcodeScannerDialogExample,
         BreadcrumbsExample,
         BusyIndicatorExample,
         ButtonExample,
         CalendarExample,
+        CalendarLegendExample,
         CardExample,
         CarouselExample,
         CheckBoxExample,
@@ -32,6 +34,7 @@ object EntryPoint {
         DateRangePickerExample,
         DateTimePickerExample,
         DialogExample,
+        DynamicPageExample,
         DynamicSideContentExample,
         FileUploaderExample,
         FlexibleColumnLayoutExample,
@@ -68,6 +71,7 @@ object EntryPoint {
         SwitchExample,
         TabContainerExample,
         TableExample,
+        TextExample,
         TextAreaExample,
         TimePickerExample,
         TimelineExample,
@@ -124,21 +128,24 @@ object EntryPoint {
               display       := "flex",
               flexDirection := "column",
               flexWrap      := "wrap",
-              "Components",
+              span(
+                "Components",
+                cursor := "pointer",
+                onClick --> (_ => {
+                  updateHistory("")
+                  componentNameVar.set(None)
+                })
+              ),
               Input(
                 _.placeholder   := "Search",
                 _.showClearIcon := true,
                 onInput.mapToValue.compose(_.throttle(1000)) --> { v =>
                   componentListVar.set(componentsDemo.filter(_.name.toLowerCase.contains(v)))
                 }
-              )
+              ),
+              ThemeSelector()
             ),
-            padding("0.5rem"),
-            cursor := "pointer",
-            onClick --> (_ => {
-              updateHistory("")
-              componentNameVar.set(None)
-            })
+            padding("0.5rem")
           ),
           SideNavigation(
             _.events.onSelectionChange
@@ -169,7 +176,7 @@ object EntryPoint {
           div(
             padding  := "10px",
             minWidth := "40%",
-            maxWidth := "calc(100% - 320px)",
+            width    := "100%",
             child <-- componentNameVar.signal
               .map(
                 _.flatMap(cn => componentsDemo.find(_.name == cn).map(_.completeComponent))

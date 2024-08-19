@@ -570,7 +570,6 @@ object IconName {
   def `slim-arrow-right`: IconName = _iconName(`import-slim-arrow-right`, "slim-arrow-right")
   def `slim-arrow-up`: IconName = _iconName(`import-slim-arrow-up`, "slim-arrow-up")
   def soccer: IconName = _iconName(`import-soccer`, "soccer")
-  def soccor: IconName = _iconName(`import-soccor`, "soccor")
   def sonography: IconName = _iconName(`import-sonography`, "sonography")
   def sort: IconName = _iconName(`import-sort`, "sort")
   def `sort-ascending`: IconName = _iconName(`import-sort-ascending`, "sort-ascending")

@@ -6,12 +6,12 @@ sealed trait BarDesign {
 
 object BarDesign extends EnumerationString[BarDesign] {
 
-  case object Header extends BarDesign
-  case object Subheader extends BarDesign
-  case object Footer extends BarDesign
+  case object Header         extends BarDesign
+  case object Subheader      extends BarDesign
+  case object Footer         extends BarDesign
   case object FloatingFooter extends BarDesign
 
-  val allValues: List[BarDesign] = List(Header, Subheader, Footer, FloatingFooter)
+  val allValues: List[BarDesign] = deriveAllValues
 
   def valueOf(value: BarDesign): String = value.value
 }

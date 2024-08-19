@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ButtonAccessibleRole
 
 /** The ui5-button component represents a simple push button. It enables users to trigger actions by clicking or tapping
   * the ui5-button, or by pressing certain keyboard keys, such as Enter.
@@ -35,13 +36,21 @@ object Button extends WebComponent with HasIcon {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-button")
 
+  lazy val accessibleRole: HtmlAttr[ButtonAccessibleRole] =
+    htmlAttr("accessible-role", ButtonAccessibleRole.AsStringCodec)
+
   lazy val design: HtmlAttr[ButtonDesign] = htmlAttr("design", ButtonDesign.AsStringCodec)
   lazy val disabled: HtmlAttr[Boolean]    = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val iconEnd: HtmlAttr[Boolean]     = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  lazy val endIcon: HtmlAttr[IconName]    = htmlAttr("end-icon", IconName.AsStringCodec)
   lazy val iconOnly: HtmlAttr[Boolean]    = htmlAttr("icon-only", BooleanAsAttrPresenceCodec)
-  lazy val submits: HtmlAttr[Boolean]     = htmlAttrWithSupport("submits", BooleanAsAttrPresenceCodec)(SubmitsSupport)
+  lazy val submits: HtmlAttr[Boolean]     = htmlAttr("submits", BooleanAsAttrPresenceCodec)
   lazy val tooltip: HtmlAttr[String]      = htmlAttr("tooltip", StringAsIsCodec)
-  lazy val tpe: HtmlAttr[ButtonType]      = htmlAttrWithSupport("type", ButtonType.AsStringCodec)(SubmitsSupport)
+  lazy val tpe: HtmlAttr[ButtonType]      = htmlAttr("type", ButtonType.AsStringCodec)
+
+  @scala.annotation.compileTimeOnly(
+    """iconEnd has been removed and replaced by the new endIcon mecanic. If you previously had `Button(_.icon := IconName.upload, _.iconEnd := true, "Upload")`, you now have to replace by `Button(_.endIcon := IconName.upload, "Upload")`"""
+  )
+  def iconEnd: HtmlAttr[Boolean] = ???
 
   object slots {}
 

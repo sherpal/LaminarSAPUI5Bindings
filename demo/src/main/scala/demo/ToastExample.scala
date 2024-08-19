@@ -19,7 +19,10 @@ object ToastExample extends Example("Toast") {
       div(
         Button("Basic Toast", _.events.onClick.mapTo(()) --> toastBus.writer),
         Toast(
-          _.showFromEvents(toastBus.events),
+          _.open <-- toastBus.events.mapTo(true),
+          _.events.onClose.mapTo(()) --> Observer[Any] { _ =>
+            println("The toast closed.")
+          },
           "Basic Toast"
         ),
         MessageStrip(
@@ -37,17 +40,17 @@ object ToastExample extends Example("Toast") {
       div(
         Button("Short Toast", _.events.onClick.mapTo(()) --> shortToastBus.writer),
         Toast(
-          _.duration := 1500.millis,
+          _.duration  := 1500.millis,
           _.placement := ToastPlacement.BottomStart,
           "Short Toast",
-          _.showFromEvents(shortToastBus.events)
+          _.open <-- shortToastBus.events.mapTo(true)
         ),
         Button("Long Toast", _.events.onClick.mapTo(()) --> longToastBus.writer),
         Toast(
-          _.duration := 4500.millis,
+          _.duration  := 4500.millis,
           _.placement := ToastPlacement.BottomEnd,
           "Long Toast",
-          _.showFromEvents(longToastBus.events)
+          _.open <-- longToastBus.events.mapTo(true)
         )
       )
       //-- End
@@ -60,7 +63,7 @@ object ToastExample extends Example("Toast") {
 
           List(
             Button(placement.value, _.events.onClick.mapTo(()) --> toastBus.writer),
-            Toast(_.placement := placement, _.showFromEvents(toastBus.events), placement.value)
+            Toast(_.placement := placement, _.open <-- toastBus.events.mapTo(true), placement.value)
           )
         }
       )

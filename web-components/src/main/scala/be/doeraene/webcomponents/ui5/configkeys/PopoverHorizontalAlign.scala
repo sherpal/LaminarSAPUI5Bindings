@@ -6,12 +6,17 @@ sealed trait PopoverHorizontalAlign {
 }
 
 object PopoverHorizontalAlign extends EnumerationString[PopoverHorizontalAlign] {
-  case object Center extends PopoverHorizontalAlign
-  case object Left extends PopoverHorizontalAlign
-  case object Right extends PopoverHorizontalAlign
+  case object Center  extends PopoverHorizontalAlign
+  case object Start   extends PopoverHorizontalAlign
+  case object End     extends PopoverHorizontalAlign
   case object Stretch extends PopoverHorizontalAlign
 
-  val allValues: List[PopoverHorizontalAlign] = List(Center, Left, Right, Stretch)
+  @deprecated("Left horizontal align has been renamed to Start", since = "2.0.0")
+  def Left = Start
+  @deprecated("Right horizontal align has been renamed to End", since = "2.0.0")
+  def Right = End
+
+  val allValues: List[PopoverHorizontalAlign] = deriveAllValues
 
   def valueOf(value: PopoverHorizontalAlign): String = value.value
 }

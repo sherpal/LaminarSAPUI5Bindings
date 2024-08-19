@@ -15,6 +15,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
 
 /** The ui5-tree component provides a tree structure for displaying data in a hierarchy.
   *
@@ -44,7 +45,10 @@ object Tree extends WebComponent with HasAccessibleName {
   lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
   lazy val noDataText: HtmlAttr[String] = htmlAttr("no-data-text", StringAsIsCodec)
 
-  lazy val mode: HtmlAttr[ListMode] = htmlAttr("mode", ListMode.AsStringCodec)
+  lazy val selectionMode: HtmlAttr[ListMode] = ListMode.asHtmlAttr("selection-mode")
+
+  @deprecated("mode property of Tree has been renamed to selectionMode")
+  def mode: HtmlAttr[ListMode] = selectionMode
 
   object events {
     val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[TreeItem.Ref]]] = new EventProp(
@@ -79,6 +83,12 @@ object Tree extends WebComponent with HasAccessibleName {
 
     val onSelectionChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeDetail]] = new EventProp(
       "selection-change"
+    )
+    lazy val onMove: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[item.Ref]]] = new EventProp(
+      "move"
+    )
+    lazy val onMoveOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[item.Ref]]] = new EventProp(
+      "move-over"
     )
   }
 

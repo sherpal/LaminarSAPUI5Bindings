@@ -24,7 +24,16 @@ import be.doeraene.webcomponents.WebComponent
 object UList extends WebComponent with HasAccessibleName {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    @JSName("listItems")
+    def listItemsJS: js.Array[item.Ref] = js.native
+  }
+
+  object RawElement extends js.Object {
+    extension (rawElement: RawElement) {
+      def listItems: List[item.Ref] = rawElement.listItemsJS.toList
+    }
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/List.js", JSImport.Default)
@@ -37,16 +46,23 @@ object UList extends WebComponent with HasAccessibleName {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-list")
 
-  lazy val accessibleRole: HtmlAttr[String]    = htmlAttr("accessible-role", StringAsIsCodec)
-  lazy val busy: HtmlAttr[Boolean]             = htmlAttr("busy", BooleanAsAttrPresenceCodec)
-  lazy val busyDelay: HtmlAttr[FiniteDuration] = htmlAttr("busy-delay", FiniteDurationCodec)
-  lazy val footerText: HtmlAttr[String]        = htmlAttr("footer-text", StringAsIsCodec)
-  lazy val growing: HtmlAttr[ListGrowingMode]  = htmlAttr("growing", ListGrowingMode.AsStringCodec)
-  lazy val headerText: HtmlAttr[String]        = htmlAttr("header-text", StringAsIsCodec)
-  lazy val indent: HtmlAttr[Boolean]           = htmlAttr("indent", BooleanAsAttrPresenceCodec)
-  lazy val mode: HtmlAttr[ListMode]            = htmlAttr("mode", ListMode.AsStringCodec)
-  lazy val noDataText: HtmlAttr[String]        = htmlAttr("no-data-text", StringAsIsCodec)
-  lazy val separators: HtmlAttr[ListSeparator] = htmlAttr("separators", ListSeparator.AsStringCodec)
+  lazy val accessibleRole: HtmlAttr[String]       = htmlAttr("accessible-role", StringAsIsCodec)
+  lazy val loading: HtmlAttr[Boolean]             = htmlAttr("loading", BooleanAsAttrPresenceCodec)
+  lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
+  lazy val footerText: HtmlAttr[String]           = htmlAttr("footer-text", StringAsIsCodec)
+  lazy val growing: HtmlAttr[ListGrowingMode]     = htmlAttr("growing", ListGrowingMode.AsStringCodec)
+  lazy val headerText: HtmlAttr[String]           = htmlAttr("header-text", StringAsIsCodec)
+  lazy val indent: HtmlAttr[Boolean]              = htmlAttr("indent", BooleanAsAttrPresenceCodec)
+  lazy val selectionMode: HtmlAttr[ListMode]      = htmlAttr("selection-mode", ListMode.AsStringCodec)
+  lazy val noDataText: HtmlAttr[String]           = htmlAttr("no-data-text", StringAsIsCodec)
+  lazy val separators: HtmlAttr[ListSeparator]    = htmlAttr("separators", ListSeparator.AsStringCodec)
+
+  @deprecated("busy property has been renamed to loading", since = "2.0.0")
+  def busy: HtmlAttr[Boolean] = loading
+  @deprecated("busyDelay property has been renamed to loadingDelay", since = "2.0.0")
+  def busyDelay: HtmlAttr[FiniteDuration] = loadingDelay
+  @deprecated("mode has been renamed to selectionMode")
+  def mode: HtmlAttr[ListMode] = selectionMode
 
   object events {
     val onItemClick  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[item.Ref]]]("item-click")
@@ -78,6 +94,13 @@ object UList extends WebComponent with HasAccessibleName {
 
     val onSelectionChange =
       new EventProp[EventWithPreciseTarget[Ref] & HasDetail[SelectionChangeDetail]]("selection-change")
+
+    lazy val onMove: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[item.Ref]]] = new EventProp(
+      "move"
+    )
+    lazy val onMoveOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[item.Ref]]] = new EventProp(
+      "move-over"
+    )
   }
 
   object slots {
@@ -89,9 +112,16 @@ object UList extends WebComponent with HasAccessibleName {
 
   def item: ListItem.type             = ListItem
   def customItem: CustomListItem.type = CustomListItem
-  def group: UListGroupHeader.type    = UListGroupHeader
+  def grouped                         = UListGroup
 
-  def notificationItem: NotificationListItem.type       = NotificationListItem
+  @scala.annotation.compileTimeOnly(
+    "group has been replaced by grouped, and the structure of your list items now needs to be nested."
+  )
+  def group = ???
+
+  @scala.annotation.compileTimeOnly("notificationItem has been removed from UList. Use NotificationList instead")
+  def notificationItem: NotificationListItem.type = NotificationListItem
+  @scala.annotation.compileTimeOnly("notificationGroup has been removed from UList. Use NotificationList instead")
   def notificationGroup: NotificationListGroupItem.type = NotificationListGroupItem
 
 }

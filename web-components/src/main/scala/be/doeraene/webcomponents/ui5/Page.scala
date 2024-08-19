@@ -38,14 +38,20 @@ object Page extends WebComponent {
   lazy val backgroundDesign: HtmlAttr[PageBackgroundDesign] =
     htmlAttr("background-design", PageBackgroundDesign.AsStringCodec)
 
-  lazy val disableScrolling: HtmlAttr[Boolean] =
-    htmlAttr("disable-scrolling", BooleanAsAttrPresenceCodec)
+  lazy val noScrolling: HtmlAttr[Boolean] = htmlAttr("no-scrolling", BooleanAsAttrPresenceCodec)
 
-  lazy val floatingFooter: HtmlAttr[Boolean] =
-    htmlAttr("floating-footer", BooleanAsAttrPresenceCodec)
+  lazy val fixedFooter: HtmlAttr[Boolean] = htmlAttr("fixed-footer", BooleanAsAttrPresenceCodec)
 
   lazy val hideFooter: HtmlAttr[Boolean] =
     htmlAttr("hide-footer", BooleanAsAttrPresenceCodec)
+
+  @deprecated("disableScrolling has been renamed to noScrolling", since = "2.0.0")
+  def disableScrolling: HtmlAttr[Boolean] = noScrolling
+
+  @scala.annotation.compileTimeOnly(
+    "floatingFooter has been removed and is now the default. If you don't want your page footer to float, use the new fixedFooter property."
+  )
+  def floatingFooter: HtmlAttr[Boolean] = ???
 
   object slots {
     val footer: Slot = new Slot("footer")

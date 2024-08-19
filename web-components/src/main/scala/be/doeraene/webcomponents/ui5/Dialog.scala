@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** The ui5-dialog component is used to temporarily display some information in a size-limited window in front of the
   * regular app screen.
@@ -23,13 +24,28 @@ object Dialog extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {
-    def show(): Unit = js.native
+    def open: Boolean = js.native
 
     def applyFocus(): Unit = js.native
+  }
 
-    def close(): Unit = js.native
+  object RawElement {
+    extension (rawElement: RawElement) {
+      @deprecated(
+        "The show and close public methods have been removed. Use the public property open instead.",
+        since = "2.0.0"
+      )
+      def show(): Unit = rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(true)
 
-    def isOpen(): Boolean = js.native
+      @deprecated(
+        "The show and close public methods have been removed. Use the public property open instead.",
+        since = "2.0.0"
+      )
+      def close(): Unit = rawElement.asInstanceOf[js.Dynamic].updateDynamic("open")(false)
+
+      @deprecated("The isOpen method has been removed. Use the public property open instead.", since = "2.0.0")
+      def isOpen(): Boolean = rawElement.open
+    }
   }
 
   @js.native
@@ -60,20 +76,33 @@ object Dialog extends WebComponent {
     val header: Slot = new Slot("header")
   }
 
+  object events {
+    lazy val onOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("open")
+    lazy val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
+  }
+
   def getDialogById(id: String): Option[Ref] =
     Option(dom.document.getElementById(id)).map(_.asInstanceOf[Ref])
 
   /** [[Observer]] you can feed to open the Dialog. */
-  val showObserver: Observer[Ref] = Observer(_.show())
+  @deprecated(
+    "The show and close public methods have been removed. Use the public property open instead.",
+    since = "2.0.0"
+  )
+  def showObserver: Observer[Ref] = Observer(_.show())
 
   def showFromEvents(openerEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
-    inContext[ReactiveHtmlElement[Ref]](el => openerEvents.mapTo(el.ref) --> showObserver)
+    open <-- openerEvents.mapTo(true)
 
   /** [[Observer]] you can feed a [[Dialog]] ref to close it. */
-  val closeObserver: Observer[Ref] = Observer(_.close())
+  @deprecated(
+    "The show and close public methods have been removed. Use the public property open instead.",
+    since = "2.0.0"
+  )
+  def closeObserver: Observer[Ref] = Observer(_.close())
 
   def closeFromEvents(closeEvents: EventStream[Unit]): Mod[ReactiveHtmlElement[Ref]] =
-    inContext[ReactiveHtmlElement[Ref]](el => closeEvents.mapTo(el.ref) --> closeObserver)
+    open <-- closeEvents.mapTo(false)
 
   /** [[Observer]] you can feed a [[Dialog]] ref to apply focus to it. */
   val applyFocusObserver: Observer[Ref] = Observer(_.applyFocus())

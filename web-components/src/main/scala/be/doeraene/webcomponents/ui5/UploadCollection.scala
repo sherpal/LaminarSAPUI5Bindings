@@ -44,11 +44,15 @@ object UploadCollection extends WebComponent {
 
   lazy val hideDragOverlay: HtmlAttr[Boolean] = htmlAttr("hide-drag-overlay", BooleanAsAttrPresenceCodec)
 
-  lazy val mode: HtmlAttr[ListMode] = htmlAttr("mode", ListMode.AsStringCodec)
+  lazy val selectionMode: HtmlAttr[ListMode.UploadCollectionMode] =
+    htmlAttr("selection-mode", ListMode.UploadCollectionMode.AsStringCodec)
 
   lazy val noDataDescription: HtmlAttr[String] = htmlAttr("no-data-description", StringAsIsCodec)
 
   lazy val noDataText: HtmlAttr[String] = htmlAttr("no-data-text", StringAsIsCodec)
+
+  @deprecated("mode property has been replaced by selectionMode")
+  def mode: HtmlAttr[ListMode.UploadCollectionMode] = selectionMode
 
   object slots {
     val header: Slot = new Slot("header")

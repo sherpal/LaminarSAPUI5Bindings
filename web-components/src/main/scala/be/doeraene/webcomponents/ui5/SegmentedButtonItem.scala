@@ -44,15 +44,22 @@ object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasI
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-segmented-button-item")
 
-  lazy val design: HtmlAttr[ButtonDesign] = htmlAttr("design", ButtonDesign.AsStringCodec)
+  lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
 
-  lazy val iconEnd: HtmlAttr[Boolean] = htmlAttr("icon-end", BooleanAsAttrPresenceCodec)
+  @scala.annotation.compileTimeOnly("design property has been removed")
+  def design: HtmlAttr[ButtonDesign] = ???
 
-  lazy val submits: HtmlAttr[Boolean] = htmlAttr("submits", BooleanAsAttrPresenceCodec)
+  @scala.annotation.compileTimeOnly("iconEnd property has been removed")
+  def iconEnd: HtmlAttr[Boolean] = ???
 
-  lazy val pressed: HtmlAttr[Boolean] = htmlAttr("pressed", BooleanAsAttrPresenceCodec)
+  @scala.annotation.compileTimeOnly("submits property has been removed")
+  def submits: HtmlAttr[Boolean] = ???
 
-  lazy val accessibilityAttributes: HtmlAttr[js.Object] = ??? // todo
+  @deprecated("pressed property of SegmentedButton items has been renamed to selected", since = "2.0.0")
+  def pressed: HtmlAttr[Boolean] = selected
+
+  @scala.annotation.compileTimeOnly("accessibilityAttributes property has been removed")
+  def accessibilityAttributes: HtmlAttr[js.Object] = ???
 
   lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 

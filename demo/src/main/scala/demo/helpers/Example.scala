@@ -42,7 +42,7 @@ trait Example(val name: String) {
 
   def missing: HtmlElement = MessageStrip(
     s"$name is currently missing. Don't hesitate to contribue!",
-    _.design := MessageStripDesign.Negative,
+    _.design          := MessageStripDesign.Negative,
     _.hideCloseButton := true
   )
 
@@ -57,11 +57,9 @@ trait Example(val name: String) {
                                               |""".stripMargin)
 
   def mtgImageWarning: HtmlElement = MessageStrip(
-    _.design := MessageStripDesign.Warning,
+    _.design := MessageStripDesign.Critical,
     "All images displayed on this page are the property of Wizard of the Coast."
   )
-
-
 
   def someIconValues: List[IconName] = List(
     IconName.`clear-all`,

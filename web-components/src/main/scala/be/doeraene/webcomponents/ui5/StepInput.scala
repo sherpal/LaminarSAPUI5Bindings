@@ -16,6 +16,8 @@ import com.raquo.laminar.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
+import scala.scalajs.js.annotation.JSName
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 
 /** The ui5-step-input consists of an input field and buttons with icons to increase/decrease the value with the
   * predefined step.
@@ -71,7 +73,25 @@ object StepInput extends WebComponent with HasAccessibleName with HasName {
   }
 
   object events {
+    trait StepInputValueStateChangeEventDetail extends js.Object {
+      def valid: Boolean
+
+      @JSName("valueState")
+      def valueStateJS: String
+    }
+
+    object StepInputValueStateChangeEventDetail {
+      extension (detail: StepInputValueStateChangeEventDetail) {
+        def valueState: ValueState = ValueState.AsStringCodec.decode(detail.valueStateJS)
+      }
+    }
+
     val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
+
+    val onValueStateChange =
+      new EventProp[EventWithPreciseTarget[Ref] & HasDetail[StepInputValueStateChangeEventDetail]](
+        "value-state-change"
+      )
   }
 
 }

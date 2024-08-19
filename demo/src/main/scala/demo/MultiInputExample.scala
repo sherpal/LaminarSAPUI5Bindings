@@ -20,12 +20,12 @@ object MultiInputExample extends Example("MultiInput") {
       val firstValueVar  = Var("basic input")
       val secondValueVar = Var("value help icon")
       div(
-        display := "flex",
+        display   := "flex",
         className := loginFormClass,
         div(
           Label(
             _.wrappingType := WrappingType.Normal,
-            width := "200px",
+            width          := "200px",
             "MultiInput",
             child.text <-- firstValueVar.signal.map(value => s" (current value is $value)")
           ),
@@ -38,13 +38,13 @@ object MultiInputExample extends Example("MultiInput") {
         div(
           Label(
             _.wrappingType := WrappingType.Normal,
-            width := "200px",
+            width          := "200px",
             "MultiInput",
             child.text <-- secondValueVar.signal.map(value => s" (current value is $value)")
           ),
           MultiInput(
             _.showValueHelpIcon := true,
-            _.value <-- secondValueVar,
+            _.value            <-- secondValueVar,
             _.events.onInput.mapToValue --> secondValueVar.writer,
             _.events.onChange.mapToValue --> secondValueVar.writer
           )
@@ -82,23 +82,23 @@ object MultiInputExample extends Example("MultiInput") {
       val newValuesChanges = newValuesWithShouldWeUpdate.collect { case (values, true) => values }
 
       // When the new value was already present, we issue the error message ...
-      val valueStateBecomesErrorEvents = newValuesWithShouldWeUpdate.filter(!_._2).mapTo(ValueState.Error)
+      val valueStateBecomesErrorEvents = newValuesWithShouldWeUpdate.filter(!_._2).mapTo(ValueState.Negative)
       // ... and we clear it 2 seconds later
       val valueStateBecomesNormalEvents = valueStateBecomesErrorEvents.delay(2000).mapTo(ValueState.None)
 
       val valueStateChanges = EventStream.merge(valueStateBecomesErrorEvents, valueStateBecomesNormalEvents)
 
       MultiInput(
-        _.showSuggestions := true,
-        _.valueState <-- valueStateChanges,
-        width := "50%",
+        _.showSuggestions         := true,
+        _.valueState             <-- valueStateChanges,
+        width                     := "50%",
         _.slots.valueStateMessage := div("Token is already in the list"),
         countries.map(country => MultiInput.suggestion(_.text := country)),
         _.slots.tokens <-- tokenValuesVar.signal.map(_.map(tokenValue => MultiInput.token(_.text := tokenValue))),
         _.events.onChange.map(_.target.value) --> changeBus.writer,
         newValuesChanges --> tokenValuesVar.writer,
-        _.events.onTokenDelete.map(_.detail.token.text) --> tokenValuesVar.updater((values, toRemove) =>
-          values.filterNot(_ == toRemove)
+        _.events.onTokenDelete.map(_.detail.tokens.map(_.text).toSet) --> tokenValuesVar.updater[Set[String]](
+          (values, toRemove) => values.filterNot(toRemove.contains)
         )
       )
       //-- End
