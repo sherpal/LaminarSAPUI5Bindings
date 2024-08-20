@@ -34,7 +34,7 @@ case class ListCodec[A](codec: Codec[A, String]) extends Codec[List[A], String] 
 }
 
 @js.native
-@JSImport("@ui5/webcomponents-localization/dist/Assets.js", JSImport.Namespace)
+@JSImport("@ui5/webcomponents-localization/dist/Assets-fetch.js", JSImport.Namespace)
 object Localization extends js.Object
 
 def htmlAttrWithSupport[V](name: String, codec: Codec[V, String])(support: => Any): HtmlAttr[V] = {

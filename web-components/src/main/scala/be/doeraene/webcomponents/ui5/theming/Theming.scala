@@ -26,7 +26,7 @@ object Theming {
 
   @js.native
   @JSImport(
-    "@ui5/webcomponents/dist/Assets.js",
+    "@ui5/webcomponents/dist/Assets-fetch.js",
     JSImport.Namespace
   )
   object WebComponentsAssets extends js.Object

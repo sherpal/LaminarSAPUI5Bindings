@@ -1,5 +1,5 @@
 import java.nio.charset.StandardCharsets
-ThisBuild / scalaVersion := "3.3.1"
+ThisBuild / scalaVersion := "3.3.3"
 
 val usedScalacOptions = Def.task {
   Seq(
