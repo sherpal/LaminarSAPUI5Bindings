@@ -12,6 +12,8 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRef}
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
 
 /** The ui5-li-groupheader is a special list item, used only to separate other list items into logical groups.
   */
@@ -40,6 +42,15 @@ object UListGroup extends WebComponent {
     val header: Slot = Slot("header")
   }
 
-  object events {}
+  object events {
+    lazy val onMove: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[item.Ref]]] = new EventProp(
+      "move"
+    )
+    lazy val onMoveOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[item.Ref]]] = new EventProp(
+      "move-over"
+    )
+  }
+
+  def item = ListItem
 
 }

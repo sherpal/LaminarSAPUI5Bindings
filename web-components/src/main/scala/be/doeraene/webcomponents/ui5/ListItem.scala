@@ -12,6 +12,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.internal.Slot
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 
 /** The ui5-li represents the simplest type of item for a ui5-list. This is a list item, providing the most common use
   * cases such as text, image and icon.
@@ -55,6 +56,8 @@ object ListItem extends WebComponent with HasIcon with HasDescription with HasAd
     def imageContent: Slot = image
   }
 
-  object events {}
+  object events {
+    val onDetailClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("detail-click")
+  }
 
 }

@@ -965,6 +965,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/in-progress.js", JSImport.Namespace)
   object `import-in-progress` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/in-progress-2.js", JSImport.Namespace)
+  object `import-in-progress-2` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/inbox.js", JSImport.Namespace)
   object `import-inbox` extends js.Object
 

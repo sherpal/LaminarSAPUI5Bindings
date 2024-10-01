@@ -49,6 +49,7 @@ object Timeline extends WebComponent {
   object events {}
 
   //noinspection TypeAnnotation
-  def item = TimelineItem
+  def item  = TimelineItem
+  def group = TimelineGroupItem
 
 }

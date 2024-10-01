@@ -20,7 +20,7 @@ trait Example(val name: String) {
 
   def completeComponent: HtmlElement = div(
     padding := "5px",
-    Title(_.level := TitleLevel.H1, name),
+    Title.h1(name),
     div(
       "You can see the source code ",
       Link(

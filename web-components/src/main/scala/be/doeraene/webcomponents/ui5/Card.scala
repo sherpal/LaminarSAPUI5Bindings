@@ -12,12 +12,13 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import scala.concurrent.duration.FiniteDuration
 
 /** The ui5-card is a component that represents information in the form of a tile with separate header and content
   * areas.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Card/">the doc</a> for more information.
+  *   <a href="https://sap.github.io/ui5-webcomponents/components/Card/">the doc</a> for more information.
   */
 object Card extends WebComponent with HasAccessibleName {
 
@@ -34,6 +35,9 @@ object Card extends WebComponent with HasAccessibleName {
   type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-card")
+
+  lazy val loading: HtmlAttr[Boolean]             = htmlAttr("loading", BooleanAsAttrPresenceCodec)
+  lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
 
   object slots {
 
