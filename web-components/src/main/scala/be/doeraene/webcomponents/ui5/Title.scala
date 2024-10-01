@@ -38,40 +38,41 @@ object Title extends WebComponent {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-title")
 
   lazy val level: HtmlAttr[TitleLevel]          = htmlAttr("level", TitleLevel.AsStringCodec)
+  lazy val size: HtmlAttr[TitleLevel]           = htmlAttr("size", TitleLevel.AsStringCodec)
   lazy val wrappingType: HtmlAttr[WrappingType] = htmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
   object slots {}
 
   object events {}
 
-  /** Creates Title of H1 level. */
+  /** Creates Title of H1 size. */
   def h1(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H1)*
+    mods :+ (_.size := TitleLevel.H1)*
   )
 
-  /** Creates Title of H2 level. */
+  /** Creates Title of H2 size. */
   def h2(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H2)*
+    mods :+ (_.size := TitleLevel.H2)*
   )
 
-  /** Creates Title of H3 level. */
+  /** Creates Title of H3 size. */
   def h3(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H3)*
+    mods :+ (_.size := TitleLevel.H3)*
   )
 
-  /** Creates Title of H4 level. */
+  /** Creates Title of H4 size. */
   def h4(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H4)*
+    mods :+ (_.size := TitleLevel.H4)*
   )
 
-  /** Creates Title of H4 level. */
+  /** Creates Title of H4 size. */
   def h5(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H5)*
+    mods :+ (_.size := TitleLevel.H5)*
   )
 
-  /** Creates Title of H6 level. */
+  /** Creates Title of H6 size. */
   def h6(mods: (ModFunction | Mod[HtmlElement])*): HtmlElement = apply(
-    mods :+ (_.level := TitleLevel.H6)*
+    mods :+ (_.size := TitleLevel.H6)*
   )
 
 }

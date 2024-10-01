@@ -10,9 +10,9 @@ object TitleExample extends Example("Title") {
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
   ): HtmlElement = div(
-    DemoPanel("Title in All Available Levels")(
-      //-- Begin: Title in All Available Levels
-      div(TitleLevel.allValues.map(level => Title(_.level := level, s"Title level ${level.value.tail}")))
+    DemoPanel("Title in All Available Sizes")(
+      //-- Begin: Title in All Available Sizes
+      div(TitleLevel.allValues.map(level => Title(_.size := level, s"Title level ${level.value.tail}")))
       //-- End
     )
   )

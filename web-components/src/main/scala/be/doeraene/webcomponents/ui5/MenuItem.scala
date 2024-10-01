@@ -23,7 +23,9 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 object MenuItem extends WebComponent with HasIcon with HasText {
 
   @js.native
-  trait RawElement extends js.Object {}
+  trait RawElement extends js.Object {
+    def accessibilityAttributes: js.Object = js.native
+  }
 
   @js.native
   @JSImport("@ui5/webcomponents/dist/MenuItem.js", JSImport.Default)

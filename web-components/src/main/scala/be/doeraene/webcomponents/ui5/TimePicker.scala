@@ -23,7 +23,7 @@ import be.doeraene.webcomponents.WebComponent
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TimePicker/">the doc</a> for more
   *   information.
   */
-object TimePicker extends WebComponent with HasValue {
+object TimePicker extends WebComponent with HasValue with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -69,6 +69,7 @@ object TimePicker extends WebComponent with HasValue {
   lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
   lazy val open: HtmlAttr[Boolean]          = htmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean]      = htmlAttr("required", BooleanAsAttrPresenceCodec)
 
   object slots {
     val valueStateMessage: Slot = Slot("valueStateMessage")

@@ -331,6 +331,7 @@ object IconName {
   def `idea-wall`: IconName = _iconName(`import-idea-wall`, "idea-wall")
   def `image-viewer`: IconName = _iconName(`import-image-viewer`, "image-viewer")
   def `in-progress`: IconName = _iconName(`import-in-progress`, "in-progress")
+  def `in-progress-2`: IconName = _iconName(`import-in-progress-2`, "in-progress-2")
   def inbox: IconName = _iconName(`import-inbox`, "inbox")
   def incident: IconName = _iconName(`import-incident`, "incident")
   def `incoming-call`: IconName = _iconName(`import-incoming-call`, "incoming-call")
