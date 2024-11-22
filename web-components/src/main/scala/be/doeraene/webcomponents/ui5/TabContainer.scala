@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{TabLayout, TabsOverflowMode}
+import be.doeraene.webcomponents.ui5.configkeys.{TabContainerDesign, TabLayout, TabsOverflowMode}
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
@@ -9,9 +9,9 @@ import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
-
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
+
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
@@ -50,6 +50,10 @@ object TabContainer extends WebComponent {
   lazy val tabLayout: HtmlAttr[TabLayout] = htmlAttr("tab-layout", TabLayout.AsStringCodec)
   lazy val overflowMode: HtmlAttr[TabsOverflowMode] =
     htmlAttr("overflow-mode", TabsOverflowMode.AsStringCodec)
+  lazy val contentBackgroundDesign: HtmlAttr[TabContainerDesign] =
+    htmlAttr("content-background-design", TabContainerDesign.AsStringCodec)
+  lazy val headerBackgroundDesign: HtmlAttr[TabContainerDesign] =
+    htmlAttr("header-background-design", TabContainerDesign.AsStringCodec)
 
   @scala.annotation.compileTimeOnly("fixed property of TabContainer has been removed")
   def fixed: HtmlAttr[Boolean] = ???
