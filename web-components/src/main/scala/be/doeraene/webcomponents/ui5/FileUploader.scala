@@ -2,15 +2,15 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
-
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
+
 import org.scalajs.dom.FileList
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
@@ -56,6 +56,8 @@ object FileUploader extends WebComponent with HasName with HasValue {
   lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
   lazy val hideInput: HtmlAttr[Boolean] = htmlAttr("hide-input", BooleanAsAttrPresenceCodec)
+
+  lazy val maxFileSize: HtmlAttr[Int] = htmlAttr("max-file-size", IntAsStringCodec)
 
   lazy val multiple: HtmlAttr[Boolean] = htmlAttr("multiple", BooleanAsAttrPresenceCodec)
 
