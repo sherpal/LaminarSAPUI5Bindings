@@ -36,11 +36,12 @@ object Link extends WebComponent with HasAccessibleName {
 
   lazy val disabled: HtmlAttr[Boolean] =
     htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val href: HtmlAttr[String]       = htmlAttr("href", StringAsIsCodec)
-  lazy val target: HtmlAttr[LinkTarget] = htmlAttr("target", LinkTarget.AsStringCodec)
-  lazy val tooltip: HtmlAttr[String]    = htmlAttr("tooltip", StringAsIsCodec)
-  lazy val icon: HtmlAttr[IconName]     = htmlAttr("icon", IconName.AsStringCodec)
-  lazy val endIcon: HtmlAttr[IconName]  = htmlAttr("end-icon", IconName.AsStringCodec)
+  lazy val href: HtmlAttr[String]                  = htmlAttr("href", StringAsIsCodec)
+  lazy val target: HtmlAttr[LinkTarget]            = htmlAttr("target", LinkTarget.AsStringCodec)
+  lazy val tooltip: HtmlAttr[String]               = htmlAttr("tooltip", StringAsIsCodec)
+  lazy val icon: HtmlAttr[IconName]                = htmlAttr("icon", IconName.AsStringCodec)
+  lazy val endIcon: HtmlAttr[IconName]             = htmlAttr("end-icon", IconName.AsStringCodec)
+  lazy val accessibleDescription: HtmlAttr[String] = htmlAttr("accessible-description", StringAsIsCodec)
 
   lazy val design: HtmlAttr[LinkDesign] =
     htmlAttr("design", LinkDesign.AsStringCodec)

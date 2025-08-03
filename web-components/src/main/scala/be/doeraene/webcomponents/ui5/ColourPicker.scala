@@ -1,19 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
+import be.doeraene.webcomponents.ui5.configkeys.ColourScheme
+import be.doeraene.webcomponents.ui5.configkeys.IconName
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.scaladsl.colour.Colour
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.{JSImport, JSName}
-import be.doeraene.webcomponents.WebComponent
+import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.JSName
 
 /** The ui5-badge is a small non-interactive component which contains text information and color chosen from a list of
   * predefined color schemes. It serves the purpose to attract the user attention to some piece of information (state,
@@ -60,7 +64,8 @@ object ColourPicker extends WebComponent {
   @deprecated("colour attribute has been renamed to value", since = "2.0.0")
   def colour: HtmlAttr[Colour] = value
 
-  lazy val value: HtmlAttr[Colour] = htmlAttr("value", Colour.AsStringCodec)
+  lazy val value: HtmlAttr[Colour]       = htmlAttr("value", Colour.AsStringCodec)
+  lazy val simplified: HtmlAttr[Boolean] = htmlAttr("simplified", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

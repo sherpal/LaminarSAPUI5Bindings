@@ -1,19 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ListGrowingMode, ListMode, ListSeparator}
-import be.doeraene.webcomponents.ui5.internal.Slot
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ListGrowingMode
+import be.doeraene.webcomponents.ui5.configkeys.ListMode
+import be.doeraene.webcomponents.ui5.configkeys.ListSeparator
 import be.doeraene.webcomponents.ui5.eventtypes.*
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
-import scala.scalajs.js
-import scala.scalajs.js.annotation.{JSImport, JSName}
 import scala.concurrent.duration.FiniteDuration
-import be.doeraene.webcomponents.WebComponent
+import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.JSName
 
 /** The ui5-list component allows displaying a list of items, advanced keyboard handling support for navigating between
   * items, and predefined modes to improve the development efficiency.
@@ -46,16 +50,17 @@ object UList extends WebComponent with HasAccessibleName {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-list")
 
-  lazy val accessibleRole: HtmlAttr[String]       = htmlAttr("accessible-role", StringAsIsCodec)
-  lazy val loading: HtmlAttr[Boolean]             = htmlAttr("loading", BooleanAsAttrPresenceCodec)
-  lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
-  lazy val footerText: HtmlAttr[String]           = htmlAttr("footer-text", StringAsIsCodec)
-  lazy val growing: HtmlAttr[ListGrowingMode]     = htmlAttr("growing", ListGrowingMode.AsStringCodec)
-  lazy val headerText: HtmlAttr[String]           = htmlAttr("header-text", StringAsIsCodec)
-  lazy val indent: HtmlAttr[Boolean]              = htmlAttr("indent", BooleanAsAttrPresenceCodec)
-  lazy val selectionMode: HtmlAttr[ListMode]      = htmlAttr("selection-mode", ListMode.AsStringCodec)
-  lazy val noDataText: HtmlAttr[String]           = htmlAttr("no-data-text", StringAsIsCodec)
-  lazy val separators: HtmlAttr[ListSeparator]    = htmlAttr("separators", ListSeparator.AsStringCodec)
+  lazy val accessibleRole: HtmlAttr[String]        = htmlAttr("accessible-role", StringAsIsCodec)
+  lazy val loading: HtmlAttr[Boolean]              = htmlAttr("loading", BooleanAsAttrPresenceCodec)
+  lazy val loadingDelay: HtmlAttr[FiniteDuration]  = htmlAttr("loading-delay", FiniteDurationCodec)
+  lazy val footerText: HtmlAttr[String]            = htmlAttr("footer-text", StringAsIsCodec)
+  lazy val growing: HtmlAttr[ListGrowingMode]      = htmlAttr("growing", ListGrowingMode.AsStringCodec)
+  lazy val headerText: HtmlAttr[String]            = htmlAttr("header-text", StringAsIsCodec)
+  lazy val indent: HtmlAttr[Boolean]               = htmlAttr("indent", BooleanAsAttrPresenceCodec)
+  lazy val selectionMode: HtmlAttr[ListMode]       = htmlAttr("selection-mode", ListMode.AsStringCodec)
+  lazy val noDataText: HtmlAttr[String]            = htmlAttr("no-data-text", StringAsIsCodec)
+  lazy val separators: HtmlAttr[ListSeparator]     = htmlAttr("separators", ListSeparator.AsStringCodec)
+  lazy val accessibleDescription: HtmlAttr[String] = htmlAttr("accessible-description", StringAsIsCodec)
 
   @deprecated("busy property has been renamed to loading", since = "2.0.0")
   def busy: HtmlAttr[Boolean] = loading
