@@ -3,7 +3,9 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
+import demo.helpers.DemoPanel
+import demo.helpers.Example
+import demo.helpers.FetchDemoPanelFromGithub
 
 object SliderExample extends Example("Slider") {
 
@@ -22,7 +24,7 @@ object SliderExample extends Example("Slider") {
     },
     DemoPanel("Slider with Tooltip") {
       //-- Begin: Slider with Tooltip
-      Slider(_.min := 0, _.max := 20, _.showTooltip := true)
+      Slider(_.min := 0, _.max := 20, _.showTooltip := true, _.editableTooltip := true)
       //-- End
     },
     DemoPanel("Disabled Slider with Tickmarks and Labels") {
@@ -33,11 +35,11 @@ object SliderExample extends Example("Slider") {
     DemoPanel("Slider Tooltip, Tickmarks and Labels") {
       //-- Begin: Slider Tooltip, Tickmarks and Labels
       Slider(
-        _.min := -20,
-        _.max := 20,
-        _.step := 2,
-        _.value := 12,
-        _.showTooltip := true,
+        _.min           := -20,
+        _.max           := 20,
+        _.step          := 2,
+        _.value         := 12,
+        _.showTooltip   := true,
         _.labelInterval := 2,
         _.showTickmarks := true
       )
@@ -46,11 +48,11 @@ object SliderExample extends Example("Slider") {
     DemoPanel("Slider with non integer step") {
       //-- Begin: Slider with non integer step
       Slider(
-        _.min := 0,
-        _.max := 1,
-        _.step := 0.1,
-        _.value := 0,
-        _.showTooltip := true,
+        _.min           := 0,
+        _.max           := 1,
+        _.step          := 0.1,
+        _.value         := 0,
+        _.showTooltip   := true,
         _.showTickmarks := true
       )
       //-- End

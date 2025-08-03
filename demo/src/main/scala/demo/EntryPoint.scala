@@ -3,12 +3,12 @@ package demo
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.LinkTarget
 import com.raquo.laminar.api.L.*
-import demo.helpers.Example
-import org.scalajs.dom
-import org.scalajs.dom.{window, URL}
-
 import demo.TagExample
+import demo.helpers.Example
 import demo.helpers.ThemeSelector
+import org.scalajs.dom
+import org.scalajs.dom.URL
+import org.scalajs.dom.window
 object EntryPoint {
   def main(args: Array[String]): Unit = {
     val demoElement = {
@@ -50,6 +50,7 @@ object EntryPoint {
         MessageStripExample,
         MultiComboBoxExample,
         MultiInputExample,
+        NavigationLayoutExample,
         NotificationListGroupItemExample,
         NotificationListItemExample,
         PageExample,
@@ -119,9 +120,8 @@ object EntryPoint {
           h2("Choose one of the components.")
         )
 
-      div(
-        display := "flex",
-        div(
+      NavigationLayout(
+        _.slots.sideContent := div(
           paddingRight("2rem"),
           Title(
             div(

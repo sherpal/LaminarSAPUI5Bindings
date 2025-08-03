@@ -1,18 +1,19 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
-import be.doeraene.webcomponents.WebComponent
 
 /** The BarcodeScannerDialog component provides barcode scanning functionality for all devices that support the
   * MediaDevices.getUserMedia() native API. Opening the dialog launches the device camera and scans for known barcode
@@ -54,7 +55,10 @@ object BarcodeScannerDialog extends WebComponent {
 
   lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
-  object slots {}
+  object slots {
+    val header: Slot = Slot("header")
+    val footer: Slot = Slot("footer")
+  }
 
   object events {
     trait ErrorInfo extends js.Object {

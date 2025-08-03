@@ -1,20 +1,25 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, CalendarType, IconName, ValueState}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
+import be.doeraene.webcomponents.ui5.configkeys.CalendarType
+import be.doeraene.webcomponents.ui5.configkeys.IconName
+import be.doeraene.webcomponents.ui5.configkeys.ValueState
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
-import com.raquo.laminar.keys.{EventProcessor, HtmlAttr}
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
+import com.raquo.laminar.keys.EventProcessor
+import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import java.time.LocalDate
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.WebComponent
 import scala.scalajs.js.annotation.JSName
 
 /** The ui5-date-picker component provides an input field with assigned calendar which opens on user action.
@@ -107,6 +112,9 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
   }
 
   object events {
+
+    val onOpen  = new EventProp[EventWithPreciseTarget[Ref]]("open")
+    val onClose = new EventProp[EventWithPreciseTarget[Ref]]("close")
 
     trait DateEventData extends js.Object {
       def value: String
