@@ -21,6 +21,7 @@ object EntryPoint {
         BreadcrumbsExample,
         BusyIndicatorExample,
         ButtonExample,
+        ButtonBadgeExample,
         CalendarExample,
         CalendarLegendExample,
         CardExample,

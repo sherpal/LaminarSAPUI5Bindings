@@ -6,6 +6,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
 import be.doeraene.webcomponents.ui5.configkeys.ButtonType
 import be.doeraene.webcomponents.ui5.configkeys.IconName
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
 import com.raquo.laminar.codecs.StringAsIsCodec
@@ -21,7 +22,7 @@ import scala.scalajs.js.annotation.JSImport
   * the ui5-button, or by pressing certain keyboard keys, such as Enter.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Button/">the doc</a> for more information.
+  *   <a href="https://sap.github.io/ui5-webcomponents/components/Button/">the doc</a> for more information.
   */
 object Button extends WebComponent with HasIcon {
 
@@ -56,7 +57,9 @@ object Button extends WebComponent with HasIcon {
   )
   def iconEnd: HtmlAttr[Boolean] = ???
 
-  object slots {}
+  object slots {
+    val badge: Slot = Slot("badge")
+  }
 
   object events {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")

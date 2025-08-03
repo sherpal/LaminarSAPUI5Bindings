@@ -677,6 +677,7 @@ object IconName {
   def unfavorite: IconName = _iconName(`import-unfavorite`, "unfavorite")
   def unlocked: IconName = _iconName(`import-unlocked`, "unlocked")
   def `unpaid-leave`: IconName = _iconName(`import-unpaid-leave`, "unpaid-leave")
+  def unsynchronize: IconName = _iconName(`import-unsynchronize`, "unsynchronize")
   def unwired: IconName = _iconName(`import-unwired`, "unwired")
   def up: IconName = _iconName(`import-up`, "up")
   def upload: IconName = _iconName(`import-upload`, "upload")
