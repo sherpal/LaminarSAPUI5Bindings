@@ -1,18 +1,22 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
-import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
+import be.doeraene.webcomponents.ui5.configkeys.ColourScheme
+import be.doeraene.webcomponents.ui5.configkeys.IconName
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.ui5.eventtypes.HasItem
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.WebComponent
 
 /** The SideNavigation is used as a standard menu in applications. It consists of three containers: header
   * (top-aligned), main navigation section (top-aligned) and the secondary section (bottom-aligned).
@@ -37,7 +41,8 @@ object SideNavigation extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-side-navigation")
 
-  lazy val collapsed: HtmlAttr[Boolean] = htmlAttr[Boolean]("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val collapsed: HtmlAttr[Boolean]     = htmlAttr[Boolean]("collapsed", BooleanAsAttrPresenceCodec)
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr[String]("accessible-name", StringAsIsCodec)
 
   object slots {
     val fixedItems: Slot = new Slot("fixedItems")

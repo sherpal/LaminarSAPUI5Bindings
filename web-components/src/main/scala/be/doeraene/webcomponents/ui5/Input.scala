@@ -1,19 +1,24 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{InputType, ValueState}
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, IntAsStringCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.InputType
+import be.doeraene.webcomponents.ui5.configkeys.ValueState
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.ui5.eventtypes.HasTargetRef
+import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.IntAsStringCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.internal.Slot
-import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRef}
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.WebComponent
 
 /** <ui5-input> The ui5-input component allows the user to enter and edit text or numeric values in one line.
   *
@@ -46,21 +51,18 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
 
   lazy val placeholder: HtmlAttr[String] = htmlAttr("placeholder", StringAsIsCodec)
 
-  lazy val disabled: HtmlAttr[Boolean]    = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val required: HtmlAttr[Boolean]    = htmlAttr("required", BooleanAsAttrPresenceCodec)
-  lazy val readonly: HtmlAttr[Boolean]    = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
-  lazy val noTypeahead: HtmlAttr[Boolean] = htmlAttr("no-typeahead", BooleanAsAttrPresenceCodec)
-
-  lazy val tpe: HtmlAttr[InputType] = htmlAttr("type", InputType.AsStringCodec)
-
-  lazy val maxLength: HtmlAttr[Int] = htmlAttr("maxlength", IntAsStringCodec)
-
-  lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
-
-  lazy val showClearIcon: HtmlAttr[Boolean]   = htmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
-  lazy val showSuggestions: HtmlAttr[Boolean] = htmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
-
-  lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val disabled: HtmlAttr[Boolean]                = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  lazy val required: HtmlAttr[Boolean]                = htmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val readonly: HtmlAttr[Boolean]                = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
+  lazy val noTypeahead: HtmlAttr[Boolean]             = htmlAttr("no-typeahead", BooleanAsAttrPresenceCodec)
+  lazy val tpe: HtmlAttr[InputType]                   = htmlAttr("type", InputType.AsStringCodec)
+  lazy val maxLength: HtmlAttr[Int]                   = htmlAttr("maxlength", IntAsStringCodec)
+  lazy val valueState: HtmlAttr[ValueState]           = htmlAttr("value-state", ValueState.AsStringCodec)
+  lazy val showClearIcon: HtmlAttr[Boolean]           = htmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
+  lazy val showSuggestions: HtmlAttr[Boolean]         = htmlAttr("show-suggestions", BooleanAsAttrPresenceCodec)
+  lazy val open: HtmlAttr[Boolean]                    = htmlAttr("open", BooleanAsAttrPresenceCodec)
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")
