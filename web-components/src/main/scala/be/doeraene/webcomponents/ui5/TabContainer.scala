@@ -54,6 +54,7 @@ object TabContainer extends WebComponent {
     htmlAttr("content-background-design", TabContainerDesign.AsStringCodec)
   lazy val headerBackgroundDesign: HtmlAttr[TabContainerDesign] =
     htmlAttr("header-background-design", TabContainerDesign.AsStringCodec)
+  lazy val noAutoSelection: HtmlAttr[Boolean] = htmlAttr("no-auto-selection", BooleanAsAttrPresenceCodec)
 
   @scala.annotation.compileTimeOnly("fixed property of TabContainer has been removed")
   def fixed: HtmlAttr[Boolean] = ???
