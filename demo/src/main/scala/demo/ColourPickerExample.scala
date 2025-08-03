@@ -2,9 +2,11 @@ package demo
 
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
-import com.raquo.laminar.api.L.*
-import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 import be.doeraene.webcomponents.ui5.scaladsl.colour.Colour
+import com.raquo.laminar.api.L.*
+import demo.helpers.DemoPanel
+import demo.helpers.Example
+import demo.helpers.FetchDemoPanelFromGithub
 
 object ColourPickerExample extends Example("ColourPicker") {
 
@@ -14,8 +16,19 @@ object ColourPickerExample extends Example("ColourPicker") {
     DemoPanel("Pick colour") {
       //-- Begin: Pick Colour
       val maybeChosenColourVar: Var[Option[Colour]] = Var(Option.empty)
+      val simplifiedVar                             = Var(false)
       div(
-        ColourPicker(_.events.onChange.map(_.target.value).map(Some(_)) --> maybeChosenColourVar.writer),
+        div(
+          display.flex,
+          alignItems.center,
+          marginBottom := "1em",
+          Label("Toggle simplified"),
+          Switch(_.checked <-- simplifiedVar.signal, _.events.onCheckedChange.mapToUnit --> simplifiedVar.invertWriter)
+        ),
+        ColourPicker(
+          _.simplified <-- simplifiedVar.signal,
+          _.events.onChange.map(_.target.value).map(Some(_)) --> maybeChosenColourVar.writer
+        ),
         div(
           child.text <-- maybeChosenColourVar.signal.map {
             case Some(colour) => s"You have chosen colour ${colour.rgba}."

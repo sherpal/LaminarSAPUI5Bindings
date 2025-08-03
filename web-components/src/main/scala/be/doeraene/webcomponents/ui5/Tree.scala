@@ -1,21 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.ListMode
-import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
-import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
-import com.raquo.laminar.keys.HtmlAttr
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom
-
-import scala.scalajs.js
-import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
-import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
+import be.doeraene.webcomponents.ui5.internal.Slot
+import com.raquo.laminar.api.L.*
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
+import com.raquo.laminar.keys.HtmlAttr
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
+import org.scalajs.dom
+
+import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.JSName
 
 /** The ui5-tree component provides a tree structure for displaying data in a hierarchy.
   *
@@ -41,9 +43,10 @@ object Tree extends WebComponent with HasAccessibleName {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tree")
 
-  lazy val footerText: HtmlAttr[String] = htmlAttr("footer-text", StringAsIsCodec)
-  lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
-  lazy val noDataText: HtmlAttr[String] = htmlAttr("no-data-text", StringAsIsCodec)
+  lazy val footerText: HtmlAttr[String]            = htmlAttr("footer-text", StringAsIsCodec)
+  lazy val headerText: HtmlAttr[String]            = htmlAttr("header-text", StringAsIsCodec)
+  lazy val noDataText: HtmlAttr[String]            = htmlAttr("no-data-text", StringAsIsCodec)
+  lazy val accessibleDescription: HtmlAttr[String] = htmlAttr("accessible-description", StringAsIsCodec)
 
   lazy val selectionMode: HtmlAttr[ListMode] = ListMode.asHtmlAttr("selection-mode")
 
