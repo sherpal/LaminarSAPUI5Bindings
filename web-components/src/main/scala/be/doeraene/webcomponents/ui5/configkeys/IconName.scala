@@ -13,6 +13,8 @@ sealed trait IconName extends js.Any
 
 //noinspection NoTargetNameAnnotationForOperatorLikeDefinition
 object IconName {
+  def `AllIcons-fetch`: IconName = _iconName(`import-AllIcons-fetch`, "AllIcons-fetch")
+  def `Assets-fetch`: IconName = _iconName(`import-Assets-fetch`, "Assets-fetch")
   def `Chart-Tree-Map`: IconName = _iconName(`import-Chart-Tree-Map`, "Chart-Tree-Map")
   def `Netweaver-business-client`: IconName = _iconName(`import-Netweaver-business-client`, "Netweaver-business-client")
   def accelerated: IconName = _iconName(`import-accelerated`, "accelerated")
