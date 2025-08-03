@@ -57,6 +57,13 @@ object TextExample extends Example("Text") {
         )
       )
       //-- End
+    },
+    DemoPanel("Empty text indicator") {
+      //-- Begin: Empty text indicator
+      div(
+        Text(_.emptyIndicatorMode := OnOff.On, "")
+      )
+      //-- End
     }
   )
 

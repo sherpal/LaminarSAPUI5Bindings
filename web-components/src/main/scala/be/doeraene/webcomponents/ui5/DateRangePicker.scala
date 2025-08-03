@@ -1,19 +1,21 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.*
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.{JSImport, JSName}
-import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.WebComponent
+import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.JSName
 
 /** The DateRangePicker enables the users to enter a localized date range using touch, mouse, keyboard input, or by
   * selecting a date range in the calendar.
@@ -96,6 +98,9 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
 
   lazy val secondaryCalendarType: HtmlAttr[CalendarType] =
     htmlAttr("secondary-calendar-type", CalendarType.AsStringCodec)
+
+  lazy val calendarWeekNumbering: HtmlAttr[CalendarWeekNumbering] =
+    htmlAttr("calendar-week-numbering", CalendarWeekNumbering.AsStringCodec)
 
   object slots {
     val valueStateMessage: Slot = Slot("valueStateMessage")
