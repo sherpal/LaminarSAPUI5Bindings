@@ -15,6 +15,7 @@ import com.raquo.laminar.codecs.IntAsStringCodec
 import com.raquo.laminar.codecs.DoubleAsStringCodec
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.RatingIndicatorSize
 
 /** The Rating Indicator is used to display a specific number of icons that are used to rate an item. Additionally, it
   * is also used to display the average and overall ratings.
@@ -49,6 +50,7 @@ object RatingIndicator extends WebComponent {
   lazy val required: HtmlAttr[Boolean]         = htmlAttr("required", BooleanAsAttrPresenceCodec)
   lazy val value: HtmlAttr[Double]             = htmlAttr("value", DoubleAsStringCodec)
   lazy val tooltip: HtmlAttr[String]           = htmlAttr("tooltip", StringAsIsCodec)
+  lazy val size: HtmlAttr[RatingIndicatorSize] = htmlAttr("size", RatingIndicatorSize.AsStringCodec)
 
   object slots {}
 
