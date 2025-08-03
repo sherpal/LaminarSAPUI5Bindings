@@ -1,20 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName}
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
+import be.doeraene.webcomponents.ui5.configkeys.IconName
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.ui5.eventtypes.HasItem
+import be.doeraene.webcomponents.ui5.eventtypes.HasTargetRef
+import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
-import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasTargetRef}
-import be.doeraene.webcomponents.ui5.internal.Slot
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.eventtypes.HasItem
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.WebComponent
 
 /** Simple UI button
   *
@@ -83,11 +86,12 @@ object ShellBar extends WebComponent with HasIcon {
   }
 
   object slots {
-    def logo: Slot        = new Slot("logo")
-    def profile: Slot     = new Slot("profile")
-    def menuItems: Slot   = new Slot("menuItems")
-    def searchField: Slot = new Slot("searchField")
-    def startButton: Slot = new Slot("startButton")
+    def logo: Slot        = Slot("logo")
+    def profile: Slot     = Slot("profile")
+    def menuItems: Slot   = Slot("menuItems")
+    def searchField: Slot = Slot("searchField")
+    def startButton: Slot = Slot("startButton")
+    def content: Slot     = Slot("content")
   }
 
   def item: ShellBarItem.type = ShellBarItem

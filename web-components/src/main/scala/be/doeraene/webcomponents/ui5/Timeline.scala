@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.TimelineGrowing
 
 /** The ui5-timeline component shows entries (such as objects, events, or posts) in chronological order. A common use
   * case is to provide information about changes to an object, or events related to an object. These entries can be
@@ -42,7 +43,8 @@ object Timeline extends WebComponent {
 
   lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
 
-  lazy val layout: HtmlAttr[TimelineLayout] = htmlAttr("layout", TimelineLayout.AsStringCodec)
+  lazy val layout: HtmlAttr[TimelineLayout]   = TimelineLayout.asHtmlAttr("layout")
+  lazy val growing: HtmlAttr[TimelineGrowing] = TimelineGrowing.asHtmlAttr("growing")
 
   object slots {}
 

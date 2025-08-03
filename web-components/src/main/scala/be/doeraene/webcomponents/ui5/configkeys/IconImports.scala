@@ -2003,6 +2003,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/unpaid-leave.js", JSImport.Namespace)
   object `import-unpaid-leave` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/unsynchronize.js", JSImport.Namespace)
+  object `import-unsynchronize` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/unwired.js", JSImport.Namespace)
   object `import-unwired` extends js.Object
 
