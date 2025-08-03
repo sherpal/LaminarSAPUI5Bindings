@@ -36,6 +36,7 @@ object EntryPoint {
         DialogExample,
         DynamicPageExample,
         DynamicSideContentExample,
+        ExpandableTextExample,
         FileUploaderExample,
         FlexibleColumnLayoutExample,
         IconExample,
