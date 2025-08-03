@@ -11,6 +11,12 @@ private[configkeys] object IconImports {
   @inline def _iconName(obj: js.Object, name: String): IconName =
     name.asInstanceOf[IconName]
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/AllIcons-fetch.js", JSImport.Namespace)
+  object `import-AllIcons-fetch` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/Assets-fetch.js", JSImport.Namespace)
+  object `import-Assets-fetch` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/Chart-Tree-Map.js", JSImport.Namespace)
   object `import-Chart-Tree-Map` extends js.Object
 
