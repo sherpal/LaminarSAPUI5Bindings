@@ -41,6 +41,7 @@ object EntryPoint {
         ExpandableTextExample,
         FileUploaderExample,
         FlexibleColumnLayoutExample,
+        FormExample,
         IconExample,
         IllustratedMessageExample,
         InputExample,
