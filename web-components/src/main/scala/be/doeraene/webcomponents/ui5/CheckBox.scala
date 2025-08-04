@@ -43,6 +43,7 @@ object CheckBox extends WebComponent with HasIcon with HasAccessibleName with Ha
   lazy val indeterminate: HtmlAttr[Boolean] = htmlAttr("indeterminate", BooleanAsAttrPresenceCodec)
   lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val required: HtmlAttr[Boolean]      = htmlAttr("required", BooleanAsAttrPresenceCodec)
+  lazy val value: HtmlAttr[String]          = htmlAttr("value", StringAsIsCodec)
 
   lazy val valueState: HtmlAttr[ValueState] = ValueState.asHtmlAttr("value-state")
 

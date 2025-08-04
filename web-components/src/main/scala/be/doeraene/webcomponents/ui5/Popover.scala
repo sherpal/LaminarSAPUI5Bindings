@@ -1,24 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{
-  PopoverHorizontalAlign,
-  PopoverPlacementType,
-  PopoverVerticalAlign,
-  PopupAccessibleRole
-}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.PopoverHorizontalAlign
+import be.doeraene.webcomponents.ui5.configkeys.PopoverPlacementType
+import be.doeraene.webcomponents.ui5.configkeys.PopoverVerticalAlign
+import be.doeraene.webcomponents.ui5.configkeys.PopupAccessibleRole
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
-import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-popover component displays additional information for an object in a compact way and without leaving the
   * page.
@@ -101,6 +100,9 @@ object Popover extends WebComponent with HasAccessibleName {
 
   lazy val preventInitialFocus: HtmlAttr[Boolean] =
     htmlAttr("prevent-initial-focus", BooleanAsAttrPresenceCodec)
+
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
 
   @scala.annotation.compileTimeOnly("hideBackdrop property has been removed.")
   def hideBackdrop: HtmlAttr[Boolean] = ???
