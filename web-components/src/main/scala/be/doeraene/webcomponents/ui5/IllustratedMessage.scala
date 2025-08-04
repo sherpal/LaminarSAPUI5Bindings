@@ -1,19 +1,21 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.IllustratedMessageSize
 import be.doeraene.webcomponents.ui5.configkeys.IllustratedMessageType
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
+import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.internal.Slot
-import be.doeraene.webcomponents.WebComponent
-import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
-import be.doeraene.webcomponents.ui5.configkeys.IllustratedMessageSize
+import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 
 /** Simple UI button
   *
@@ -50,6 +52,9 @@ object IllustratedMessage extends WebComponent with HasIcon {
   lazy val design: HtmlAttr[IllustratedMessageSize] = IllustratedMessageSize.asHtmlAttr("design")
   lazy val subtitleText: HtmlAttr[String]           = htmlAttr("subtitle-text", StringAsIsCodec)
   lazy val titleText: HtmlAttr[String]              = htmlAttr("title-text", StringAsIsCodec)
+  lazy val decorative: HtmlAttr[Boolean]            = htmlAttr("decorative", BooleanAsAttrPresenceCodec)
+  lazy val text: HtmlAttr[String]                   = htmlAttr("text", StringAsIsCodec)
+  lazy val wrappingType: HtmlAttr[WrappingType]     = WrappingType.asHtmlAttr("wrapping-type")
 
   @scala.annotation.compileTimeOnly("The titleLevel property has been removed and replaced by using the title slot")
   def titleLevel: HtmlAttr[TitleLevel] = ???
