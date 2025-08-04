@@ -35,6 +35,7 @@ object EntryPoint {
         DateRangePickerExample,
         DateTimePickerExample,
         DialogExample,
+        DynamicDateRangeExample,
         DynamicPageExample,
         DynamicSideContentExample,
         ExpandableTextExample,

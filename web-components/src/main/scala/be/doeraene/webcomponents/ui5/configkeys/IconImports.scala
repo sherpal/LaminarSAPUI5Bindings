@@ -14,8 +14,14 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/AllIcons-fetch.js", JSImport.Namespace)
   object `import-AllIcons-fetch` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/AllIcons-node.js", JSImport.Namespace)
+  object `import-AllIcons-node` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/Assets-fetch.js", JSImport.Namespace)
   object `import-Assets-fetch` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/Assets-node.js", JSImport.Namespace)
+  object `import-Assets-node` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/Chart-Tree-Map.js", JSImport.Namespace)
   object `import-Chart-Tree-Map` extends js.Object

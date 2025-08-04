@@ -1,18 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{AvatarColorScheme, AvatarInitials, AvatarShape, AvatarSize, IconName}
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.AvatarColorScheme
+import be.doeraene.webcomponents.ui5.configkeys.AvatarInitials
+import be.doeraene.webcomponents.ui5.configkeys.AvatarShape
+import be.doeraene.webcomponents.ui5.configkeys.AvatarSize
+import be.doeraene.webcomponents.ui5.configkeys.IconName
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
-//import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.WebComponent
-import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.tags.CustomHtmlTag
 
 /** An image-like component that has different display options for representing images and icons in different shapes and
   * sizes, depending on the use case. The shape can be circular or square. There are several predefined sizes, as well
@@ -49,6 +54,10 @@ object Avatar extends WebComponent with HasIcon {
 
   object slots {
     val badge: Slot = new Slot("badge")
+  }
+
+  object events {
+    val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
   }
 
 }

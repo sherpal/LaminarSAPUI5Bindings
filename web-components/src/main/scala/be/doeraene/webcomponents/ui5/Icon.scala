@@ -1,19 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
+import be.doeraene.webcomponents.ui5.configkeys.ColourScheme
+import be.doeraene.webcomponents.ui5.configkeys.IconDesign
+import be.doeraene.webcomponents.ui5.configkeys.IconMode
+import be.doeraene.webcomponents.ui5.configkeys.IconName
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.WebComponent
-import be.doeraene.webcomponents.ui5.configkeys.IconDesign
-import be.doeraene.webcomponents.ui5.configkeys.IconMode
 
 /** The ui5-icon component represents an SVG icon. There are two main scenarios how the ui5-icon component is used: as a
   * purely decorative element; or as a visually appealing clickable area in the form of an icon button.
@@ -49,5 +53,9 @@ object Icon extends WebComponent with HasAccessibleName {
     htmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
   lazy val design: HtmlAttr[IconDesign] = htmlAttr("design", IconDesign.AsStringCodec)
+
+  object events {
+    val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
+  }
 
 }
