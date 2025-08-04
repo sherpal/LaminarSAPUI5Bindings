@@ -1,19 +1,20 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.*
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
-import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-responsive-popover acts as a Popover on desktop and tablet, while on phone it acts as a Dialog. The
   * component improves tremendously the user experience on mobile.
@@ -92,6 +93,9 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
 
   lazy val preventFocusRestore: HtmlAttr[Boolean] =
     htmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
+
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
 
   object slots {
     def header: Slot = new Slot("header")

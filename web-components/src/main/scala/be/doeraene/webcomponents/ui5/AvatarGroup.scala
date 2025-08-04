@@ -1,19 +1,21 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.AvatarGroupType
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.{JSImport, JSName}
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
-import be.doeraene.webcomponents.WebComponent
+import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.JSName
 
 /** Displays a group of avatars arranged horizontally. It is useful to visually showcase a group of related avatars,
   * such as, project team members or employees. The component allows you to display the avatars in different sizes,
@@ -23,7 +25,7 @@ import be.doeraene.webcomponents.WebComponent
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/AvatarGroup/">the doc</a> for more
   *   information.
   */
-object AvatarGroup extends WebComponent {
+object AvatarGroup extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
