@@ -18,6 +18,7 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.JSName
 
 /** Simple UI button
   *
@@ -38,6 +39,9 @@ object ShellBar extends WebComponent with HasIcon {
     def overflowDomRef: dom.HTMLElement      = js.native
     def productSwitchDomRef: dom.HTMLElement = js.native
     def profileDomRef: dom.HTMLElement       = js.native
+
+    @JSName("getSearchButtonDomRef")
+    def getSearchButtonDomRefJS: js.Promise[dom.HTMLElement] = js.native
   }
 
   @js.native
@@ -83,6 +87,8 @@ object ShellBar extends WebComponent with HasIcon {
       new EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTargetRef[dom.HTMLElement]]]("product-switch-click")
     val onSearchButtonClick =
       new EventProp[EventWithPreciseTarget[Ref]]("search-button-click")
+    val onSearchFieldToggle =
+      new EventProp[EventWithPreciseTarget[Ref]]("search-field-toggle")
   }
 
   object slots {
