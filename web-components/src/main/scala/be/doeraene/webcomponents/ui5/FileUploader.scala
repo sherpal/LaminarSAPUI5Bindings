@@ -52,7 +52,7 @@ object FileUploader extends WebComponent with HasName with HasValue {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-file-uploader")
 
-  lazy val accept: HtmlAttr[List[String]] = htmlAttr("accept", ListCodec(StringAsIsCodec))
+  lazy val accept: HtmlAttr[List[String]] = htmlAttr("accept", ListCodec(StringAsIsCodec, ','))
 
   lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
