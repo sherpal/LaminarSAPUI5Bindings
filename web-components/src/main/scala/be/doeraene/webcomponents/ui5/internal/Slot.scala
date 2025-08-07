@@ -18,7 +18,7 @@ final class Slot(name: String) {
 
   private val slot: HtmlAttr[String] = htmlAttr("slot", StringAsIsCodec)
 
-  def :=(element: HtmlElement): Inserter = <--(Val(element.amend(slot := name)))
+  def :=(element: HtmlElement): Inserter = <--(Val(element))
 
   def :=(elements: Seq[HtmlElement])(using DummyImplicit): Inserter = <--(Val(elements))
 

@@ -5,6 +5,9 @@ import scala.deriving.Mirror
 import com.raquo.laminar.keys.HtmlAttr
 import com.raquo.laminar.api.L.*
 
+import scala.scalajs.js
+import scala.scalajs.js.JSConverters.*
+
 trait EnumerationString[Value] {
 
   def valueOf(value: Value): String
@@ -17,9 +20,10 @@ trait EnumerationString[Value] {
 
   val allValues: List[Value]
 
-  lazy val valueFromString: PartialFunction[String, Value] = allValues.map(v => valueOf(v) -> v).toMap
+  lazy val valueFromString: js.Map[String, Value] =
+    js.Map(allValues.map(v => valueOf(v) -> v)*)
 
-  final def fromString(s: String): Option[Value] = valueFromString.lift(s)
+  final def fromString(s: String): Option[Value] = valueFromString.get(s)
 
   object AsStringCodec extends Codec[Value, String] {
     def encode(value: Value): String = valueOf(value)
@@ -41,14 +45,24 @@ object EnumerationString {
   given TupleValueOf[EmptyTuple] = TupleValueOf(EmptyTuple)
 
   given [Head, Tail <: Tuple](using head: Mirror.Of[Head], tail: TupleValueOf[Tail])(using
-      ev: head.type <:< Mirror.Singleton
+      ev: head.type <:< (Mirror.Singleton { type MirroredMonoType = Head })
   ): TupleValueOf[Head *: Tail] =
-    TupleValueOf(ev(head).fromProduct(EmptyTuple).asInstanceOf[Head] *: tail.value)
+    TupleValueOf(ev(head).fromProduct(EmptyTuple) *: tail.value)
 
-  type AllSubtypesOf[T <: Tuple, Upper] <: Boolean = T match {
-    case EmptyTuple    => true
-    case Upper *: rest => AllSubtypesOf[rest, Upper]
-    case _             => false
+  type AllSubtypesOf[T <: Tuple, Upper] = ForAll[T, [t] =>> IsSubtype[t, Upper]]
+
+  type IsSubtype[T, U] <: Boolean = T match {
+    case U => true
+    case _ => false
+  }
+
+  type ForAll[T <: Tuple, Predicate <: ([T] =>> Boolean)] <: Boolean = T match {
+    case EmptyTuple => true
+    case head *: rest =>
+      Predicate[head] match {
+        case true  => ForAll[rest, Predicate]
+        case false => false
+      }
   }
 
 }

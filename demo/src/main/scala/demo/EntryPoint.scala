@@ -75,6 +75,7 @@ object EntryPoint {
         StepInputExample,
         SwitchExample,
         TabContainerExample,
+        TableGrowingExample,
         TableExample,
         TextExample,
         TextAreaExample,
