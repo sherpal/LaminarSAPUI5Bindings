@@ -4,6 +4,7 @@ package be.doeraene.webcomponents.ui5.configkeys
 // !! This file has been generated, do not edit manually!
 
 import com.raquo.laminar.codecs.{Codec, StringAsIsCodec}
+import com.raquo.laminar.api.L.{HtmlAttr, htmlAttr}
 import be.doeraene.webcomponents.ui5.configkeys.IconImports.*
 
 import scala.scalajs.js
@@ -725,4 +726,6 @@ object IconName {
     override def encode(scalaValue: IconName): String = scalaValue.asInstanceOf[String]
     override def decode(domValue: String): IconName = domValue.asInstanceOf[IconName]
   }
+
+  def asHtmlAttr(name: String): HtmlAttr[IconName] = htmlAttr(name, AsStringCodec)
 }
