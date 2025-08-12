@@ -27,10 +27,10 @@ object FiniteDurationCodec extends Codec[FiniteDuration, String] {
   override def encode(scalaValue: FiniteDuration): String = scalaValue.toMillis.toString
 }
 
-case class ListCodec[A](codec: Codec[A, String]) extends Codec[List[A], String] {
-  def decode(domValue: String): List[A] = domValue.split(',').toList.map(codec.decode)
+case class ListCodec[A](codec: Codec[A, String], sep: Char) extends Codec[List[A], String] {
+  def decode(domValue: String): List[A] = domValue.split(sep).toList.map(codec.decode)
 
-  def encode(scalaValue: List[A]): String = scalaValue.map(codec.encode).mkString(",")
+  def encode(scalaValue: List[A]): String = scalaValue.map(codec.encode).mkString(sep.toString)
 }
 
 @js.native
