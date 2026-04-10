@@ -41,7 +41,7 @@ object Form extends WebComponent {
   lazy val accessibleName: HtmlAttr[String]   = htmlAttr("accessible-name", StringAsIsCodec)
   lazy val layout: HtmlAttr[String]           = htmlAttr("layout", StringAsIsCodec)
   lazy val labelSpan: HtmlAttr[String]        = htmlAttr("label-span", StringAsIsCodec)
-  lazy val emptySpan: HtmlAttr[String]        = htmlAttr("label-span", StringAsIsCodec)
+  lazy val emptySpan: HtmlAttr[String]        = htmlAttr("empty-span", StringAsIsCodec)
   lazy val headerText: HtmlAttr[String]       = htmlAttr("header-text", StringAsIsCodec)
   lazy val headerLevel: HtmlAttr[TitleLevel]  = htmlAttr("header-level", TitleLevel.AsStringCodec)
   lazy val itemSpacing: HtmlAttr[ItemSpacing] = htmlAttr("item-spacing", ItemSpacing.AsStringCodec)
