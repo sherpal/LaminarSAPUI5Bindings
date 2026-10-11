@@ -1,7 +1,6 @@
 name: Release
 on:
   push:
-    branches: [publish]
     tags: ["v*"]
 jobs:
   publish:
