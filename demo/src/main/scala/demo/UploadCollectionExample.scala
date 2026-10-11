@@ -71,7 +71,10 @@ object UploadCollectionExample extends Example("UploadCollection") {
       val newFilesArrivedObserver = allStagedFilesVar.updater[List[(dom.File, js.Date)]](_ ++ _)
 
       UploadCollection(
-        _.slots.header := div(Title.h2("Attachments")),
+        _.slots.header      := div(Title.h2("Attachments")),
+        _.noDataText        := "No files",
+        _.noDataDescription := "Drop files here to add them",
+        _.noDataHeaderLevel := TitleLevel.H3,
         _.events.onDrop.preventDefault.map(
           _.dataTransfer.files.toList.map(_ -> new js.Date)
         ) --> newFilesArrivedObserver,
@@ -79,6 +82,7 @@ object UploadCollectionExample extends Example("UploadCollection") {
           UploadCollection.item(
             _.fileName          := file.name,
             _.fileNameClickable := true,
+            _.tooltip           := s"${file.name} (${file.size.toInt} bytes)",
             s"Selected at: $selectedAt",
             dataAttr("index") := index.toString,
             _.slots.thumbnail := img(

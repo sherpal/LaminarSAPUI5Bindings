@@ -5,10 +5,13 @@ import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
 import be.doeraene.webcomponents.ui5.configkeys.EmbeddingAsIsCodec
 import be.doeraene.webcomponents.ui5.configkeys.IconName
 import be.doeraene.webcomponents.ui5.configkeys.InteractiveAreaSize
+import be.doeraene.webcomponents.ui5.configkeys.LinkAccessibleRole
 import be.doeraene.webcomponents.ui5.configkeys.LinkDesign
 import be.doeraene.webcomponents.ui5.configkeys.LinkTarget
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
+import be.doeraene.webcomponents.ui5.datatypes.AccessibilityAttributes
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
 import com.raquo.laminar.codecs.StringAsIsCodec
@@ -23,6 +26,9 @@ import scala.scalajs.js.annotation.JSImport
 /** The ui5-link is a hyperlink component that is used to navigate to other apps and web pages, or to trigger actions.
   * It is a clickable text element, visualized in such a way that it stands out from the standard text. On hover, it
   * changes its style to an underlined text to provide additional feedback to the user.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/Link/">the doc</a> for more information.
   */
 object Link extends WebComponent with HasAccessibleName {
 
@@ -56,10 +62,26 @@ object Link extends WebComponent with HasAccessibleName {
 
   lazy val wrappingType: HtmlAttr[WrappingType] = htmlAttr("wrapping-type", WrappingType.AsStringCodec)
 
+  /** ARIA role of the link (`Link` by default). Use `Button` when the link triggers an action rather than a navigation.
+    */
+  lazy val accessibleRole: HtmlAttr[LinkAccessibleRole] = LinkAccessibleRole.asHtmlAttr("accessible-role")
+
+  /** Additional accessibility attributes. Supported fields: `expanded`, `hasPopup` and `current`. */
+  lazy val accessibilityAttributes: HtmlProp[AccessibilityAttributes, AccessibilityAttributes] =
+    AccessibilityAttributes.asHtmlProp
+
   object slots {}
 
   object events {
-    val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
+    trait ClickDetail extends js.Object {
+      def altKey: Boolean
+      def ctrlKey: Boolean
+      def metaKey: Boolean
+      def shiftKey: Boolean
+    }
+
+    /** Fired when the link is activated. Calling `preventDefault()` prevents the navigation to `href`. */
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ClickDetail]] = new EventProp("click")
   }
 
 }

@@ -1,6 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
+import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName, PopoverPlacementType}
 import be.doeraene.webcomponents.ui5.eventtypes.{HasColor, HasDetail}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import be.doeraene.webcomponents.ui5.scaladsl.colour.Colour
@@ -23,10 +23,9 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   * in the predefined range.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ColorPalettePopover/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/ColorPalettePopover/">the doc</a> for more information.
   */
-object ColourPalettePopover extends WebComponent {
+object ColourPalettePopover extends WebComponent with HasAccessibleName {
 
   //noinspection ScalaUnusedSymbol
   @js.native
@@ -64,6 +63,9 @@ object ColourPalettePopover extends WebComponent {
   lazy val open: HtmlAttr[Boolean] = htmlAttr("open", BooleanAsAttrPresenceCodec)
 
   lazy val openerId: HtmlAttr[String] = htmlAttr("opener", StringAsIsCodec)
+
+  /** Determines on which side the popover is placed (default: Bottom). */
+  lazy val placement: HtmlAttr[PopoverPlacementType] = PopoverPlacementType.asHtmlAttr("placement")
 
   /** This import is required for the `showMoreColours` property to work. */
   @js.native

@@ -14,13 +14,14 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
 import be.doeraene.webcomponents.ui5.configkeys.ItemSpacing
+import be.doeraene.webcomponents.ui5.configkeys.FormAccessibleMode
 import be.doeraene.webcomponents.ui5.internal.Slot
 
 /** The Form is a layout component that arranges labels and form fields (like input fields) pairs into a specific number
   * of columns.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/components/Form/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Form/">the doc</a> for more information.
   */
 object Form extends WebComponent {
 
@@ -39,12 +40,16 @@ object Form extends WebComponent {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-form")
 
   lazy val accessibleName: HtmlAttr[String]   = htmlAttr("accessible-name", StringAsIsCodec)
+  lazy val accessibleNameRef: HtmlAttr[String] = htmlAttr("accessible-name-ref", StringAsIsCodec)
   lazy val layout: HtmlAttr[String]           = htmlAttr("layout", StringAsIsCodec)
   lazy val labelSpan: HtmlAttr[String]        = htmlAttr("label-span", StringAsIsCodec)
   lazy val emptySpan: HtmlAttr[String]        = htmlAttr("empty-span", StringAsIsCodec)
   lazy val headerText: HtmlAttr[String]       = htmlAttr("header-text", StringAsIsCodec)
   lazy val headerLevel: HtmlAttr[TitleLevel]  = htmlAttr("header-level", TitleLevel.AsStringCodec)
   lazy val itemSpacing: HtmlAttr[ItemSpacing] = htmlAttr("item-spacing", ItemSpacing.AsStringCodec)
+
+  /** Accessibility mode: use `Edit` when the form contains editable fields, `Display` (default) otherwise. */
+  lazy val accessibleMode: HtmlAttr[FormAccessibleMode] = FormAccessibleMode.asHtmlAttr("accessible-mode")
 
   object slots {
     val header: Slot = Slot("header")

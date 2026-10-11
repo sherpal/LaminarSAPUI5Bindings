@@ -1,24 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.datatypes.AccessibilityAttributes
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.ui5.eventtypes.HasTargetRef
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
-import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
-import be.doeraene.webcomponents.ui5.eventtypes.HasTargetRef
-import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-shellbar-item represents a custom item, that might be added to the ui5-shellbar.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ShellBar/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/ShellBarItem/">the doc</a> for more information.
   */
 object ShellBarItem extends WebComponent with HasIcon with HasText {
 
@@ -37,6 +36,10 @@ object ShellBarItem extends WebComponent with HasIcon with HasText {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-shellbar-item")
 
   lazy val count: HtmlAttr[String] = htmlAttr("count", StringAsIsCodec)
+
+  /** Additional accessibility attributes. Supported fields: `expanded`, `hasPopup` and `controls`. */
+  lazy val accessibilityAttributes: HtmlProp[AccessibilityAttributes, AccessibilityAttributes] =
+    AccessibilityAttributes.asHtmlProp
 
   object slots {}
 

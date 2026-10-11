@@ -29,8 +29,7 @@ import be.doeraene.webcomponents.WebComponent
   * application is able to further customize the layout via the provided API.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/MediaGallery/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/MediaGallery/">the doc</a> for more information.
   */
 object MediaGallery extends WebComponent {
 

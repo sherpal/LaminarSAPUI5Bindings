@@ -2,7 +2,8 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.ui5.datatypes.SplitButtonAccessibilityAttributes
+import com.raquo.laminar.codecs.{AsIsCodec, BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
@@ -17,6 +18,9 @@ import be.doeraene.webcomponents.WebComponent
 /** ui5-split-button enables users to trigger actions. It is constructed of two separate actions - default action and
   * arrow action that can be activated by clicking or tapping, or by pressing certain keyboard keys - Space or Enter for
   * default action, and Arrow Down or Arrow Up for arrow action.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/SplitButton/">the doc</a> for more information.
   */
 object SplitButton extends WebComponent with HasIcon {
 
@@ -41,14 +45,22 @@ object SplitButton extends WebComponent with HasIcon {
   lazy val disabled: HtmlAttr[Boolean]          = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
   lazy val activeArrowButton: HtmlAttr[Boolean] = htmlAttr("active-arrow-button", BooleanAsAttrPresenceCodec)
 
+  /** Additional accessibility attributes, for the main button (`root`, supported fields: `hasPopup`, `title`,
+    * `ariaKeyShortcuts`) and for the arrow button (`arrowButton`, supported fields: `hasPopup`, `expanded`, `title`).
+    *
+    * @since UI5 2.13.0
+    */
+  lazy val accessibilityAttributes: HtmlProp[SplitButtonAccessibilityAttributes, SplitButtonAccessibilityAttributes] =
+    htmlProp("accessibilityAttributes", AsIsCodec())
+
   @scala.annotation.compileTimeOnly("activeIcon property of SplitButton has been removed")
   def activeIcon: HtmlAttr[IconName] = ???
 
   object slots {}
 
   object events {
-    val onArrowClick: EventProp[EventWithPreciseTarget[dom.HTMLElement]] = new EventProp("arrow-click")
-    val onClick: EventProp[EventWithPreciseTarget[Ref]]                  = new EventProp("click")
+    val onArrowClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("arrow-click")
+    val onClick: EventProp[EventWithPreciseTarget[Ref]]      = new EventProp("click")
   }
 
 }

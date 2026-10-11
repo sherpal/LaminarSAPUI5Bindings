@@ -17,12 +17,19 @@ import be.doeraene.webcomponents.WebComponent
   * elements that form the content of a single step.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Wizard/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/WizardStep/">the doc</a> for more information.
   */
 object WizardStep extends WebComponent with HasIcon {
 
   @js.native
   trait RawElement extends js.Object {}
+
+  @js.native
+  @JSImport("@ui5/webcomponents-fiori/dist/WizardStep.js", JSImport.Default)
+  object RawImport extends js.Object
+
+  // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
+  used(RawImport)
 
   type Ref = dom.html.Element & RawElement
 

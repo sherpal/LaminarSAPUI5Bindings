@@ -1,20 +1,21 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
-import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.ui5.configkeys.WrappingType
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
-/** The ui5-cb-group-item is type of suggestion item, that can be used to split the ui5-combobox suggestions into
+/** The ui5-cb-item-group is type of suggestion item, that can be used to split the ui5-combobox suggestions into
   * groups.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/ComboBoxItemGroup/">the doc</a> for more information.
   */
 object ComboBoxGroupItem extends WebComponent {
 
@@ -44,6 +45,12 @@ object ComboBoxGroupItem extends WebComponent {
 
   lazy val headerText: HtmlAttr[String] = htmlAttr("header-text", StringAsIsCodec)
 
+  /** Accessible name of the group header. */
+  lazy val headerAccessibleName: HtmlAttr[String] = htmlAttr("header-accessible-name", StringAsIsCodec)
+
+  /** Whether the group header text wraps (`Normal`) or is truncated (`None`, default). Since UI5 2.15.0. */
+  lazy val wrappingType: HtmlAttr[WrappingType] = htmlAttr("wrapping-type", WrappingType.AsStringCodec)
+
   @deprecated("text property of ComboBoxGroupItem has been renamed to headerText", since = "2.0.0")
   def text = headerText
 
@@ -51,6 +58,7 @@ object ComboBoxGroupItem extends WebComponent {
 
   object events {}
 
-  def item: ComboBoxItem.type = ComboBoxItem
+  def item: ComboBoxItem.type             = ComboBoxItem
+  def itemCustom: ComboBoxItemCustom.type = ComboBoxItemCustom
 
 }

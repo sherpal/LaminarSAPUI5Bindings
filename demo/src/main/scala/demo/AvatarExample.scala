@@ -5,6 +5,7 @@ import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 import demo.helpers.MTG
+import be.doeraene.webcomponents.ui5.datatypes.AccessibilityAttributes
 
 object AvatarExample extends Example("Avatar") {
 
@@ -50,6 +51,54 @@ object AvatarExample extends Example("Avatar") {
       div(AvatarSize.allValues.map { size =>
         Avatar(_.size := size, _.initials := ('A', 'b', 'C'))
       })
+      //-- End
+    },
+    DemoPanel("Avatar with badges (since 2.19.0)") {
+      //-- Begin: Avatar with badges (since 2.19.0)
+      div(
+        Avatar(_.size := AvatarSize.M, sherpal, _.slots.badge := AvatarBadge(_.icon := IconName.edit)),
+        Avatar(
+          _.size        := AvatarSize.M,
+          _.initials    := ('J', 'D'),
+          _.slots.badge := AvatarBadge(_.icon := IconName.accept, _.state := ValueState.Positive)
+        ),
+        Avatar(
+          _.size        := AvatarSize.M,
+          _.icon        := IconName.employee,
+          _.slots.badge := AvatarBadge(_.icon := IconName.alert, _.state := ValueState.Critical)
+        ),
+        Avatar(
+          _.size     := AvatarSize.M,
+          _.initials := ('A', 'B'),
+          _.slots.badge := AvatarBadge(
+            _.icon    := IconName.decline,
+            _.state   := ValueState.Negative,
+            _.tooltip := "Rejected"
+          )
+        ),
+        Avatar(
+          _.size        := AvatarSize.M,
+          _.initials    := ('X', 'Y'),
+          _.slots.badge := AvatarBadge(_.icon := IconName.information, _.colourScheme := ColourScheme._6)
+        )
+      )
+      //-- End
+    },
+    DemoPanel("Avatar modes (since 2.20.0)") {
+      //-- Begin: Avatar modes (since 2.20.0)
+      val clickCountVar = Var(0)
+      div(
+        Avatar(_.mode := AvatarMode.Image, _.initials  := ('I', 'M'), _.accessibleName := "Image avatar"),
+        Avatar(_.mode := AvatarMode.Decorative, _.icon := IconName.employee),
+        Avatar(
+          _.mode                    := AvatarMode.Interactive,
+          _.initials                := ('C', 'K'),
+          _.accessibleName          := "Click me",
+          _.accessibilityAttributes := AccessibilityAttributes(hasPopup = AriaHasPopup.Menu),
+          _.events.onClick --> (_ => clickCountVar.update(_ + 1))
+        ),
+        span(child.text <-- clickCountVar.signal.map(count => s"Interactive avatar clicked $count time(s)."))
+      )
       //-- End
     }
   )

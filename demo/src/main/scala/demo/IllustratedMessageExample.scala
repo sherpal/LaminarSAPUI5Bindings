@@ -51,7 +51,41 @@ object IllustratedMessageExample extends Example("IllustratedMessage") {
         Button(_.icon := IconName.refresh, "Try again")
       )
       //-- End
-    )
+    ),
+    DemoPanel("Illustrated Message sizes") {
+      //-- Begin: Illustrated Message sizes
+      val sizes = List(
+        IllustratedMessageSize.Auto,
+        IllustratedMessageSize.Base,
+        IllustratedMessageSize.ExtraSmall,
+        IllustratedMessageSize.Small,
+        IllustratedMessageSize.Medium,
+        IllustratedMessageSize.Large
+      )
+      val sizeVar: Var[IllustratedMessageSize] = Var(IllustratedMessageSize.Medium)
+      div(
+        div(
+          display.flex,
+          columnGap := "0.5rem",
+          sizes.map(size =>
+            Button(
+              size.toString,
+              _.design <-- sizeVar.signal.map(current =>
+                if current == size then ButtonDesign.Emphasized else ButtonDesign.Default
+              ),
+              _.events.onClick.mapTo(size) --> sizeVar.writer
+            )
+          )
+        ),
+        IllustratedMessage(
+          _.name := IllustratedMessageType.NoSearchResults,
+          _.design <-- sizeVar.signal,
+          _.titleText    := "No results",
+          _.subtitleText := "Try adjusting your search criteria."
+        )
+      )
+      //-- End
+    }
   )
 
 }

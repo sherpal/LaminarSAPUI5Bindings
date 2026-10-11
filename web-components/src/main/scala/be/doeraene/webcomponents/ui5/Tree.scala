@@ -22,7 +22,7 @@ import scala.scalajs.js.annotation.JSName
 /** The ui5-tree component provides a tree structure for displaying data in a hierarchy.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Tree/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Tree/">the doc</a> for more information.
   */
 object Tree extends WebComponent with HasAccessibleName {
 
@@ -47,6 +47,9 @@ object Tree extends WebComponent with HasAccessibleName {
   lazy val headerText: HtmlAttr[String]            = htmlAttr("header-text", StringAsIsCodec)
   lazy val noDataText: HtmlAttr[String]            = htmlAttr("no-data-text", StringAsIsCodec)
   lazy val accessibleDescription: HtmlAttr[String] = htmlAttr("accessible-description", StringAsIsCodec)
+
+  /** Id(s) (space separated) of the element(s) describing the tree. @since UI5 2.5.0 */
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
 
   lazy val selectionMode: HtmlAttr[ListMode] = ListMode.asHtmlAttr("selection-mode")
 
@@ -76,6 +79,9 @@ object Tree extends WebComponent with HasAccessibleName {
       def selectedItemsJS: js.Array[TreeItem.Ref] = js.native
       @JSName("previouslySelectedItems")
       def previouslySelectedItemsJS: js.Array[TreeItem.Ref] = js.native
+
+      /** The item that triggered the selection change. */
+      def targetItem: TreeItem.Ref = js.native
     }
 
     object SelectionChangeDetail {

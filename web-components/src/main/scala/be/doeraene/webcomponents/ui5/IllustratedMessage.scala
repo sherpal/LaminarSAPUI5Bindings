@@ -17,14 +17,16 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 
-/** Simple UI button
+/** An IllustratedMessage is a recommended combination of a solution-oriented message, an engaging illustration, and
+  * conversational tone to better communicate an empty or a success state than just show a message alone. The children
+  * (typically [[Button]]s) are displayed as actions below the message.
   *
-  * /!\ Used [[IllustrationMessageType]] must be registered before they can be used. Please refer to the official
-  * documentation for more information. The [[IllustrationMessageType]] has a facility method to know how to register
+  * /!\ Used [[IllustratedMessageType]] must be registered before they can be used. Please refer to the official
+  * documentation for more information. The [[IllustratedMessageType]] has a facility method to know how to register
   * it.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/IllustratedMessage/">the doc</a> for more
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/IllustratedMessage/">the doc</a> for more
   *   information.
   */
 object IllustratedMessage extends WebComponent with HasIcon {
@@ -48,13 +50,22 @@ object IllustratedMessage extends WebComponent with HasIcon {
     htmlAttr("name", IllustratedMessageType.AsStringCodec)
 
   /** Alternative to "name" for Scala 2.13 users. */
-  lazy val nameStr: HtmlAttr[String]                = htmlAttr("name", StringAsIsCodec)
+  lazy val nameStr: HtmlAttr[String] = htmlAttr("name", StringAsIsCodec)
+
+  /** Size of the illustration (`Auto` by default, adapting to the available width). */
   lazy val design: HtmlAttr[IllustratedMessageSize] = IllustratedMessageSize.asHtmlAttr("design")
-  lazy val subtitleText: HtmlAttr[String]           = htmlAttr("subtitle-text", StringAsIsCodec)
-  lazy val titleText: HtmlAttr[String]              = htmlAttr("title-text", StringAsIsCodec)
-  lazy val decorative: HtmlAttr[Boolean]            = htmlAttr("decorative", BooleanAsAttrPresenceCodec)
-  lazy val text: HtmlAttr[String]                   = htmlAttr("text", StringAsIsCodec)
-  lazy val wrappingType: HtmlAttr[WrappingType]     = WrappingType.asHtmlAttr("wrapping-type")
+
+  lazy val subtitleText: HtmlAttr[String] = htmlAttr("subtitle-text", StringAsIsCodec)
+  lazy val titleText: HtmlAttr[String]    = htmlAttr("title-text", StringAsIsCodec)
+
+  /** Whether the illustration is decorative (hidden from assistive technologies). */
+  lazy val decorative: HtmlAttr[Boolean] = htmlAttr("decorative", BooleanAsAttrPresenceCodec)
+
+  @deprecated("text is not part of the ui5-illustrated-message API and has no effect", since = "2.0.0")
+  lazy val text: HtmlAttr[String] = htmlAttr("text", StringAsIsCodec)
+
+  @deprecated("wrappingType is not part of the ui5-illustrated-message API and has no effect", since = "2.0.0")
+  lazy val wrappingType: HtmlAttr[WrappingType] = WrappingType.asHtmlAttr("wrapping-type")
 
   @scala.annotation.compileTimeOnly("The titleLevel property has been removed and replaced by using the title slot")
   def titleLevel: HtmlAttr[TitleLevel] = ???
@@ -63,8 +74,12 @@ object IllustratedMessage extends WebComponent with HasIcon {
   def size: HtmlAttr[IllustratedMessageSize] = design
 
   object slots {
+
+    /** Custom subtitle (overrides `subtitleText`), e.g. to include a [[Link]]. */
     val subtitle: Slot = new Slot("subtitle")
-    val title: Slot    = new Slot("title")
+
+    /** Custom title (overrides `titleText`), typically a [[Title]]. */
+    val title: Slot = new Slot("title")
   }
 
   object events {}

@@ -47,6 +47,24 @@ object CarouselExample extends Example("Carousel") {
       )
       //-- End
     ),
+    DemoPanel("Carousel with Background and Page Indicator Designs")(
+      //-- Begin: Carousel with Background and Page Indicator Designs
+      div(
+        CarouselBackgroundDesign.allValues.map(design =>
+          div(
+            Label(s"Background design: ${design.value}, page indicator border: None"),
+            Carousel(
+              threeMagicCards ++ List(
+                _.backgroundDesign              := design,
+                _.pageIndicatorBackgroundDesign := design,
+                _.pageIndicatorBorderDesign     := CarouselPageIndicatorBorderDesign.None
+              )*
+            )
+          )
+        )
+      )
+      //-- End
+    ),
     mtgImageWarning
   )
 

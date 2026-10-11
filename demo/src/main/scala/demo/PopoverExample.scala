@@ -28,8 +28,8 @@ object PopoverExample extends Example("Popover") {
             className := loginFormClass,
             styleTagForLoginFormClass,
             div(
-              Label(_.forId := "emailInput", _.required := true, "Email"),
-              Input(_.id := "emailInput", _.placeholder := "Enter Email", _.tpe := InputType.Email)
+              Label(_.forId := "emailInput", _.required    := true, "Email"),
+              Input(_.id    := "emailInput", _.placeholder := "Enter Email", _.tpe := InputType.Email)
             )
           ),
           _.slots.footer := div(
@@ -40,6 +40,24 @@ object PopoverExample extends Example("Popover") {
               _.events.onClick.mapTo(None) --> openPopoverBus.writer
             )
           )
+        )
+      )
+      //-- End
+    },
+    DemoPanel("Resizable Popover") {
+      //-- Begin: Resizable Popover
+      val openerId    = "resizable-popover-opener"
+      val openPopover = Var(false)
+      div(
+        Button(idAttr := openerId, "Open resizable Popover", _.events.onClick.mapTo(true) --> openPopover.writer),
+        Popover(
+          _.openerId   := openerId,
+          _.open      <-- openPopover.signal,
+          _.headerText := "Resizable Popover",
+          _.placement  := PopoverPlacementType.Bottom,
+          _.resizable  := true,
+          _.events.onClose.mapTo(false) --> openPopover.writer,
+          p("Drag the resize handle to change the size of this popover (desktop only).")
         )
       )
       //-- End

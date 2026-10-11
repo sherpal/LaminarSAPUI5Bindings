@@ -58,6 +58,19 @@ object ToggleButtonExample extends Example("ToggleButton") {
       )
       //-- End
     },
+    DemoPanel("ToggleButton with End Icon, Badge and Loading State") {
+      //-- Begin: ToggleButton with End Icon, Badge and Loading State
+      div(
+        ToggleButton(_.endIcon := IconName.`slim-arrow-down`, "Filters"),
+        ToggleButton(
+          _.icon := IconName.filter,
+          "Active filters",
+          _.slots.badge := ButtonBadge(_.text := "3", _.design := ButtonBadgeDesign.OverlayText)
+        ),
+        ToggleButton(_.pressed := true, _.loading := true, "Loading")
+      )
+      //-- End
+    },
     DemoPanel("ToggleButton with event handler") {
       //-- Begin: ToggleButton with event handler
       val toggleStateVar = Var(false)

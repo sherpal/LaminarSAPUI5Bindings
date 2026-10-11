@@ -13,6 +13,8 @@ object FCLLayout extends EnumerationString[FCLLayout] {
   case object ThreeColumnsEndExpanded            extends FCLLayout
   case object ThreeColumnsStartExpandedEndHidden extends FCLLayout
   case object ThreeColumnsMidExpandedEndHidden   extends FCLLayout
+  case object ThreeColumnsStartHiddenMidExpanded extends FCLLayout
+  case object ThreeColumnsStartHiddenEndExpanded extends FCLLayout
   case object MidColumnFullScreen                extends FCLLayout
   case object EndColumnFullScreen                extends FCLLayout
 
@@ -22,6 +24,7 @@ object FCLLayout extends EnumerationString[FCLLayout] {
 
   type StringFCLLayout = "OneColumn" | "TwoColumnsStartExpanded" | "TwoColumnsMidExpanded" | "ThreeColumnsMidExpanded" |
     "ThreeColumnsEndExpanded" | "ThreeColumnsStartExpandedEndHidden" | "ThreeColumnsMidExpandedEndHidden" |
-    "MidColumnFullScreen" | "EndColumnFullScreen"
+    "ThreeColumnsStartHiddenMidExpanded" | "ThreeColumnsStartHiddenEndExpanded" | "MidColumnFullScreen" |
+    "EndColumnFullScreen"
 
 }

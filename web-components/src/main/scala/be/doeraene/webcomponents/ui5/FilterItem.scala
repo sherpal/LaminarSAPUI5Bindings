@@ -12,11 +12,10 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
 
-/** For the ui5-filter-item
+/** For the ui5-filter-item, defining a filter of a [[ViewSettingsDialog]].
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ViewSettingsDialog/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/FilterItem/">the doc</a> for more information.
   */
 object FilterItem extends WebComponent with HasText {
 
@@ -33,6 +32,9 @@ object FilterItem extends WebComponent with HasText {
   type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-filter-item")
+
+  /** Additional text displayed next to the filter (e.g. the number of selected options). */
+  lazy val additionalText: HtmlAttr[String] = htmlAttr("additional-text", StringAsIsCodec)
 
   object slots {
     val values: Slot = Slot("values")

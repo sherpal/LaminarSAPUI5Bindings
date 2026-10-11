@@ -18,6 +18,14 @@ import scala.scalajs.js.annotation.JSName
 import scala.scalajs.js.JSConverters.*
 import be.doeraene.webcomponents.ui5.configkeys.TableSingleSelectBehaviour
 
+/** The ui5-table-selection-single component is used inside the ui5-table (in its `features` slot) to add
+  * single-selection capabilities to the table.
+  *
+  * The `rowKey` attribute of the rows must be set for the selection to work properly.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/TableSelectionSingle/">the doc</a> for more information.
+  */
 object TableSelectionSingle extends WebComponent {
 
   @js.native
@@ -44,6 +52,9 @@ object TableSelectionSingle extends WebComponent {
   lazy val selected: HtmlAttr[String] = htmlAttr("selected", StringAsIsCodec)
   lazy val behaviour: HtmlAttr[TableSingleSelectBehaviour] =
     TableSingleSelectBehaviour.asHtmlAttr("behavior")
+
+  /** Alias of [[behaviour]], named after the UI5 attribute (and consistent with [[TableSelectionMulti.behavior]]). */
+  lazy val behavior: HtmlAttr[TableSingleSelectBehaviour] = behaviour
 
   object slots {}
 

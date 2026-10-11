@@ -1,23 +1,23 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
-import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.scaladsl.csssize.CSSSize
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
-import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
-import scala.compiletime.ops.int.<=
-import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.WebComponent
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, IconName, ValueState}
-import be.doeraene.webcomponents.ui5.scaladsl.csssize.CSSSize
 
-object ToolbarSpacer extends WebComponent {
+/** The ui5-toolbar-spacer is an element used for taking needed space for toolbar items to take 100% width. It takes no
+  * space in calculating toolbar items width.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/ToolbarSpacer/">the doc</a> for more information.
+  */
+object ToolbarSpacer extends WebComponent with HasToolbarOverflow {
 
   @js.native
   trait RawElement extends js.Object

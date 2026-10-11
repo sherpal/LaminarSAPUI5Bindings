@@ -18,8 +18,7 @@ import be.doeraene.webcomponents.WebComponent
   * Note: ui5-media-gallery-item is not supported when used outside of ui5-media-gallery.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/MediaGallery/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/MediaGalleryItem/">the doc</a> for more information.
   */
 object MediaGalleryItem extends WebComponent {
 

@@ -30,7 +30,7 @@ import scala.scalajs.js.annotation.JSName
   * supported.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/StepInput/">the doc</a> for more
+  *   <a href="https://ui5.github.io/webcomponents/components/StepInput/">the doc</a> for more
   *   information.
   */
 object StepInput extends WebComponent with HasAccessibleName with HasName {

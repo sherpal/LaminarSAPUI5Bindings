@@ -38,7 +38,7 @@ object BarcodeScannerDialogExample extends Example("BarcodeScannerDialog") {
           "Scan",
           _.events.onClick.mapTo(()) --> openScannerBus.writer
         ),
-        div(Label(child.text <-- barcodeScanSuccessBus.events.map(_.text))),
+        div(Label(child.text <-- barcodeScanSuccessBus.events.map(info => s"${info.text} (format: ${info.format})"))),
         div(Label(child.text <-- barcodeScanFailedBus.events.map(_.message)))
       )
       //-- End

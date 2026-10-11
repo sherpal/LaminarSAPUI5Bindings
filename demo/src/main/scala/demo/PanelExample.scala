@@ -46,7 +46,7 @@ object PanelExample extends Example("Panel") {
         _.fixed      := true,
         _.headerText := "Country Of Birth",
         UList(
-          _.selectionMode := ListMode.SingleSelectBegin,
+          _.selectionMode := ListMode.SingleStart,
           countries.map(country => UList.item(country))
         )
       )

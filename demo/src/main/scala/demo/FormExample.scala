@@ -54,6 +54,29 @@ object FormExample extends Example("Form") {
         )
       )
       //-- End
+    },
+    DemoPanel("Editable Form with Groups") {
+      //-- Begin: Editable Form with Groups
+      Form(
+        _.headerText     := "Shipping",
+        _.layout         := "S1 M2 L3 XL3",
+        _.labelSpan      := "S12 M12 L12 XL12",
+        _.accessibleMode := FormAccessibleMode.Edit,
+        _.group(
+          _.headerText := "Address",
+          _.colSpan    := "S1 M2 L2 XL2",
+          Form.item(_.slots.labelContent := Label("Street:", _.required := true), Input(_.required := true)),
+          Form.item(_.slots.labelContent := Label("ZIP Code/City:"), Input(), Input()),
+          Form.item(_.slots.labelContent := Label("Country:"), Input())
+        ),
+        _.group(
+          _.headerText := "Delivery",
+          Form.item(_.slots.labelContent := Label("Delivery date:"), DatePicker()),
+          Form.item(_.slots.labelContent := Label("Express:"), Switch()),
+          Form.item(_.slots.labelContent := Label("Comment:"), TextArea())
+        )
+      )
+      //-- End
     }
   )
 

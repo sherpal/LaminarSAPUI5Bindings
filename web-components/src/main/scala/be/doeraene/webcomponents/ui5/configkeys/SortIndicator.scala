@@ -5,6 +5,7 @@ sealed trait SortIndicator {
 }
 
 object SortIndicator extends EnumerationString[SortIndicator] {
+  case object None       extends SortIndicator
   case object Ascending  extends SortIndicator
   case object Descending extends SortIndicator
 

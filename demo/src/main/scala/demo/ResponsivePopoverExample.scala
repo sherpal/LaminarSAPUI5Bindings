@@ -45,6 +45,25 @@ object ResponsivePopoverExample extends Example("ResponsivePopover") {
         )
       )
       //-- End
+    },
+    DemoPanel("Resizable ResponsivePopover with Placement") {
+      //-- Begin: Resizable ResponsivePopover with Placement
+      val openerId    = "resizable-responsive-popover-opener"
+      val openPopover = Var(false)
+      div(
+        Button(idAttr := openerId, "Open below", _.events.onClick.mapTo(true) --> openPopover.writer),
+        ResponsivePopover(
+          _.openerId            := openerId,
+          _.open               <-- openPopover.signal,
+          _.headerText          := "Resizable",
+          _.placement           := PopoverPlacementType.Bottom,
+          _.resizable           := true,
+          _.preventInitialFocus := true,
+          _.events.onClose.mapTo(false) --> openPopover.writer,
+          p("On desktop, drag the resize handle to change the size of this popover. On phones, this is a dialog.")
+        )
+      )
+      //-- End
     }
   )
 

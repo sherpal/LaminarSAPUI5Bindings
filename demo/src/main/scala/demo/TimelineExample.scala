@@ -125,7 +125,43 @@ object TimelineExample extends Example("Timeline") {
         )
       )
       //-- End
-    )
+    ),
+    DemoPanel("Timeline with header, info bar and sticky header") {
+      //-- Begin: Timeline with header, info bar and sticky header
+      val ascendingVar: Var[Boolean] = Var(true)
+      val entries = (1 to 15).toList.map(day => f"$day%02d.03.2025" -> s"Daily stand-up #$day")
+      Timeline(
+        height           := "24rem",
+        _.stickyHeader   := true,
+        _.accessibleName := "Meetings history",
+        _.slots.header := Toolbar(
+          _.item(Title.h4("Meetings")),
+          _.spacer(),
+          _.button(
+            _.icon    := IconName.sort,
+            _.tooltip := "Sort",
+            _.events.onClick --> ascendingVar.updater[Any]((ascending, _) => !ascending)
+          )
+        ),
+        _.slots.infoBar := div(
+          padding := "0.5rem 1rem",
+          child.text <-- ascendingVar.signal.map(ascending =>
+            s"${entries.length} meetings, sorted ${if ascending then "oldest" else "newest"} first"
+          )
+        ),
+        children <-- ascendingVar.signal.map { ascending =>
+          (if ascending then entries else entries.reverse).map { case (date, title) =>
+            Timeline.item(
+              _.titleText    := title,
+              _.subtitleText := s"$date 09:30",
+              _.icon         := IconName.calendar,
+              _.iconTooltip  := "Meeting"
+            )
+          }
+        }
+      )
+      //-- End
+    }
   )
 
 }

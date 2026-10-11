@@ -3,6 +3,7 @@ package be.doeraene.webcomponents.ui5
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
 import be.doeraene.webcomponents.ui5.configkeys.CalendarType
+import be.doeraene.webcomponents.ui5.configkeys.CalendarWeekNumbering
 import be.doeraene.webcomponents.ui5.configkeys.IconName
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
@@ -25,15 +26,18 @@ import scala.scalajs.js.annotation.JSName
 /** The ui5-date-picker component provides an input field with assigned calendar which opens on user action.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DatePicker/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/DatePicker/">the doc</a> for more information.
   */
 object DatePicker extends WebComponent with HasAccessibleName with HasName with HasValue {
 
   //noinspection ScalaUnusedSymbol
   @js.native
   trait RawElement extends js.Object {
+    @deprecated("Use dateValueAsync instead", since = "2.14.0")
     def dateValue: js.Date = js.native
+
+    /** Promise that resolves to the currently selected date (or null if none). */
+    def dateValueAsync: js.Promise[js.Date | Null] = js.native
 
     def open: Boolean = js.native
 
@@ -43,7 +47,14 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
 
     def isInValidRange(input: String): Boolean = js.native
 
+    @deprecated("Use isValidValue or isValidDisplayValue instead", since = "2.14.0")
     def isValid(value: String): Boolean = js.native
+
+    /** Checks if a value is valid against the current `valueFormat` of the DatePicker. */
+    def isValidValue(value: String): Boolean = js.native
+
+    /** Checks if a value is valid against the current `displayFormat` of the DatePicker. */
+    def isValidDisplayValue(value: String): Boolean = js.native
   }
 
   object RawElement {
@@ -94,7 +105,23 @@ object DatePicker extends WebComponent with HasAccessibleName with HasName with 
 
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 
+  @deprecated("Use displayFormat and valueFormat instead", since = "2.14.0")
   lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
+
+  /** Determines the format displayed in the input field (a pattern like "dd/MM/yyyy", or "short", "medium", "long"). */
+  lazy val displayFormat: HtmlAttr[String] = htmlAttr("display-format", StringAsIsCodec)
+
+  /** Determines the format used for the `value` attribute (and min/max dates). If not set, ISO format is used. */
+  lazy val valueFormat: HtmlAttr[String] = htmlAttr("value-format", StringAsIsCodec)
+
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
+  /** Defines whether the clear icon of the input will be shown. */
+  lazy val showClearIcon: HtmlAttr[Boolean] = htmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
+
+  lazy val calendarWeekNumbering: HtmlAttr[CalendarWeekNumbering] =
+    htmlAttr("calendar-week-numbering", CalendarWeekNumbering.AsStringCodec)
 
   lazy val maxDateStr: HtmlAttr[String] = htmlAttr("max-date", StringAsIsCodec)
   lazy val minDateStr: HtmlAttr[String] = htmlAttr("min-date", StringAsIsCodec)

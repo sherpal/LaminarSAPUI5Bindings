@@ -42,7 +42,6 @@ object ProductSwitchExample extends Example("ProductSwitch") {
           _.secondaryTitle    := "secondary title",
           _.slots.logo        := img(src := "/images/avatars/scala-logo.png"),
           _.showProductSwitch := true,
-          _.showCoPilot       := true,
           _.events.onProductSwitchClick.map(_.detail.targetRef) --> togglePopoverOpeningEventBus.writer
         ),
         Popover(
@@ -58,6 +57,25 @@ object ProductSwitchExample extends Example("ProductSwitch") {
             _.item(_.titleText := "Catalog", _.subtitleText          := "Ariba", _.icon  := IconName.contacts),
             _.item(_.titleText := "Travel & Expense", _.subtitleText := "Concur", _.icon := IconName.flight)
           )
+        )
+      )
+      //-- End
+    },
+    DemoPanel("Items with images") {
+      //-- Begin: Items with images
+      def avatar(initials: (Char, Char)) = Avatar(
+        _.initials    := initials,
+        _.size        := AvatarSize.S,
+        _.shape       := AvatarShape.Square,
+        _.colorScheme := AvatarColorScheme.Accent6
+      )
+      ProductSwitch(
+        _.item(_.titleText := "Home", _.subtitleText := "Central Home", _.slots.image := avatar(('C', 'H'))),
+        _.item(_.titleText := "Analytics Cloud", _.subtitleText := "Analytics", _.slots.image := avatar(('A', 'C'))),
+        _.item(
+          _.titleText    := "Scala",
+          _.subtitleText := "Logo image",
+          _.slots.image  := img(src := "/images/avatars/scala-logo.png", width := "2rem")
         )
       )
       //-- End

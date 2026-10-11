@@ -4,6 +4,7 @@ import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
+import be.doeraene.webcomponents.ui5.datatypes.{AccessibilityAttributes, SplitButtonAccessibilityAttributes}
 import org.scalajs.dom
 
 object SplitButtonExample extends Example("SplitButton") {
@@ -43,6 +44,9 @@ object SplitButtonExample extends Example("SplitButton") {
         SplitButton(
           idAttr := openerId,
           "Expand ->",
+          _.accessibilityAttributes := SplitButtonAccessibilityAttributes(
+            arrowButton = AccessibilityAttributes(hasPopup = AriaHasPopup.Dialog)
+          ),
           _.events.onArrowClick.map(_.target) --> arrowClickBus.writer
         )
       )

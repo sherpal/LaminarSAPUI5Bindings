@@ -20,7 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   * formats.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/BarcodeScannerDialog/">the doc</a> for more
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/BarcodeScannerDialog/">the doc</a> for more
   *   information.
   */
 object BarcodeScannerDialog extends WebComponent {
@@ -70,6 +70,9 @@ object BarcodeScannerDialog extends WebComponent {
     trait SuccessInfo extends js.Object {
       def text: String
       def rawBytes: js.typedarray.Uint8Array
+
+      /** The format of the scanned barcode (e.g. "QR_CODE", "EAN_13", ...). */
+      def format: String
     }
 
     val onScanSuccess: EventProp[EventWithPreciseTarget[Ref] & HasDetail[SuccessInfo]] = new EventProp(

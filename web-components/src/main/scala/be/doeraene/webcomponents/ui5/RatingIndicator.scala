@@ -21,8 +21,7 @@ import be.doeraene.webcomponents.ui5.configkeys.RatingIndicatorSize
   * is also used to display the average and overall ratings.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/RatingIndicator/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/RatingIndicator/">the doc</a> for more information.
   */
 object RatingIndicator extends WebComponent {
 
@@ -51,6 +50,15 @@ object RatingIndicator extends WebComponent {
   lazy val value: HtmlAttr[Double]             = htmlAttr("value", DoubleAsStringCodec)
   lazy val tooltip: HtmlAttr[String]           = htmlAttr("tooltip", StringAsIsCodec)
   lazy val size: HtmlAttr[RatingIndicatorSize] = htmlAttr("size", RatingIndicatorSize.AsStringCodec)
+
+  /** Display-only mode: visually identical to read-only, but cannot receive focus. */
+  lazy val displayOnly: HtmlAttr[Boolean] = htmlAttr("display-only", BooleanAsAttrPresenceCodec)
+
+  /** Icon displayed for the selected (filled) rating symbols. Defaults to `favorite`. */
+  lazy val ratedIcon: HtmlAttr[IconName] = htmlAttr("rated-icon", IconName.AsStringCodec)
+
+  /** Icon displayed for the unselected (empty) rating symbols. Defaults to `unfavorite`. */
+  lazy val unratedIcon: HtmlAttr[IconName] = htmlAttr("unrated-icon", IconName.AsStringCodec)
 
   object slots {}
 

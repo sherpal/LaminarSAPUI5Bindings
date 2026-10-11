@@ -13,7 +13,8 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 import scala.concurrent.duration.FiniteDuration
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.{EventWithPreciseTarget, HasDetail, HasItem}
+import be.doeraene.webcomponents.ui5.configkeys.NotificationListItemImportance
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 
@@ -23,7 +24,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ValueState
   * content and footnotes to fully describe a notification.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/NotificationListItem/">the doc</a> for more
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/NotificationListItem/">the doc</a> for more
   *   information.
   */
 object NotificationListItem extends WebComponent {
@@ -50,6 +51,10 @@ object NotificationListItem extends WebComponent {
   lazy val showClose: HtmlAttr[Boolean]           = htmlAttr("show-close", BooleanAsAttrPresenceCodec)
   lazy val titleText: HtmlAttr[String]            = htmlAttr("title-text", StringAsIsCodec)
 
+  /** Importance of the notification. `Important` notifications display an "Important" label. */
+  lazy val importance: HtmlAttr[NotificationListItemImportance] =
+    NotificationListItemImportance.asHtmlAttr("importance")
+
   @deprecated("busy property has been renamed to loading", since = "2.0.0")
   def busy: HtmlAttr[Boolean] = loading
   @deprecated("busyDelay property has been renamed to loadingDelay", since = "2.0.0")
@@ -67,9 +72,25 @@ object NotificationListItem extends WebComponent {
   }
 
   object events {
-    val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
+
+    /** Fired when the close button is pressed. */
+    val onClose: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[RawElement]]] = new EventProp("close")
+
+    trait ClickDetail extends js.Object {
+      def originalEvent: dom.Event
+    }
+
+    /** Fired when the item is clicked (or activated with Enter/Space).
+      *
+      * @since UI5 2.23.0
+      */
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ClickDetail]] = new EventProp("click")
   }
 
+  @deprecated(
+    "ui5-notification-action does not exist anymore in UI5 2. Use the menu slot with a Menu component instead",
+    since = "2.0.0"
+  )
   def action: NotificationAction.type = NotificationAction
 
 }

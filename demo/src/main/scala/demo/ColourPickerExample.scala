@@ -13,7 +13,7 @@ object ColourPickerExample extends Example("ColourPicker") {
   def component(using
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
   ): HtmlElement = div(
-    DemoPanel("Pick colour") {
+    DemoPanel("Pick Colour") {
       //-- Begin: Pick Colour
       val maybeChosenColourVar: Var[Option[Colour]] = Var(Option.empty)
       val simplifiedVar                             = Var(false)

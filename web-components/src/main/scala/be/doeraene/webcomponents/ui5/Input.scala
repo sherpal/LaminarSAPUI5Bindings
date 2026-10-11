@@ -1,6 +1,7 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.InputSuggestionsFilter
 import be.doeraene.webcomponents.ui5.configkeys.InputType
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
@@ -13,7 +14,6 @@ import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
 import com.raquo.laminar.codecs.IntAsStringCodec
 import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
@@ -23,8 +23,11 @@ import scala.scalajs.js.annotation.JSImport
 /** <ui5-input> The ui5-input component allows the user to enter and edit text or numeric values in one line.
   *
   * Additionally, you can provide suggestionItems, that are displayed in a popover right under the input.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/Input/">the doc</a> for more information.
   */
-object Input extends WebComponent with HasValue with HasAccessibleName {
+object Input extends WebComponent with HasValue with HasAccessibleName with HasName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -64,10 +67,15 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
   lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
   lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
 
+  /** Filter type used for the suggestions (defaults to `None`). Since UI5 2.19.0. */
+  lazy val filter: HtmlAttr[InputSuggestionsFilter] = InputSuggestionsFilter.asHtmlAttr("filter")
+
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")
 
-    // undocumented in SAP but it exists.
+    /** Icon(s) displayed in the input. Use [[InputIcon]] (see [[Input.inputIcon]]) for interactive icons, or [[Icon]]
+      * for decorative ones.
+      */
     val icon: Slot = new Slot("icon")
   }
 
@@ -92,7 +100,11 @@ object Input extends WebComponent with HasValue with HasAccessibleName {
       ???
   }
 
-  def suggestion: SuggestionItem.type           = SuggestionItem
-  def suggestionGroup: SuggestionGroupItem.type = SuggestionGroupItem
+  def suggestion: SuggestionItem.type             = SuggestionItem
+  def suggestionCustom: SuggestionItemCustom.type = SuggestionItemCustom
+  def suggestionGroup: SuggestionGroupItem.type   = SuggestionGroupItem
+
+  /** Interactive icon to be put in the `icon` slot (since UI5 2.25.0). */
+  def inputIcon: InputIcon.type = InputIcon
 
 }

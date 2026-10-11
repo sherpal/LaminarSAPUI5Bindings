@@ -6,7 +6,7 @@ import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
 import be.doeraene.webcomponents.ui5.configkeys.Growing
 import be.doeraene.webcomponents.ui5.configkeys.IconName
 import be.doeraene.webcomponents.ui5.configkeys.Priority
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.{EventWithPreciseTarget, HasDetail}
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
@@ -24,8 +24,8 @@ import scala.scalajs.js.annotation.JSImport
   * usually ui5-li-notification items.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/NotificationListGroupItem/">the doc</a> for
-  *   more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/NotificationListGroupItem/">the doc</a> for more
+  *   information.
   */
 object NotificationListGroupItem extends WebComponent {
 
@@ -48,7 +48,12 @@ object NotificationListGroupItem extends WebComponent {
   lazy val loadingDelay: HtmlAttr[FiniteDuration] = htmlAttr("loading-delay", FiniteDurationCodec)
   lazy val read: HtmlAttr[Boolean]                = htmlAttr("read", BooleanAsAttrPresenceCodec)
   lazy val titleText: HtmlAttr[String]            = htmlAttr("title-text", StringAsIsCodec)
-  lazy val growing: HtmlAttr[Growing]             = htmlAttr("growing", Growing.AsStringCodec)
+
+  /** Whether the group shows a "More" button at the end, to load more items (see [[events.onLoadMore]]).
+    *
+    * @since UI5 2.2.0
+    */
+  lazy val growing: HtmlAttr[Growing] = htmlAttr("growing", Growing.AsStringCodec)
 
   @scala.annotation.compileTimeOnly("showClose property has been removed")
   def showClose: HtmlAttr[Boolean] = ???
@@ -67,7 +72,21 @@ object NotificationListGroupItem extends WebComponent {
   }
 
   object events {
+    /** Fired when the group is expanded or collapsed. */
     val onToggle: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("toggle")
+
+    /** Fired when the "More" button is pressed (when `growing` is `Button`).
+      *
+      * @since UI5 2.2.0
+      */
+    val onLoadMore: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("load-more")
+
+    /** Fired when the group header is clicked (or activated with Enter/Space).
+      *
+      * @since UI5 2.23.0
+      */
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[NotificationListItem.events.ClickDetail]] =
+      new EventProp("click")
 
     @scala.annotation.compileTimeOnly("close event of NotificationListGroupItem has been removed")
     def onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")

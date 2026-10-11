@@ -12,6 +12,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.ui5.configkeys.ListMode
+import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasItem
@@ -21,7 +22,7 @@ import be.doeraene.webcomponents.WebComponent
   * ui5-upload-collection-item. It also allows you to show already uploaded files.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/UploadCollection/">the doc</a> for more
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/UploadCollection/">the doc</a> for more
   *   information.
   */
 object UploadCollection extends WebComponent {
@@ -50,6 +51,9 @@ object UploadCollection extends WebComponent {
   lazy val noDataDescription: HtmlAttr[String] = htmlAttr("no-data-description", StringAsIsCodec)
 
   lazy val noDataText: HtmlAttr[String] = htmlAttr("no-data-text", StringAsIsCodec)
+
+  /** Header level of the 'No data' text (since UI5 2.16, default `H2`). */
+  lazy val noDataHeaderLevel: HtmlAttr[TitleLevel] = TitleLevel.asHtmlAttr("no-data-header-level")
 
   @deprecated("mode property has been replaced by selectionMode")
   def mode: HtmlAttr[ListMode.UploadCollectionMode] = selectionMode

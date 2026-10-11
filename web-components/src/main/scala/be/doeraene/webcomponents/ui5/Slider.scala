@@ -4,6 +4,7 @@ import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.ButtonDesign
 import be.doeraene.webcomponents.ui5.configkeys.ColourScheme
 import be.doeraene.webcomponents.ui5.configkeys.IconName
+import be.doeraene.webcomponents.ui5.datatypes.Tickmark
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
@@ -24,9 +25,9 @@ import scala.scalajs.js.annotation.JSImport
   * visual selection of a value in a continuous numerical range by moving an adjustable handle.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Slider/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Slider/">the doc</a> for more information.
   */
-object Slider extends WebComponent {
+object Slider extends WebComponent with HasName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -63,6 +64,11 @@ object Slider extends WebComponent {
   lazy val step: HtmlAttr[Double] = htmlAttr("step", DoubleAsStringCodec)
 
   lazy val value: HtmlAttr[Double] = htmlAttr("value", DoubleAsStringCodec)
+
+  /** Custom tickmarks (with optional labels) displayed on the slider scale. They are purely visual and do not affect
+    * the step or the possible values.
+    */
+  lazy val tickmarks: HtmlProp[List[Tickmark], js.Array[Tickmark]] = Tickmark.asHtmlProp
 
   object slots {}
 

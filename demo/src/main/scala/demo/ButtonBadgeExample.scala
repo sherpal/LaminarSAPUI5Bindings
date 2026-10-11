@@ -13,11 +13,15 @@ object ButtonBadgeExample extends Example("ButtonBadge") {
     div(
       h1("Button"),
       DemoPanel("Basic Button with badge")(
-        //-- Begin: Basic Button
+        //-- Begin: Basic Button with badge
         div(
           Button("Click me", _.slots.badge := ButtonBadge(_.design := ButtonBadgeDesign.AttentionDot)),
           Button("Click me", _.slots.badge := ButtonBadge(_.text := "3")),
-          Button("Click me", _.slots.badge := ButtonBadge(_.text := "9+", _.design := ButtonBadgeDesign.OverlayText))
+          Button("Click me", _.slots.badge := ButtonBadge(_.text := "9+", _.design := ButtonBadgeDesign.OverlayText)),
+          ToggleButton(
+            "Toggle me",
+            _.slots.badge := ButtonBadge(_.text := "5", _.design := ButtonBadgeDesign.InlineText)
+          )
         )
         //-- End
       )

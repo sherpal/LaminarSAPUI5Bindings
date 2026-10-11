@@ -2,6 +2,7 @@ package demo
 
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
+import be.doeraene.webcomponents.ui5.datatypes.Tickmark
 import com.raquo.laminar.api.L.*
 import demo.helpers.DemoPanel
 import demo.helpers.Example
@@ -42,6 +43,23 @@ object SliderExample extends Example("Slider") {
         _.showTooltip   := true,
         _.labelInterval := 2,
         _.showTickmarks := true
+      )
+      //-- End
+    },
+    DemoPanel("Slider with Custom Tickmarks") {
+      //-- Begin: Slider with Custom Tickmarks
+      Slider(
+        _.min         := 0,
+        _.max         := 100,
+        _.value       := 50,
+        _.showTooltip := true,
+        _.tickmarks := List(
+          Tickmark(0, "Cold"),
+          Tickmark(25),
+          Tickmark(50, "Warm"),
+          Tickmark(75),
+          Tickmark(100, "Hot")
+        )
       )
       //-- End
     },

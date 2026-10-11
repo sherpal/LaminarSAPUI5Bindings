@@ -13,12 +13,13 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 
 /** The ui5-color-palette-item component represents a color in the the ui5-color-palette.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ColorPalette/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/ColorPaletteItem/">the doc</a> for more information.
   */
 object ColourPaletteItem extends WebComponent {
 
@@ -30,7 +31,7 @@ object ColourPaletteItem extends WebComponent {
   }
 
   @js.native
-  @JSImport("@ui5/webcomponents/dist/ColorPalette.js", JSImport.Default)
+  @JSImport("@ui5/webcomponents/dist/ColorPaletteItem.js", JSImport.Default)
   object RawImport extends js.Object
 
   // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
@@ -43,8 +44,18 @@ object ColourPaletteItem extends WebComponent {
   lazy val value: HtmlAttr[Colour]     = htmlAttr("value", Colour.AsStringCodec)
   lazy val selected: HtmlAttr[Boolean] = htmlAttr("selected", BooleanAsAttrPresenceCodec)
 
+  /** Tooltip of the item. When not set, the colour value is used as the tooltip. */
+  lazy val tooltip: HtmlAttr[String] = htmlAttr("tooltip", StringAsIsCodec)
+
   object slots {}
 
-  object events {}
+  object events {
+    trait ClickEventDetail extends js.Object {
+      def originalEvent: dom.Event
+    }
+
+    /** Fired when the item is activated (click, or Space/Enter key). */
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ClickEventDetail]] = new EventProp("click")
+  }
 
 }

@@ -19,9 +19,10 @@ object SelectExample extends Example("Select") {
       //-- Begin: Basic Select
       div(
         Select(
+          _.value := "Desktop",
           _.option(_.icon := IconName.iphone, "Phone"),
           _.option(_.icon := IconName.ipad, "Tablet"),
-          _.option(_.icon := IconName.laptop, "Desktop", _.selected := true)
+          _.option(_.icon := IconName.laptop, "Desktop")
         ),
         span(padding := "1em"),
         Select(
@@ -45,6 +46,61 @@ object SelectExample extends Example("Select") {
       )
       //-- End
     ),
+    DemoPanel("Read-only Select with Text Separator")(
+      //-- Begin: Read-only Select with Text Separator
+      div(
+        SelectTextSeparator.allValues.map(separator =>
+          Select(
+            _.readonly      := true,
+            _.textSeparator := separator,
+            _.value         := "Belgium",
+            marginRight     := "1em",
+            someCountries.zip(someCountryCodes).map((country, code) => Select.option(_.additionalText := code, country))
+          )
+        )
+      )
+      //-- End
+    ),
+    DemoPanel("Select with Option Groups")(
+      //-- Begin: Select with Option Groups
+      Select(
+        _.value := "Carrot",
+        _.optionGroup(
+          _.headerText := "Fruits",
+          _.option("Apple"),
+          _.option("Banana"),
+          _.option("Cherry")
+        ),
+        _.optionGroup(
+          _.headerText := "Vegetables",
+          _.option("Carrot"),
+          _.option("Leek"),
+          _.option("Potato")
+        )
+      )
+      //-- End
+    ),
+    DemoPanel("Select with Live Change") {
+      //-- Begin: Select with Live Change
+      val previewedVar: Var[String] = Var(someCountries.head)
+      val selectedVar: Var[String]  = Var(someCountries.head)
+      div(
+        Select(
+          _.value <-- selectedVar.signal,
+          someCountries.map(country => Select.option(country)),
+          _.events.onLiveChange.map(_.detail.selectedOption.textContent) --> previewedVar.writer,
+          _.events.onChange.map(_.detail.selectedOption.textContent) --> selectedVar.writer
+        ),
+        div(
+          marginTop := "0.5rem",
+          "Previewed (navigate with arrow keys in the opened list): ",
+          child.text <-- previewedVar.signal,
+          ", selected: ",
+          child.text <-- selectedVar.signal
+        )
+      )
+      //-- End
+    },
     DemoPanel("Keeping Select in sync with Signal") {
       //-- Begin: Keeping Select in sync with Signal
       val currentCountryVar = Var(someCountries.head)
@@ -52,9 +108,8 @@ object SelectExample extends Example("Select") {
       def select = Select(
         _.events.onChange.map(_.detail.selectedOption.dataset.get("name").get) --> currentCountryVar.writer,
         marginRight := "1em",
-        someCountries.map(country =>
-          Select.option(country, dataAttr("name") := country, _.selected <-- currentCountryVar.signal.map(_ == country))
-        )
+        _.value <-- currentCountryVar.signal,
+        someCountries.map(country => Select.option(country, dataAttr("name") := country))
       )
 
       div(

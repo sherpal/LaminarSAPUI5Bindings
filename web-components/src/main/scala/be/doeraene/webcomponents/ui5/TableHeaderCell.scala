@@ -15,6 +15,13 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
+/** The ui5-table-header-cell component represents a column in the ui5-table.
+  *
+  * As it is tightly coupled to the ui5-table, it should only be used within a ui5-table-header-row.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/TableHeaderCell/">the doc</a> for more information.
+  */
 object TableHeaderCell extends WebComponent {
 
   @js.native
@@ -38,10 +45,24 @@ object TableHeaderCell extends WebComponent {
   lazy val horizontalAlign: HtmlAttr[TableCellHorizontalAlign] =
     TableCellHorizontalAlign.asHtmlAttr("horizontal-align")
 
+  /** Width of the column, as a CSS size (e.g. "200px", "20%", "auto"). By default, columns grow and shrink according
+    * to the available space.
+    */
+  lazy val width: HtmlAttr[String] = htmlAttr("width", StringAsIsCodec)
+
+  /** Minimum width of the column, as a CSS size. In `Popin` overflow mode, a column whose minimum width does not fit
+    * anymore moves into the popin area.
+    */
+  lazy val minWidth: HtmlAttr[String] = htmlAttr("min-width", StringAsIsCodec)
+
   object slots {
+
+    /** Header cell action, e.g. a [[TableHeaderCellActionAI]] (since UI5 2.8). */
     val action: Slot = Slot("action")
   }
 
   object events {}
+
+  def actionAI: TableHeaderCellActionAI.type = TableHeaderCellActionAI
 
 }

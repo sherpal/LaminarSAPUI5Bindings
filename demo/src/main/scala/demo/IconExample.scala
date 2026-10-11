@@ -35,6 +35,22 @@ object IconExample extends Example("Icon") {
           )
       )
       //-- End
+    ),
+    DemoPanel("Icon with Custom Font Icon (since 2.23.0)")(
+      //-- Begin: Icon with Custom Font Icon (since 2.23.0)
+      div(
+        // Any font icon library (e.g. Font Awesome) can be used, here we simply use unicode characters
+        List("★", "♥", "☀").map(char =>
+          Icon(
+            _.accessibleName := s"Font icon $char",
+            _.showTooltip    := true,
+            _.slots.fontIcon := span(char),
+            marginRight      := "1em",
+            fontSize         := "1.5rem"
+          )
+        )
+      )
+      //-- End
     )
   )
 

@@ -4,6 +4,8 @@ object IllustratedMessages {
     "AllIllustrations"
   )
 
+  private val svgOnlyModulePrefixes = List("sapIllus-", "tnt-")
+
 
   /** Map from the name of the enclosing sub-folder to the list of illustrated messages in that folder. None when it's
     * at the "root".
@@ -19,6 +21,8 @@ object IllustratedMessages {
         .filter(_.endsWith(".js"))
         .map(_.dropRight(3))
         .filterNot(nonIllustratedMessages.contains[String])
+        // raw svg modules (e.g. sapIllus-Dialog-NoData, tnt-Spot-Avatar) are not illustrations by themselves
+        .filterNot(name => svgOnlyModulePrefixes.exists(name.startsWith))
         .sorted
     }.toMap
   }
@@ -43,11 +47,13 @@ object IllustratedMessages {
     .map { case (subFolder, names) =>
       val subFolderObjectPath = subFolder.fold("")("IllustratedMessageTypeImports." ++ _ ++ ".")
       subFolder -> names.map { name =>
+        // illustrations outside the default set are registered by UI5 as "<set>/<name>", e.g. "tnt/Avatar"
+        val registeredName = subFolder.fold(name)(_ ++ "/" ++ name)
         s"""def ${CodeGeneration.wrappedName(
           name
         )}: IllustratedMessageType = _illustratedMessage($subFolderObjectPath${CodeGeneration.importName(
           name
-        )}, "$name")"""
+        )}, "$registeredName")"""
       }
     }
 

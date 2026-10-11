@@ -11,7 +11,7 @@ object LabelExample extends Example("Label") {
       demoPanelInfoMap: FetchDemoPanelFromGithub.CompleteDemoPanelInfo
   ): HtmlElement = div(
     DemoPanel("Basic Label")(
-      //-- Begin: Basic label
+      //-- Begin: Basic Label
       Label("Simple Label")
       //-- End
     ),
@@ -54,9 +54,10 @@ object LabelExample extends Example("Label") {
             _.id                := "mySelect",
             aria.required       := true,
             _.accessibleNameRef := "myLabel3",
-            _.option("Manager"),
-            _.option("Sales"),
-            _.option(_.selected := true, "Developer")
+            _.value             := "Developer",
+            _.option(_.value := "Manager", "Manager"),
+            _.option(_.value := "Sales", "Sales"),
+            _.option(_.value := "Developer", "Developer")
           )
         ),
         div(

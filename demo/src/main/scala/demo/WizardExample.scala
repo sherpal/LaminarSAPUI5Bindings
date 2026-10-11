@@ -46,6 +46,7 @@ object WizardExample extends Example("Wizard") {
 
       div(
         Wizard(
+          _.accessibleName := "User profile creation",
           _.events.onStepChange.map(_.detail.step.dataset("stepNumber").toInt) --> currentStepVar.writer,
           _.step(
             _.icon := IconName.home,

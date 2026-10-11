@@ -5,6 +5,7 @@ import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub, MTG}
 import org.scalajs.dom
+import be.doeraene.webcomponents.ui5.datatypes.FCLLayoutConfiguration
 
 import scala.scalajs.js
 
@@ -53,6 +54,15 @@ object FlexibleColumnLayoutExample extends Example("FlexibleColumnLayout") {
         FlexibleColumnLayout(
           _.layout <-- layoutBus.events.startWith(FCLLayout.OneColumn),
           _.events.onLayoutChanged.map(_.detail) --> Observer[js.Any](obj => dom.console.log(obj)),
+          // custom column proportions for the two columns layout, on desktop (the default is 33% / 67%)
+          _.layoutsConfiguration := FCLLayoutConfiguration.empty
+            .withDesktopLayout(FCLLayout.TwoColumnsMidExpanded, List("40%", "60%", "0px")),
+          // fired when the user drags a separator
+          _.events.onLayoutConfigurationChange.map(_.detail) --> Observer[
+            FlexibleColumnLayout.events.LayoutConfigurationChangeDetail
+          ](detail =>
+            dom.console.log(s"New columns for ${detail.layout} on ${detail.media}: ${detail.columnLayoutList}")
+          ),
           _.slots.startColumn := div(
             ShellBar(_.primaryTitle := "Magic"),
             UList(

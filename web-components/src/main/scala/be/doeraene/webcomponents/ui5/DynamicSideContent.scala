@@ -1,8 +1,9 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{SideContentFallDown, SideContentPosition, SideContentVisibility}
+import be.doeraene.webcomponents.ui5.datatypes.DynamicSideContentAccessibilityAttributes
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
+import com.raquo.laminar.codecs.{AsIsCodec, BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.tags.CustomHtmlTag
 import com.raquo.laminar.keys.HtmlAttr
@@ -22,7 +23,7 @@ import be.doeraene.webcomponents.WebComponent
   * the main content.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DynamicSideContent/">the doc</a> for more
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/DynamicSideContent/">the doc</a> for more
   *   information.
   */
 object DynamicSideContent extends WebComponent {
@@ -58,6 +59,16 @@ object DynamicSideContent extends WebComponent {
   lazy val sideContentVisibility: HtmlAttr[SideContentVisibility] =
     htmlAttr("side-content-visibility", SideContentVisibility.AsStringCodec)
 
+  /** Additional accessibility attributes on the main and side content areas.
+    *
+    * Supported fields: `mainContent` and `sideContent`, each supporting `ariaLabel` and `role`.
+    *
+    * @since UI5 2.6.0
+    */
+  lazy val accessibilityAttributes
+      : HtmlProp[DynamicSideContentAccessibilityAttributes, DynamicSideContentAccessibilityAttributes] =
+    htmlProp("accessibilityAttributes", AsIsCodec())
+
   object slots {
     val sideContent: Slot = new Slot("sideContent")
   }
@@ -65,6 +76,8 @@ object DynamicSideContent extends WebComponent {
   object events {
     trait LayoutChangeInfo extends js.Object {
       def currentBreakpoint: String
+
+      /** Note: can be undefined (when the event is fired for the first time). */
       def previousBreakpoint: String
       def mainContentVisible: Boolean
       def sideContentVisible: Boolean

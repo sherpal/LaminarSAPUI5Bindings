@@ -19,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
 /** The ui5-table-row component represents a row in the ui5-table.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/components/TableRow/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/TableRow/">the doc</a> for more information.
   */
 object TableRow extends WebComponent {
 
@@ -37,6 +37,7 @@ object TableRow extends WebComponent {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-table-row")
 
   lazy val rowKey: HtmlAttr[String]       = htmlAttr("row-key", StringAsIsCodec)
+  /** 0-based position of the row related to the total number of rows, when the [[TableVirtualizer]] feature is used. */
   lazy val position: HtmlAttr[Int]        = htmlAttr("position", IntAsStringCodec)
   lazy val interactive: HtmlAttr[Boolean] = htmlAttr("interactive", BooleanAsAttrPresenceCodec)
   lazy val navigated: HtmlAttr[Boolean]   = htmlAttr("navigated", BooleanAsAttrPresenceCodec)

@@ -21,8 +21,7 @@ import scala.scalajs.js.annotation.JSName
   * selecting a date range in the calendar.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/DateRangePicker/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/DateRangePicker/">the doc</a> for more information.
   */
 object DateRangePicker extends WebComponent with HasAccessibleName with HasName with HasValue {
 
@@ -45,7 +44,14 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
 
     def isInValidRange(value: String): Boolean = js.native
 
+    @deprecated("Use isValidValue or isValidDisplayValue instead", since = "2.14.0")
     def isValid(value: String): Boolean = js.native
+
+    /** Checks if a value is valid against the current `valueFormat` of the DateRangePicker. */
+    def isValidValue(value: String): Boolean = js.native
+
+    /** Checks if a value is valid against the current `displayFormat` of the DateRangePicker. */
+    def isValidDisplayValue(value: String): Boolean = js.native
 
     @scala.annotation.compileTimeOnly(
       "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
@@ -87,7 +93,23 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
 
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 
+  @deprecated("Use displayFormat and valueFormat instead", since = "2.14.0")
   lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
+
+  /** Determines the format displayed in the input field (a pattern like "dd/MM/yyyy", or "short", "medium", "long"). */
+  lazy val displayFormat: HtmlAttr[String] = htmlAttr("display-format", StringAsIsCodec)
+
+  /** Determines the format used for the `value` attribute (and min/max dates). If not set, ISO format is used. */
+  lazy val valueFormat: HtmlAttr[String] = htmlAttr("value-format", StringAsIsCodec)
+
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
+  /** Defines whether the clear icon of the input will be shown. */
+  lazy val showClearIcon: HtmlAttr[Boolean] = htmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
+
+  /** Defines whether two consecutive months are displayed side by side in the picker popup. */
+  lazy val showTwoMonths: HtmlAttr[Boolean] = htmlAttr("show-two-months", BooleanAsAttrPresenceCodec)
 
   lazy val maxDateRaw: HtmlAttr[String] = htmlAttr("max-date", StringAsIsCodec)
 
@@ -108,8 +130,16 @@ object DateRangePicker extends WebComponent with HasAccessibleName with HasName 
 
   object events {
     import DatePicker.events.DateEventData
+    import DatePicker.events.DatePickerValueStateChangeEventDetail
     val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
     val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
+
+    val onOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("open")
+    val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
+
+    val onValueStateChange
+        : EventProp[EventWithPreciseTarget[Ref] & HasDetail[DatePickerValueStateChangeEventDetail]] =
+      new EventProp("value-state-change")
   }
 
   /** You can feed [[DateTimePicker]] refs to this observer in order to close them. */

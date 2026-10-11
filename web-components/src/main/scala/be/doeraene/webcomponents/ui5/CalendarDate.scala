@@ -12,11 +12,11 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import be.doeraene.webcomponents.WebComponent
 
-/** The ui5-date component defines a calendar date to be used inside ui5-calendar
+/** The ui5-date component defines a calendar date to be used inside ui5-calendar. Its value must be formatted
+  * according to the `valueFormat` property of the hosting calendar.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Calendar/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/CalendarDate/">the doc</a> for more information.
   */
 object CalendarDate extends WebComponent with HasValue {
 
@@ -24,6 +24,13 @@ object CalendarDate extends WebComponent with HasValue {
   trait RawElement extends js.Object {
     def value: String = js.native
   }
+
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/CalendarDate.js", JSImport.Default)
+  object RawImport extends js.Object
+
+  // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
+  used(RawImport)
 
   type Ref = dom.html.Element & RawElement
 

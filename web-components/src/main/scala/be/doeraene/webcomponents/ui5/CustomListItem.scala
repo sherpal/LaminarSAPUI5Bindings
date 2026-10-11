@@ -1,26 +1,24 @@
 package be.doeraene.webcomponents.ui5
 
-import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
+import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.{ListItemAccessibleRole, ListItemType, ValueState}
+import be.doeraene.webcomponents.ui5.datatypes.AccessibilityAttributes
+import be.doeraene.webcomponents.ui5.eventtypes.{EventWithPreciseTarget, HasDetail, ListItemClickDetail}
 import be.doeraene.webcomponents.ui5.internal.Slot
-import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.tags.CustomHtmlTag
+import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.keys.HtmlAttr
-import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.WebComponent
-import be.doeraene.webcomponents.ui5.configkeys.ListItemType
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.ui5.configkeys.ValueState
 
 /** A component to be used as custom list item within the ui5-list the same way as the standard ui5-li. The component
   * accepts arbitrary HTML content to allow full customization.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/ListItemCustom/">the doc</a> for more information.
   */
 object CustomListItem extends WebComponent {
 
@@ -43,11 +41,28 @@ object CustomListItem extends WebComponent {
   lazy val selected: HtmlAttr[Boolean]      = htmlAttr("selected", BooleanAsAttrPresenceCodec)
   lazy val navigated: HtmlAttr[Boolean]     = htmlAttr("navigated", BooleanAsAttrPresenceCodec)
   lazy val highlight: HtmlAttr[ValueState]  = ValueState.asHtmlAttr("highlight")
+  lazy val movable: HtmlAttr[Boolean]       = htmlAttr("movable", BooleanAsAttrPresenceCodec)
+  lazy val tooltip: HtmlAttr[String]        = htmlAttr("tooltip", StringAsIsCodec)
 
-  object slots {}
+  /** Role of the item. If not set, it is inherited from the parent list.
+    *
+    * @since UI5 2.23.0
+    */
+  lazy val accessibleRole: HtmlAttr[ListItemAccessibleRole] = ListItemAccessibleRole.asHtmlAttr("accessible-role")
+
+  /** Additional accessibility attributes. Supported fields: `hasPopup`, `ariaSetsize` and `ariaPosinset`. */
+  lazy val accessibilityAttributes: HtmlProp[AccessibilityAttributes, AccessibilityAttributes] =
+    AccessibilityAttributes.asHtmlProp
+
+  object slots {
+    val deleteButton: Slot = Slot("deleteButton")
+  }
 
   object events {
     val onDetailClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("detail-click")
+
+    /** Fired when the item is activated (by mouse or keyboard), since UI5 2.23.0. */
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ListItemClickDetail]] = new EventProp("click")
   }
 
 }

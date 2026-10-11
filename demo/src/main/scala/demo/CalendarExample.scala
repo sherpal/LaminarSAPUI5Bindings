@@ -23,9 +23,34 @@ object CalendarExample extends Example("Calendar") {
       )
       //-- End
     },
-    DemoPanel("Calendar with Minimum and Maximum Date with Format Pattern") {
-      //-- Begin: Calendar with Minimum and Maximum Date with Format Pattern
-      Calendar(_.minDateRaw := "7/7/2020", _.maxDateRaw := "20/10/2020", _.formatPattern := "dd/MM/yyyy")
+    DemoPanel("Calendar with Minimum and Maximum Date with Display and Value Formats") {
+      //-- Begin: Calendar with Minimum and Maximum Date with Display and Value Formats
+      // min and max dates must be given in the value format
+      Calendar(
+        _.displayFormat := "dd/MM/yyyy",
+        _.valueFormat   := "dd/MM/yyyy",
+        _.minDateRaw    := "07/07/2020",
+        _.maxDateRaw    := "20/10/2020"
+      )
+      //-- End
+    },
+    DemoPanel("Calendar with Disabled Dates") {
+      //-- Begin: Calendar with Disabled Dates
+      val now   = new js.Date()
+      val year  = now.getFullYear().toInt
+      val month = now.getMonth().toInt + 1
+
+      // Without valueFormat, dates are expected in ISO format (yyyy-MM-dd)
+      def isoDate(day: Int): String = f"$year%04d-$month%02d-$day%02d"
+
+      div(
+        Label("The 10th to the 15th, as well as the 20th of the current month, cannot be selected."),
+        br(),
+        Calendar(
+          _.slots.disabledDates := Calendar.dateRange(_.startValue := isoDate(10), _.endValue := isoDate(15)),
+          _.slots.disabledDates := Calendar.dateRange(_.startValue := isoDate(20), _.endValue := isoDate(20))
+        )
+      )
       //-- End
     },
     DemoPanel("Calendar & Hidden Week Numbers") {
@@ -72,7 +97,7 @@ object CalendarExample extends Example("Calendar") {
       def formatDate(date: js.Date): String = date.toISOString().take(10)
 
       Calendar(
-        _.formatPattern := "YYYY-MM-dd",
+        _.valueFormat := "yyyy-MM-dd",
         specialDates.zip(LazyList.continually(types).flatten).map { (date, tpe) =>
           Calendar.slots.specialDates := Calendar.specialDate(
             _.tpe   := tpe,

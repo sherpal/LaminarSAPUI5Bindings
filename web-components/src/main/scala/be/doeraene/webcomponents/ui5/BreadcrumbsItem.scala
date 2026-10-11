@@ -11,12 +11,13 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 
 /** The ui5-breadcrumbs-item component defines the content of an item in ui5-breadcumbs.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/BreadcrumbsItem/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/BreadcrumbsItem/">the doc</a> for more information.
   */
 object BreadcrumbsItem extends WebComponent with HasIcon {
 
@@ -40,5 +41,21 @@ object BreadcrumbsItem extends WebComponent with HasIcon {
   lazy val href: HtmlAttr[String] = htmlAttr("href", StringAsIsCodec)
 
   lazy val target: HtmlAttr[LinkTarget] = htmlAttr("target", LinkTarget.AsStringCodec)
+
+  object events {
+    trait ClickDetail extends js.Object {
+      def altKey: Boolean
+      def ctrlKey: Boolean
+      def metaKey: Boolean
+      def shiftKey: Boolean
+    }
+
+    /** Fired when the item is activated. Calling `preventDefault()` prevents the navigation and the `item-click` event
+      * of the parent [[Breadcrumbs]].
+      *
+      * @since UI5 2.22.0
+      */
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ClickDetail]] = new EventProp("click")
+  }
 
 }

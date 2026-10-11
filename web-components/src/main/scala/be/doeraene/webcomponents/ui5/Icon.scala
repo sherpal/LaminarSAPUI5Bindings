@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   * purely decorative element; or as a visually appealing clickable area in the form of an icon button.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Icon/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Icon/">the doc</a> for more information.
   */
 object Icon extends WebComponent with HasAccessibleName {
 
@@ -53,6 +53,16 @@ object Icon extends WebComponent with HasAccessibleName {
     htmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
   lazy val design: HtmlAttr[IconDesign] = htmlAttr("design", IconDesign.AsStringCodec)
+
+  object slots {
+
+    /** Custom font icon (e.g. `i(className := "fa fa-home")`) to render instead of an SVG icon. When this slot is used,
+      * `name` is ignored.
+      *
+      * @since UI5 2.23.0
+      */
+    val fontIcon: Slot = new Slot("fontIcon")
+  }
 
   object events {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")

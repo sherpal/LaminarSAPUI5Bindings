@@ -4,6 +4,7 @@ import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
+import be.doeraene.webcomponents.ui5.datatypes.AccessibilityAttributes
 import org.scalajs.dom
 
 object AvatarGroupExample extends Example("AvatarGroup") {
@@ -34,7 +35,8 @@ object AvatarGroupExample extends Example("AvatarGroup") {
 
       div(
         AvatarGroup(
-          _.tpe := AvatarGroupType.Individual,
+          _.tpe                     := AvatarGroupType.Individual,
+          _.accessibilityAttributes := AccessibilityAttributes(hasPopup = AriaHasPopup.Dialog),
           allAvatars,
           width := "400px",
           _.events.onClick.map(_.target.hiddenItems.length).map(allAvatars.takeRight) --> avatarsForPopoverBus.writer,

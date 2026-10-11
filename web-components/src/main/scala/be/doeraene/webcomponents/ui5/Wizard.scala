@@ -19,9 +19,9 @@ import be.doeraene.webcomponents.WebComponent
   * has two main areas - a navigation area at the top showing the step sequence and a content area below it.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Wizard/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/Wizard/">the doc</a> for more information.
   */
-object Wizard extends WebComponent {
+object Wizard extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}

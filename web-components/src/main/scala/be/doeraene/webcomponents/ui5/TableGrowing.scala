@@ -18,6 +18,12 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.IconName
 import be.doeraene.webcomponents.ui5.configkeys.TableGrowingMode
 
+/** The ui5-table-growing component is used inside the ui5-table (in its `features` slot) to add a growing/data
+  * loading functionality to the table.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/TableGrowing/">the doc</a> for more information.
+  */
 object TableGrowing extends WebComponent {
 
   @js.native

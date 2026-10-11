@@ -12,9 +12,14 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 
 /** The ui5-tab represents a selectable item inside a ui5-tabcontainer. It defines both the item in the tab strip (top
   * part of the ui5-tabcontainer) and the content that is presented to the user once the tab is selected.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/Tab/">the doc</a> for more information.
   */
 object Tab extends WebComponent with HasIcon with HasText {
 
@@ -52,6 +57,20 @@ object Tab extends WebComponent with HasIcon with HasText {
     def subTabs: Slot = items
 
     val items: Slot = Slot("items")
+  }
+
+  object events {
+    trait ClickDetail extends js.Object {
+
+      /** The original event from the user interaction. */
+      def originalEvent: dom.Event
+    }
+
+    /** Fired when the tab is clicked (in the tab strip or in the overflow popover).
+      *
+      * @since UI5 2.23.0
+      */
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ClickDetail]] = new EventProp("click")
   }
 
 }

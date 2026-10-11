@@ -18,10 +18,9 @@ import be.doeraene.webcomponents.WebComponent
   * with the theme.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ColorPalette/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/ColorPalette/">the doc</a> for more information.
   */
-object ColourPalette extends WebComponent {
+object ColourPalette extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}

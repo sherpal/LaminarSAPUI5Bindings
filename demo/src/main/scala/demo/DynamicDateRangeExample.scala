@@ -23,6 +23,24 @@ object DynamicDateRangeExample extends Example("DynamicDateRange") {
           )
         )
         //-- End
+      ),
+      DemoPanel("Relative and Date-Time Options")(
+        //-- Begin: Relative and Date-Time Options
+        DynamicDateRange(
+          _.options := Vector(
+            Today,
+            Yesterday,
+            LastDays,
+            LastWeeks,
+            NextDays,
+            NextMonths,
+            DateTimeRange,
+            FromDateTime,
+            ToDateTime
+          ),
+          _.events.onChange.map(_.detail.value) --> Observer[Any](x => org.scalajs.dom.console.log(x))
+        )
+        //-- End
       )
     )
 

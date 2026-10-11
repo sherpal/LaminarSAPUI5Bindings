@@ -9,10 +9,11 @@ object BarExample extends Example("Bar") {
 
   private def headerBarContent(title: String) = List[Bar.ModFunction](
     _.slots.startContent := Button(
-      _.icon := IconName.home,
+      _.icon    := IconName.home,
       _.tooltip := "Go home",
-      _.design := ButtonDesign.Transparent
+      _.design  := ButtonDesign.Transparent
     ),
+    _.accessibleName := title,
     _ => Label(title),
     _.slots.endContent := Button(_.icon := IconName.`action-settings`, _.tooltip := "Go to settings")
   )
@@ -33,7 +34,7 @@ object BarExample extends Example("Bar") {
     ),
     List(BarDesign.Footer, BarDesign.FloatingFooter).map(design =>
       DemoPanel(s"${design.value} Bar")(
-        Bar(footerBarContent*)
+        Bar((footerBarContent :+ (_.design := design))*)
       )
     )
   )

@@ -18,8 +18,7 @@ import be.doeraene.webcomponents.WebComponent
 /** Breadcrumbs menu for navigation.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Breadcrumbs/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Breadcrumbs/">the doc</a> for more information.
   */
 object Breadcrumbs extends WebComponent with HasIcon {
 
@@ -52,10 +51,26 @@ object Breadcrumbs extends WebComponent with HasIcon {
   lazy val design: HtmlAttr[BreadcrumbsDesign] =
     htmlAttr("design", BreadcrumbsDesign.AsStringCodec)
 
+  /** Accessible name of the component.
+    *
+    * @since UI5 2.24.0
+    */
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
+
   object slots {}
 
   object events {
-    val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasItem[Item.Ref]]] = new EventProp(
+    trait ItemClickDetail extends HasItem[Item.Ref] {
+      def altKey: Boolean
+      def ctrlKey: Boolean
+      def metaKey: Boolean
+      def shiftKey: Boolean
+    }
+
+    /** Fired when a [[BreadcrumbsItem]] is clicked. Calling `preventDefault()` prevents the navigation to the `href` of
+      * the item.
+      */
+    val onItemClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ItemClickDetail]] = new EventProp(
       "item-click"
     )
   }

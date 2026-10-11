@@ -19,7 +19,7 @@ import be.doeraene.webcomponents.WebComponent
   * Note: ui5-product-switch-item is not supported when used outside of ui5-product-switch.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ProductSwitch/">the doc</a> for more
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/ProductSwitchItem/">the doc</a> for more
   *   information.
   */
 object ProductSwitchItem extends WebComponent with HasIcon {
@@ -46,7 +46,14 @@ object ProductSwitchItem extends WebComponent with HasIcon {
 
   lazy val titleText: HtmlAttr[String] = htmlAttr[String]("title-text", StringAsIsCodec)
 
-  object slots {}
+  object slots {
+
+    /** Image displayed instead of the icon (since UI5 2.14). It takes precedence over the `icon`.
+      *
+      * UI5 recommends a non-interactive [[Avatar]] with size S, square shape and `Transparent` colour scheme.
+      */
+    val image: Slot = new Slot("image")
+  }
 
   object events {
     val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")

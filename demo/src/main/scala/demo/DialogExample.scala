@@ -84,6 +84,35 @@ object DialogExample extends Example("Dialog") {
         )
       )
       //-- End
+    },
+    DemoPanel("Dialog with Fullscreen Button") {
+      //-- Begin: Dialog with Fullscreen Button
+      val openDialogVar = Var(false)
+      div(
+        Button("Open dialog with fullscreen button", _.events.onClick.mapTo(true) --> openDialogVar.writer),
+        Dialog(
+          _.open                <-- openDialogVar.signal,
+          _.headerText           := "Dialog with fullscreen button",
+          _.showFullscreenButton := true,
+          _.resizable            := true,
+          sectionTag(
+            "Use the button in the header to toggle the fullscreen mode (not available on phones).",
+            br(),
+            "Closing with Escape is prevented: use the Close button instead."
+          ),
+          _.events.onBeforeClose.filter(_.detail.escPressed) --> (_.preventDefault()),
+          _.events.onClose.mapTo(false) --> openDialogVar.writer,
+          _.slots.footer := div(
+            div(flex := "1"),
+            Button(
+              _.design := ButtonDesign.Emphasized,
+              "Close",
+              _.events.onClick.mapTo(false) --> openDialogVar.writer
+            )
+          )
+        )
+      )
+      //-- End
     }
   )
 

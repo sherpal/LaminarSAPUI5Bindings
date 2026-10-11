@@ -13,11 +13,21 @@ import be.doeraene.webcomponents.WebComponent
 import scala.concurrent.duration.FiniteDuration
 
 /** The ui5-menu-separator represents a horizontal line to separate menu items inside a ui5-menu.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/MenuSeparator/">the doc</a> for more information.
   */
 object MenuSeparator extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
+
+  @js.native
+  @JSImport("@ui5/webcomponents/dist/MenuSeparator.js", JSImport.Default)
+  object RawImport extends js.Object
+
+  // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
+  used(RawImport)
 
   type Ref = dom.html.Element & RawElement
 

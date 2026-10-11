@@ -12,6 +12,7 @@ object BreadcrumbsExample extends Example("Breadcrumbs") {
     DemoPanel("Standard Breadcrumbs")(
       //-- Begin: Standard Breadcrumbs
       Breadcrumbs(
+        _.accessibleName := "Standard breadcrumbs",
         _.Item(
           _.href   := "https://github.com/sherpal/LaminarSAPUI5Bindings",
           _.target := LinkTarget._blank,

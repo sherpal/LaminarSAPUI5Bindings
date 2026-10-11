@@ -20,6 +20,11 @@ import be.doeraene.webcomponents.WebComponent
   *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/NotificationListItem/">the doc</a> for more
   *   information.
   */
+@deprecated(
+  "ui5-notification-action does not exist anymore in UI5 2. " +
+    "Use the menu slot of NotificationListItem with a Menu component instead",
+  since = "2.0.0"
+)
 object NotificationAction extends WebComponent with HasText with HasIcon {
 
   @js.native

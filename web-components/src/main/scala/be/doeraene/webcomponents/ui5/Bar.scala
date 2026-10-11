@@ -1,5 +1,6 @@
 package be.doeraene.webcomponents.ui5
 
+import be.doeraene.webcomponents.ui5.configkeys.BarAccessibleRole
 import be.doeraene.webcomponents.ui5.configkeys.BarDesign
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
@@ -17,8 +18,11 @@ import be.doeraene.webcomponents.WebComponent
   * functionality is the basis for page headers and footers. The component consists of three areas to hold its content -
   * startContent slot, default slot and endContent slot. It has the capability to center content, such as a title, while
   * having other components on the left and right side.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/Bar/">the doc</a> for more information.
   */
-object Bar extends WebComponent {
+object Bar extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -35,6 +39,12 @@ object Bar extends WebComponent {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-bar")
 
   lazy val design: HtmlAttr[BarDesign] = htmlAttr("design", BarDesign.AsStringCodec)
+
+  /** ARIA role of the bar (`Toolbar` by default, use `None` when the bar contains fewer than two interactive items).
+    *
+    * @since UI5 2.10.0
+    */
+  lazy val accessibleRole: HtmlAttr[BarAccessibleRole] = BarAccessibleRole.asHtmlAttr("accessible-role")
 
   object slots {
     val endContent: Slot   = new Slot("endContent")

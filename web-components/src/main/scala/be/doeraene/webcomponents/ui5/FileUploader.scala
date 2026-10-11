@@ -26,10 +26,9 @@ import scala.scalajs.js.annotation.JSName
   * "placeholder", "name", and "disabled" properties. For the ui5-file-uploader
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/FileUploader/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/FileUploader/">the doc</a> for more information.
   */
-object FileUploader extends WebComponent with HasName with HasValue {
+object FileUploader extends WebComponent with HasName with HasValue with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -65,6 +64,11 @@ object FileUploader extends WebComponent with HasName with HasValue {
   lazy val placeholder: HtmlAttr[String] = htmlAttr("placeholder", StringAsIsCodec)
 
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
+
+  lazy val required: HtmlAttr[Boolean] = htmlAttr("required", BooleanAsAttrPresenceCodec)
+
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
 
   object slots {
     val valueStateMessage: Slot = new Slot("valueStateMessage")

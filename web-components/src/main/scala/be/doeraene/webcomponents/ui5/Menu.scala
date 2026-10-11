@@ -2,6 +2,7 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.PopoverHorizontalAlign
+import be.doeraene.webcomponents.ui5.configkeys.PopoverPlacementType
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.eventtypes.HasEscPressed
@@ -20,6 +21,9 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
 /** ui5-menu component represents a hierarchical menu structure.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/Menu/">the doc</a> for more information.
   */
 object Menu extends WebComponent {
 
@@ -56,10 +60,16 @@ object Menu extends WebComponent {
 
   lazy val loading: HtmlAttr[Boolean]                        = htmlAttr("loading", BooleanAsAttrPresenceCodec)
   lazy val loadingDelay: HtmlAttr[FiniteDuration]            = htmlAttr("loading-delay", FiniteDurationCodec)
-  lazy val headerText: HtmlAttr[String]                      = htmlAttr("headerText", StringAsIsCodec)
+  lazy val headerText: HtmlAttr[String]                      = htmlAttr("header-text", StringAsIsCodec)
   lazy val horizontalAlign: HtmlAttr[PopoverHorizontalAlign] = PopoverHorizontalAlign.asHtmlAttr("horizontal-align")
   lazy val open: HtmlAttr[Boolean]                           = htmlAttr("open", BooleanAsAttrPresenceCodec)
   lazy val openerId: HtmlAttr[String]                        = htmlAttr("opener", StringAsIsCodec)
+
+  /** Position of the menu relative to its opener (default: Bottom).
+    *
+    * @since UI5 2.16.0
+    */
+  lazy val placement: HtmlAttr[PopoverPlacementType] = PopoverPlacementType.asHtmlAttr("placement")
 
   @deprecated("busy was renamed to loading", since = "2.0.0")
   def busy: HtmlAttr[Boolean] = loading
@@ -91,6 +101,7 @@ object Menu extends WebComponent {
   def getMenuById(menuId: String): Option[dom.HTMLElement & RawElement] =
     Option(dom.document.getElementById(menuId)).map(_.asInstanceOf[dom.HTMLElement & RawElement])
 
-  def item: MenuItem.type = MenuItem
-  def separator           = MenuSeparator
+  def item: MenuItem.type           = MenuItem
+  def separator: MenuSeparator.type = MenuSeparator
+  def group: MenuItemGroup.type     = MenuItemGroup
 }

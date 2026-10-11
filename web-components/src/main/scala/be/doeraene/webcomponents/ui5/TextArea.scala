@@ -10,6 +10,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import com.raquo.laminar.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.internal.Slot
@@ -18,8 +19,7 @@ import be.doeraene.webcomponents.WebComponent
 /** The ui5-textarea component is used to enter multiple lines of text.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TextArea/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/TextArea/">the doc</a> for more information.
   */
 object TextArea extends WebComponent with HasValue with HasAccessibleName with HasName {
 
@@ -49,6 +49,9 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
   lazy val placeholder: HtmlAttr[String]    = htmlAttr("placeholder", StringAsIsCodec)
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
 
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
   val isRequired: Setter[HtmlElement] = required := true
 
   @deprecated("growingMaxLines has been renamed to growingMaxRows", since = "2.0.0")
@@ -58,10 +61,16 @@ object TextArea extends WebComponent with HasValue with HasAccessibleName with H
     val valueStateMessage = new Slot("valueStateMessage")
   }
   object events {
-    val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
-    val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
-    val onScroll: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("scroll")
-    val onSelect: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("select")
+    trait InputEventDetail extends js.Object {
+
+      /** Whether the input was triggered by the user pressing Escape (which reverts the value). */
+      def escapePressed: js.UndefOr[Boolean]
+    }
+
+    val onChange: EventProp[EventWithPreciseTarget[Ref]]                              = new EventProp("change")
+    val onInput: EventProp[EventWithPreciseTarget[Ref] & HasDetail[InputEventDetail]] = new EventProp("input")
+    val onScroll: EventProp[EventWithPreciseTarget[Ref]]                              = new EventProp("scroll")
+    val onSelect: EventProp[EventWithPreciseTarget[Ref]]                              = new EventProp("select")
   }
 
 }

@@ -17,6 +17,12 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.IconName
 
+/** The ui5-table-row-action component defines an action for table rows. It is placed in the `actions` slot of a
+  * ui5-table-row. Set the `rowActionCount` of the table for the actions to be displayed.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/TableRowAction/">the doc</a> for more information.
+  */
 object TableRowAction extends WebComponent {
 
   @js.native

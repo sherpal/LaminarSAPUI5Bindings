@@ -32,7 +32,26 @@ object ColourPaletteExample extends Example("ColourPalette") {
       //-- Begin: Colour Palette
       ColourPalette(someColourPaletteItems)
       //-- End
-    )
+    ),
+    DemoPanel("Colour Palette with Item Tooltips and Click Events") {
+      //-- Begin: Colour Palette with Item Tooltips and Click Events
+      val clickedBus = new EventBus[String]
+      val colours    = List("Red" -> Colour.red, "Green" -> Colour.green, "Blue" -> Colour.blue)
+      div(
+        div(child.text <-- clickedBus.events.map(name => s"Last clicked item: $name").startWith("Click on a colour")),
+        ColourPalette(
+          _.accessibleName := "Primary colours",
+          colours.map((name, colour) =>
+            ColourPalette.item(
+              _.value   := colour,
+              _.tooltip := name,
+              _.events.onClick.mapTo(name) --> clickedBus.writer
+            )
+          )
+        )
+      )
+      //-- End
+    }
   )
 
 }

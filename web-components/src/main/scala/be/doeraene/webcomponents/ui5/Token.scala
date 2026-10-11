@@ -17,7 +17,7 @@ import be.doeraene.webcomponents.WebComponent
 /** Tokens are small items of information (similar to tags) that mainly serve to visualize previously selected items.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Input/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Token/">the doc</a> for more information.
   */
 object Token extends WebComponent with HasText {
 

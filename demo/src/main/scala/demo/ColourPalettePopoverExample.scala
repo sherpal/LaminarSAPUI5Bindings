@@ -39,8 +39,8 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
       )
       //-- End
     },
-    DemoPanel("Color Palette Popover without any additional features") {
-      //-- Begin: Color Palette Popover without any additional features
+    DemoPanel("Color Palette Popover without any additional features, placed at the End") {
+      //-- Begin: Color Palette Popover without any additional features, placed at the End
       val openPopoverBus: EventBus[Unit] = new EventBus
       val openerId                       = "Color-Palette-Popover-without-any-additional-features-Button"
       div(
@@ -50,8 +50,9 @@ object ColourPalettePopoverExample extends Example("ColourPalettePopover") {
           _.events.onClick.mapTo(()) --> openPopoverBus.writer
         ),
         ColourPalettePopover(
-          _.openerId := openerId,
-          _.open    <-- openPopoverBus.events.mapTo(true),
+          _.openerId  := openerId,
+          _.placement := PopoverPlacementType.End,
+          _.open     <-- openPopoverBus.events.mapTo(true),
           ColourPaletteExample.someColourPaletteItems,
           _.defaultColour := Colour.green
         )

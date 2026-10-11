@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   * page.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Popover/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Popover/">the doc</a> for more information.
   */
 object Popover extends WebComponent with HasAccessibleName {
 
@@ -103,6 +103,12 @@ object Popover extends WebComponent with HasAccessibleName {
 
   lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
   lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
+  /** Whether the user can resize the popover (only effective on desktop devices).
+    *
+    * @since UI5 2.19.0
+    */
+  lazy val resizable: HtmlAttr[Boolean] = htmlAttr("resizable", BooleanAsAttrPresenceCodec)
 
   @scala.annotation.compileTimeOnly("hideBackdrop property has been removed.")
   def hideBackdrop: HtmlAttr[Boolean] = ???

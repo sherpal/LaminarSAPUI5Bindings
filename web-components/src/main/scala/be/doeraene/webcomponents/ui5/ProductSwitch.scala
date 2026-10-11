@@ -17,8 +17,7 @@ import be.doeraene.webcomponents.WebComponent
   * easily switch between products.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ProductSwitch/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/ProductSwitch/">the doc</a> for more information.
   */
 object ProductSwitch extends WebComponent {
 

@@ -28,7 +28,7 @@ import com.raquo.laminar.codecs.Codec
   * a date range from a predefined set of options or enter custom dates.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/components/main/DynamicDateRange/">the doc</a> for more
+  *   <a href="https://ui5.github.io/webcomponents/components/DynamicDateRange/">the doc</a> for more
   *   information.
   */
 object DynamicDateRange extends WebComponent with HasAccessibleName with HasName with HasValue {
@@ -68,6 +68,16 @@ object DynamicDateRange extends WebComponent with HasAccessibleName with HasName
   object DateRangeImport extends DynamicDateRangeOperatorImport
   @js.native @JSImport("@ui5/webcomponents/dist/dynamic-date-range-options/SingleDate.js", JSImport.Default)
   object DateImport extends DynamicDateRangeOperatorImport
+  @js.native @JSImport("@ui5/webcomponents/dist/dynamic-date-range-options/DateTimeRange.js", JSImport.Default)
+  object DateTimeRangeImport extends DynamicDateRangeOperatorImport
+  @js.native @JSImport("@ui5/webcomponents/dist/dynamic-date-range-options/FromDateTime.js", JSImport.Default)
+  object FromDateTimeImport extends DynamicDateRangeOperatorImport
+  @js.native @JSImport("@ui5/webcomponents/dist/dynamic-date-range-options/ToDateTime.js", JSImport.Default)
+  object ToDateTimeImport extends DynamicDateRangeOperatorImport
+  @js.native @JSImport("@ui5/webcomponents/dist/dynamic-date-range-options/LastOptions.js", JSImport.Default)
+  object LastOptionsImport extends DynamicDateRangeOperatorImport
+  @js.native @JSImport("@ui5/webcomponents/dist/dynamic-date-range-options/NextOptions.js", JSImport.Default)
+  object NextOptionsImport extends DynamicDateRangeOperatorImport
 
   opaque type DynamicDateRangeOperator = String
   object DynamicDateRangeOperator {
@@ -90,6 +100,84 @@ object DynamicDateRange extends WebComponent with HasAccessibleName with HasName
     def DateRange: DynamicDateRangeOperator = {
       DateRangeImport
       "DATERANGE"
+    }
+
+    /** Range of dates with times (since UI5 2.16). */
+    def DateTimeRange: DynamicDateRangeOperator = {
+      DateTimeRangeImport
+      "DATETIMERANGE"
+    }
+
+    /** Range starting from a date and time. */
+    def FromDateTime: DynamicDateRangeOperator = {
+      FromDateTimeImport
+      "FROMDATETIME"
+    }
+
+    /** Range up to a date and time. */
+    def ToDateTime: DynamicDateRangeOperator = {
+      ToDateTimeImport
+      "TODATETIME"
+    }
+
+    /** Last X days from today (since UI5 2.14). */
+    def LastDays: DynamicDateRangeOperator = {
+      LastOptionsImport
+      "LASTDAYS"
+    }
+
+    /** Last X weeks from today (since UI5 2.14). */
+    def LastWeeks: DynamicDateRangeOperator = {
+      LastOptionsImport
+      "LASTWEEKS"
+    }
+
+    /** Last X months from today (since UI5 2.14). */
+    def LastMonths: DynamicDateRangeOperator = {
+      LastOptionsImport
+      "LASTMONTHS"
+    }
+
+    /** Last X quarters from today (since UI5 2.14). */
+    def LastQuarters: DynamicDateRangeOperator = {
+      LastOptionsImport
+      "LASTQUARTERS"
+    }
+
+    /** Last X years from today (since UI5 2.14). */
+    def LastYears: DynamicDateRangeOperator = {
+      LastOptionsImport
+      "LASTYEARS"
+    }
+
+    /** Next X days from today (since UI5 2.14). */
+    def NextDays: DynamicDateRangeOperator = {
+      NextOptionsImport
+      "NEXTDAYS"
+    }
+
+    /** Next X weeks from today (since UI5 2.14). */
+    def NextWeeks: DynamicDateRangeOperator = {
+      NextOptionsImport
+      "NEXTWEEKS"
+    }
+
+    /** Next X months from today (since UI5 2.14). */
+    def NextMonths: DynamicDateRangeOperator = {
+      NextOptionsImport
+      "NEXTMONTHS"
+    }
+
+    /** Next X quarters from today (since UI5 2.14). */
+    def NextQuarters: DynamicDateRangeOperator = {
+      NextOptionsImport
+      "NEXTQUARTERS"
+    }
+
+    /** Next X years from today (since UI5 2.14). */
+    def NextYears: DynamicDateRangeOperator = {
+      NextOptionsImport
+      "NEXTYEARS"
     }
   }
 

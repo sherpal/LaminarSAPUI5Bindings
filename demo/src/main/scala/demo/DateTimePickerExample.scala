@@ -29,12 +29,22 @@ object DateTimePickerExample extends Example("DateTimePicker") {
       )
       //-- End
     },
-    DemoPanel("DateTimePicker with format-pattern") {
-      //-- Begin: DateTimePicker with format-pattern
+    DemoPanel("DateTimePicker with display-format and value-format") {
+      //-- Begin: DateTimePicker with display-format and value-format
+      def picker(format: String, value: String) =
+        DateTimePicker(_.displayFormat := format, _.valueFormat := format, _.value := value)
+
       div(
-        DateTimePicker(_.formatPattern := "dd/MM/yyyy, hh:mm aa", _.value := "13/04/2020, 09:16 AM"),
-        DateTimePicker(_.formatPattern := "yyyy-MM-dd-hh:mm:ss aa", _.value := "2020-04-13-04:16:16 AM"),
-        DateTimePicker(_.formatPattern := "dd/MM/yyyy, hh:mm:ss aa", _.value := "13/04/2020, 03:16:16 AM")
+        picker("dd/MM/yyyy, hh:mm aa", "13/04/2020, 09:16 AM"),
+        picker("yyyy-MM-dd-hh:mm:ss aa", "2020-04-13-04:16:16 AM"),
+        picker("dd/MM/yyyy, hh:mm:ss aa", "13/04/2020, 03:16:16 AM"),
+        // The value is stored in a different format than the one displayed
+        DateTimePicker(
+          _.displayFormat := "long",
+          _.valueFormat   := "yyyy-MM-dd'T'HH:mm:ss",
+          _.value         := "2020-04-13T15:16:16",
+          _.showClearIcon := true
+        )
       )
       //-- End
     },

@@ -2,6 +2,7 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.ui5.configkeys.{ButtonDesign, ColourScheme, IconName}
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.codecs.{BooleanAsAttrPresenceCodec, StringAsIsCodec}
 import com.raquo.laminar.api.L.*
@@ -17,8 +18,7 @@ import be.doeraene.webcomponents.WebComponent
 /** Users can use the ui5-segmented-button-item as part of a ui5-segmented-button.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/SegmentedButton/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/SegmentedButtonItem/">the doc</a> for more information.
   */
 object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasIcon {
 
@@ -65,10 +65,26 @@ object SegmentedButtonItem extends WebComponent with HasAccessibleName with HasI
 
   lazy val tooltip: HtmlAttr[String] = htmlAttr("tooltip", StringAsIsCodec)
 
+  /** @since UI5 2.15.0 */
+  lazy val accessibleDescription: HtmlAttr[String] = htmlAttr("accessible-description", StringAsIsCodec)
+
+  /** @since UI5 2.15.0 */
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
   object slots {}
 
   object events {
-    val onClick: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("click")
+    trait ClickDetail extends js.Object {
+
+      /** The original (native) event that triggered the click. */
+      def originalEvent: dom.Event
+    }
+
+    /** Fired when the item is clicked. Calling `preventDefault()` on the event prevents the selection change.
+      *
+      * @since UI5 2.22.0
+      */
+    val onClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[ClickDetail]] = new EventProp("click")
   }
 
 }

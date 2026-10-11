@@ -29,8 +29,25 @@ object TimePickerExample extends Example("TimePicker") {
         Label(child.text <-- selectedValueBus.events.map(value => s"Currently selected: $value")),
         br(),
         TimePicker(
-          _.formatPattern := "hh:mm:ss a",
+          _.displayFormat := "hh:mm:ss a",
+          _.valueFormat   := "hh:mm:ss a",
           _.events.onChange.map(_.target.value) --> selectedValueBus
+        )
+      )
+      //-- End
+    },
+    DemoPanel("TimePicker with different Display and Value Formats") {
+      //-- Begin: TimePicker with different Display and Value Formats
+      // The user sees a twelve hours format, while the value is stored in the "HH:mm" format
+      val valueVar = Var("14:30")
+      div(
+        Label(child.text <-- valueVar.signal.map(value => s"Current value: $value")),
+        br(),
+        TimePicker(
+          _.displayFormat := "hh:mm a",
+          _.valueFormat   := "HH:mm",
+          _.value         := valueVar.now(),
+          _.events.onChange.map(_.detail).filter(_.valid).map(_.value) --> valueVar.writer
         )
       )
       //-- End

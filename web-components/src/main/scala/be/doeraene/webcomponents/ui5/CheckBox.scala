@@ -16,8 +16,7 @@ import be.doeraene.webcomponents.WebComponent
 /** Allows the user to set a binary value, such as true/false or yes/no for an item.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/CheckBox/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/CheckBox/">the doc</a> for more information.
   */
 object CheckBox extends WebComponent with HasIcon with HasAccessibleName with HasName with HasText {
 

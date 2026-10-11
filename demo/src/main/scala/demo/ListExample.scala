@@ -245,6 +245,67 @@ object ListExample extends Example("List") {
         moveHandler --> cardsVar.writer
       )
       //-- End
+    },
+    DemoPanel("List with sticky header (since 2.19.0)")(
+      //-- Begin: List with sticky header (since 2.19.0)
+      UList(
+        height         := "250px",
+        _.stickyHeader := true,
+        _.headerText   := "Scroll me, the header stays visible",
+        MTG.cards.map(card => UList.item(_.text := card.name, _.icon := IconName.card))
+      )
+      //-- End
+    ),
+    DemoPanel("Inactive-selectable items (since 2.26.0)") {
+      //-- Begin: Inactive-selectable items (since 2.26.0)
+      val lastClickedVar = Var(Option.empty[String])
+      UList(
+        _.selectionMode := ListMode.Multiple,
+        _.headerText <-- lastClickedVar.signal.map { maybeClicked =>
+          s"Inactive-selectable items can be selected, but don't fire item-click (last clicked: ${maybeClicked.getOrElse("none")})"
+        },
+        _.events.onItemClick.map(_.detail.item.dataset.get("countryName")) --> lastClickedVar.writer,
+        countries.zipWithIndex.map { (country, index) =>
+          val inactiveSelectable = index % 2 == 1
+          UList.item(
+            dataAttr("country-name") := country,
+            _.text                   := country,
+            _.description            := (if inactiveSelectable then "InactiveSelectable" else "Active"),
+            _.tpe := (if inactiveSelectable then ListItemType.InactiveSelectable else ListItemType.Active)
+          )
+        }
+      )
+      //-- End
+    },
+    DemoPanel("List items with wrapping text (since 2.10.0)")(
+      //-- Begin: List items with wrapping text (since 2.10.0)
+      UList(
+        _.headerText := "Long texts",
+        _.item(
+          _.text         := "This is a very long text that is truncated because wrapping type is not set " * 3,
+          _.description  := "Wrapping type: None (default)",
+          _.tooltip      := "Truncated item",
+          _.wrappingType := WrappingType.None
+        ),
+        _.item(
+          _.text         := "This is a very long text that wraps on several lines because wrapping type is Normal " * 3,
+          _.description  := "Wrapping type: Normal",
+          _.wrappingType := WrappingType.Normal
+        )
+      )
+      //-- End
+    ),
+    DemoPanel("List with growing button text") {
+      //-- Begin: List with growing button text
+      val numberOfItemsVar = Var(3)
+      UList(
+        _.headerText        := "Click on the button to load more",
+        _.growing           := ListGrowingMode.Button,
+        _.growingButtonText := "Load more countries",
+        _.events.onLoadMore --> numberOfItemsVar.updater[Any]((n, _) => n + 2),
+        children <-- numberOfItemsVar.signal.map(n => countries.take(n).map(country => UList.item(_.text := country)))
+      )
+      //-- End
     }
   )
 

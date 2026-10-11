@@ -41,6 +41,15 @@ object SwitchExample extends Example("Switch") {
         } yield Switch(_.design := SwitchDesign.Graphical, _.checked := checked, _.disabled := disabled)
       )
       //-- End
+    ),
+    DemoPanel("Readonly Switch")(
+      //-- Begin: Readonly Switch
+      div(
+        Switch(_.textOn := "On", _.textOff := "Off", _.readonly := true, _.tooltip := "Readonly Switch"),
+        Switch(_.textOn := "On", _.textOff := "Off", _.readonly := true, _.checked := true),
+        Switch(_.design := SwitchDesign.Graphical, _.readonly := true, _.checked := true)
+      )
+      //-- End
     )
   )
 

@@ -23,11 +23,7 @@ object ThemeSelector {
 
     Select(
       themeChoices.map { theme =>
-        Select.option(
-          theme,
-          _.value     := theme,
-          _.selected <-- selectedChoiceVar.signal.map(_ == theme)
-        )
+        Select.option(theme, _.value := theme)
       },
       _.events.onChange.map(_.detail.selectedOption.maybeValue.getOrElse(themeChoices(0))) --> selectedChoiceVar.writer,
       selectedChoiceVar.signal.changes --> Observer(Theming.setTheme)

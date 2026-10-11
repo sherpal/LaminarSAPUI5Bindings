@@ -15,6 +15,10 @@ import be.doeraene.webcomponents.WebComponent
 
 /** Represents a group of navigation actions within ui5-side-navigation. The ui5-side-navigation-group can only be used
   * inside a ui5-side-navigation.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/SideNavigationGroup/">the doc</a> for more
+  *   information.
   */
 object SideNavigationGroup extends WebComponent with HasText {
 
@@ -37,6 +41,11 @@ object SideNavigationGroup extends WebComponent with HasText {
   lazy val disabled: HtmlAttr[Boolean] = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
 
   lazy val expanded: HtmlAttr[Boolean] = htmlAttr("expanded", BooleanAsAttrPresenceCodec)
+
+  lazy val tooltip: HtmlAttr[String] = htmlAttr("tooltip", StringAsIsCodec)
+
+  /** @since UI5 2.22.0 */
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
 
   object slots {}
 

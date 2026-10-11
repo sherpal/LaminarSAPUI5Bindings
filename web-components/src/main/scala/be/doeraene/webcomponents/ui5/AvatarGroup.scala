@@ -2,6 +2,7 @@ package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.AvatarGroupType
+import be.doeraene.webcomponents.ui5.datatypes.AccessibilityAttributes
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
@@ -22,8 +23,7 @@ import scala.scalajs.js.annotation.JSName
   * depending on your use case.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/AvatarGroup/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/AvatarGroup/">the doc</a> for more information.
   */
 object AvatarGroup extends WebComponent with HasAccessibleName {
 
@@ -54,6 +54,10 @@ object AvatarGroup extends WebComponent with HasAccessibleName {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-avatar-group")
 
   lazy val tpe: HtmlAttr[AvatarGroupType] = htmlAttr("type", AvatarGroupType.AsStringCodec)
+
+  /** Additional accessibility attributes. Supported fields: `hasPopup`. */
+  lazy val accessibilityAttributes: HtmlProp[AccessibilityAttributes, AccessibilityAttributes] =
+    AccessibilityAttributes.asHtmlProp
 
   object slots {
     val overflowButton: Slot = Slot("overflowButton")

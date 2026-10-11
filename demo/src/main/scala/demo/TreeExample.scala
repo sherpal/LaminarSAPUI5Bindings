@@ -80,6 +80,39 @@ object TreeExample extends Example("Tree") {
       )
       //-- End
     ),
+    DemoPanel("Tree items with additional text and indeterminate state")(
+      //-- Begin: Tree items with additional text and indeterminate state
+      Tree(
+        _.selectionMode := ListMode.Multiple,
+        _.headerText    := "Partially selected nodes are indeterminate",
+        _.item(
+          _.expanded            := true,
+          _.text                := "Fruits",
+          _.icon                := IconName.`nutrition-activity`,
+          _.indeterminate       := true,
+          _.additionalText      := "1 of 2 selected",
+          _.additionalTextState := ValueState.Information,
+          _.item(
+            _.text                := "Apple",
+            _.selected            := true,
+            _.additionalText      := "In stock",
+            _.additionalTextState := ValueState.Positive
+          ),
+          _.item(
+            _.text                := "Banana",
+            _.additionalText      := "Out of stock",
+            _.additionalTextState := ValueState.Negative
+          )
+        ),
+        _.item(
+          _.text           := "Vegetables (inactive, not clickable)",
+          _.tpe            := ListItemType.Inactive,
+          _.tooltip        := "This item has type Inactive",
+          _.additionalText := "Empty"
+        )
+      )
+      //-- End
+    ),
     DemoPanel("Tree with Drag and Drop (since 2.0)") {
       //-- Begin: Tree with Drag and Drop (since 2.0)
       MessageStrip(

@@ -50,6 +50,22 @@ object RatingIndicatorExample extends Example("RatingIndicator") {
       )
       //-- End
     ),
+    DemoPanel("Display-only Rating Indicator")(
+      //-- Begin: Display-only Rating Indicator
+      div(
+        RatingIndicator(_.value := 4, _.displayOnly := true),
+        RatingIndicator(_.max   := 10, _.value      := 7.5, _.displayOnly := true)
+      )
+      //-- End
+    ),
+    DemoPanel("Rating Indicator with Custom Icons")(
+      //-- Begin: Rating Indicator with Custom Icons
+      div(
+        RatingIndicator(_.value := 3, _.ratedIcon := IconName.heart, _.unratedIcon := IconName.`heart-2`),
+        RatingIndicator(_.value := 2, _.ratedIcon := IconName.`thumb-up`, _.unratedIcon := IconName.`thumb-up`)
+      )
+      //-- End
+    ),
     DemoPanel("Rating Indicator with tooltip") {
       //-- Begin: Rating Indicator with tooltip
       val valueVar = Var(0)

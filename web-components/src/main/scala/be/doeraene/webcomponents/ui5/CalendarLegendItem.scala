@@ -16,6 +16,12 @@ import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.CalendarLegendItemType
 
+/** The ui5-calendar-legend-item component represents an item in the ui5-calendar-legend. It displays the type of a
+  * special date (its colour) together with a text.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/CalendarLegendItem/">the doc</a> for more information.
+  */
 object CalendarLegendItem extends WebComponent {
 
   @js.native

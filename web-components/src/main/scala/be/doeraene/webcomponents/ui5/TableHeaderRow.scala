@@ -13,6 +13,13 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
+/** The ui5-table-header-row component represents the table headers of a ui5-table. It is tightly coupled to the
+  * ui5-table and should therefore be used in the ui5-table only. The header row is placed in the `headerRow` slot of
+  * the table.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/TableHeaderRow/">the doc</a> for more information.
+  */
 object TableHeaderRow extends WebComponent {
 
   @js.native

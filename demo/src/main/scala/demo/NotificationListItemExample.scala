@@ -53,7 +53,8 @@ object NotificationListItemExample extends Example("NotificationListItem") {
         ),
         _.item(
           notifWithId("notif-2"),
-          _.showClose := true,
+          _.showClose  := true,
+          _.importance := NotificationListItemImportance.Important,
           _.titleText := "New order (#2526) With a very long title - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",
           _.state := ValueState.Negative,
           "And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc.",

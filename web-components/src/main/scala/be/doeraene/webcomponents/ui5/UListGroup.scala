@@ -14,8 +14,12 @@ import be.doeraene.webcomponents.ui5.eventtypes.{HasDetail, HasItem, HasTargetRe
 import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
+import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 
-/** The ui5-li-groupheader is a special list item, used only to separate other list items into logical groups.
+/** The ui5-li-group is a special list item, used only to separate other list items into logical groups.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/ListItemGroup/">the doc</a> for more information.
   */
 object UListGroup extends WebComponent {
 
@@ -35,8 +39,14 @@ object UListGroup extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-li-group")
 
-  lazy val headerText: HtmlAttr[String]            = htmlAttr("header-text", StringAsIsCodec)
-  lazy val headerAccessibleName: HtmlAttr[Boolean] = htmlAttr("header-accessible-name", BooleanAsAttrPresenceCodec)
+  lazy val headerText: HtmlAttr[String]           = htmlAttr("header-text", StringAsIsCodec)
+  lazy val headerAccessibleName: HtmlAttr[String] = htmlAttr("header-accessible-name", StringAsIsCodec)
+
+  /** Whether the header text should wrap (`Normal`) or be truncated (`None`, default).
+    *
+    * @since UI5 2.15.0
+    */
+  lazy val wrappingType: HtmlAttr[WrappingType] = WrappingType.asHtmlAttr("wrapping-type")
 
   object slots {
     val header: Slot = Slot("header")
@@ -51,6 +61,7 @@ object UListGroup extends WebComponent {
     )
   }
 
-  def item = ListItem
+  def item: ListItem.type             = ListItem
+  def customItem: CustomListItem.type = CustomListItem
 
 }

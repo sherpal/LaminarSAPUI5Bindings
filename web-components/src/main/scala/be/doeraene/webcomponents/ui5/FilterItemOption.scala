@@ -15,8 +15,7 @@ import be.doeraene.webcomponents.WebComponent
 /** For the filter-item-option
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ViewSettingsDialog/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/FilterItemOption/">the doc</a> for more information.
   */
 object FilterItemOption extends WebComponent with HasText {
 

@@ -18,8 +18,7 @@ import scala.scalajs.js.annotation.JSImport
 /** An entry posted on the timeline.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Timeline/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/TimelineItem/">the doc</a> for more information.
   */
 object TimelineItem extends WebComponent with HasIcon with HasName {
 
@@ -49,6 +48,9 @@ object TimelineItem extends WebComponent with HasIcon with HasName {
   lazy val subtitleText: HtmlAttr[String]   = htmlAttr("subtitle-text", StringAsIsCodec)
   lazy val titleText: HtmlAttr[String]      = htmlAttr("title-text", StringAsIsCodec)
   lazy val state: HtmlAttr[ValueState]      = htmlAttr("state", ValueState.AsStringCodec)
+
+  /** Tooltip of the graphical icon (since UI5 2.22). */
+  lazy val iconTooltip: HtmlAttr[String] = htmlAttr("icon-tooltip", StringAsIsCodec)
 
   object slots {}
 

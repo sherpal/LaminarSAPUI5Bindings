@@ -40,6 +40,16 @@ object SegmentedButtonExample extends Example("SegmentedButton") {
       )
       //-- End
     ),
+    DemoPanel("SegmentedButton with Items Fitting their Content")(
+      //-- Begin: SegmentedButton with Items Fitting their Content
+      SegmentedButton(
+        _.itemsFitContent := true,
+        _.item("Day"),
+        _.item("Working week", _.selected := true),
+        _.item("Month (with a long label)")
+      )
+      //-- End
+    ),
     DemoPanel("SegmentedButton with multi-select") {
       val selectedItemsVar = Var(Vector.empty[String])
       //-- Begin: SegmentedButton with multi-select

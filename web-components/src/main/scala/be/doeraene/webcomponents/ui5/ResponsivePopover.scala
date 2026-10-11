@@ -20,8 +20,7 @@ import scala.scalajs.js.annotation.JSImport
   * component improves tremendously the user experience on mobile.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ResponsivePopover/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/ResponsivePopover/">the doc</a> for more information.
   */
 object ResponsivePopover extends WebComponent with HasAccessibleName {
 
@@ -64,6 +63,9 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-responsive-popover")
 
+  lazy val accessibleRole: HtmlAttr[PopupAccessibleRole] =
+    htmlAttr("accessible-role", PopupAccessibleRole.AsStringCodec)
+
   lazy val allowTargetOverlap: HtmlAttr[Boolean] =
     htmlAttr("allow-target-overlap", BooleanAsAttrPresenceCodec)
 
@@ -71,18 +73,15 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
 
   lazy val hideArrow: HtmlAttr[Boolean] = htmlAttr("hide-arrow", BooleanAsAttrPresenceCodec)
 
-  lazy val hideBackdrop: HtmlAttr[Boolean] = htmlAttr("hide-backdrop", BooleanAsAttrPresenceCodec)
-
   lazy val horizontalAlign: HtmlAttr[PopoverHorizontalAlign] =
     htmlAttr("horizontal-align", PopoverHorizontalAlign.AsStringCodec)
 
   lazy val modal: HtmlAttr[Boolean] = htmlAttr("modal", BooleanAsAttrPresenceCodec)
 
   /** id of the element that opens the ResponsivePopover */
-  lazy val opener: HtmlAttr[String] = htmlAttr("opener", StringAsIsCodec)
+  lazy val openerId: HtmlAttr[String] = htmlAttr("opener", StringAsIsCodec)
 
-  lazy val placementType: HtmlAttr[PopoverPlacementType] =
-    htmlAttr("placement-type", PopoverPlacementType.AsStringCodec)
+  lazy val placement: HtmlAttr[PopoverPlacementType] = PopoverPlacementType.asHtmlAttr("placement")
 
   lazy val verticalAlign: HtmlAttr[PopoverVerticalAlign] =
     htmlAttr("vertical-align", PopoverVerticalAlign.AsStringCodec)
@@ -94,8 +93,26 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
   lazy val preventFocusRestore: HtmlAttr[Boolean] =
     htmlAttr("prevent-focus-restore", BooleanAsAttrPresenceCodec)
 
+  lazy val preventInitialFocus: HtmlAttr[Boolean] =
+    htmlAttr("prevent-initial-focus", BooleanAsAttrPresenceCodec)
+
+  /** Whether the user can resize the popover (only effective on desktop devices).
+    *
+    * @since UI5 2.19.0
+    */
+  lazy val resizable: HtmlAttr[Boolean] = htmlAttr("resizable", BooleanAsAttrPresenceCodec)
+
   lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
   lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
+  @scala.annotation.compileTimeOnly("hideBackdrop property has been removed.")
+  def hideBackdrop: HtmlAttr[Boolean] = ???
+
+  @deprecated("opener has been renamed to openerId (for consistency with Popover)", since = "2.0.0")
+  def opener: HtmlAttr[String] = openerId
+
+  @deprecated("placementType has been renamed to placement", since = "2.0.0")
+  def placementType: HtmlAttr[PopoverPlacementType] = placement
 
   object slots {
     def header: Slot = new Slot("header")
@@ -103,8 +120,13 @@ object ResponsivePopover extends WebComponent with HasAccessibleName {
   }
 
   object events {
-    val onAfterClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("after-close")
-    val onAfterOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("after-open")
+    val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
+    val onOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("open")
+
+    @deprecated("onAfterClose has been renamed to onClose", since = "2.0.0")
+    def onAfterClose: EventProp[EventWithPreciseTarget[Ref]] = onClose
+    @deprecated("onAfterOpen has been renamed to onOpen", since = "2.0.0")
+    def onAfterOpen: EventProp[EventWithPreciseTarget[Ref]] = onOpen
 
     trait BeforeCloseInfo extends js.Object {
       def escPressed: Boolean

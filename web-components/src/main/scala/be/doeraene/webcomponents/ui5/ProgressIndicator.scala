@@ -18,8 +18,7 @@ import be.doeraene.webcomponents.WebComponent
   * with a color.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/ProgressIndicator/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/ProgressIndicator/">the doc</a> for more information.
   */
 object ProgressIndicator extends WebComponent {
 

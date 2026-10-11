@@ -17,13 +17,20 @@ import be.doeraene.webcomponents.WebComponent
 
 /** The DateTimePicker component alows users to select both date (day, month and year) and time (hours, minutes and
   * seconds) and for the purpose it consists of input field and Date/Time picker.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/DateTimePicker/">the doc</a> for more information.
   */
 object DateTimePicker extends WebComponent with HasAccessibleName with HasName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
     @JSName("dateValue")
+    @deprecated("Use dateValueAsync instead", since = "2.14.0")
     def dateValueJS: js.Date = js.native
+
+    /** Promise that resolves to the currently selected date (or null if none). */
+    def dateValueAsync: js.Promise[js.Date | Null] = js.native
 
     def open: Boolean = js.native
 
@@ -36,7 +43,14 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
 
     def isInValidRange(value: String): Boolean = js.native
 
+    @deprecated("Use isValidValue or isValidDisplayValue instead", since = "2.14.0")
     def isValid(value: String): Boolean = js.native
+
+    /** Checks if a value is valid against the current `valueFormat` of the DateTimePicker. */
+    def isValidValue(value: String): Boolean = js.native
+
+    /** Checks if a value is valid against the current `displayFormat` of the DateTimePicker. */
+    def isValidDisplayValue(value: String): Boolean = js.native
 
     @scala.annotation.compileTimeOnly(
       "The methods openPicker(), closePicker() and isOpen() are replaced by open property."
@@ -69,10 +83,26 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
   lazy val readonly: HtmlAttr[Boolean]        = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val required: HtmlAttr[Boolean]        = htmlAttr("required", BooleanAsAttrPresenceCodec)
   lazy val valueState: HtmlAttr[ValueState]   = htmlAttr("value-state", ValueState.AsStringCodec)
-  lazy val formatPattern: HtmlAttr[String]    = htmlAttr("format-pattern", StringAsIsCodec)
+  @deprecated("Use displayFormat and valueFormat instead", since = "2.14.0")
+  lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
   lazy val maxDateRaw: HtmlAttr[String]       = htmlAttr("max-date", StringAsIsCodec)
   lazy val minDateRaw: HtmlAttr[String]       = htmlAttr("min-date", StringAsIsCodec)
   lazy val open: HtmlAttr[Boolean]            = htmlAttr("open", BooleanAsAttrPresenceCodec)
+
+  /** Determines the format displayed in the input field (e.g. "dd/MM/yyyy, hh:mm aa", or "short", "medium", "long"). */
+  lazy val displayFormat: HtmlAttr[String] = htmlAttr("display-format", StringAsIsCodec)
+
+  /** Determines the format used for the `value` attribute (and min/max dates). */
+  lazy val valueFormat: HtmlAttr[String] = htmlAttr("value-format", StringAsIsCodec)
+
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
+  /** Defines whether the clear icon of the input will be shown. */
+  lazy val showClearIcon: HtmlAttr[Boolean] = htmlAttr("show-clear-icon", BooleanAsAttrPresenceCodec)
+
+  lazy val calendarWeekNumbering: HtmlAttr[CalendarWeekNumbering] =
+    htmlAttr("calendar-week-numbering", CalendarWeekNumbering.AsStringCodec)
 
   lazy val primaryCalendarType: HtmlAttr[CalendarType] =
     htmlAttr("primary-calendar-type", CalendarType.AsStringCodec)
@@ -86,8 +116,16 @@ object DateTimePicker extends WebComponent with HasAccessibleName with HasName w
 
   object events {
     import DatePicker.events.DateEventData
+    import DatePicker.events.DatePickerValueStateChangeEventDetail
     val onChange = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("change")
     val onInput  = new EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]("input")
+
+    val onOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("open")
+    val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
+
+    val onValueStateChange
+        : EventProp[EventWithPreciseTarget[Ref] & HasDetail[DatePickerValueStateChangeEventDetail]] =
+      new EventProp("value-state-change")
   }
 
   /** You can feed [[DateTimePicker]] refs to this observer in order to close them. */

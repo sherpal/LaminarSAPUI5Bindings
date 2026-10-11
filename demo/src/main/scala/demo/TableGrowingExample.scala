@@ -42,10 +42,10 @@ object TableGrowingExample extends Example("TableGrowing") {
           },
         _.loading <-- loadingState,
         _.slots.headerRow := Table.headerRow(
-          _.cell(width       := "12rem", span(lineHeight := "1.4rem", "Card")),
-          _.cell(minWidth.px := 800, span(lineHeight := "1.4rem", "Type")),
+          _.cell(_.width    := "12rem", span(lineHeight := "1.4rem", "Card")),
+          _.cell(_.minWidth := "800px", span(lineHeight := "1.4rem", "Type")),
           _.cell(
-            minWidth.px   := 600,
+            _.minWidth    := "600px",
             _.popinText   := "Comment",
             _.popinHidden := false,
             span(lineHeight := "1.4rem", "Comment")

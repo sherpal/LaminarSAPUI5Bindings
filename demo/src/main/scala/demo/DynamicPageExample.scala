@@ -5,6 +5,7 @@ import be.doeraene.webcomponents.ui5.configkeys.*
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 import demo.helpers.MTG
+import be.doeraene.webcomponents.ui5.datatypes.{AccessibilityAttributes, DynamicPageAccessibilityAttributes}
 
 object DynamicPageExample extends Example("DynamicPage") {
 
@@ -17,6 +18,9 @@ object DynamicPageExample extends Example("DynamicPage") {
       DynamicPage(
         height       := "500px",
         _.showFooter := true,
+        _.accessibilityAttributes := DynamicPageAccessibilityAttributes(
+          content = AccessibilityAttributes(name = "Magic the Gathering cards list")
+        ),
         _.slots.titleArea := DynamicPageTitle(
           _.slots.breadcrumbs := Breadcrumbs(
             _.item(_.href := "#", "Magic the Gathering"),
@@ -32,7 +36,8 @@ object DynamicPageExample extends Example("DynamicPage") {
             ),
             Title("Magic the Gathering cards")
           ),
-          _.slots.subheading        := p("MTG"),
+          _.slots.snappedTitleOnMobile := Title("MTG cards"),
+          _.slots.subheading           := p("MTG"),
           _.slots.snappedSubheading := p("MTG"),
           Tag(_.colourScheme := ColourScheme._7, _.wrappingType := WrappingType.None, "Taggerino"),
           _.slots.actionsBar := Toolbar(
@@ -49,6 +54,7 @@ object DynamicPageExample extends Example("DynamicPage") {
         ),
         _.slots.headerArea <-- currentlySelectedVar.signal.map { card =>
           DynamicPageHeader(
+            _.accessibleName := "Selected card",
             display.flex,
             justifyContent.spaceBetween,
             Avatar(

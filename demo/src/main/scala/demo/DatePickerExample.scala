@@ -32,13 +32,35 @@ object DatePickerExample extends Example("DatePicker") {
       )
       //-- End
     },
-    DemoPanel("DatePicker with Minimum and Maximum Date - 1/1/2020 - 4/5/2020 format-pattern='yyyy-MM-dd'")(
-      //-- Begin: DatePicker with Minimum and Maximum Date - 1/1/2020 - 4/5/2020 format-pattern='yyyy-MM-dd'
+    DemoPanel("DatePicker with Minimum and Maximum Date - 1/1/2020 - 4/5/2020 display-format='yyyy-MM-dd'")(
+      //-- Begin: DatePicker with Minimum and Maximum Date - 1/1/2020 - 4/5/2020 display-format='yyyy-MM-dd'
       DatePicker(
-        _.formatPattern := "yyyy-MM-dd",
+        _.displayFormat := "yyyy-MM-dd",
+        _.valueFormat   := "yyyy-MM-dd",
         _.minDateStr    := "2020-01-01",
         _.maxDateStr    := "2020-05-04"
       )
+      //-- End
+    ),
+    DemoPanel("DatePicker with different Display and Value Formats") {
+      //-- Begin: DatePicker with different Display and Value Formats
+      // The user sees (and types) dates in the "long" format, while the value is in the "yyyy-MM-dd" format
+      val valueVar = Var("2024-12-24")
+      div(
+        Label(child.text <-- valueVar.signal.map(value => s"Current value: $value")),
+        br(),
+        DatePicker(
+          _.displayFormat := "long",
+          _.valueFormat   := "yyyy-MM-dd",
+          _.value         := valueVar.now(),
+          _.events.onValidDateChange --> valueVar.writer
+        )
+      )
+      //-- End
+    },
+    DemoPanel("DatePicker with Clear Icon")(
+      //-- Begin: DatePicker with Clear Icon
+      DatePicker(_.showClearIcon := true, _.value := "2024-12-24")
       //-- End
     ),
     DemoPanel("DatePicker with Japanese Calendar Type")(

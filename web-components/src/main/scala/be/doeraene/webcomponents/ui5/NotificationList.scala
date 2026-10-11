@@ -18,6 +18,10 @@ import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-notification-list web component represents a container for ui5-li-notification-group and
   * ui5-li-notification.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/NotificationList/">the doc</a> for more
+  *   information.
   */
 object NotificationList extends WebComponent {
 

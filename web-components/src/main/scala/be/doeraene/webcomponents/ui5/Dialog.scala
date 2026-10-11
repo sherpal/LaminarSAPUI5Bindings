@@ -6,6 +6,7 @@ import be.doeraene.webcomponents.ui5.configkeys.IconName
 import be.doeraene.webcomponents.ui5.configkeys.PopupAccessibleRole
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
@@ -22,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   * regular app screen.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Dialog/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Dialog/">the doc</a> for more information.
   */
 object Dialog extends WebComponent {
 
@@ -77,6 +78,14 @@ object Dialog extends WebComponent {
   lazy val accessibleNameRef: HtmlAttr[String]        = htmlAttr("accessible-name-ref", StringAsIsCodec)
   lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
   lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+  lazy val preventInitialFocus: HtmlAttr[Boolean]     = htmlAttr("prevent-initial-focus", BooleanAsAttrPresenceCodec)
+
+  /** When `true`, a fullscreen toggle button (toggling the `stretch` property) is shown in the dialog header. Not
+    * available on phones, nor when a custom `header` slot is provided.
+    *
+    * @since UI5 2.25.0
+    */
+  lazy val showFullscreenButton: HtmlAttr[Boolean] = htmlAttr("show-fullscreen-button", BooleanAsAttrPresenceCodec)
 
   //noinspection TypeAnnotation
   object slots {
@@ -87,6 +96,19 @@ object Dialog extends WebComponent {
   object events {
     lazy val onOpen: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("open")
     lazy val onClose: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("close")
+
+    trait BeforeCloseInfo extends js.Object {
+
+      /** Whether the dialog is being closed because the Escape key was pressed. */
+      def escPressed: Boolean
+    }
+
+    /** Fired before the dialog is closed. Calling `preventDefault()` on the event prevents the closing. */
+    lazy val onBeforeClose: EventProp[EventWithPreciseTarget[Ref] & HasDetail[BeforeCloseInfo]] =
+      new EventProp("before-close")
+
+    /** Fired before the dialog is opened. Calling `preventDefault()` on the event prevents the opening. */
+    lazy val onBeforeOpen: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("before-open")
   }
 
   def getDialogById(id: String): Option[Ref] =

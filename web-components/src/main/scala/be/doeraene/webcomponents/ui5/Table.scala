@@ -4,6 +4,7 @@ import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.TableOverflowMode
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
+import be.doeraene.webcomponents.ui5.eventtypes.MoveEventDetail
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
@@ -23,7 +24,7 @@ import scala.scalajs.js.annotation.JSImport
   * provided ui5-table-header-row and ui5-table-row components for this purpose.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/components/Table/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Table/">the doc</a> for more information.
   */
 object Table extends WebComponent with HasAccessibleName {
 
@@ -45,6 +46,9 @@ object Table extends WebComponent with HasAccessibleName {
   lazy val loadingDelay: HtmlAttr[FiniteDuration]    = htmlAttr("loading-delay", FiniteDurationCodec)
   lazy val rowActionCount: HtmlAttr[Int]             = htmlAttr("row-action-count", IntAsStringCodec)
 
+  /** Whether the table rows are displayed with alternating background colors (since UI5 2.17). */
+  lazy val alternateRowColors: HtmlAttr[Boolean] = htmlAttr("alternate-row-colors", BooleanAsAttrPresenceCodec)
+
   object slots {
     val headerRow: Slot = Slot("headerRow")
     val noData: Slot    = Slot("noData")
@@ -55,10 +59,27 @@ object Table extends WebComponent with HasAccessibleName {
     trait HasTableRow extends js.Object:
       def row: TableRow.Ref
 
+    /** Detail of the `row-action-click` event.
+      *
+      * The `action` is either a [[TableRowAction]] or a [[TableRowActionNavigation]].
+      */
+    trait RowActionClickDetail extends HasTableRow:
+      def action: dom.html.Element
+
     val onRowClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTableRow]] = new EventProp("row-click")
-    val onMoveOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTableRow]] = new EventProp("move-over")
-    val onMove: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTableRow]]     = new EventProp("move")
-    val onRowActionClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[HasTableRow]] = new EventProp(
+
+    /** Fired when a movable row is moved over a potential drop target during a drag-and-drop operation.
+      *
+      * Call `preventDefault()` on the event to allow the element to be dropped.
+      */
+    val onMoveOver: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[TableRow.Ref]]] =
+      new EventProp("move-over")
+
+    /** Fired when a movable row is dropped on a valid drop target. */
+    val onMove: EventProp[EventWithPreciseTarget[Ref] & HasDetail[MoveEventDetail[TableRow.Ref]]] =
+      new EventProp("move")
+
+    val onRowActionClick: EventProp[EventWithPreciseTarget[Ref] & HasDetail[RowActionClickDetail]] = new EventProp(
       "row-action-click"
     )
 
@@ -66,6 +87,9 @@ object Table extends WebComponent with HasAccessibleName {
 
   def headerRow: TableHeaderRow.type = TableHeaderRow
   def row: TableRow.type             = TableRow
+  def groupRow: TableGroupRow.type   = TableGroupRow
   def growing: TableGrowing.type     = TableGrowing
+
+  def virtualizer: TableVirtualizer.type = TableVirtualizer
 
 }

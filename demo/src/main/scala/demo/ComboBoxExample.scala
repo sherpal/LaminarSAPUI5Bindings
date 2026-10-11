@@ -81,6 +81,63 @@ object ComboBoxExample extends Example("ComboBox") {
       )
       //-- End
     ),
+    DemoPanel("ComboBox with Clear Icon")(
+      //-- Begin: ComboBox with Clear Icon
+      ComboBox(
+        _.placeholder   := "Clear icon",
+        _.showClearIcon := true,
+        _.value         := "Belgium",
+        someCountries.map(country => ComboBox.item(_.text := country))
+      )
+      //-- End
+    ),
+    DemoPanel("ComboBox with Selected Value") {
+      //-- Begin: ComboBox with Selected Value
+      // The items display the country name, but we keep track of the country code via `selectedValue`.
+      val selectedCodeVar: Var[Option[String]] = Var(Some("BE"))
+      val lastTriggerVar: Var[Option[String]]  = Var(None)
+      div(
+        ComboBox(
+          _.placeholder    := "Choose a country",
+          _.selectedValue <-- selectedCodeVar.signal.map(_.getOrElse("")),
+          someCountries
+            .zip(someCountryCodes)
+            .map((country, code) => ComboBox.item(_.text := country, _.value := code, _.additionalText := code)),
+          _.events.onSelectionChange.map(_.detail.maybeItem.flatMap(_.value.toOption)) --> selectedCodeVar.writer,
+          _.events.onSelectionChange.map(_.detail.trigger.map(_.value)) --> lastTriggerVar.writer
+        ),
+        div(
+          marginTop := "0.5rem",
+          "Selected country code: ",
+          child.text <-- selectedCodeVar.signal.map(_.getOrElse("(none)")),
+          child.text <-- lastTriggerVar.signal.map(_.fold("")(trigger => s" (selected via $trigger)"))
+        )
+      )
+      //-- End
+    },
+    DemoPanel("ComboBox with Custom Items")(
+      //-- Begin: ComboBox with Custom Items
+      ComboBox(
+        _.placeholder := "Custom items",
+        someCountries
+          .zip(someCountryCodes)
+          .map((country, code) =>
+            ComboBox.itemCustom(
+              _.text  := country,
+              _.value := code,
+              div(
+                display.flex,
+                justifyContent.spaceBetween,
+                alignItems.center,
+                width := "100%",
+                span(Icon(_.name := IconName.flag, marginRight := "0.5rem"), country),
+                Tag(code)
+              )
+            )
+          )
+      )
+      //-- End
+    ),
     DemoPanel("ComboBox with Grouping of Items")(
       //-- Begin: ComboBox with Grouping of Items
       ComboBox(

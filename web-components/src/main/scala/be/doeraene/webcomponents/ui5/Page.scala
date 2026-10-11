@@ -17,7 +17,7 @@ import be.doeraene.webcomponents.WebComponent
   * areas that can hold content - a header, content area and a footer.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Page/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/Page/">the doc</a> for more information.
   */
 object Page extends WebComponent {
 

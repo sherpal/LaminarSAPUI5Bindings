@@ -17,15 +17,32 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
   *
   * The DynamicPageHeader ui5-dynamic-page-header is part of the DynamicPage family and is used to serve as header of
   * the DynamicPage.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/DynamicPageHeader/">the doc</a> for more
+  *   information.
   */
 object DynamicPageHeader extends WebComponent {
 
   @js.native
   trait RawElement extends js.Object {}
 
+  @js.native
+  @JSImport("@ui5/webcomponents-fiori/dist/DynamicPageHeader.js", JSImport.Default)
+  object RawImport extends js.Object
+
+  // object-s are lazy so you need to actually use them in your code to prevent dead code elimination
+  used(RawImport)
+
   type Ref = dom.html.Element & RawElement
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-dynamic-page-header")
+
+  /** Accessible name of the header region.
+    *
+    * @since UI5 2.24.0
+    */
+  lazy val accessibleName: HtmlAttr[String] = htmlAttr("accessible-name", StringAsIsCodec)
 
   object slots {}
 

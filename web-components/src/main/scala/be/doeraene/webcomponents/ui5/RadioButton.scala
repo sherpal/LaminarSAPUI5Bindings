@@ -21,8 +21,7 @@ import be.doeraene.webcomponents.WebComponent
   * deselected back.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/RadioButton/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/RadioButton/">the doc</a> for more information.
   */
 object RadioButton extends WebComponent with HasAccessibleName with HasName with HasText {
 

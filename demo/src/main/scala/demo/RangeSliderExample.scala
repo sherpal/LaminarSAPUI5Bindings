@@ -2,6 +2,7 @@ package demo
 
 import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.*
+import be.doeraene.webcomponents.ui5.datatypes.Tickmark
 import com.raquo.laminar.api.L.*
 import demo.helpers.{DemoPanel, Example, FetchDemoPanelFromGithub}
 
@@ -37,6 +38,22 @@ object RangeSliderExample extends Example("RangeSlider") {
     DemoPanel("Range Slider with Tooltips") {
       //-- Begin: Range Slider with Tooltips
       RangeSlider(_.startValue := 3, _.endValue := 13, _.showTooltip := true)
+      //-- End
+    },
+    DemoPanel("Range Slider with Editable Tooltips") {
+      //-- Begin: Range Slider with Editable Tooltips
+      RangeSlider(_.startValue := 3, _.endValue := 13, _.showTooltip := true, _.editableTooltip := true)
+      //-- End
+    },
+    DemoPanel("Range Slider with Custom Tickmarks") {
+      //-- Begin: Range Slider with Custom Tickmarks
+      RangeSlider(
+        _.min        := 0,
+        _.max        := 24,
+        _.startValue := 8,
+        _.endValue   := 18,
+        _.tickmarks  := List(0, 6, 12, 18, 24).map(hour => Tickmark(hour, s"${hour}h"))
+      )
       //-- End
     },
     DemoPanel("Range Slider with Tickmarks and Custom Step") {

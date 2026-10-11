@@ -81,7 +81,73 @@ object ToolbarExample extends Example("Toolbar") {
         _.button(_.icon := IconName.employee, _.text := "Call me later")
       )
       //-- End
-    )
+    ),
+    DemoPanel("Toolbar with any component (since 2.20.0)")(
+      //-- Begin: Toolbar with any component (since 2.20.0)
+      Toolbar(
+        _.item(Input(_.placeholder := "Search...")),
+        _.item(CheckBox(_.text := "Only mine")),
+        _.item(
+          _.overflowPriority := ToolbarItemOverflowBehavior.NeverOverflow,
+          Switch(_.textOn := "On", _.textOff := "Off")
+        ),
+        _.spacer(),
+        _.button(_.icon := IconName.add, _.text := "Add"),
+        _.button(_.icon := IconName.delete, _.text := "Delete")
+      )
+      //-- End
+    ),
+    DemoPanel("Overflow priorities and groups")(
+      //-- Begin: Overflow priorities and groups
+      div(
+        maxWidth := "450px",
+        Toolbar(
+          _.alignContent := ToolbarAlign.Start,
+          _.button(
+            _.icon             := IconName.home,
+            _.text             := "Home (never overflows)",
+            _.overflowPriority := ToolbarItemOverflowBehavior.NeverOverflow
+          ),
+          _.button(_.icon := IconName.edit, _.text := "Edit", _.showOverflowText := true),
+          _.separator(),
+          _.button(_.icon := IconName.copy, _.text  := "Copy (clipboard group)", _.overflowGroup  := "clipboard"),
+          _.button(_.icon := IconName.paste, _.text := "Paste (clipboard group)", _.overflowGroup := "clipboard"),
+          _.button(
+            _.icon             := IconName.`action-settings`,
+            _.text             := "Settings (always overflows)",
+            _.overflowPriority := ToolbarItemOverflowBehavior.AlwaysOverflow
+          ),
+          _.button(
+            _.icon                   := IconName.refresh,
+            _.text                   := "Refresh (keeps the popover open)",
+            _.overflowPriority       := ToolbarItemOverflowBehavior.AlwaysOverflow,
+            _.preventOverflowClosing := true
+          )
+        )
+      )
+      //-- End
+    ),
+    DemoPanel("Toolbar select with label and value") {
+      //-- Begin: Toolbar select with label and value
+      val selectedValueVar = Var("medium")
+      div(
+        Toolbar(
+          _.alignContent := ToolbarAlign.Start,
+          _.select(
+            _.slots.label := Label("Size:"),
+            _.value <-- selectedValueVar.signal,
+            _.events.onChange.map(_.detail.selectedToolbarOption.toOption.flatMap(_.value.toOption)) -->
+              Observer[Option[String]](_.foreach(selectedValueVar.set)),
+            List("small" -> "Small", "medium" -> "Medium", "large" -> "Large").map((value, text) =>
+              Toolbar.select.option(_.value := value, text)
+            )
+          ),
+          _.button(_.text := "Reset", _.events.onClick.mapTo("medium") --> selectedValueVar.writer)
+        ),
+        div(child.text <-- selectedValueVar.signal.map(value => s"Selected value: $value"))
+      )
+      //-- End
+    }
   )
 
 }

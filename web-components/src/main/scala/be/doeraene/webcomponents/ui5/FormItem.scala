@@ -19,7 +19,7 @@ import be.doeraene.webcomponents.ui5.internal.Slot
   * to it.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/components/FormItem/">the doc</a> for more inFormItemation.
+  *   <a href="https://ui5.github.io/webcomponents/components/FormItem/">the doc</a> for more information.
   */
 object FormItem extends WebComponent {
 
@@ -37,6 +37,11 @@ object FormItem extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-form-item")
 
+  @deprecated(
+    "As of version 2.23.0, this property is deprecated. " +
+      "Note: This property will not have any effect on the layout of the form item",
+    since = "2.23.0"
+  )
   lazy val columnSpan: HtmlAttr[Int] = htmlAttr("column-span", IntAsStringCodec)
 
   object slots {

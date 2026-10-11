@@ -19,8 +19,7 @@ import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
 /** Tab container
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TabContainer/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/TabContainer/">the doc</a> for more information.
   */
 object TabContainer extends WebComponent {
 
@@ -45,7 +44,9 @@ object TabContainer extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-tabcontainer")
 
-  lazy val disabled: HtmlAttr[Boolean]    = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
+  @scala.annotation.compileTimeOnly("disabled property of TabContainer has been removed")
+  def disabled: HtmlAttr[Boolean] = ???
+
   lazy val collapsed: HtmlAttr[Boolean]   = htmlAttr("collapsed", BooleanAsAttrPresenceCodec)
   lazy val tabLayout: HtmlAttr[TabLayout] = htmlAttr("tab-layout", TabLayout.AsStringCodec)
   lazy val overflowMode: HtmlAttr[TabsOverflowMode] =
@@ -90,13 +91,12 @@ object TabContainer extends WebComponent {
 
   def tab: Tab.type = Tab
 
+  @deprecated("TabSeparatorSupport is not needed anymore, use the TabSeparator component instead", since = "2.27.2")
   @js.native
   @JSImport("@ui5/webcomponents/dist/TabSeparator.js", JSImport.Default)
   object TabSeparatorSupport extends js.Object
 
-  def tabSeparator: HtmlElement = {
-    TabSeparatorSupport
-    htmlTag("ui5-tab-separator").apply()
-  }
+  /** Creates a [[TabSeparator]], to put between tabs. */
+  def tabSeparator: HtmlElement = TabSeparator()
 
 }

@@ -14,16 +14,16 @@ import scala.scalajs.js.annotation.JSImport
 import com.raquo.laminar.codecs.DoubleAsStringCodec
 import com.raquo.laminar.codecs.IntAsStringCodec
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.datatypes.Tickmark
 import be.doeraene.webcomponents.WebComponent
 
 /** Represents a numerical interval and two handles (grips) to select a sub-range within it. The purpose of the
   * component to enable visual selection of sub-ranges within a given interval.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/RangeSlider/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/RangeSlider/">the doc</a> for more information.
   */
-object RangeSlider extends WebComponent {
+object RangeSlider extends WebComponent with HasName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -60,7 +60,15 @@ object RangeSlider extends WebComponent {
 
   lazy val showTooltip: HtmlAttr[Boolean] = htmlAttr("show-tooltip", BooleanAsAttrPresenceCodec)
 
+  /** Whether input fields should be used as tooltips for the handles (requires `showTooltip`). */
+  lazy val editableTooltip: HtmlAttr[Boolean] = htmlAttr("editable-tooltip", BooleanAsAttrPresenceCodec)
+
   lazy val step: HtmlAttr[Int] = htmlAttr("step", IntAsStringCodec)
+
+  /** Custom tickmarks (with optional labels) displayed on the slider scale. They are purely visual and do not affect
+    * the step or the possible values.
+    */
+  lazy val tickmarks: HtmlProp[List[Tickmark], js.Array[Tickmark]] = Tickmark.asHtmlProp
 
   object slots {}
 

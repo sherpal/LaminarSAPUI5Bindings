@@ -19,10 +19,9 @@ import be.doeraene.webcomponents.WebComponent
   * the component uses the available width.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/SegmentedButton/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/SegmentedButton/">the doc</a> for more information.
   */
-object SegmentedButton extends WebComponent {
+object SegmentedButton extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -51,8 +50,19 @@ object SegmentedButton extends WebComponent {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-segmented-button")
 
-  lazy val accessibleName: HtmlAttr[String]             = htmlAttr("accessible-name", StringAsIsCodec)
   lazy val selectionMode: HtmlAttr[SegmentedButtonMode] = SegmentedButtonMode.asHtmlAttr("selection-mode")
+
+  /** @since UI5 2.15.0 */
+  lazy val accessibleDescription: HtmlAttr[String] = htmlAttr("accessible-description", StringAsIsCodec)
+
+  /** @since UI5 2.15.0 */
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
+  /** When `true`, each item takes the width of its content instead of all items sharing the available width equally.
+    *
+    * @since UI5 2.16.0
+    */
+  lazy val itemsFitContent: HtmlAttr[Boolean] = htmlAttr("items-fit-content", BooleanAsAttrPresenceCodec)
 
   @deprecated("mode property of SegmentedButton has been renamed to selectionMode", since = "2.0.0")
   def mode: HtmlAttr[SegmentedButtonMode] = selectionMode

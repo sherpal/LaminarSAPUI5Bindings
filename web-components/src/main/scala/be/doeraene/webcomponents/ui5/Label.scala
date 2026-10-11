@@ -12,10 +12,10 @@ import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.WrappingType
 import be.doeraene.webcomponents.WebComponent
 
-/** Simple UI button
+/** The ui5-label is used to label form fields (e.g. via its `for` attribute) or to display text in forms.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Label/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Label/">the doc</a> for more information.
   */
 object Label extends WebComponent with HasIcon {
 

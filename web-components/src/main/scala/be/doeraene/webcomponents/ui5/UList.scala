@@ -4,9 +4,11 @@ import be.doeraene.webcomponents.WebComponent
 import be.doeraene.webcomponents.ui5.configkeys.ListGrowingMode
 import be.doeraene.webcomponents.ui5.configkeys.ListMode
 import be.doeraene.webcomponents.ui5.configkeys.ListSeparator
+import be.doeraene.webcomponents.ui5.datatypes.ListAccessibilityAttributes
 import be.doeraene.webcomponents.ui5.eventtypes.*
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
+import com.raquo.laminar.codecs.AsIsCodec
 import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
 import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
@@ -23,7 +25,7 @@ import scala.scalajs.js.annotation.JSName
   * items, and predefined modes to improve the development efficiency.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/List/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/List/">the doc</a> for more information.
   */
 object UList extends WebComponent with HasAccessibleName {
 
@@ -50,6 +52,7 @@ object UList extends WebComponent with HasAccessibleName {
 
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-list")
 
+  /** Accessible role of the list: "List" (default), "Menu", "Tree" or "ListBox". */
   lazy val accessibleRole: HtmlAttr[String]        = htmlAttr("accessible-role", StringAsIsCodec)
   lazy val loading: HtmlAttr[Boolean]              = htmlAttr("loading", BooleanAsAttrPresenceCodec)
   lazy val loadingDelay: HtmlAttr[FiniteDuration]  = htmlAttr("loading-delay", FiniteDurationCodec)
@@ -61,6 +64,26 @@ object UList extends WebComponent with HasAccessibleName {
   lazy val noDataText: HtmlAttr[String]            = htmlAttr("no-data-text", StringAsIsCodec)
   lazy val separators: HtmlAttr[ListSeparator]     = htmlAttr("separators", ListSeparator.AsStringCodec)
   lazy val accessibleDescription: HtmlAttr[String] = htmlAttr("accessible-description", StringAsIsCodec)
+
+  /** Id(s) (space separated) of the element(s) describing the list. @since UI5 2.5.0 */
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
+  /** Text of the "More" button, when `growing` is `Button`. @since UI5 1.24 */
+  lazy val growingButtonText: HtmlAttr[String] = htmlAttr("growing-button-text", StringAsIsCodec)
+
+  /** Whether the header (header text or header slot) of the list stays visible (sticky) when scrolling.
+    *
+    * @since UI5 2.19.0
+    */
+  lazy val stickyHeader: HtmlAttr[Boolean] = htmlAttr("sticky-header", BooleanAsAttrPresenceCodec)
+
+  /** Additional accessibility attributes, for the "More" growing button (`growingButtonName` and
+    * `growingButtonDescription`).
+    *
+    * @since UI5 2.13.0
+    */
+  lazy val accessibilityAttributes: HtmlProp[ListAccessibilityAttributes, ListAccessibilityAttributes] =
+    htmlProp("accessibilityAttributes", AsIsCodec())
 
   @deprecated("busy property has been renamed to loading", since = "2.0.0")
   def busy: HtmlAttr[Boolean] = loading

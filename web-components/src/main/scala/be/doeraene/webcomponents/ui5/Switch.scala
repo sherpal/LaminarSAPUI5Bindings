@@ -17,9 +17,9 @@ import be.doeraene.webcomponents.WebComponent
 /** The ui5-switch component is used for changing between binary states.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Switch/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Switch/">the doc</a> for more information.
   */
-object Switch extends WebComponent with HasAccessibleName {
+object Switch extends WebComponent with HasAccessibleName with HasName with HasValue {
 
   @js.native
   trait RawElement extends js.Object {
@@ -44,6 +44,9 @@ object Switch extends WebComponent with HasAccessibleName {
   lazy val design: HtmlAttr[SwitchDesign] = htmlAttr("design", SwitchDesign.AsStringCodec)
   lazy val required: HtmlAttr[Boolean]    = htmlAttr("required", BooleanAsAttrPresenceCodec)
   lazy val tooltip: HtmlAttr[String]      = htmlAttr("tooltip", StringAsIsCodec)
+
+  /** A readonly switch cannot be toggled by user interaction, but can still be focused. */
+  lazy val readonly: HtmlAttr[Boolean] = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
 
   object slots {}
 

@@ -13,6 +13,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.ui5.configkeys.ValueState
 import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
+import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
 import be.doeraene.webcomponents.WebComponent
 
 /** The ui5-time-picker component provides an input field with assigned sliders which are opened on user action. The
@@ -20,10 +21,9 @@ import be.doeraene.webcomponents.WebComponent
   * parts: the time input field and the sliders.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/TimePicker/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/TimePicker/">the doc</a> for more information.
   */
-object TimePicker extends WebComponent with HasValue with HasAccessibleName {
+object TimePicker extends WebComponent with HasValue with HasAccessibleName with HasName {
 
   @js.native
   trait RawElement extends js.Object {
@@ -35,7 +35,11 @@ object TimePicker extends WebComponent with HasValue with HasAccessibleName {
 
     def formatValue(date: js.Date): String = js.native
 
+    /** Checks if a value is valid against the current display format. Note: an empty string is considered valid. */
     def isValid(value: String): Boolean = js.native
+
+    /** Checks if a value is valid against the current `valueFormat`. Note: an empty string is considered valid. */
+    def isValidValue(value: String): Boolean = js.native
   }
 
   object RawElement {
@@ -64,20 +68,33 @@ object TimePicker extends WebComponent with HasValue with HasAccessibleName {
   protected val tag: CustomHtmlTag[Ref] = CustomHtmlTag("ui5-time-picker")
 
   lazy val disabled: HtmlAttr[Boolean]      = htmlAttr("disabled", BooleanAsAttrPresenceCodec)
-  lazy val formatPattern: HtmlAttr[String]  = htmlAttr("format-pattern", StringAsIsCodec)
   lazy val placeholder: HtmlAttr[String]    = htmlAttr("placeholder", StringAsIsCodec)
   lazy val readonly: HtmlAttr[Boolean]      = htmlAttr("readonly", BooleanAsAttrPresenceCodec)
   lazy val valueState: HtmlAttr[ValueState] = htmlAttr("value-state", ValueState.AsStringCodec)
   lazy val open: HtmlAttr[Boolean]          = htmlAttr("open", BooleanAsAttrPresenceCodec)
   lazy val required: HtmlAttr[Boolean]      = htmlAttr("required", BooleanAsAttrPresenceCodec)
 
+  @deprecated("Use displayFormat and valueFormat instead", since = "2.21.0")
+  lazy val formatPattern: HtmlAttr[String] = htmlAttr("format-pattern", StringAsIsCodec)
+
+  /** Determines the format displayed in the input field, e.g. "HH:mm:ss" or "hh:mm:ss a". */
+  lazy val displayFormat: HtmlAttr[String] = htmlAttr("display-format", StringAsIsCodec)
+
+  /** Determines the format used for the `value` attribute. */
+  lazy val valueFormat: HtmlAttr[String] = htmlAttr("value-format", StringAsIsCodec)
+
+  lazy val accessibleDescription: HtmlAttr[String]    = htmlAttr("accessible-description", StringAsIsCodec)
+  lazy val accessibleDescriptionRef: HtmlAttr[String] = htmlAttr("accessible-description-ref", StringAsIsCodec)
+
   object slots {
     val valueStateMessage: Slot = Slot("valueStateMessage")
   }
 
   object events {
-    val onChange: EventProp[EventWithPreciseTarget[Ref]] = new EventProp("change")
-    val onInput: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("input")
+    import DatePicker.events.DateEventData
+
+    val onChange: EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]] = new EventProp("change")
+    val onInput: EventProp[EventWithPreciseTarget[Ref] & HasDetail[DateEventData]]  = new EventProp("input")
     val onOpen: EventProp[EventWithPreciseTarget[Ref]]   = new EventProp("open")
     val onClose: EventProp[EventWithPreciseTarget[Ref]]  = new EventProp("close")
   }

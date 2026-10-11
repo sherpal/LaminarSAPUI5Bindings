@@ -45,7 +45,7 @@ object TabContainerExample extends Example("TabContainer") {
               " any tokens and counters, and some way to clearly track life totals."
           )
         ),
-        _.tabSeparator,
+        TabSeparator(),
         _.tab(
           _.text := "Tab 5",
           _.icon := IconName.`action-settings`,

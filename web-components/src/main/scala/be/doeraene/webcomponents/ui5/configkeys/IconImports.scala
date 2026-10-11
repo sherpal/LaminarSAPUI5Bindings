@@ -1694,6 +1694,9 @@ private[configkeys] object IconImports {
   @js.native @JSImport("@ui5/webcomponents-icons/dist/slim-arrow-up.js", JSImport.Namespace)
   object `import-slim-arrow-up` extends js.Object
 
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/smart-watch.js", JSImport.Namespace)
+  object `import-smart-watch` extends js.Object
+
   @js.native @JSImport("@ui5/webcomponents-icons/dist/soccer.js", JSImport.Namespace)
   object `import-soccer` extends js.Object
 
@@ -2071,6 +2074,9 @@ private[configkeys] object IconImports {
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/visits.js", JSImport.Namespace)
   object `import-visits` extends js.Object
+
+  @js.native @JSImport("@ui5/webcomponents-icons/dist/vr-glasses.js", JSImport.Namespace)
+  object `import-vr-glasses` extends js.Object
 
   @js.native @JSImport("@ui5/webcomponents-icons/dist/waiver.js", JSImport.Namespace)
   object `import-waiver` extends js.Object

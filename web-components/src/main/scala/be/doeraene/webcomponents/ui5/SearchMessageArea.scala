@@ -1,25 +1,25 @@
 package be.doeraene.webcomponents.ui5
 
 import be.doeraene.webcomponents.WebComponent
-import be.doeraene.webcomponents.ui5.configkeys.ValueState
-import be.doeraene.webcomponents.ui5.eventtypes.EventWithPreciseTarget
-import be.doeraene.webcomponents.ui5.eventtypes.HasDetail
-import be.doeraene.webcomponents.ui5.eventtypes.HasItem
-import be.doeraene.webcomponents.ui5.eventtypes.HasTargetRef
 import be.doeraene.webcomponents.ui5.internal.Slot
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.codecs.BooleanAsAttrPresenceCodec
-import com.raquo.laminar.codecs.IntAsStringCodec
 import com.raquo.laminar.codecs.StringAsIsCodec
 import com.raquo.laminar.keys.HtmlAttr
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.tags.CustomHtmlTag
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import be.doeraene.webcomponents.ui5.configkeys.IconName
 
+/** The ui5-search-message-area displays a message (text and description) at the top of the suggestions of a
+  * [[Search]]. Put it inside the `messageArea` slot of the [[Search]].
+  *
+  * Note: this component is experimental in UI5 and its API may change.
+  *
+  * @see
+  *   <a href="https://ui5.github.io/webcomponents/components/fiori/SearchMessageArea/">the doc</a> for more
+  *   information.
+  */
 object SearchMessageArea extends WebComponent {
 
   @js.native
@@ -42,7 +42,8 @@ object SearchMessageArea extends WebComponent {
   lazy val description: HtmlAttr[String] = htmlAttr("description", StringAsIsCodec)
 
   object slots {
-    val image: Slot = Slot("image")
+    @scala.annotation.compileTimeOnly("ui5-search-message-area has no image slot.")
+    def image: Slot = ???
   }
 
   object events {}

@@ -20,7 +20,7 @@ import be.doeraene.webcomponents.WebComponent
   * label.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/v1/components/CalendarLegend/">the doc</a> for more information.
+  *   <a href="https://ui5.github.io/webcomponents/components/CalendarLegend/">the doc</a> for more information.
   */
 object CalendarLegend extends WebComponent {
 

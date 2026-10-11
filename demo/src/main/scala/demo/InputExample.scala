@@ -36,11 +36,8 @@ object InputExample extends Example("Input") {
           .map(
             _.map(country =>
               Input.suggestion(
-                _.icon                := IconName.world,
-                _.additionalText      := "explore",
-                _.additionalTextState := ValueState.Positive,
-                _.description         := "travel the world",
-                _.text                := country
+                _.additionalText := "explore",
+                _.text           := country
               )
             )
           )
@@ -51,6 +48,69 @@ object InputExample extends Example("Input") {
         _.placeholder     := "Start typing country name",
         children         <-- suggestions,
         _.events.onInput.mapToValue --> filterValueBus.writer
+      )
+      //-- End
+    },
+    DemoPanel("Input with Suggestion Filters") {
+      //-- Begin: Input with Suggestion Filters
+      div(
+        InputSuggestionsFilter.allValues.map(filter =>
+          Input(
+            _.showSuggestions := true,
+            _.filter          := filter,
+            _.placeholder     := s"Filter: ${filter.value}",
+            marginRight       := "0.5rem",
+            countries.map(country => Input.suggestion(_.text := country))
+          )
+        )
+      )
+      //-- End
+    },
+    DemoPanel("Input with Grouped and Custom Suggestions") {
+      //-- Begin: Input with Grouped and Custom Suggestions
+      Input(
+        _.showSuggestions := true,
+        _.filter          := InputSuggestionsFilter.StartsWithPerTerm,
+        _.placeholder     := "Type a country or a fruit",
+        _.suggestionGroup(
+          _.headerText := "Countries",
+          countries.map(country => Input.suggestion(_.text := country, _.additionalText := country.take(2).toUpperCase))
+        ),
+        _.suggestionGroup(
+          _.headerText := "Fruits",
+          List("Apple" -> IconName.`nutrition-activity`, "Banana" -> IconName.meal, "Cherry" -> IconName.lead).map {
+            (fruit, icon) =>
+              Input.suggestionCustom(
+                _.text := fruit,
+                div(display.flex, alignItems.center, gap := "0.5rem", Icon(_.name := icon), fruit)
+              )
+          }
+        )
+      )
+      //-- End
+    },
+    DemoPanel("Input with Interactive Icons") {
+      //-- Begin: Input with Interactive Icons
+      val clickedIconVar: Var[String] = Var("none")
+      div(
+        Input(
+          _.placeholder := "Search or dictate...",
+          _.showClearIcon := true,
+          width := "300px",
+          _.slots.icon := List(
+            Input.inputIcon(
+              _.name           := IconName.microphone,
+              _.accessibleName := "Voice input",
+              _.events.onClick.mapTo("microphone") --> clickedIconVar.writer
+            ),
+            Input.inputIcon(
+              _.name           := IconName.search,
+              _.accessibleName := "Search",
+              _.events.onClick.mapTo("search") --> clickedIconVar.writer
+            )
+          )
+        ),
+        div(marginTop := "0.5rem", "Last clicked icon: ", child.text <-- clickedIconVar.signal)
       )
       //-- End
     },

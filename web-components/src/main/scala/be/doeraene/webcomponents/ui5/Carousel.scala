@@ -13,15 +13,17 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import be.doeraene.webcomponents.WebComponent
+import be.doeraene.webcomponents.ui5.configkeys.CarouselBackgroundDesign
+import be.doeraene.webcomponents.ui5.configkeys.CarouselPageIndicatorBorderDesign
 import be.doeraene.webcomponents.ui5.configkeys.CarouselPageIndicatorType
+import scala.scalajs.js.annotation.JSName
 import com.raquo.laminar.codecs.Codec
 
 /** The Carousel allows the user to browse through a set of items. The component is mostly used for showing a gallery of
   * images, but can hold any other HTML element.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/playground/components/Carousel/">the doc</a> for more
-  *   information.
+  *   <a href="https://ui5.github.io/webcomponents/components/Carousel/">the doc</a> for more information.
   */
 object Carousel extends WebComponent {
 
@@ -29,6 +31,17 @@ object Carousel extends WebComponent {
   @js.native
   trait RawElement extends js.Object {
     def navigateTo(itemIndex: Int): Unit = js.native
+
+    @JSName("visibleItemsIndices")
+    def visibleItemsIndicesJS: js.Array[Int] = js.native
+  }
+
+  object RawElement {
+    extension (element: RawElement) {
+
+      /** Indices of the currently visible items. */
+      def visibleItemsIndices: List[Int] = element.visibleItemsIndicesJS.toList
+    }
   }
 
   @js.native
@@ -77,6 +90,18 @@ object Carousel extends WebComponent {
 
   lazy val pageIndicatorType: HtmlAttr[CarouselPageIndicatorType] =
     CarouselPageIndicatorType.asHtmlAttr("page-indicator-type")
+
+  /** Background design of the carousel (`Translucent` by default). */
+  lazy val backgroundDesign: HtmlAttr[CarouselBackgroundDesign] =
+    CarouselBackgroundDesign.asHtmlAttr("background-design")
+
+  /** Background design of the page indicator (`Solid` by default). */
+  lazy val pageIndicatorBackgroundDesign: HtmlAttr[CarouselBackgroundDesign] =
+    CarouselBackgroundDesign.asHtmlAttr("page-indicator-background-design")
+
+  /** Border design of the page indicator (`Solid` by default). */
+  lazy val pageIndicatorBorderDesign: HtmlAttr[CarouselPageIndicatorBorderDesign] =
+    CarouselPageIndicatorBorderDesign.asHtmlAttr("page-indicator-border-design")
 
   @deprecated("pageIndicatorStyle has been renamed to pageIndicatorType", since = "2.0.0")
   def pageIndicatorStyle: HtmlAttr[CarouselPageIndicatorType] = pageIndicatorType

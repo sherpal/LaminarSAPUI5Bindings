@@ -15,13 +15,13 @@ import be.doeraene.webcomponents.ui5.configkeys.TitleLevel
 import be.doeraene.webcomponents.ui5.configkeys.ItemSpacing
 import be.doeraene.webcomponents.ui5.internal.Slot
 
-/** The FormGroup (ui5-form-item) represents pair of a label and one or more components (text or text fields),
-  * associated to it.
+/** The FormGroup (ui5-form-group) represents a group of form items (ui5-form-item) inside a ui5-form, with an optional
+  * header.
   *
   * @see
-  *   <a href="https://sap.github.io/ui5-webcomponents/components/FormGroup/">the doc</a> for more inFormGroupation.
+  *   <a href="https://ui5.github.io/webcomponents/components/FormGroup/">the doc</a> for more information.
   */
-object FormGroup extends WebComponent {
+object FormGroup extends WebComponent with HasAccessibleName {
 
   @js.native
   trait RawElement extends js.Object {}
@@ -40,6 +40,11 @@ object FormGroup extends WebComponent {
   lazy val headerText: HtmlAttr[String]      = htmlAttr("header-text", StringAsIsCodec)
   lazy val headerLevel: HtmlAttr[TitleLevel] = htmlAttr("header-level", TitleLevel.AsStringCodec)
   lazy val columnSpan: HtmlAttr[Int]         = htmlAttr("column-span", IntAsStringCodec)
+
+  /** Number of columns to distribute the group content by breakpoint, e.g. "S1 M2 L3 XL4". Ignored if `columnSpan` is
+    * set.
+    */
+  lazy val colSpan: HtmlAttr[String] = htmlAttr("col-span", StringAsIsCodec)
 
   object slots {}
 
