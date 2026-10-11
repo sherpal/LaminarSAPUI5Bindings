@@ -5,7 +5,7 @@ val usedScalacOptions = Def.task {
   Seq(
     "-encoding",
     "utf8",
-    "-Xfatal-warnings",
+    "-Werror",
     "-deprecation",
     "-unchecked",
     "-language:higherKinds",

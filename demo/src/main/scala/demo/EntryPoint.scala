@@ -4,11 +4,10 @@ import be.doeraene.webcomponents.ui5.*
 import be.doeraene.webcomponents.ui5.configkeys.LinkTarget
 import com.raquo.laminar.api.L.*
 import demo.TagExample
-import demo.helpers.Example
-import demo.helpers.ThemeSelector
+import demo.helpers.{Example, ThemeSelector}
 import org.scalajs.dom
-import org.scalajs.dom.URL
-import org.scalajs.dom.window
+import org.scalajs.dom.{window, URL}
+
 object EntryPoint {
   def main(args: Array[String]): Unit = {
     val demoElement = {

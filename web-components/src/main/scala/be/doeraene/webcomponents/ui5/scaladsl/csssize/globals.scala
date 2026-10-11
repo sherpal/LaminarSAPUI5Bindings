@@ -21,8 +21,8 @@ object CSSSize {
 }
 
 extension (numeric: Int) {
-  def px: CSSSize  = s"${numeric}px"
-  def em: CSSSize  = s"${numeric}em"
-  def rem: CSSSize = s"${numeric}rem"
-  def % : CSSSize  = s"${numeric}%"
+  def px: CSSSize      = s"${numeric}px"
+  def em: CSSSize      = s"${numeric}em"
+  def rem: CSSSize     = s"${numeric}rem"
+  def percent: CSSSize = s"${numeric}%"
 }
